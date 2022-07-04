@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 
-public class PublicModulePage extends TestBase{
+public class UpdateCartPage extends TestBase{
 
     TestUtility testUtility;
 
@@ -73,7 +73,7 @@ public class PublicModulePage extends TestBase{
     @FindBy(xpath = "//a[@class=\"logo\"]")
     WebElement logo;
 
-    public PublicModulePage(WebDriver driver) {
+    public UpdateCartPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
         testUtility=new TestUtility(driver);
