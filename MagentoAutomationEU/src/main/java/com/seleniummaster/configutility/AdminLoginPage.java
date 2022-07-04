@@ -1,4 +1,4 @@
-package com.seleniummaster.ui.backend;
+package com.seleniummaster.configutility;
 
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
