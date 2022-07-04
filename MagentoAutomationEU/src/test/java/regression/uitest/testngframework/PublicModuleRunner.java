@@ -1,8 +1,10 @@
 package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.ApplicationConfig;
+import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.frontend.UpdateCartPage;
+import com.seleniummaster.ui.frontend.ViewAccountInformationPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -12,7 +14,8 @@ import org.testng.annotations.Test;
 public class PublicModuleRunner extends TestBase {
 
     UpdateCartPage updateCartPage;
-
+    PublicLoginPage publicLoginPage;
+    ViewAccountInformationPage viewAccountInformationPage;
     @BeforeClass
     public void setUp(){
        browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","frontEndURL"));
@@ -32,7 +35,15 @@ public class PublicModuleRunner extends TestBase {
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
     }
+@Test
+public void ViewAccountInformation(){
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        viewAccountInformationPage=new ViewAccountInformationPage(driver);
+        viewAccountInformationPage.openAccountInformation();
+        Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
 
+}
     @AfterClass
     public void tearDown() {
         closeBrowser();
