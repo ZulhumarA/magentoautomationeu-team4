@@ -1,10 +1,13 @@
 package com.seleniummaster.configutility;
 
+import com.github.javafaker.App;
+import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class AdminLoginPage extends TestBase {
 
@@ -21,9 +24,17 @@ public class AdminLoginPage extends TestBase {
      @FindBy(xpath = "//*[@value=\"Login\"]")
      WebElement loginButton;
 
-     public static void adminLogin(String userName,String password){
-
-
-
+     public AdminLoginPage(WebDriver driver) {
+          this.driver = driver;
+          PageFactory.initElements(driver,this);
+          testUtility=new TestUtility(driver);
      }
+
+     public void adminLogin(String userName){
+          userNameField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties",userName));
+          passwordField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties","backEndPassword"));
+          loginButton.click();
+     }
+
+
 }
