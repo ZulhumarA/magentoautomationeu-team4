@@ -106,26 +106,6 @@ public class PublicModulePage extends TestBase{
     }
 
 
-
-    public void addMultipleProductsToCartMethod(){
-        linenBlazer.click();
-        selectValueFromDropDown(colorField,"22");
-        selectValueFromDropDown(sizeField,"78");
-        addToCartButton.click();
-        logo.click();
-
-        elizabethKnitTop.click();
-        selectValueFromDropDown(colorField,"22");
-        selectValueFromDropDown(sizeField,"78");
-        addToCartButton.click();
-        logo.click();
-
-        chelseaTee.click();
-        selectValueFromDropDown(colorField,"22");
-        selectValueFromDropDown(sizeField,"78");
-        addToCartButton.click();
-    }
-
     public boolean verifyLinenBlazerSuccessfullyAddedMessage(){
         testUtility.waitForElementPresent(linenBlazerSuccessfullyAddedMessage);
         return linenBlazerSuccessfullyAddedMessage.isDisplayed();

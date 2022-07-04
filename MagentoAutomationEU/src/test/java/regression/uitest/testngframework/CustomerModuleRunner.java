@@ -1,13 +1,15 @@
 package regression.uitest.testngframework;
 
+import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class CustomerModuleRunner extends TestBase {
 
-    @BeforeClass
+    @Test
     public void setUp(){
-        adminPageBrowserSetUp();
+        browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","backEndURL"));
 
 
     }

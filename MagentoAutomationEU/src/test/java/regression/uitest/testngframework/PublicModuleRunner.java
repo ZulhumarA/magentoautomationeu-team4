@@ -1,5 +1,6 @@
 package regression.uitest.testngframework;
 
+import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.frontend.PublicModulePage;
 import org.testng.Assert;
@@ -14,7 +15,7 @@ public class PublicModuleRunner extends TestBase {
 
     @BeforeClass
     public void setUp(){
-       userPageBrowserSetUp();
+       browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","frontEndURL"));
     }
 
 
