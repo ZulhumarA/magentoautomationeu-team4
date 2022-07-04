@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 public class PublicModuleRunner extends TestBase {
 
-    UpdateCartPage updateCartPage;
+    UpdateCartPage cartPage;
 
     @BeforeClass
     public void setUp(){
@@ -21,16 +21,16 @@ public class PublicModuleRunner extends TestBase {
 
     @Test
     public void addLinenBlazerProductToCart(){
-        updateCartPage=new UpdateCartPage(driver);
-        updateCartPage.addLinenBlazerToCart();
-        Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
+        cartPage=new UpdateCartPage(driver);
+        cartPage.addLinenBlazerToCart();
+        Assert.assertTrue(cartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
     @Test
     public void updateProductSize(){
-        updateCartPage=new UpdateCartPage(driver);
-        updateCartPage.changeProductSizeMethod();
-        Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
+        cartPage=new UpdateCartPage(driver);
+        cartPage.changeProductSizeMethod();
+        Assert.assertTrue(cartPage.verifyLinenBlazerProductUpdatedSuccessfully());
     }
 
     @AfterClass
