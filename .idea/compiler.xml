@@ -10,7 +10,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CubeCartApplication2021" target="1.8" />
       <module name="magentoautomationeu-team4" target="1.8" />
     </bytecodeTargetLevel>
   </component>
