@@ -22,21 +22,23 @@ public class PublicModuleRunner extends TestBase {
     }
 
 
-    @Test
+    @Test(priority = 1)
     public void addLinenBlazerProductToCart(){
         updateCartPage=new UpdateCartPage(driver);
         updateCartPage.addLinenBlazerToCart();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
-    @Test
+    @Test(priority = 2)
     public void updateProductSize(){
         updateCartPage=new UpdateCartPage(driver);
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
+        updateCartPage.returnToHomePage();
     }
-@Test
-public void ViewAccountInformation(){
+
+    @Test(priority = 3)
+    public void ViewAccountInformation(){
         publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
         viewAccountInformationPage=new ViewAccountInformationPage(driver);
@@ -44,8 +46,8 @@ public void ViewAccountInformation(){
         Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
 
 }
-    @AfterClass
-    public void tearDown() {
+     @AfterClass
+     public void tearDown() {
         closeBrowser();
     }
 }

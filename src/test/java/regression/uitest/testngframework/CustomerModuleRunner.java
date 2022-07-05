@@ -3,11 +3,15 @@ package regression.uitest.testngframework;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
+import com.seleniummaster.ui.backend.customersmodule.AssignCustomerToACustomerGroupPage;
+import com.seleniummaster.ui.frontend.ViewAccountInformationPage;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class CustomerModuleRunner extends TestBase {
+
 
 
     @BeforeClass
@@ -20,6 +24,13 @@ public class CustomerModuleRunner extends TestBase {
     public void customerManagerLogin(){
         AdminLoginPage adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("customerManager");
+    }
+
+    @Test
+    public void addNewCustomer1(){
+        AssignCustomerToACustomerGroupPage assignCustomerToACustomerGroupPage=new AssignCustomerToACustomerGroupPage(driver);
+        assignCustomerToACustomerGroupPage.createNewCustomer();
+
     }
 
 

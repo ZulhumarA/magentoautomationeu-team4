@@ -1,62 +1,77 @@
 package com.seleniummaster.configutility;
 
-import org.openqa.selenium.PageLoadStrategy;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
+import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
-import java.util.concurrent.TimeUnit;
+
 
 public class TestBase {
 
     public WebDriver driver;
     public String browserName="chrome";
-    public String configFileName="config.properties";
 
+    public void browserSetUp(String url){
 
-        public void browserSetUp(String url){
-            //define the operating system
-            String osName = System.getProperty("os.name").toLowerCase().substring(0, 3);
-            //define the driver
-            if(driver==null){
-                if(browserName.equalsIgnoreCase("chrome")) {
-                    if (osName.equalsIgnoreCase("win")) {
-                        System.setProperty("webdriver.chrome.driver", "c:\\webdriver\\chromedriver.exe");
-                        driver = new ChromeDriver();
-                        driver.manage().window().maximize();
-
-                    } else if (osName.equalsIgnoreCase("mac")) {
-                        System.setProperty("webdriver.chrome.driver", "/Users/apple/Documents/JavaWebDriver/chromedriver");
-                        //System.setProperty("webdriver.chrome.driver", "webDrivers/chromedriver");
-                        driver = new ChromeDriver();
-                        driver.manage().window().maximize();
-                    }
-
-                }else if(browserName.equalsIgnoreCase("Fire fox")){
-                    if (osName.equalsIgnoreCase("win")) {
-                        System.setProperty("webdriver.gecko.driver","c:\\webdriver\\geckodriver.exe");
-                        driver=new FirefoxDriver();;
-                        driver.manage().window().maximize();
-
-                    } else if (osName.equalsIgnoreCase("mac")) {
-                        System.setProperty("webdriver.gecko.driver", "/Users/apple/Documents/JavaWebDriver/geckodriver");
-                        //System.setProperty("webdriver.gecko.driver", "webDrivers/geckodriver");
-                        driver = new ChromeDriver();
-                        driver.manage().window().maximize();
-                    }
-                }
+        //define the driver
+        if(driver==null){
+            if(browserName.equalsIgnoreCase("Chrome")) {
+                ChromeOptions chromeOptions = new ChromeOptions();
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver(chromeOptions);
+                driver.manage().window().maximize();
             }
-                else if(browserName.equalsIgnoreCase("Fire fox")){
-                    System.setProperty("webdriver.gecko.driver","c:\\webdriver\\geckodriver.exe");
-                    driver=new FirefoxDriver();
-                    driver.manage().window().maximize();
-                    driver.get(ApplicationConfig.readFromConfigProperties(configFileName,"frontEndURL"));
-                }
+
+            else if(browserName.equalsIgnoreCase("Safari")){
+                SafariOptions safariOptions=new SafariOptions();
+                WebDriverManager.safaridriver().setup();
+                driver = new SafariDriver(safariOptions);
+                driver.manage().window().maximize();
+            }
+
+            else if(browserName.equalsIgnoreCase("FireFox")){
+                FirefoxOptions firefoxOptions=new FirefoxOptions();
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver(firefoxOptions);
+                driver.manage().window().maximize();
+            }
+
+            else if(browserName.equalsIgnoreCase("IE")){
+                InternetExplorerOptions internetExplorerOptions=new InternetExplorerOptions();
+                WebDriverManager.iedriver().setup();
+                driver=new InternetExplorerDriver(internetExplorerOptions);
+                driver.manage().window().maximize();
+            }
+
+            else if(browserName.equalsIgnoreCase("Edge")){
+                EdgeOptions edgeOptions=new EdgeOptions();
+                WebDriverManager.edgedriver().setup();
+                driver=new EdgeDriver(edgeOptions);
+                driver.manage().window().maximize();
+            }
+
+            else if(browserName.equalsIgnoreCase("Opera")){
+                OperaOptions operaOptions=new OperaOptions();
+                WebDriverManager.operadriver().setup();
+                driver=new OperaDriver(operaOptions);
+                driver.manage().window().maximize();
+            }
+
             assert driver != null;
             driver.get(url);
-            }
-
+        }
+    }
     public void closeBrowser(){
         driver.close();
         driver.quit();
