@@ -68,6 +68,12 @@ public class PublicModuleRunner extends TestBase {
 //    }
 //
 
+//    @AfterClass
+//    public void tearDown() {
+//        closeBrowser();
+//    }
+//}
+
 
 
 

@@ -68,6 +68,7 @@ public class TestBase {
                 driver.manage().window().maximize();
             }
 
+
             assert driver != null;
             driver.get(url);
         }
