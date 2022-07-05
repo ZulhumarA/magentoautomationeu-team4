@@ -30,46 +30,40 @@ public class TestBase {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver(chromeOptions);
-                driver.manage().window().maximize();
             }
 
             else if(browserName.equalsIgnoreCase("Safari")){
                 SafariOptions safariOptions=new SafariOptions();
                 WebDriverManager.safaridriver().setup();
                 driver = new SafariDriver(safariOptions);
-                driver.manage().window().maximize();
             }
 
             else if(browserName.equalsIgnoreCase("FireFox")){
                 FirefoxOptions firefoxOptions=new FirefoxOptions();
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver(firefoxOptions);
-                driver.manage().window().maximize();
             }
 
             else if(browserName.equalsIgnoreCase("IE")){
                 InternetExplorerOptions internetExplorerOptions=new InternetExplorerOptions();
                 WebDriverManager.iedriver().setup();
                 driver=new InternetExplorerDriver(internetExplorerOptions);
-                driver.manage().window().maximize();
             }
 
             else if(browserName.equalsIgnoreCase("Edge")){
                 EdgeOptions edgeOptions=new EdgeOptions();
                 WebDriverManager.edgedriver().setup();
                 driver=new EdgeDriver(edgeOptions);
-                driver.manage().window().maximize();
             }
 
             else if(browserName.equalsIgnoreCase("Opera")){
                 OperaOptions operaOptions=new OperaOptions();
                 WebDriverManager.operadriver().setup();
                 driver=new OperaDriver(operaOptions);
-                driver.manage().window().maximize();
             }
 
-
             assert driver != null;
+            driver.manage().window().maximize();
             driver.get(url);
         }
     }
