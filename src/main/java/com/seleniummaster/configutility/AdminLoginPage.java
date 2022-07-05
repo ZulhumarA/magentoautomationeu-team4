@@ -1,9 +1,6 @@
 package com.seleniummaster.configutility;
 
-import com.github.javafaker.App;
-import com.seleniummaster.configutility.ApplicationConfig;
-import com.seleniummaster.configutility.TestBase;
-import com.seleniummaster.configutility.TestUtility;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

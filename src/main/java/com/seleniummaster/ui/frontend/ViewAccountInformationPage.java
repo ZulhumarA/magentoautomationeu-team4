@@ -32,7 +32,7 @@ public class ViewAccountInformationPage {
 
     public boolean verifyAccountInformation() {
         testUtility.waitForElementPresent(AccountInformationSuccessfulMessage);
-        return true;
+        return AccountInformationSuccessfulMessage.isDisplayed();
     }
 
 
