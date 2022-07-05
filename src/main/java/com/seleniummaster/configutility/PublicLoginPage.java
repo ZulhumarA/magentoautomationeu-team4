@@ -44,4 +44,17 @@ public class PublicLoginPage {
         InterPasswordField.sendKeys( ApplicationConfig.readFromConfigProperties("config.properties", "password"));
         PublicLoginButtonInLoginPge.click();
     }
+    public void changPasswordLogin() {
+        testUtility.waitForElementPresent(AccountButton);
+        AccountButton.click();
+        testUtility.waitForElementPresent(LoginButton);
+        LoginButton.click();
+        testUtility.waitForElementPresent(InterEmailField);
+        InterEmailField.click();
+        InterEmailField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties", "emailAddress1"));
+        testUtility.waitForElementPresent(InterPasswordField);
+        InterPasswordField.click();
+        InterPasswordField.sendKeys( ApplicationConfig.readFromConfigProperties("config.properties", "password1"));
+        PublicLoginButtonInLoginPge.click();
+    }
 }
