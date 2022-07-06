@@ -74,7 +74,11 @@ public void ViewAccountInformation(){
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
     }
 
-
+    @Test(description = "user can add new products to shopping cart-Zulhumar")
+    public void addProductsToCart() {
+        AddProductsToShoppingCartPage addProductsToShoppingCartPage = new AddProductsToShoppingCartPage(driver);
+        addProductsToShoppingCartPage.addChelseaTeaToCart();
+    }
     @AfterClass
     public void tearDown() {
         closeBrowser();
