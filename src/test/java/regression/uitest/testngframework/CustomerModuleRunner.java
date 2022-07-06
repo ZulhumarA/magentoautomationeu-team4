@@ -49,14 +49,14 @@ public class CustomerModuleRunner extends TestBase {
 
         addNewCustomerPage = new AddNewCustomerPage(driver);
         addNewCustomerPage.clickAddNewCustomer();
-        addNewCustomerPage.enterPrefixField(ApplicationConfig.readFromConfigProperties("config.properties","prefixfield"));
-      addNewCustomerPage.enterFirstName(ApplicationConfig.readFromConfigProperties("config.properties","userName"));
-      addNewCustomerPage.enterLastName(ApplicationConfig.readFromConfigProperties("config.properties","lastName"));
-       addNewCustomerPage.enterEmail(ApplicationConfig.readFromConfigProperties("config.properties","email"));
-        addNewCustomerPage.enterTaxNumber(ApplicationConfig.readFromConfigProperties("config.properties","taxNumber"));
-    addNewCustomerPage.enterPassword(ApplicationConfig.readFromConfigProperties("config.properties","password2"));
-addNewCustomerPage.clickSaveButton();
-Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
+        addNewCustomerPage.enterPrefixField(ApplicationConfig.readFromConfigProperties("config.properties", "prefixfield"));
+        addNewCustomerPage.enterFirstName(ApplicationConfig.readFromConfigProperties("config.properties", "userName"));
+        addNewCustomerPage.enterLastName(ApplicationConfig.readFromConfigProperties("config.properties", "lastName"));
+        addNewCustomerPage.enterEmail(ApplicationConfig.readFromConfigProperties("config.properties", "email"));
+        addNewCustomerPage.enterTaxNumber(ApplicationConfig.readFromConfigProperties("config.properties", "taxNumber"));
+        addNewCustomerPage.enterPassword(ApplicationConfig.readFromConfigProperties("config.properties", "password2"));
+        addNewCustomerPage.clickSaveButton();
+        Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
     }
 
     @Test
