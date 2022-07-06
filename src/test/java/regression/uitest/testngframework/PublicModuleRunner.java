@@ -17,6 +17,7 @@ public class PublicModuleRunner extends TestBase {
     ViewAccountInformationPage viewAccountInformationPage;
     CheckOutTheOrderPage checkOutTheOrderPage;
     ViewDownloadableOrdersPage viewDownloadableOrdersPage;
+    ViewOrderPage ViewOrderPage;
 
     @BeforeClass
     public void setUp(){
@@ -74,7 +75,21 @@ public void ViewAccountInformation(){
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
     }
 
+    @Test
+    public void ViewOrder(){
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        ViewOrderPage=new ViewOrderPage(driver);
+        ViewOrderPage.OpenMyOrders();
+        ViewOrderPage.ViewOrder();
+        Assert.assertTrue(ViewOrderPage.VerifyOrders());
+    }
 
+    @Test(description = "user can add new products to shopping cart-Zulhumar")
+    public void addProductsToCart() {
+        AddProductsToShoppingCartPage addProductsToShoppingCartPage = new AddProductsToShoppingCartPage(driver);
+        addProductsToShoppingCartPage.addChelseaTeaToCart();
+    }
     @AfterClass
     public void tearDown() {
         closeBrowser();
