@@ -4,6 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.customersmodule.ResetCustomerPassword;
+import com.seleniummaster.ui.backend.customersmodule.UpdateAnExistingCustomerPage;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -34,6 +35,16 @@ public class CustomerModuleRunner extends TestBase {
         resetCustomerPassword.EditCustomerInformation(1234567);
        Assert.assertTrue( resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
+
+    @Test
+    public void UpdateAnExistingCustomerPage() {
+        adminLoginPage = new AdminLoginPage(driver);
+        UpdateAnExistingCustomerPage updateAnExistingCustomerPage=new UpdateAnExistingCustomerPage(driver);
+        adminLoginPage.adminLogin("customerManager");
+        updateAnExistingCustomerPage.EditAccountInformation("123");
+        Assert.assertTrue( updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
+    }
+
     @AfterClass
     public void tearDown() {
         closeBrowser();
