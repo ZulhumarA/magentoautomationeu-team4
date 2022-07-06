@@ -3,6 +3,7 @@ package regression.uitest.testngframework;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
+import com.seleniummaster.ui.frontend.CheckOutTheOrderPage;
 import com.seleniummaster.ui.frontend.UpdateCartPage;
 import com.seleniummaster.ui.frontend.ViewAccountInformationPage;
 import org.testng.Assert;
@@ -16,29 +17,28 @@ public class PublicModuleRunner extends TestBase {
     UpdateCartPage updateCartPage;
     PublicLoginPage publicLoginPage;
     ViewAccountInformationPage viewAccountInformationPage;
+    CheckOutTheOrderPage checkOutTheOrderPage;
     @BeforeClass
     public void setUp(){
        browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","frontEndURL"));
     }
 
 
-    @Test(priority = 1)
+    @Test
     public void addLinenBlazerProductToCart(){
         updateCartPage=new UpdateCartPage(driver);
         updateCartPage.addLinenBlazerToCart();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
-    @Test(priority = 2)
+    @Test
     public void updateProductSize(){
         updateCartPage=new UpdateCartPage(driver);
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
-        updateCartPage.returnToHomePage();
     }
-
-    @Test(priority = 3)
-    public void ViewAccountInformation(){
+@Test
+public void ViewAccountInformation(){
         publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
         viewAccountInformationPage=new ViewAccountInformationPage(driver);
@@ -46,8 +46,18 @@ public class PublicModuleRunner extends TestBase {
         Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
 
 }
-     @AfterClass
-     public void tearDown() {
+    @Test
+    public void CheckOutTheOrder(){
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        checkOutTheOrderPage=new CheckOutTheOrderPage(driver);
+        checkOutTheOrderPage.openMyOrders();
+        Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
+
+    }
+
+    @AfterClass
+    public void tearDown() {
         closeBrowser();
     }
 }
@@ -67,12 +77,6 @@ public class PublicModuleRunner extends TestBase {
 //        cartPage.addProductToCart(linenBlazer,"22","78");
 //    }
 //
-
-//    @AfterClass
-//    public void tearDown() {
-//        closeBrowser();
-//    }
-//}
 
 
 
