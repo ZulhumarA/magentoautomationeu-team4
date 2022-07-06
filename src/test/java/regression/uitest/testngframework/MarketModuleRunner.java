@@ -31,6 +31,11 @@ public class MarketModuleRunner extends TestBase {
         Assert.assertTrue(filterShoppingCartPricingRuleByIdAndRule.changeRuleNameAndVerify());
     }
 
+    @Test
+    public void sadasd(){
+
+    }
+
     @AfterClass
     public void tearDown() {
         closeBrowser();
