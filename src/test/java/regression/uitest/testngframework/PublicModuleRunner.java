@@ -3,10 +3,7 @@ package regression.uitest.testngframework;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
-import com.seleniummaster.ui.frontend.CheckOutTheOrderPage;
-import com.seleniummaster.ui.frontend.UpdateCartPage;
-import com.seleniummaster.ui.frontend.ViewAccountInformationPage;
-import com.seleniummaster.ui.frontend.ViewDownloadableOrdersPage;
+import com.seleniummaster.ui.frontend.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -67,6 +64,14 @@ public void ViewAccountInformation(){
         viewDownloadableOrdersPage.ViewDownloableOrders();
         Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
 
+    }
+
+    // Test Case Id: MAGE2022-314 A user should be able to create an account
+    @Test
+    public void createAnAccount(){
+        CreateAnAccountPage createAnAccountPage=new CreateAnAccountPage(driver);
+        createAnAccountPage.fillAccountRegistrationForm();
+        Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
     }
 
 
