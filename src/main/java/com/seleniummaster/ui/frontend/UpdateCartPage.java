@@ -89,15 +89,15 @@ public class UpdateCartPage extends TestBase{
 
     public void addProductToCartMethod(){
         linenBlazer.click();
-        selectValueFromDropDown(colorField,"22");
-        selectValueFromDropDown(sizeField,"78");
+        testUtility.selectValueFromDropDown(colorField,"22");
+        testUtility.selectValueFromDropDown(sizeField,"78");
         addToCartButton.click();
     }
 
     public void addProductToCart(WebElement productName,String colorValue,String sizeValue){
         productName.click();
-        selectValueFromDropDown(colorField, colorValue);
-        selectValueFromDropDown(sizeField, sizeValue);
+        testUtility.selectValueFromDropDown(colorField, colorValue);
+        testUtility.selectValueFromDropDown(sizeField, sizeValue);
         addToCartButton.click();
     }
 
@@ -132,19 +132,15 @@ public class UpdateCartPage extends TestBase{
 
     public void changeProductSizeMethod(){
         updateProductLink.click();
-        selectValueFromDropDown(sizeField,"77");
+        testUtility.selectValueFromDropDown(sizeField,"77");
         updateCartButton.click();
     }
 
-    public void selectValueFromDropDown(WebElement webelement,String value){
-        Select s=new Select(webelement);
-        s.selectByValue(value);
+    public void returnToHomePage(){
+        logo.click();
     }
 
-    public void selectValueFromDropDown(WebElement webelement,int index){
-        Select s=new Select(webelement);
-        s.selectByIndex(index);
-    }
+
 }
 
 
