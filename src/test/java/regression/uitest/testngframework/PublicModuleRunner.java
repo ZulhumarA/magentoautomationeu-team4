@@ -6,6 +6,7 @@ import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.frontend.CheckOutTheOrderPage;
 import com.seleniummaster.ui.frontend.UpdateCartPage;
 import com.seleniummaster.ui.frontend.ViewAccountInformationPage;
+import com.seleniummaster.ui.frontend.ViewDownloadableOrdersPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -18,6 +19,8 @@ public class PublicModuleRunner extends TestBase {
     PublicLoginPage publicLoginPage;
     ViewAccountInformationPage viewAccountInformationPage;
     CheckOutTheOrderPage checkOutTheOrderPage;
+    ViewDownloadableOrdersPage viewDownloadableOrdersPage;
+
     @BeforeClass
     public void setUp(){
        browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","frontEndURL"));
@@ -55,6 +58,17 @@ public void ViewAccountInformation(){
         Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
 
     }
+
+    @Test
+    public void viewDownloadableOrders(){
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        viewDownloadableOrdersPage=new ViewDownloadableOrdersPage(driver);
+        viewDownloadableOrdersPage.ViewDownloableOrders();
+        Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
+
+    }
+
 
     @AfterClass
     public void tearDown() {
