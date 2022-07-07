@@ -6,13 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AssignCustomerToACustomerGroupPage {
+public class AssignCustomerGroupPage {
 
     TestUtility testUtility;
 
     WebDriver driver;
 
-    public AssignCustomerToACustomerGroupPage(WebDriver driver) {
+    public AssignCustomerGroupPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
         testUtility=new TestUtility(driver);
