@@ -26,11 +26,12 @@ public class CatalogModuleRunner extends TestBase {
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("catalogManager");
     }
-@Test(description = "Add new attributes under a catalog-Zulhumar")
-    public void addNewAttributes(){
-    addAttributeUnderCatalogPage=new AddAttributeUnderCatalogPage(driver);
-    addAttributeUnderCatalogPage.addNewAttributeMethod();
-    Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
+
+    @Test(description = "Add new attributes under a catalog-Zulhumar")
+    public void addNewAttributes() {
+        addAttributeUnderCatalogPage = new AddAttributeUnderCatalogPage(driver);
+        addAttributeUnderCatalogPage.addNewAttributeMethod();
+        Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
 
 
 //    addAttributeUnderCatalogPage.moveToCatalogLink();
@@ -45,13 +46,8 @@ public class CatalogModuleRunner extends TestBase {
 //addAttributeUnderCatalogPage.enterAdminField(ApplicationConfig.readFromConfigProperties(
 //        "config.properties","admin"));
 //addAttributeUnderCatalogPage.clickSaveAttributeBTN();
-   Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
-
-
-}
-
-
-
+        Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
+    }
 
     @Test
     public void AddRootCategories() {
