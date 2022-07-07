@@ -95,7 +95,6 @@ public class AssignCustomerGroupPage {
             e.printStackTrace();
         }
         selectionCheckBox.click();
-        String customerGroup1=customerGroupSection.getText();
         System.out.println(customerGroup1);
         testUtility.selectValueFromDropDown(actionsDropDownList,"assign_group");
         testUtility.selectValueFromDropDown(assignGroupField,"85");

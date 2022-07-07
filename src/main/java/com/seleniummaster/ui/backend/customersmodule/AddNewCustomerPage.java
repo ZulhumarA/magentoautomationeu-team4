@@ -1,6 +1,5 @@
 package com.seleniummaster.ui.backend.customersmodule;
 
-import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
 import org.openqa.selenium.WebDriver;
