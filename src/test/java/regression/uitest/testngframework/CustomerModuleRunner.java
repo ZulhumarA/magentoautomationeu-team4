@@ -73,5 +73,4 @@ public class CustomerModuleRunner extends TestBase {
         closeBrowser();
     }
 
-
 }

@@ -50,3 +50,16 @@ public class CatalogModuleRunner extends TestBase {
 
 
 }
+
+    @Test
+    public void AddRootCategories() {
+        AddRootCategories addRootCategories = new AddRootCategories(driver);
+        addRootCategories.NewRootCategoryInformation("Car");
+        Assert.assertTrue(addRootCategories.VerifyAddRootCategoriesSuccessfully());
+    }
+
+    @AfterClass
+    public void tearDown() {
+        closeBrowser();
+    }
+}
