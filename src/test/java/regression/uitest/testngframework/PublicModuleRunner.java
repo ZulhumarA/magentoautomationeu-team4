@@ -3,9 +3,7 @@ package regression.uitest.testngframework;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
-import com.seleniummaster.ui.frontend.CheckOutTheOrderPage;
-import com.seleniummaster.ui.frontend.UpdateCartPage;
-import com.seleniummaster.ui.frontend.ViewAccountInformationPage;
+import com.seleniummaster.ui.frontend.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -18,6 +16,9 @@ public class PublicModuleRunner extends TestBase {
     PublicLoginPage publicLoginPage;
     ViewAccountInformationPage viewAccountInformationPage;
     CheckOutTheOrderPage checkOutTheOrderPage;
+    ViewDownloadableOrdersPage viewDownloadableOrdersPage;
+    ViewOrderPage ViewOrderPage;
+
     @BeforeClass
     public void setUp(){
        browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","frontEndURL"));
@@ -37,8 +38,9 @@ public class PublicModuleRunner extends TestBase {
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
     }
-@Test
-public void ViewAccountInformation(){
+
+     @Test
+     public void ViewAccountInformation(){
         publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
         viewAccountInformationPage=new ViewAccountInformationPage(driver);
@@ -53,11 +55,43 @@ public void ViewAccountInformation(){
         checkOutTheOrderPage=new CheckOutTheOrderPage(driver);
         checkOutTheOrderPage.openMyOrders();
         Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
-
     }
 
-    @AfterClass
-    public void tearDown() {
+    @Test
+    public void viewDownloadableOrders(){
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        viewDownloadableOrdersPage=new ViewDownloadableOrdersPage(driver);
+        viewDownloadableOrdersPage.ViewDownloableOrders();
+        Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
+    }
+
+    // Test Case Id: MAGE2022-314 A user should be able to create an account
+    @Test
+    public void createAnAccount(){
+        CreateAnAccountPage createAnAccountPage=new CreateAnAccountPage(driver);
+        createAnAccountPage.fillAccountRegistrationForm();
+        Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
+    }
+
+    @Test
+    public void ViewOrder(){
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        ViewOrderPage=new ViewOrderPage(driver);
+        ViewOrderPage.OpenMyOrders();
+        ViewOrderPage.ViewOrder();
+        Assert.assertTrue(ViewOrderPage.VerifyOrders());
+    }
+
+    @Test(description = "user can add new products to shopping cart-Zulhumar")
+    public void addProductsToCart() {
+        AddProductsToShoppingCartPage addProductsToShoppingCartPage = new AddProductsToShoppingCartPage(driver);
+        addProductsToShoppingCartPage.addChelseaTeaToCart();
+    }
+
+     @AfterClass
+     public void tearDown() {
         closeBrowser();
     }
 }
