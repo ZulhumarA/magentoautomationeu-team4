@@ -105,12 +105,4 @@ public class AssignCustomerGroupPage {
         customerAssignedSuccessfullyMessage.isDisplayed();
         return true;
     }
-
-
-
-
-
-
-
-
 }
