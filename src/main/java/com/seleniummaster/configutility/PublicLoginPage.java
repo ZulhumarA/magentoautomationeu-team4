@@ -1,13 +1,16 @@
 package com.seleniummaster.configutility;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class PublicLoginPage {
+
     TestUtility testUtility;
     WebDriver driver;
+    Faker faker=new Faker();
 
     @FindBy(css = "a[title='Log In']")
     WebElement LoginButton;
@@ -57,4 +60,19 @@ public class PublicLoginPage {
         InterPasswordField.sendKeys( ApplicationConfig.readFromConfigProperties("config.properties", "password1"));
         PublicLoginButtonInLoginPge.click();
     }
+    public void updateAddressLogin() {
+        testUtility.waitForElementPresent(AccountButton);
+        AccountButton.click();
+        testUtility.waitForElementPresent(LoginButton);
+        LoginButton.click();
+        testUtility.waitForElementPresent(InterEmailField);
+        InterEmailField.click();
+        InterEmailField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties", "emailAddress2"));
+        testUtility.waitForElementPresent(InterPasswordField);
+        InterPasswordField.click();
+        InterPasswordField.sendKeys( ApplicationConfig.readFromConfigProperties("config.properties", "password"));
+        PublicLoginButtonInLoginPge.click();
+    }
+
+
 }
