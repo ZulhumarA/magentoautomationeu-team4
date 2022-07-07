@@ -38,8 +38,9 @@ public class PublicModuleRunner extends TestBase {
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
     }
-@Test
-public void ViewAccountInformation(){
+
+     @Test
+     public void ViewAccountInformation(){
         publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
         viewAccountInformationPage=new ViewAccountInformationPage(driver);
@@ -54,7 +55,6 @@ public void ViewAccountInformation(){
         checkOutTheOrderPage=new CheckOutTheOrderPage(driver);
         checkOutTheOrderPage.openMyOrders();
         Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
-
     }
 
     @Test
@@ -64,7 +64,6 @@ public void ViewAccountInformation(){
         viewDownloadableOrdersPage=new ViewDownloadableOrdersPage(driver);
         viewDownloadableOrdersPage.ViewDownloableOrders();
         Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
-
     }
 
     // Test Case Id: MAGE2022-314 A user should be able to create an account
@@ -91,8 +90,9 @@ public void ViewAccountInformation(){
         addProductsToShoppingCartPage.addChelseaTeaToCart();
         Assert.assertTrue(addProductsToShoppingCartPage.verifySuccessfullyAddProduct());
     }
-    @AfterClass
-    public void tearDown() {
+
+     @AfterClass
+     public void tearDown() {
         closeBrowser();
     }
 }
