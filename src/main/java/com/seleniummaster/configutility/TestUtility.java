@@ -9,9 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestUtility {
 
-    private WebDriver driver;
+   private  WebDriver driver;
 
-    private int timeout=Integer.parseInt(ApplicationConfig.readFromConfigProperties(
+   private int timeout=Integer.parseInt(ApplicationConfig.readFromConfigProperties(
             "config.properties","timeout"
     ));
 
@@ -25,6 +25,7 @@ public class TestUtility {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+
 
     public String generateFirstName() {
         String firstName=faker.name().firstName();
