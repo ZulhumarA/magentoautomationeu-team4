@@ -58,7 +58,7 @@ public class PublicModuleRunner extends TestBase {
         Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
     }
 
-    @Test(description = "Acer")
+    @Test(description = "Arzugul")
     public void viewDownloadableOrders(){
         publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
@@ -87,7 +87,7 @@ public class PublicModuleRunner extends TestBase {
         Assert.assertTrue(ViewOrderPage.VerifyOrders());
     }
 
-    @Test
+    @Test(description = "kadirya")
     public void UpdateAddress() {
         publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.updateAddressLogin();
