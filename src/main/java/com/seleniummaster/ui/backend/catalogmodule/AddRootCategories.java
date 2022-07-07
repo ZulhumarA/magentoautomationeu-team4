@@ -18,9 +18,9 @@ public class AddRootCategories {
     WebElement AddRootCategoryButton;
     @FindBy(xpath = "//input[@id='group_4name']")
     WebElement NameFiled;
-    @FindBy(xpath = "//span[text()='Save Category']")
+    @FindBy(css = "button[title='Save Category']")
     WebElement SaveCategoryButton;
-    @FindBy(xpath = "//span[text()='The category has been saved.']")
+    @FindBy(xpath = "//span[text()='Car (0)']")
     WebElement SavedMassage;
 
     public AddRootCategories(WebDriver driver) {
@@ -39,6 +39,12 @@ public class AddRootCategories {
         testUtility.waitForElementPresent(NameFiled);
         NameFiled.sendKeys(String.valueOf(Name));
         testUtility.waitForElementPresent(SaveCategoryButton);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         SaveCategoryButton.click();
     }
 
