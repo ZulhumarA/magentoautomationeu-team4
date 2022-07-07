@@ -5,6 +5,7 @@ import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
 import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
+import com.seleniummaster.ui.backend.customersmodule.AssignCustomerGroupPage;
 import com.seleniummaster.ui.backend.customersmodule.ResetCustomerPassword;
 import com.seleniummaster.ui.backend.customersmodule.UpdateAnExistingCustomerPage;
 import org.testng.Assert;
@@ -17,6 +18,7 @@ public class CustomerModuleRunner extends TestBase {
     TestUtility testUtility;
     AdminLoginPage adminLoginPage;
     AddNewCustomerPage addNewCustomerPage;
+    AssignCustomerGroupPage assignCustomerGroupPage;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -57,7 +59,21 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue( updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
     }
 
-    @AfterClass
+    @Test
+    public void addNewCustomerTest(){
+        assignCustomerGroupPage=new AssignCustomerGroupPage(driver);
+        assignCustomerGroupPage.addNewCustomer();
+        Assert.assertTrue(assignCustomerGroupPage.verifyCustomerAdded());
+    }
+
+    @Test
+    public void assignCustomerTest(){
+        assignCustomerGroupPage=new AssignCustomerGroupPage(driver);
+        assignCustomerGroupPage.assignCustomerToNewGroup();
+        Assert.assertTrue(assignCustomerGroupPage.isCustomerGroupChanged());
+    }
+
+    @AfterClass(enabled = false)
     public void tearDown() {
         closeBrowser();
     }

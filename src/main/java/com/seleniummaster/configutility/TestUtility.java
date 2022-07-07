@@ -26,6 +26,11 @@ public class TestUtility {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void waitForElementRefreshed(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        wait.until(ExpectedConditions.refreshed(ExpectedConditions.stalenessOf(element)));
+    }
+
     public String generateFirstName() {
         String firstName=faker.name().firstName();
         return firstName;
