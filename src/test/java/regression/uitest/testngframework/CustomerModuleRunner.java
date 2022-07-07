@@ -29,13 +29,22 @@ public class CustomerModuleRunner extends TestBase {
     }
 
     @Test
+    public void customerManagerLogin() {
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("customerManager");
+    }
+
+    @Test
     public void ResetCustomerPassword() {
+        adminLoginPage = new AdminLoginPage(driver);
         ResetCustomerPassword resetCustomerPassword = new ResetCustomerPassword(driver);
+//        adminLoginPage.adminLogin("customerManager");
         resetCustomerPassword.EditCustomerInformation(1234567);
         Assert.assertTrue(resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
 
-    @Test(description = "customer manager can add new cusomer-Zulhumar")
+
+    @Test(description = "customer manager can add new customer-Zulhumar")
     public void addNewCustomers() {
 
         addNewCustomerPage = new AddNewCustomerPage(driver);
@@ -52,12 +61,14 @@ public class CustomerModuleRunner extends TestBase {
 
     @Test
     public void UpdateAnExistingCustomerPage() {
+        adminLoginPage = new AdminLoginPage(driver);
         UpdateAnExistingCustomerPage updateAnExistingCustomerPage=new UpdateAnExistingCustomerPage(driver);
+        adminLoginPage.adminLogin("customerManager");
         updateAnExistingCustomerPage.EditAccountInformation("123");
         Assert.assertTrue( updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
     }
 
-    @AfterClass
+    @AfterClass(enabled = false)
     public void tearDown() {
         closeBrowser();
     }
