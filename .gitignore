@@ -2,5 +2,5 @@
 *.iml
 target
 image
-logs
+log
 test-output
