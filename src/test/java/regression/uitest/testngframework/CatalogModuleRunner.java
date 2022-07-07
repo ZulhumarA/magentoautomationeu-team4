@@ -2,10 +2,12 @@ package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.catalogmodule.AddAttributeUnderCatalogPage;
+import com.seleniummaster.ui.backend.catalogmodule.AddRootCategories;
 import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -24,11 +26,12 @@ public class CatalogModuleRunner extends TestBase {
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("catalogManager");
     }
-@Test(description = "Add new attributes under a catalog-Zulhumar")
-    public void addNewAttributes(){
-    addAttributeUnderCatalogPage=new AddAttributeUnderCatalogPage(driver);
-    addAttributeUnderCatalogPage.addNewAttributeMethod();
-    Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
+
+    @Test(description = "Add new attributes under a catalog-Zulhumar")
+    public void addNewAttributes() {
+        addAttributeUnderCatalogPage = new AddAttributeUnderCatalogPage(driver);
+        addAttributeUnderCatalogPage.addNewAttributeMethod();
+        Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
 
 
 //    addAttributeUnderCatalogPage.moveToCatalogLink();
@@ -43,13 +46,8 @@ public class CatalogModuleRunner extends TestBase {
 //addAttributeUnderCatalogPage.enterAdminField(ApplicationConfig.readFromConfigProperties(
 //        "config.properties","admin"));
 //addAttributeUnderCatalogPage.clickSaveAttributeBTN();
-   Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
-
-
-}
-
-
-}
+        Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
+    }
 
     @Test
     public void AddRootCategories() {
