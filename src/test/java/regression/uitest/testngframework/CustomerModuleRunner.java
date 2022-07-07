@@ -59,16 +59,11 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue( updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
     }
 
-    @Test
-    public void addNewCustomerTest(){
+    @Test(description = "Gvlmihre")
+    public void assignCustomerToNewGroupTest(){
         assignCustomerGroupPage=new AssignCustomerGroupPage(driver);
         assignCustomerGroupPage.addNewCustomer();
         Assert.assertTrue(assignCustomerGroupPage.verifyCustomerAdded());
-    }
-
-    @Test
-    public void assignCustomerTest(){
-        assignCustomerGroupPage=new AssignCustomerGroupPage(driver);
         assignCustomerGroupPage.assignCustomerToNewGroup();
         Assert.assertTrue(assignCustomerGroupPage.isCustomerGroupChanged());
     }
