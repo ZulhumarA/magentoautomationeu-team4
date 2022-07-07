@@ -48,7 +48,6 @@ public class CatalogModuleRunner extends TestBase {
    Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
 
 
-public class CatalogModuleRunner {
 }
 
 

@@ -3,8 +3,7 @@ package regression.uitest.testngframework;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
-import com.seleniummaster.ui.frontend.UpdateCartPage;
-import com.seleniummaster.ui.frontend.ViewAccountInformationPage;
+import com.seleniummaster.ui.frontend.*;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -16,29 +15,32 @@ public class PublicModuleRunner extends TestBase {
     UpdateCartPage updateCartPage;
     PublicLoginPage publicLoginPage;
     ViewAccountInformationPage viewAccountInformationPage;
+    CheckOutTheOrderPage checkOutTheOrderPage;
+    ViewDownloadableOrdersPage viewDownloadableOrdersPage;
+    ViewOrderPage ViewOrderPage;
+
     @BeforeClass
     public void setUp(){
        browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","frontEndURL"));
     }
 
 
-    @Test(priority = 1)
+    @Test
     public void addLinenBlazerProductToCart(){
         updateCartPage=new UpdateCartPage(driver);
         updateCartPage.addLinenBlazerToCart();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
-    @Test(priority = 2)
+    @Test
     public void updateProductSize(){
         updateCartPage=new UpdateCartPage(driver);
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
-        updateCartPage.returnToHomePage();
     }
 
-    @Test(priority = 3)
-    public void ViewAccountInformation(){
+     @Test
+     public void ViewAccountInformation(){
         publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
         viewAccountInformationPage=new ViewAccountInformationPage(driver);
@@ -46,6 +48,49 @@ public class PublicModuleRunner extends TestBase {
         Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
 
 }
+    @Test
+    public void CheckOutTheOrder(){
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        checkOutTheOrderPage=new CheckOutTheOrderPage(driver);
+        checkOutTheOrderPage.openMyOrders();
+        Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
+    }
+
+    @Test
+    public void viewDownloadableOrders(){
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        viewDownloadableOrdersPage=new ViewDownloadableOrdersPage(driver);
+        viewDownloadableOrdersPage.ViewDownloableOrders();
+        Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
+    }
+
+    // Test Case Id: MAGE2022-314 A user should be able to create an account
+    @Test
+    public void createAnAccount(){
+        CreateAnAccountPage createAnAccountPage=new CreateAnAccountPage(driver);
+        createAnAccountPage.fillAccountRegistrationForm();
+        Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
+    }
+
+    @Test
+    public void ViewOrder(){
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        ViewOrderPage=new ViewOrderPage(driver);
+        ViewOrderPage.OpenMyOrders();
+        ViewOrderPage.ViewOrder();
+        Assert.assertTrue(ViewOrderPage.VerifyOrders());
+    }
+
+    @Test(description = "user can add new products to shopping cart-Zulhumar")
+    public void addProductsToCart() {
+        AddProductsToShoppingCartPage addProductsToShoppingCartPage = new AddProductsToShoppingCartPage(driver);
+        addProductsToShoppingCartPage.addChelseaTeaToCart();
+        Assert.assertTrue(addProductsToShoppingCartPage.verifySuccessfullyAddProduct());
+    }
+
      @AfterClass
      public void tearDown() {
         closeBrowser();
@@ -67,12 +112,6 @@ public class PublicModuleRunner extends TestBase {
 //        cartPage.addProductToCart(linenBlazer,"22","78");
 //    }
 //
-
-//    @AfterClass
-//    public void tearDown() {
-//        closeBrowser();
-//    }
-//}
 
 
 
