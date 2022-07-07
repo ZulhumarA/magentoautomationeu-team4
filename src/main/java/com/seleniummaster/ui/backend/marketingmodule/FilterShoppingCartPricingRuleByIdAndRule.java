@@ -50,8 +50,9 @@ public class FilterShoppingCartPricingRuleByIdAndRule {
         utility.waitForElementPresent(RuleIdField);
         List<WebElement> AllId = driver.findElements(By.cssSelector("div[class='hor-scroll'] td[class='a-right ']"));
         List<String> all_elements_text = new ArrayList<>();
-        for (int i = 0; i < AllId.size(); i++) {
-            all_elements_text.add(AllId.get(i).getText());
+        for (WebElement webElement : AllId) {
+            all_elements_text.add(webElement.getText());
+
         }
         RuleIdField.sendKeys(all_elements_text.get(0));
         SaveButton.click();

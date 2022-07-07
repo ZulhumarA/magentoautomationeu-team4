@@ -56,7 +56,6 @@ public class PublicModuleRunner extends TestBase {
         checkOutTheOrderPage = new CheckOutTheOrderPage(driver);
         checkOutTheOrderPage.openMyOrders();
         Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
-
     }
 
     @Test
@@ -66,7 +65,6 @@ public class PublicModuleRunner extends TestBase {
         viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
         viewDownloadableOrdersPage.ViewDownloableOrders();
         Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
-
     }
 
     // Test Case Id: MAGE2022-314 A user should be able to create an account
@@ -91,6 +89,7 @@ public class PublicModuleRunner extends TestBase {
     public void addProductsToCart() {
         AddProductsToShoppingCartPage addProductsToShoppingCartPage = new AddProductsToShoppingCartPage(driver);
         addProductsToShoppingCartPage.addChelseaTeaToCart();
+        Assert.assertTrue(addProductsToShoppingCartPage.verifySuccessfullyAddProduct());
     }
 
     @AfterClass
