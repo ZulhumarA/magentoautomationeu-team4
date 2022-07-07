@@ -2,10 +2,12 @@ package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.catalogmodule.AddAttributeUnderCatalogPage;
+import com.seleniummaster.ui.backend.catalogmodule.AddRootCategories;
 import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.testng.Assert;
 import org.testng.ITestContext;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -49,7 +51,7 @@ public class CatalogModuleRunner extends TestBase {
 }
 
 
-}
+
 
     @Test
     public void AddRootCategories() {
