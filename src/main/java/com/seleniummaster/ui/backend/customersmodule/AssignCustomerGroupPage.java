@@ -46,24 +46,6 @@ public class AssignCustomerGroupPage {
     @FindBy(xpath = "//*[contains(text(),'The customer has been saved.')]")
     WebElement customerSuccessfullySavedMessage;
 
-    public void addNewCustomer(){
-        testUtility.waitForElementPresent(addNewCustomerButton);
-        addNewCustomerButton.click();
-        testUtility.selectValueFromDropDown(associateWebsiteField,"1");
-        testUtility.selectValueFromDropDown(groupField,"14");
-        firstNameField.sendKeys("Team4Test "+testUtility.generateFirstName());
-        lastNameField.sendKeys("Team4Test "+testUtility.generateLastName());
-        emailField.sendKeys("Team4Test"+testUtility.fakeEmail());
-        passwordField.click();
-        saveCustomerButton.click();
-    }
-
-    public boolean verifyCustomerAdded(){
-        testUtility.waitForElementPresent(customerSuccessfullySavedMessage);
-        customerSuccessfullySavedMessage.isDisplayed();
-        return true;
-    }
-
     @FindBy(id="customerGrid_filter_email")
     WebElement searchEmailField;
 
@@ -85,6 +67,23 @@ public class AssignCustomerGroupPage {
     @FindBy(xpath = "//span[text()=\"Total of 1 record(s) were updated.\"]")
     WebElement customerAssignedSuccessfullyMessage;
 
+    public void addNewCustomer(){
+        testUtility.waitForElementPresent(addNewCustomerButton);
+        addNewCustomerButton.click();
+        testUtility.selectValueFromDropDown(associateWebsiteField,"1");
+        testUtility.selectValueFromDropDown(groupField,"14");
+        firstNameField.sendKeys("Team4Test "+testUtility.generateFirstName());
+        lastNameField.sendKeys("Team4Test "+testUtility.generateLastName());
+        emailField.sendKeys("Team4Test"+testUtility.fakeEmail());
+        passwordField.click();
+        saveCustomerButton.click();
+    }
+
+    public boolean verifyCustomerAdded(){
+        testUtility.waitForElementPresent(customerSuccessfullySavedMessage);
+        customerSuccessfullySavedMessage.isDisplayed();
+        return true;
+    }
 
     public void assignCustomerToNewGroup(){
         testUtility.waitForElementPresent(searchEmailField);
