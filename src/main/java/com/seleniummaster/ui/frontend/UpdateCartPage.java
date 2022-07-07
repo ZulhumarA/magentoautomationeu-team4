@@ -119,7 +119,8 @@ public class UpdateCartPage extends TestBase{
 
     public boolean verifyLinenBlazerProductUpdatedSuccessfully(){
         testUtility.waitForElementPresent(linenBlazerSuccessfullyUpdatedMessage);
-        return linenBlazerSuccessfullyUpdatedMessage.isDisplayed();
+        linenBlazerSuccessfullyUpdatedMessage.isDisplayed();
+        return true;
     }
 
 
