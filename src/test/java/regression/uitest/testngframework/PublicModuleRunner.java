@@ -26,42 +26,41 @@ public class PublicModuleRunner extends TestBase {
     }
 
 
-    @Test
-    public void addLinenBlazerProductToCart() {
-        updateCartPage = new UpdateCartPage(driver);
+    @Test(description = "Gulmire")
+    public void addLinenBlazerProductToCart(){
+        updateCartPage=new UpdateCartPage(driver);
         updateCartPage.addLinenBlazerToCart();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
-    @Test
-    public void updateProductSize() {
-        updateCartPage = new UpdateCartPage(driver);
+    @Test(description = "Gulmire")
+    public void updateProductSize(){
+        updateCartPage=new UpdateCartPage(driver);
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
     }
 
-    @Test
-    public void ViewAccountInformation() {
-        publicLoginPage = new PublicLoginPage(driver);
+     @Test(description = "Mahmut")
+     public void ViewAccountInformation(){
+        publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
         viewAccountInformationPage = new ViewAccountInformationPage(driver);
         viewAccountInformationPage.openAccountInformation();
         Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
 
-    }
-
-    @Test
-    public void CheckOutTheOrder() {
-        publicLoginPage = new PublicLoginPage(driver);
+}
+    @Test(description = "Shohret")
+    public void CheckOutTheOrder(){
+        publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
         checkOutTheOrderPage = new CheckOutTheOrderPage(driver);
         checkOutTheOrderPage.openMyOrders();
         Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
     }
 
-    @Test
-    public void viewDownloadableOrders() {
-        publicLoginPage = new PublicLoginPage(driver);
+    @Test(description = "Acer")
+    public void viewDownloadableOrders(){
+        publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
         viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
         viewDownloadableOrdersPage.ViewDownloableOrders();
@@ -69,16 +68,18 @@ public class PublicModuleRunner extends TestBase {
     }
 
     // Test Case Id: MAGE2022-314 A user should be able to create an account
-    @Test
-    public void createAnAccount() {
-        CreateAnAccountPage createAnAccountPage = new CreateAnAccountPage(driver);
+    @Test(description = "habibulla")
+    public void createAnAccount(){
+        CreateAnAccountPage createAnAccountPage=new CreateAnAccountPage(driver);
         createAnAccountPage.fillAccountRegistrationForm();
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
     }
 
-    @Test
-    public void ViewOrder() {
-        publicLoginPage = new PublicLoginPage(driver);
+
+
+    @Test(description = "Zulpikar")
+    public void ViewOrder(){
+        publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
         ViewOrderPage = new ViewOrderPage(driver);
         ViewOrderPage.OpenMyOrders();
@@ -95,7 +96,7 @@ public class PublicModuleRunner extends TestBase {
         Assert.assertTrue(updateAddressBookPage.verifyUpdatedAddress());
     }
 
-    @Test(description = "user can add new products to shopping cart-Zulhumar")
+    @Test(description = "Zulhumar")
     public void addProductsToCart() {
         AddProductsToShoppingCartPage addProductsToShoppingCartPage = new AddProductsToShoppingCartPage(driver);
         addProductsToShoppingCartPage.addChelseaTeaToCart();
