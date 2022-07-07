@@ -102,6 +102,7 @@ public class UpdateCartPage extends TestBase{
     }
 
     public void addLinenBlazerToCart(){
+        testUtility.waitForElementPresent(linenBlazer);
         addProductToCart(linenBlazer,"22","78");
     }
 
@@ -131,6 +132,7 @@ public class UpdateCartPage extends TestBase{
     }
 
     public void changeProductSizeMethod(){
+        testUtility.waitForElementPresent(updateProductLink);
         updateProductLink.click();
         testUtility.selectValueFromDropDown(sizeField,"77");
         updateCartButton.click();
