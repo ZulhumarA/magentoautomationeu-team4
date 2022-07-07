@@ -21,66 +21,66 @@ public class PublicModuleRunner extends TestBase {
     UpdateAddressBookPage updateAddressBookPage;
 
     @BeforeClass
-    public void setUp(){
-       browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","frontEndURL"));
+    public void setUp() {
+        browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "frontEndURL"));
     }
 
 
     @Test
-    public void addLinenBlazerProductToCart(){
-        updateCartPage=new UpdateCartPage(driver);
+    public void addLinenBlazerProductToCart() {
+        updateCartPage = new UpdateCartPage(driver);
         updateCartPage.addLinenBlazerToCart();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
     @Test
-    public void updateProductSize(){
-        updateCartPage=new UpdateCartPage(driver);
+    public void updateProductSize() {
+        updateCartPage = new UpdateCartPage(driver);
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
     }
-@Test
-public void ViewAccountInformation(){
-        publicLoginPage=new PublicLoginPage(driver);
+
+    @Test
+    public void ViewAccountInformation() {
+        publicLoginPage = new PublicLoginPage(driver);
         publicLoginPage.Login();
-        viewAccountInformationPage=new ViewAccountInformationPage(driver);
+        viewAccountInformationPage = new ViewAccountInformationPage(driver);
         viewAccountInformationPage.openAccountInformation();
         Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
-
-}
-    @Test
-    public void CheckOutTheOrder(){
-        publicLoginPage=new PublicLoginPage(driver);
-        publicLoginPage.Login();
-        checkOutTheOrderPage=new CheckOutTheOrderPage(driver);
-        checkOutTheOrderPage.openMyOrders();
-        Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
 
     }
 
     @Test
-    public void viewDownloadableOrders(){
-        publicLoginPage=new PublicLoginPage(driver);
+    public void CheckOutTheOrder() {
+        publicLoginPage = new PublicLoginPage(driver);
         publicLoginPage.Login();
-        viewDownloadableOrdersPage=new ViewDownloadableOrdersPage(driver);
+        checkOutTheOrderPage = new CheckOutTheOrderPage(driver);
+        checkOutTheOrderPage.openMyOrders();
+        Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
+    }
+
+    @Test
+    public void viewDownloadableOrders() {
+        publicLoginPage = new PublicLoginPage(driver);
+        publicLoginPage.Login();
+        viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
         viewDownloadableOrdersPage.ViewDownloableOrders();
         Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
-
     }
 
     // Test Case Id: MAGE2022-314 A user should be able to create an account
     @Test
-    public void createAnAccount(){
-        CreateAnAccountPage createAnAccountPage=new CreateAnAccountPage(driver);
+    public void createAnAccount() {
+        CreateAnAccountPage createAnAccountPage = new CreateAnAccountPage(driver);
         createAnAccountPage.fillAccountRegistrationForm();
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
     }
 
     @Test
-    public void ViewOrder(){
-        publicLoginPage=new PublicLoginPage(driver);
+    public void ViewOrder() {
+        publicLoginPage = new PublicLoginPage(driver);
         publicLoginPage.Login();
-        ViewOrderPage=new ViewOrderPage(driver);
+        ViewOrderPage = new ViewOrderPage(driver);
         ViewOrderPage.OpenMyOrders();
         ViewOrderPage.ViewOrder();
         Assert.assertTrue(ViewOrderPage.VerifyOrders());
@@ -99,7 +99,9 @@ public void ViewAccountInformation(){
     public void addProductsToCart() {
         AddProductsToShoppingCartPage addProductsToShoppingCartPage = new AddProductsToShoppingCartPage(driver);
         addProductsToShoppingCartPage.addChelseaTeaToCart();
+        Assert.assertTrue(addProductsToShoppingCartPage.verifySuccessfullyAddProduct());
     }
+
     @AfterClass
     public void tearDown() {
         closeBrowser();
