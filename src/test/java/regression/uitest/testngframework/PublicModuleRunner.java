@@ -78,6 +78,7 @@ public void ViewAccountInformation(){
     public void addProductsToCart() {
         AddProductsToShoppingCartPage addProductsToShoppingCartPage = new AddProductsToShoppingCartPage(driver);
         addProductsToShoppingCartPage.addChelseaTeaToCart();
+        Assert.assertTrue(addProductsToShoppingCartPage.verifySuccessfullyAddProduct());
     }
     @AfterClass
     public void tearDown() {

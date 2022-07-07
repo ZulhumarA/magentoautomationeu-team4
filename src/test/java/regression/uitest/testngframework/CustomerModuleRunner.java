@@ -28,13 +28,13 @@ public class CustomerModuleRunner extends TestBase {
         adminLoginPage.adminLogin("customerManager");
     }
 
-    @Test(enabled = false)
+    @Test
     public void customerManagerLogin() {
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("customerManager");
     }
 
-    @Test(enabled = false)
+    @Test
     public void ResetCustomerPassword() {
         adminLoginPage = new AdminLoginPage(driver);
         ResetCustomerPassword resetCustomerPassword = new ResetCustomerPassword(driver);
@@ -44,7 +44,7 @@ public class CustomerModuleRunner extends TestBase {
     }
 
 
-    @Test(description = "customer manager can add new cusomer-Zulhumar")
+    @Test(description = "customer manager can add new customer-Zulhumar")
     public void addNewCustomers() {
 
         addNewCustomerPage = new AddNewCustomerPage(driver);
