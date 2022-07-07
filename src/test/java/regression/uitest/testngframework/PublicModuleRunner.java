@@ -18,6 +18,7 @@ public class PublicModuleRunner extends TestBase {
     CheckOutTheOrderPage checkOutTheOrderPage;
     ViewDownloadableOrdersPage viewDownloadableOrdersPage;
     ViewOrderPage ViewOrderPage;
+    UpdateAddressBookPage updateAddressBookPage;
 
     @BeforeClass
     public void setUp() {
@@ -83,6 +84,15 @@ public class PublicModuleRunner extends TestBase {
         ViewOrderPage.OpenMyOrders();
         ViewOrderPage.ViewOrder();
         Assert.assertTrue(ViewOrderPage.VerifyOrders());
+    }
+
+    @Test
+    public void UpdateAddress() {
+        publicLoginPage=new PublicLoginPage(driver);
+        publicLoginPage.updateAddressLogin();
+        updateAddressBookPage=new UpdateAddressBookPage(driver);
+        updateAddressBookPage.UpdateAddress();
+        Assert.assertTrue(updateAddressBookPage.verifyUpdatedAddress());
     }
 
     @Test(description = "user can add new products to shopping cart-Zulhumar")
