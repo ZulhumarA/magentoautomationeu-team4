@@ -82,8 +82,9 @@ public class AssignCustomerGroupPage {
     @FindBy(xpath = "//*[@id=\"customerGrid_table\"]/tbody/tr[1]/td[5]")
     WebElement customerGroupSection;
 
-    String customerGroup1;
-    String customerGroup2;
+    @FindBy(xpath = "//span[text()=\"Total of 1 record(s) were updated.\"]")
+    WebElement customerAssignedSuccessfullyMessage;
+
 
     public void assignCustomerToNewGroup(){
         testUtility.waitForElementPresent(searchEmailField);
@@ -95,19 +96,14 @@ public class AssignCustomerGroupPage {
             e.printStackTrace();
         }
         selectionCheckBox.click();
-        System.out.println(customerGroup1);
         testUtility.selectValueFromDropDown(actionsDropDownList,"assign_group");
         testUtility.selectValueFromDropDown(assignGroupField,"85");
         submitButton.click();
-        String customerGroup2=customerGroupSection.getText();
-        customerGroupSection.getText();
-        System.out.println(customerGroup2);
     }
 
     public boolean isCustomerGroupChanged(){
-        if(!customerGroup1.equalsIgnoreCase(customerGroup2)){
-            System.out.println("Customer has assigned to a new group by customer manager");
-        }
+        testUtility.waitForElementPresent(customerAssignedSuccessfullyMessage);
+        customerAssignedSuccessfullyMessage.isDisplayed();
         return true;
     }
 

@@ -73,7 +73,7 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(assignCustomerGroupPage.isCustomerGroupChanged());
     }
 
-    @AfterClass(enabled = false)
+    @AfterClass
     public void tearDown() {
         closeBrowser();
     }
