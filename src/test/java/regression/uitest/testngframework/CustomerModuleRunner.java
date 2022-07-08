@@ -4,10 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
-import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
-import com.seleniummaster.ui.backend.customersmodule.AssignCustomerGroupPage;
-import com.seleniummaster.ui.backend.customersmodule.ResetCustomerPassword;
-import com.seleniummaster.ui.backend.customersmodule.UpdateAnExistingCustomerPage;
+import com.seleniummaster.ui.backend.customersmodule.*;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -19,20 +16,22 @@ public class CustomerModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     AddNewCustomerPage addNewCustomerPage;
     AssignCustomerGroupPage assignCustomerGroupPage;
-
+    ExportCustomers exportCustomers;
     ResetCustomerPassword resetCustomerPassword;
     UpdateAnExistingCustomerPage updateAnExistingCustomerPage;
+
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
         context.setAttribute("driver", driver);
-        adminLoginPage.adminLogin("customerManager");
         adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("customerManager");
         resetCustomerPassword = new ResetCustomerPassword(driver);
         addNewCustomerPage = new AddNewCustomerPage(driver);
-        updateAnExistingCustomerPage=new UpdateAnExistingCustomerPage(driver);
+        updateAnExistingCustomerPage = new UpdateAnExistingCustomerPage(driver);
         assignCustomerGroupPage = new AssignCustomerGroupPage(driver);
+        exportCustomers=new ExportCustomers(driver);
     }
 
     @Test
@@ -72,6 +71,11 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(assignCustomerGroupPage.verifyCustomerAdded());
         assignCustomerGroupPage.assignCustomerToNewGroup();
         Assert.assertTrue(assignCustomerGroupPage.isCustomerGroupChanged());
+    }
+
+    @Test(description = "Ramile")
+    public void ExportCustomers() {
+        exportCustomers.ClikExport();
     }
 
     @AfterClass
