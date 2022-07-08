@@ -20,49 +20,50 @@ public class PublicModuleRunner extends TestBase {
     ViewOrderPage ViewOrderPage;
     UpdateAddressBookPage updateAddressBookPage;
 
+    CreateAnAccountPage createAnAccountPage;
     @BeforeClass
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "frontEndURL"));
+        updateCartPage=new UpdateCartPage(driver);
+        publicLoginPage=new PublicLoginPage(driver);
+        createAnAccountPage=new CreateAnAccountPage(driver);
+        ViewOrderPage = new ViewOrderPage(driver);
+        updateAddressBookPage=new UpdateAddressBookPage(driver);
+        viewAccountInformationPage = new ViewAccountInformationPage(driver);
+        checkOutTheOrderPage = new CheckOutTheOrderPage(driver);
+        viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
     }
 
 
     @Test(description = "Gulmire")
     public void addLinenBlazerProductToCart(){
-        updateCartPage=new UpdateCartPage(driver);
         updateCartPage.addLinenBlazerToCart();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
     @Test(description = "Gulmire")
     public void updateProductSize(){
-        updateCartPage=new UpdateCartPage(driver);
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
     }
 
      @Test(description = "Mahmut")
      public void ViewAccountInformation(){
-        publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
-        viewAccountInformationPage = new ViewAccountInformationPage(driver);
         viewAccountInformationPage.openAccountInformation();
         Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
 
 }
     @Test(description = "Shohret")
     public void CheckOutTheOrder(){
-        publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
-        checkOutTheOrderPage = new CheckOutTheOrderPage(driver);
         checkOutTheOrderPage.openMyOrders();
         Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
     }
 
     @Test(description = "Arzugul")
     public void viewDownloadableOrders(){
-        publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
-        viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
         viewDownloadableOrdersPage.ViewDownloableOrders();
         Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
     }
@@ -70,7 +71,6 @@ public class PublicModuleRunner extends TestBase {
     // Test Case Id: MAGE2022-314 A user should be able to create an account
     @Test(description = "habibulla")
     public void createAnAccount(){
-        CreateAnAccountPage createAnAccountPage=new CreateAnAccountPage(driver);
         createAnAccountPage.fillAccountRegistrationForm();
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
     }
@@ -79,9 +79,7 @@ public class PublicModuleRunner extends TestBase {
 
     @Test(description = "Zulpikar")
     public void ViewOrder(){
-        publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.Login();
-        ViewOrderPage = new ViewOrderPage(driver);
         ViewOrderPage.OpenMyOrders();
         ViewOrderPage.ViewOrder();
         Assert.assertTrue(ViewOrderPage.VerifyOrders());
@@ -89,9 +87,7 @@ public class PublicModuleRunner extends TestBase {
 
     @Test(description = "kadirya")
     public void UpdateAddress() {
-        publicLoginPage=new PublicLoginPage(driver);
         publicLoginPage.updateAddressLogin();
-        updateAddressBookPage=new UpdateAddressBookPage(driver);
         updateAddressBookPage.UpdateAddress();
         Assert.assertTrue(updateAddressBookPage.verifyUpdatedAddress());
     }
