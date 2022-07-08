@@ -19,6 +19,7 @@ public class PublicModuleRunner extends TestBase {
     ViewDownloadableOrdersPage viewDownloadableOrdersPage;
     ViewOrderPage ViewOrderPage;
     UpdateAddressBookPage updateAddressBookPage;
+    EditAccountInformationPage editAccountInformationPage;
 
     CreateAnAccountPage createAnAccountPage;
     @BeforeClass
@@ -32,6 +33,7 @@ public class PublicModuleRunner extends TestBase {
         viewAccountInformationPage = new ViewAccountInformationPage(driver);
         checkOutTheOrderPage = new CheckOutTheOrderPage(driver);
         viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
+        editAccountInformationPage=new EditAccountInformationPage(driver);
     }
 
 
@@ -99,6 +101,15 @@ public class PublicModuleRunner extends TestBase {
         Assert.assertTrue(addProductsToShoppingCartPage.verifySuccessfullyAddProduct());
     }
 
+    @Test(description = "Ramile")
+    public void EditAccountInformation(){
+        publicLoginPage.Login();
+        viewAccountInformationPage.openAccountInformation();
+        EditAccountInformationPage editAccountInformationPage1= new EditAccountInformationPage(driver);
+        editAccountInformationPage1.editAccountInformationPage();
+        Assert.assertTrue(editAccountInformationPage1.verifyEditAccountInformation());
+
+    }
     @AfterClass
     public void tearDown() {
         closeBrowser();
