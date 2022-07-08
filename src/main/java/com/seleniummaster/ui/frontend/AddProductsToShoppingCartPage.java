@@ -57,16 +57,16 @@ public class AddProductsToShoppingCartPage extends TestBase {
     }
 
 
-    public void addProductToCart(WebElement productName,String colorValue,String sizeValue){
+    public void addProductToCart(WebElement productName,String colorValue,String sizeValue) {
         productName.click();
         testUtility.selectValueFromDropDown(colorOption, colorValue);
         testUtility.selectValueFromDropDown(sizeOption, sizeValue);
         addToCartBTN.click();
-
-
-   // public boolean verifySuccessfullyAddProduct() {
-   //     return chelseaTeeWasAdded.isDisplayed();
-
     }
-}
+
+   public boolean verifySuccessfullyAddProduct() {
+      return chelseaTeeWasAdded.isDisplayed();
+
+
+}}
 

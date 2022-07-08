@@ -11,7 +11,7 @@ public class TestUtility {
 
     private WebDriver driver;
 
-    private int timeout=Integer.parseInt(ApplicationConfig.readFromConfigProperties(
+   private int timeout=Integer.parseInt(ApplicationConfig.readFromConfigProperties(
             "config.properties","timeout"
     ));
 
@@ -41,14 +41,25 @@ public class TestUtility {
         return lastName;
     }
 
+    public  String generateCity() {
+        String city = faker.address().city();
+        return city;
+    }
+
+    public  String generateZip() {
+        String zip = faker.address().zipCode();
+        return zip;
+    }
+
+
     public String fakeProductName(){
         String productName=faker.commerce().productName();
         return productName;
     }
 
     public String fakeEmail(){
-       String email=faker.internet().emailAddress();
-       return email;
+        String email=faker.internet().emailAddress();
+        return email;
     }
 
     public void waitForAlertPresent(){
