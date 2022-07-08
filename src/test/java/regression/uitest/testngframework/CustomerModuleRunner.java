@@ -20,27 +20,28 @@ public class CustomerModuleRunner extends TestBase {
     AddNewCustomerPage addNewCustomerPage;
     AssignCustomerGroupPage assignCustomerGroupPage;
 
+    ResetCustomerPassword resetCustomerPassword;
+    UpdateAnExistingCustomerPage updateAnExistingCustomerPage;
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
-
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
         context.setAttribute("driver", driver);
-        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("customerManager");
+        adminLoginPage = new AdminLoginPage(driver);
+        resetCustomerPassword = new ResetCustomerPassword(driver);
+        addNewCustomerPage = new AddNewCustomerPage(driver);
+        updateAnExistingCustomerPage=new UpdateAnExistingCustomerPage(driver);
+        assignCustomerGroupPage = new AssignCustomerGroupPage(driver);
     }
 
     @Test
     public void customerManagerLogin() {
-        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("customerManager");
     }
 
     @Test
     public void ResetCustomerPassword() {
-        adminLoginPage = new AdminLoginPage(driver);
-        ResetCustomerPassword resetCustomerPassword = new ResetCustomerPassword(driver);
-//        adminLoginPage.adminLogin("customerManager");
         resetCustomerPassword.EditCustomerInformation(1234567);
         Assert.assertTrue(resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
@@ -48,8 +49,6 @@ public class CustomerModuleRunner extends TestBase {
 
     @Test(description = "customer manager can add new customer-Zulhumar")
     public void addNewCustomers() {
-
-        addNewCustomerPage = new AddNewCustomerPage(driver);
         addNewCustomerPage.clickAddNewCustomer();
         addNewCustomerPage.enterPrefixField(ApplicationConfig.readFromConfigProperties("config.properties", "prefixfield"));
         addNewCustomerPage.enterFirstName(ApplicationConfig.readFromConfigProperties("config.properties", "userName"));
@@ -63,16 +62,12 @@ public class CustomerModuleRunner extends TestBase {
 
     @Test
     public void UpdateAnExistingCustomerPage() {
-        adminLoginPage = new AdminLoginPage(driver);
-        UpdateAnExistingCustomerPage updateAnExistingCustomerPage=new UpdateAnExistingCustomerPage(driver);
-        adminLoginPage.adminLogin("customerManager");
         updateAnExistingCustomerPage.EditAccountInformation("123");
-        Assert.assertTrue( updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
+        Assert.assertTrue(updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
     }
 
     @Test(description = "Gvlmihre")
-    public void assignCustomerToNewGroupTest(){
-        assignCustomerGroupPage=new AssignCustomerGroupPage(driver);
+    public void assignCustomerToNewGroupTest() {
         assignCustomerGroupPage.addNewCustomer();
         Assert.assertTrue(assignCustomerGroupPage.verifyCustomerAdded());
         assignCustomerGroupPage.assignCustomerToNewGroup();
