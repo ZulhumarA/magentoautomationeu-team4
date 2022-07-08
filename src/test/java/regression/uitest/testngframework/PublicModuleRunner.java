@@ -21,50 +21,54 @@ public class PublicModuleRunner extends TestBase {
     UpdateAddressBookPage updateAddressBookPage;
     EditAccountInformationPage editAccountInformationPage;
 
+    SeeMyProductReviewsLinkAndContents seeMyProductReviewsLinkAndContents;
     CreateAnAccountPage createAnAccountPage;
+
     @BeforeClass
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "frontEndURL"));
-        updateCartPage=new UpdateCartPage(driver);
-        publicLoginPage=new PublicLoginPage(driver);
-        createAnAccountPage=new CreateAnAccountPage(driver);
+        updateCartPage = new UpdateCartPage(driver);
+        publicLoginPage = new PublicLoginPage(driver);
+        createAnAccountPage = new CreateAnAccountPage(driver);
         ViewOrderPage = new ViewOrderPage(driver);
-        updateAddressBookPage=new UpdateAddressBookPage(driver);
+        updateAddressBookPage = new UpdateAddressBookPage(driver);
         viewAccountInformationPage = new ViewAccountInformationPage(driver);
         checkOutTheOrderPage = new CheckOutTheOrderPage(driver);
         viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
-        editAccountInformationPage=new EditAccountInformationPage(driver);
+        editAccountInformationPage = new EditAccountInformationPage(driver);
+        seeMyProductReviewsLinkAndContents=new SeeMyProductReviewsLinkAndContents(driver);
     }
 
 
     @Test(description = "Gulmire")
-    public void addLinenBlazerProductToCart(){
+    public void addLinenBlazerProductToCart() {
         updateCartPage.addLinenBlazerToCart();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
     @Test(description = "Gulmire")
-    public void updateProductSize(){
+    public void updateProductSize() {
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
     }
 
-     @Test(description = "Mahmut")
-     public void ViewAccountInformation(){
+    @Test(description = "Mahmut")
+    public void ViewAccountInformation() {
         publicLoginPage.Login();
         viewAccountInformationPage.openAccountInformation();
         Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
 
-}
+    }
+
     @Test(description = "Shohret")
-    public void CheckOutTheOrder(){
+    public void CheckOutTheOrder() {
         publicLoginPage.Login();
         checkOutTheOrderPage.openMyOrders();
         Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
     }
 
     @Test(description = "Arzugul")
-    public void viewDownloadableOrders(){
+    public void viewDownloadableOrders() {
         publicLoginPage.Login();
         viewDownloadableOrdersPage.ViewDownloableOrders();
         Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
@@ -72,15 +76,14 @@ public class PublicModuleRunner extends TestBase {
 
     // Test Case Id: MAGE2022-314 A user should be able to create an account
     @Test(description = "habibulla")
-    public void createAnAccount(){
+    public void createAnAccount() {
         createAnAccountPage.fillAccountRegistrationForm();
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
     }
 
 
-
     @Test(description = "Zulpikar")
-    public void ViewOrder(){
+    public void ViewOrder() {
         publicLoginPage.Login();
         ViewOrderPage.OpenMyOrders();
         ViewOrderPage.ViewOrder();
@@ -102,14 +105,22 @@ public class PublicModuleRunner extends TestBase {
     }
 
     @Test(description = "Ramile")
-    public void EditAccountInformation(){
+    public void EditAccountInformation() {
         publicLoginPage.Login();
         viewAccountInformationPage.openAccountInformation();
-        EditAccountInformationPage editAccountInformationPage1= new EditAccountInformationPage(driver);
+        EditAccountInformationPage editAccountInformationPage1 = new EditAccountInformationPage(driver);
         editAccountInformationPage1.editAccountInformationPage();
         Assert.assertTrue(editAccountInformationPage1.verifyEditAccountInformation());
 
     }
+
+    @Test(description = "izzet")
+    public void SeeMyProductsReview(){
+        publicLoginPage.Login();
+        seeMyProductReviewsLinkAndContents.SeeMyProductReviews();
+        seeMyProductReviewsLinkAndContents.Verify();
+    }
+
     @AfterClass
     public void tearDown() {
         closeBrowser();
