@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class DeleteSubCategories {
     TestUtility testUtility;
 
+
     WebDriver driver;
 
     @FindBy(css=".active > span")
