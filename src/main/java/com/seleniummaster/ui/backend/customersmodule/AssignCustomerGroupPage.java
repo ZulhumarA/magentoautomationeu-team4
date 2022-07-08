@@ -55,7 +55,7 @@ public class AssignCustomerGroupPage {
     @FindBy(id = "customerGrid_massaction-select")
     WebElement actionsDropDownList;
 
-    @FindBy(id = "\"visibility\")")
+    @FindBy(id = "visibility")
     WebElement assignGroupField;
 
     @FindBy(xpath = "//span[text()='Submit']")
