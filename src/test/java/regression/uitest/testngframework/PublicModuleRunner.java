@@ -84,6 +84,25 @@ public class PublicModuleRunner extends TestBase {
         publicLoginPage.LogOutAndBackToLogInPage();
     }
 
+    @Test(dataProvider = "publicChangPasswordTest",description = "a user should be able chang password")
+    public void clickChangPassword(String currentPassword, String newPassword, String confirmationPassword) {
+        ChangPasswordPage changPasswordPage = new ChangPasswordPage(driver);
+        boolean changPasswordTestResult = changPasswordPage.clickChangPassword(currentPassword, newPassword, confirmationPassword);
+        Assert.assertTrue(changPasswordTestResult);
+    }
+
+    @DataProvider
+    public Object[][] publicChangPasswordTest() {
+        Object[][] clickChangPassword = new Object[][]
+                {
+                        {"12345678943", "112233445577", "112233445577"}
+                };
+        return clickChangPassword;
+    }
+    @AfterTest
+    public void teardown(){
+
+    }
 
     @Test(description = "Zulpikar")
     public void ViewOrder() {
