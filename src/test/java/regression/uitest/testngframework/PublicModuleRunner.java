@@ -5,9 +5,7 @@ import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.frontend.*;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 
 public class PublicModuleRunner extends TestBase {
@@ -36,20 +34,21 @@ public class PublicModuleRunner extends TestBase {
         checkOutTheOrderPage = new CheckOutTheOrderPage(driver);
         viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
         editAccountInformationPage = new EditAccountInformationPage(driver);
-        seeMyProductReviewsLinkAndContents=new SeeMyProductReviewsLinkAndContents(driver);
+        seeMyProductReviewsLinkAndContents = new SeeMyProductReviewsLinkAndContents(driver);
     }
 
 
-    @Test(description = "Gulmire")
+    @Test(description = "Gulmire",priority = 1)
     public void addLinenBlazerProductToCart() {
         updateCartPage.addLinenBlazerToCart();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
-    @Test(description = "Gulmire")
+    @Test(description = "Gulmire",dependsOnMethods = "addLinenBlazerProductToCart",priority = 2)
     public void updateProductSize() {
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
+        publicLoginPage.Login();
     }
 
     @Test(description = "Mahmut")
@@ -57,6 +56,7 @@ public class PublicModuleRunner extends TestBase {
         publicLoginPage.Login();
         viewAccountInformationPage.openAccountInformation();
         Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
+        publicLoginPage.LogOutAndBackToLogInPage();
 
     }
 
@@ -65,6 +65,7 @@ public class PublicModuleRunner extends TestBase {
         publicLoginPage.Login();
         checkOutTheOrderPage.openMyOrders();
         Assert.assertTrue(checkOutTheOrderPage.verifyMyOrders());
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
     @Test(description = "Arzugul")
@@ -72,6 +73,7 @@ public class PublicModuleRunner extends TestBase {
         publicLoginPage.Login();
         viewDownloadableOrdersPage.ViewDownloableOrders();
         Assert.assertTrue(viewDownloadableOrdersPage.verifyviewDownloadableorders());
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
     // Test Case Id: MAGE2022-314 A user should be able to create an account
@@ -79,6 +81,7 @@ public class PublicModuleRunner extends TestBase {
     public void createAnAccount() {
         createAnAccountPage.fillAccountRegistrationForm();
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
 
@@ -88,6 +91,7 @@ public class PublicModuleRunner extends TestBase {
         ViewOrderPage.OpenMyOrders();
         ViewOrderPage.ViewOrder();
         Assert.assertTrue(ViewOrderPage.VerifyOrders());
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
     @Test(description = "kadirya")
@@ -95,6 +99,7 @@ public class PublicModuleRunner extends TestBase {
         publicLoginPage.updateAddressLogin();
         updateAddressBookPage.UpdateAddress();
         Assert.assertTrue(updateAddressBookPage.verifyUpdatedAddress());
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
     @Test(description = "Zulhumar")
@@ -111,14 +116,16 @@ public class PublicModuleRunner extends TestBase {
         EditAccountInformationPage editAccountInformationPage1 = new EditAccountInformationPage(driver);
         editAccountInformationPage1.editAccountInformationPage();
         Assert.assertTrue(editAccountInformationPage1.verifyEditAccountInformation());
+        publicLoginPage.LogOutAndBackToLogInPage();
 
     }
 
     @Test(description = "izzet")
-    public void SeeMyProductsReview(){
+    public void SeeMyProductsReview() {
         publicLoginPage.Login();
         seeMyProductReviewsLinkAndContents.SeeMyProductReviews();
         seeMyProductReviewsLinkAndContents.Verify();
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
     @AfterClass

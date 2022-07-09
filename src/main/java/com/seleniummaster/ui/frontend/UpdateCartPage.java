@@ -43,10 +43,10 @@ public class UpdateCartPage extends TestBase{
     @FindBy(id="qbutton-3244")
     WebElement updateQuantityButton;
 
-    @FindBy(linkText = "Edit item")
+    @FindBy(css="td[class=\"product-cart-actions\"] a")
     WebElement editItemLink;
 
-    @FindBy(linkText = "Edit")
+    @FindBy(css = "button[title='Update Cart']")
     WebElement updateProductLink;
 
     @FindBy(id="qty")
@@ -73,6 +73,12 @@ public class UpdateCartPage extends TestBase{
     @FindBy(xpath = "//a[@class=\"logo\"]")
     WebElement logo;
 
+    @FindBy(css="img[alt=\"Madison Island\"]")
+    WebElement homePage;
+
+    @FindBy(linkText="//*[text()=\"Cart\"]")
+    WebElement CartButton;
+
     public UpdateCartPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
@@ -88,6 +94,7 @@ public class UpdateCartPage extends TestBase{
 
 
     public void addProductToCartMethod(){
+        homePage.click();
         linenBlazer.click();
         testUtility.selectValueFromDropDown(colorField,"22");
         testUtility.selectValueFromDropDown(sizeField,"78");
@@ -95,6 +102,7 @@ public class UpdateCartPage extends TestBase{
     }
 
     public void addProductToCart(WebElement productName,String colorValue,String sizeValue){
+        homePage.click();
         productName.click();
         testUtility.selectValueFromDropDown(colorField, colorValue);
         testUtility.selectValueFromDropDown(sizeField, sizeValue);
@@ -102,6 +110,7 @@ public class UpdateCartPage extends TestBase{
     }
 
     public void addLinenBlazerToCart(){
+        homePage.click();
         testUtility.waitForElementPresent(linenBlazer);
         addProductToCart(linenBlazer,"22","78");
     }
@@ -133,8 +142,8 @@ public class UpdateCartPage extends TestBase{
     }
 
     public void changeProductSizeMethod(){
-        testUtility.waitForElementPresent(updateProductLink);
-        updateProductLink.click();
+        testUtility.waitForElementPresent(editItemLink);
+        editItemLink.click();
         testUtility.selectValueFromDropDown(sizeField,"77");
         updateCartButton.click();
     }
