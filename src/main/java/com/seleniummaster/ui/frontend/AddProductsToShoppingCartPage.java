@@ -38,6 +38,9 @@ public class AddProductsToShoppingCartPage extends TestBase {
     @FindBy(xpath = "//*[contains(text(),\"Chelsea Tee was added to your shopping cart.\")]")
     WebElement chelseaTeeWasAdded;
 
+    @FindBy(css="img[alt=\"Madison Island\"]")
+    WebElement homePage;
+
     public AddProductsToShoppingCartPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -52,6 +55,7 @@ public class AddProductsToShoppingCartPage extends TestBase {
 
 
     public void addChelseaTeaToCart(){
+        homePage.click();
         testUtility.waitForElementPresent(chelseaTea);
         addProductToCart(chelseaTea,"20","78");
     }

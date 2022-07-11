@@ -4,10 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
-import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
-import com.seleniummaster.ui.backend.customersmodule.AssignCustomerGroupPage;
-import com.seleniummaster.ui.backend.customersmodule.ResetCustomerPassword;
-import com.seleniummaster.ui.backend.customersmodule.UpdateAnExistingCustomerPage;
+import com.seleniummaster.ui.backend.customersmodule.*;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -19,28 +16,31 @@ public class CustomerModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     AddNewCustomerPage addNewCustomerPage;
     AssignCustomerGroupPage assignCustomerGroupPage;
+    ExportCustomers exportCustomers;
+    ResetCustomerPassword resetCustomerPassword;
+    UpdateAnExistingCustomerPage updateAnExistingCustomerPage;
 
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
-
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
         context.setAttribute("driver", driver);
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("customerManager");
+        resetCustomerPassword = new ResetCustomerPassword(driver);
+        addNewCustomerPage = new AddNewCustomerPage(driver);
+        updateAnExistingCustomerPage = new UpdateAnExistingCustomerPage(driver);
+        assignCustomerGroupPage = new AssignCustomerGroupPage(driver);
+        exportCustomers=new ExportCustomers(driver);
     }
 
     @Test
     public void customerManagerLogin() {
-        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("customerManager");
     }
 
     @Test
     public void ResetCustomerPassword() {
-        adminLoginPage = new AdminLoginPage(driver);
-        ResetCustomerPassword resetCustomerPassword = new ResetCustomerPassword(driver);
-//        adminLoginPage.adminLogin("customerManager");
         resetCustomerPassword.EditCustomerInformation(1234567);
         Assert.assertTrue(resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
@@ -48,8 +48,6 @@ public class CustomerModuleRunner extends TestBase {
 
     @Test(description = "customer manager can add new customer-Zulhumar")
     public void addNewCustomers() {
-
-        addNewCustomerPage = new AddNewCustomerPage(driver);
         addNewCustomerPage.clickAddNewCustomer();
         addNewCustomerPage.enterPrefixField(ApplicationConfig.readFromConfigProperties("config.properties", "prefixfield"));
         addNewCustomerPage.enterFirstName(ApplicationConfig.readFromConfigProperties("config.properties", "userName"));
@@ -63,20 +61,21 @@ public class CustomerModuleRunner extends TestBase {
 
     @Test
     public void UpdateAnExistingCustomerPage() {
-        adminLoginPage = new AdminLoginPage(driver);
-        UpdateAnExistingCustomerPage updateAnExistingCustomerPage=new UpdateAnExistingCustomerPage(driver);
-        adminLoginPage.adminLogin("customerManager");
         updateAnExistingCustomerPage.EditAccountInformation("123");
-        Assert.assertTrue( updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
+        Assert.assertTrue(updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
     }
 
     @Test(description = "Gvlmihre")
-    public void assignCustomerToNewGroupTest(){
-        assignCustomerGroupPage=new AssignCustomerGroupPage(driver);
+    public void assignCustomerToNewGroupTest() {
         assignCustomerGroupPage.addNewCustomer();
         Assert.assertTrue(assignCustomerGroupPage.verifyCustomerAdded());
         assignCustomerGroupPage.assignCustomerToNewGroup();
         Assert.assertTrue(assignCustomerGroupPage.isCustomerGroupChanged());
+    }
+
+    @Test(description = "Ramile")
+    public void ExportCustomers() {
+        exportCustomers.ClikExport();
     }
 
     @AfterClass
