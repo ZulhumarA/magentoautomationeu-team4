@@ -16,6 +16,7 @@
                     <include name="addProductsToCart"/>
                     <include name="EditAccountInformation"/>
                     <include name="SeeMyProductsReview"/>
+                    <include name="ViewMyWishList"/>
                 </methods>
             </class>
         </classes>

@@ -18,7 +18,7 @@ public class PublicModuleRunner extends TestBase {
     ViewOrderPage ViewOrderPage;
     UpdateAddressBookPage updateAddressBookPage;
     EditAccountInformationPage editAccountInformationPage;
-
+    ViewMyWishListPage viewMyWishListPage;
     SeeMyProductReviewsLinkAndContents seeMyProductReviewsLinkAndContents;
     CreateAnAccountPage createAnAccountPage;
 
@@ -35,6 +35,7 @@ public class PublicModuleRunner extends TestBase {
         viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
         editAccountInformationPage = new EditAccountInformationPage(driver);
         seeMyProductReviewsLinkAndContents = new SeeMyProductReviewsLinkAndContents(driver);
+        viewMyWishListPage=new ViewMyWishListPage(driver);
     }
 
 
@@ -145,6 +146,16 @@ public class PublicModuleRunner extends TestBase {
         seeMyProductReviewsLinkAndContents.Verify();
         publicLoginPage.LogOutAndBackToLogInPage();
     }
+
+    @Test(description = "Abide")
+    public void ViewMyWishList(){
+     publicLoginPage.Login();
+     viewMyWishListPage.clickMyWishList();
+     Assert.assertTrue(viewMyWishListPage.existMyWishListContent());
+     publicLoginPage.LogOutAndBackToLogInPage();
+    }
+
+
 
     @AfterClass
     public void tearDown() {
