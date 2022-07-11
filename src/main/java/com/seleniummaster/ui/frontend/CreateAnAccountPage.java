@@ -44,6 +44,9 @@ public class CreateAnAccountPage extends TestBase {
 
     TestUtility testUtility;
 
+    String  publicEmail="test4"+System.currentTimeMillis()+"@gmail.com";
+    String publicPassword="12345678943";
+
     public CreateAnAccountPage(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver,this);
@@ -51,13 +54,17 @@ public class CreateAnAccountPage extends TestBase {
 
     }
 
+    public void makeEmailAndPassword(){
+        publicEmail="test4"+System.currentTimeMillis()+"@gmail.com";
+        publicPassword="12345678943";
+    }
     public void fillAccountRegistrationForm(){
         account.click();
         registerLink.click();
         firstName.sendKeys("Test4-FirstName");
         middleName.sendKeys("Test4-MiddleName");
         lastName.sendKeys("Test4-LastName");
-        emailAddress.sendKeys("test4"+System.currentTimeMillis()+"@gmail.com");
+        emailAddress.sendKeys(publicEmail);
         password.sendKeys("12345678943");
         confirmPassword.sendKeys("12345678943");
         isSubscribed.click();
