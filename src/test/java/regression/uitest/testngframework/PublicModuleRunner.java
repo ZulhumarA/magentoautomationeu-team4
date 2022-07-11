@@ -48,7 +48,6 @@ public class PublicModuleRunner extends TestBase {
     public void updateProductSize() {
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
-        publicLoginPage.Login();
     }
 
     @Test(description = "Mahmut")
