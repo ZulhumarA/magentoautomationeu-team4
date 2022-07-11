@@ -20,10 +20,13 @@ public class PublicModuleRunner extends TestBase {
     UpdateAddressBookPage updateAddressBookPage;
     EditAccountInformationPage editAccountInformationPage;
     ViewMyWishListPage viewMyWishListPage;
+    ViewNewsletterSubscriptionLinkAndContentPage viewNewsletterSubscriptionLinkAndContentPage;
     SeeMyProductReviewsLinkAndContents seeMyProductReviewsLinkAndContents;
     CreateAnAccountPage createAnAccountPage;
     ChangPasswordPage changPasswordPage;
     TestUtility testUtility;
+
+
     @BeforeClass
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "frontEndURL"));
@@ -39,6 +42,7 @@ public class PublicModuleRunner extends TestBase {
         seeMyProductReviewsLinkAndContents = new SeeMyProductReviewsLinkAndContents(driver);
         viewMyWishListPage=new ViewMyWishListPage(driver);
         changPasswordPage = new ChangPasswordPage(driver);
+        viewNewsletterSubscriptionLinkAndContentPage=new ViewNewsletterSubscriptionLinkAndContentPage(driver);
     }
 
 
@@ -154,7 +158,12 @@ public class PublicModuleRunner extends TestBase {
      publicLoginPage.LogOutAndBackToLogInPage();
     }
 
-
+    @Test(description = "Abide")
+    public void ViewNewsletterSubscriptionLinkAndContent(){
+        publicLoginPage.Login();
+        viewNewsletterSubscriptionLinkAndContentPage.ViewNewsletterSubscriptionLinkAndContent();
+        Assert.assertTrue(viewNewsletterSubscriptionLinkAndContentPage.VerifyViewNewsletterSubscriptionLinkAndContent());
+    }
 
     @AfterClass
     public void tearDown() {

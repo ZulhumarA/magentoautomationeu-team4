@@ -17,6 +17,7 @@
                     <include name="EditAccountInformation"/>
                     <include name="SeeMyProductsReview"/>
                     <include name="ViewMyWishList"/>
+                    <include name="ViewNewsletterSubscriptionLinkAndContent"/>
                 </methods>
             </class>
         </classes>
