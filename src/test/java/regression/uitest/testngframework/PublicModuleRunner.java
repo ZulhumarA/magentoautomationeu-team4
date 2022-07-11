@@ -3,6 +3,7 @@ package regression.uitest.testngframework;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
+import com.seleniummaster.configutility.TestUtility;
 import com.seleniummaster.ui.frontend.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -22,6 +23,8 @@ public class PublicModuleRunner extends TestBase {
     ViewNewsletterSubscriptionLinkAndContentPage viewNewsletterSubscriptionLinkAndContentPage;
     SeeMyProductReviewsLinkAndContents seeMyProductReviewsLinkAndContents;
     CreateAnAccountPage createAnAccountPage;
+    ChangPasswordPage changPasswordPage;
+    TestUtility testUtility;
 
 
     @BeforeClass
@@ -38,6 +41,7 @@ public class PublicModuleRunner extends TestBase {
         editAccountInformationPage = new EditAccountInformationPage(driver);
         seeMyProductReviewsLinkAndContents = new SeeMyProductReviewsLinkAndContents(driver);
         viewMyWishListPage=new ViewMyWishListPage(driver);
+        changPasswordPage = new ChangPasswordPage(driver);
         viewNewsletterSubscriptionLinkAndContentPage=new ViewNewsletterSubscriptionLinkAndContentPage(driver);
     }
 
@@ -80,18 +84,18 @@ public class PublicModuleRunner extends TestBase {
     }
 
     // Test Case Id: MAGE2022-314 A user should be able to create an account
-    @Test(description = "habibulla")
+    @Test(description = "habibulla",priority = 3)
     public void createAnAccount() {
         createAnAccountPage.fillAccountRegistrationForm();
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
-        publicLoginPage.LogOutAndBackToLogInPage();
+
     }
 
-    @Test(dataProvider = "publicChangPasswordTest",description = "a user should be able chang password")
+    @Test(dataProvider = "publicChangPasswordTest",description = "a user should be able chang password",dependsOnMethods = "createAnAccount",priority = 4)
     public void clickChangPassword(String currentPassword, String newPassword, String confirmationPassword) {
-        ChangPasswordPage changPasswordPage = new ChangPasswordPage(driver);
         boolean changPasswordTestResult = changPasswordPage.clickChangPassword(currentPassword, newPassword, confirmationPassword);
         Assert.assertTrue(changPasswordTestResult);
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
     @DataProvider
@@ -101,10 +105,6 @@ public class PublicModuleRunner extends TestBase {
                         {"12345678943", "112233445577", "112233445577"}
                 };
         return clickChangPassword;
-    }
-    @AfterTest
-    public void teardown(){
-
     }
 
     @Test(description = "Zulpikar")
@@ -163,6 +163,7 @@ public class PublicModuleRunner extends TestBase {
         publicLoginPage.Login();
         viewNewsletterSubscriptionLinkAndContentPage.ViewNewsletterSubscriptionLinkAndContent();
         Assert.assertTrue(viewNewsletterSubscriptionLinkAndContentPage.VerifyViewNewsletterSubscriptionLinkAndContent());
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
     @AfterClass

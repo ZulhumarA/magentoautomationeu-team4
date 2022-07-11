@@ -10,8 +10,8 @@ import org.openqa.selenium.support.PageFactory;
 public class ChangPasswordPage {
     WebDriver driver;
     TestUtility testUtility;
-//    @FindBy(xpath = "//span[text()='Account' and @class='label']")
-//    WebElement accountMenu;
+    @FindBy(xpath = "//span[text()='Account' and @class='label']")
+    WebElement accountMenu;
     @FindBy(xpath = "//a[@title='My Account' and text()='My Account']")
     WebElement myAccount;
     @FindBy(xpath = "//*[@id=\"top\"]/body/div/div[2]/div[2]/div/div[2]/div[2]/div/div[3]/div[2]/div[1]/div/div[2]/p/a")
@@ -35,10 +35,10 @@ public class ChangPasswordPage {
         testUtility = new TestUtility(driver);
     }
 
-//    public void clickAccountMenu() {
-//        testUtility.waitForElementPresent(accountMenu);
-//        accountMenu.click();
-//    }
+    public void clickAccountMenu() {
+        testUtility.waitForElementPresent(accountMenu);
+        accountMenu.click();
+    }
 
     public void clickMyAccount() {
         testUtility.waitForElementPresent(myAccount);
@@ -76,7 +76,7 @@ public class ChangPasswordPage {
     }
 
     public boolean clickChangPassword(String currentPassword, String newPassword, String confirmationPassword) {
-//    clickAccountMenu();
+    clickAccountMenu();
     clickMyAccount();
     clickInformation();
     enterPasswordTextBox(currentPassword);

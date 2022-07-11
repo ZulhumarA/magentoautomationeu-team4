@@ -11,6 +11,7 @@
                     <include name="CheckOutTheOrder"/>
                     <include name="viewDownloadableOrders"/>
                     <include name="createAnAccount"/>
+                    <include name="clickChangPassword"/>
                     <include name="ViewOrder"/>
                     <include name="UpdateAddress"/>
                     <include name="addProductsToCart"/>
