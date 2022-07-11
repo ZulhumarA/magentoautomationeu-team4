@@ -163,6 +163,7 @@ public class PublicModuleRunner extends TestBase {
         publicLoginPage.Login();
         viewNewsletterSubscriptionLinkAndContentPage.ViewNewsletterSubscriptionLinkAndContent();
         Assert.assertTrue(viewNewsletterSubscriptionLinkAndContentPage.VerifyViewNewsletterSubscriptionLinkAndContent());
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
     @AfterClass
