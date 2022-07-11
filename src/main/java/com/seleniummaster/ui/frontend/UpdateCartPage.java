@@ -63,7 +63,6 @@ public class UpdateCartPage extends TestBase{
         addProductToCart(linenBlazer,"22","78");
     }
 
-
     public boolean verifyLinenBlazerSuccessfullyAddedMessage(){
         testUtility.waitForElementPresent(linenBlazerSuccessfullyAddedMessage);
         return linenBlazerSuccessfullyAddedMessage.isDisplayed();
@@ -90,8 +89,7 @@ public class UpdateCartPage extends TestBase{
 
     public void returnToHomePage(){
         logo.click();
-    }
-}
+    }}
 
 
 
