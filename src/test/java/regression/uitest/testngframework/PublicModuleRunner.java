@@ -19,8 +19,10 @@ public class PublicModuleRunner extends TestBase {
     UpdateAddressBookPage updateAddressBookPage;
     EditAccountInformationPage editAccountInformationPage;
     ViewMyWishListPage viewMyWishListPage;
+    ViewNewsletterSubscriptionLinkAndContentPage viewNewsletterSubscriptionLinkAndContentPage;
     SeeMyProductReviewsLinkAndContents seeMyProductReviewsLinkAndContents;
     CreateAnAccountPage createAnAccountPage;
+
 
     @BeforeClass
     public void setUp() {
@@ -36,6 +38,7 @@ public class PublicModuleRunner extends TestBase {
         editAccountInformationPage = new EditAccountInformationPage(driver);
         seeMyProductReviewsLinkAndContents = new SeeMyProductReviewsLinkAndContents(driver);
         viewMyWishListPage=new ViewMyWishListPage(driver);
+        viewNewsletterSubscriptionLinkAndContentPage=new ViewNewsletterSubscriptionLinkAndContentPage(driver);
     }
 
 
@@ -155,7 +158,12 @@ public class PublicModuleRunner extends TestBase {
      publicLoginPage.LogOutAndBackToLogInPage();
     }
 
-
+    @Test(description = "Abide")
+    public void ViewNewsletterSubscriptionLinkAndContent(){
+        publicLoginPage.Login();
+        viewNewsletterSubscriptionLinkAndContentPage.ViewNewsletterSubscriptionLinkAndContent();
+        Assert.assertTrue(viewNewsletterSubscriptionLinkAndContentPage.VerifyViewNewsletterSubscriptionLinkAndContent());
+    }
 
     @AfterClass
     public void tearDown() {
