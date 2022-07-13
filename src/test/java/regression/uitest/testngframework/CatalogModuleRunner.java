@@ -1,10 +1,7 @@
 package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.*;
-import com.seleniummaster.ui.backend.catalogmodule.AddAttributeUnderCatalogPage;
-import com.seleniummaster.ui.backend.catalogmodule.AddRootCategories;
-import com.seleniummaster.ui.backend.catalogmodule.AddSubCategories;
-import com.seleniummaster.ui.backend.catalogmodule.DeleteSubCategories;
+import com.seleniummaster.ui.backend.catalogmodule.*;
 import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.testng.Assert;
@@ -20,6 +17,7 @@ public class CatalogModuleRunner extends TestBase {
     DeleteSubCategories deleteSubCategories ;
 
     AddSubCategories addSubCategories ;
+    EditSubCategories editSubCategories ;
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -31,6 +29,7 @@ public class CatalogModuleRunner extends TestBase {
         adminLoginPage.adminLogin("catalogManager");
         deleteSubCategories = new DeleteSubCategories(driver);
         addSubCategories = new AddSubCategories(driver);
+        editSubCategories= new EditSubCategories(driver);
     }
 
     @Test(description = "Add new attributes under a catalog-Zulhumar")
@@ -72,6 +71,12 @@ public class CatalogModuleRunner extends TestBase {
     public void AddSubCategories() {
         addSubCategories.SubCategoryAdd();
         Assert.assertTrue(addSubCategories.verifyAddSubCategorySuccessful());
+    }
+
+    @Test(description = "Ramile")
+    public void EditSubCategories() {
+        editSubCategories.SubCategoryEdit();
+        Assert.assertTrue(editSubCategories.verifyEditSubCategorySuccessful());
     }
 
     @AfterClass
