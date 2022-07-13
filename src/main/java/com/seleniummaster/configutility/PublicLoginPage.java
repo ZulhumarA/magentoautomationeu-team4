@@ -26,6 +26,9 @@ public class PublicLoginPage {
     @FindBy(css = "div.buttons-set #send2")
     WebElement PublicLoginButtonInLoginPge;
 
+    @FindBy(css="a[title='Log Out']")
+    WebElement LogOutButton;
+
 
     public PublicLoginPage(WebDriver driver) {
         this.driver = driver;
@@ -73,6 +76,10 @@ public class PublicLoginPage {
         InterPasswordField.sendKeys( ApplicationConfig.readFromConfigProperties("config.properties", "password"));
         PublicLoginButtonInLoginPge.click();
     }
+ public void LogOutAndBackToLogInPage(){
+        AccountButton.click();
+        LogOutButton.click();
 
+ }
 
 }
