@@ -59,10 +59,24 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
     }
 
-    @Test
+    @Test(description = "addNewCustomers")
     public void UpdateAnExistingCustomerPage() {
         updateAnExistingCustomerPage.EditAccountInformation("123");
         Assert.assertTrue(updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
+    }
+
+
+    @Test(description = "customer manager can delete customer-Zulpikar",dependsOnMethods = { "addNewCustomers", "UpdateAnExistingCustomerPage" },priority = 1)
+    public void DeleteCustomerPage() throws InterruptedException {
+        DeleteCustomerPage deleteCustomerPage=new DeleteCustomerPage(driver);
+        deleteCustomerPage.clickSearchNameField();
+        deleteCustomerPage.enterSearchName(ApplicationConfig.readFromConfigProperties("config.properties", "userName"));
+        deleteCustomerPage.clickSearchButton();
+        Thread.sleep(3000);
+        deleteCustomerPage.clickOnCustomer();
+        //Thread.sleep(5000);
+        deleteCustomerPage.clickOnDelete();
+        Assert.assertTrue(deleteCustomerPage.deleteMessage());
     }
 
     @Test(description = "Gvlmihre")
