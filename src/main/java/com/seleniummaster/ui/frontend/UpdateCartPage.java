@@ -16,7 +16,7 @@ public class UpdateCartPage extends TestBase{
 
     WebDriver driver;
 
-    @FindBy(xpath="//*[@class=\"item first\"]")
+    @FindBy(xpath="//*[@class=\"col-main\"]/ul/li[2]")
     WebElement linenBlazer;
 
     @FindBy(id="attribute92")

@@ -40,19 +40,19 @@ public class PublicModuleRunner extends TestBase {
         viewDownloadableOrdersPage = new ViewDownloadableOrdersPage(driver);
         editAccountInformationPage = new EditAccountInformationPage(driver);
         seeMyProductReviewsLinkAndContents = new SeeMyProductReviewsLinkAndContents(driver);
-        viewMyWishListPage=new ViewMyWishListPage(driver);
+        viewMyWishListPage = new ViewMyWishListPage(driver);
         changPasswordPage = new ChangPasswordPage(driver);
-        viewNewsletterSubscriptionLinkAndContentPage=new ViewNewsletterSubscriptionLinkAndContentPage(driver);
+        viewNewsletterSubscriptionLinkAndContentPage = new ViewNewsletterSubscriptionLinkAndContentPage(driver);
     }
 
 
-    @Test(description = "Gulmire",priority = 1)
+    @Test(description = "Gulmire", priority = 1)
     public void addLinenBlazerProductToCart() {
         updateCartPage.addLinenBlazerToCart();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerSuccessfullyAddedMessage());
     }
 
-    @Test(description = "Gulmire",dependsOnMethods = "addLinenBlazerProductToCart",priority = 2)
+    @Test(description = "Gulmire", dependsOnMethods = "addLinenBlazerProductToCart", priority = 2)
     public void updateProductSize() {
         updateCartPage.changeProductSizeMethod();
         Assert.assertTrue(updateCartPage.verifyLinenBlazerProductUpdatedSuccessfully());
@@ -84,14 +84,14 @@ public class PublicModuleRunner extends TestBase {
     }
 
     // Test Case Id: MAGE2022-314 A user should be able to create an account
-    @Test(description = "habibulla",priority = 3)
+    @Test(description = "habibulla", priority = 3)
     public void createAnAccount() {
         createAnAccountPage.fillAccountRegistrationForm();
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
 
     }
 
-    @Test(dataProvider = "publicChangPasswordTest",description = "a user should be able chang password",dependsOnMethods = "createAnAccount",priority = 4)
+    @Test(dataProvider = "publicChangPasswordTest", description = "a user should be able chang password", dependsOnMethods = "createAnAccount", priority = 4)
     public void clickChangPassword(String currentPassword, String newPassword, String confirmationPassword) {
         boolean changPasswordTestResult = changPasswordPage.clickChangPassword(currentPassword, newPassword, confirmationPassword);
         Assert.assertTrue(changPasswordTestResult);
@@ -139,7 +139,6 @@ public class PublicModuleRunner extends TestBase {
         editAccountInformationPage1.editAccountInformationPage();
         Assert.assertTrue(editAccountInformationPage1.verifyEditAccountInformation());
         publicLoginPage.LogOutAndBackToLogInPage();
-
     }
 
     @Test(description = "izzet")
@@ -151,15 +150,15 @@ public class PublicModuleRunner extends TestBase {
     }
 
     @Test(description = "Abide")
-    public void ViewMyWishList(){
-     publicLoginPage.Login();
-     viewMyWishListPage.clickMyWishList();
-     Assert.assertTrue(viewMyWishListPage.existMyWishListContent());
-     publicLoginPage.LogOutAndBackToLogInPage();
+    public void ViewMyWishList() {
+        publicLoginPage.Login();
+        viewMyWishListPage.clickMyWishList();
+        Assert.assertTrue(viewMyWishListPage.existMyWishListContent());
+        publicLoginPage.LogOutAndBackToLogInPage();
     }
 
     @Test(description = "Abide")
-    public void ViewNewsletterSubscriptionLinkAndContent(){
+    public void ViewNewsletterSubscriptionLinkAndContent() {
         publicLoginPage.Login();
         viewNewsletterSubscriptionLinkAndContentPage.ViewNewsletterSubscriptionLinkAndContent();
         Assert.assertTrue(viewNewsletterSubscriptionLinkAndContentPage.VerifyViewNewsletterSubscriptionLinkAndContent());
@@ -173,20 +172,7 @@ public class PublicModuleRunner extends TestBase {
 }
 
 
-//    @Test
-//    public void addMultipleProducts(){
-//        cartPage=new CartPage(driver);
-//        cartPage.addMultipleProductsToCartMethod();
-//        Assert.assertTrue(cartPage.verifyChelseaTeaAdded());
-//    }
-//
-//    @Test
-//    public void addProduct(){
-//        cartPage=new CartPage(driver);
-//        WebElement linenBlazer=driver.findElement(By.xpath("//*[text()=\"Linen Blazer\"]"));
-//        cartPage.addProductToCart(linenBlazer,"22","78");
-//    }
-//
+
 
 
 
