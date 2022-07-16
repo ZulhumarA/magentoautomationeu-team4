@@ -19,18 +19,6 @@ public class UpdateCartPage extends TestBase{
     @FindBy(xpath="//*[@class=\"item first\"]")
     WebElement linenBlazer;
 
-    @FindBy(xpath="//*[text()=\"Elizabeth Knit Top\"]")
-    WebElement elizabethKnitTop;
-
-    @FindBy(xpath = "//*[text()=\"Chelsea Tee\"]")
-    WebElement chelseaTee;
-
-    @FindBy(xpath = "//*[text()=\"Lafayette Convertible Dress\"]")
-    WebElement lafayetteConvertibleDress;
-
-    @FindBy(xpath = "//*[text()=\"Tori Tank\"]")
-    WebElement ToriTank;
-
     @FindBy(id="attribute92")
     WebElement colorField;
 
@@ -58,17 +46,11 @@ public class UpdateCartPage extends TestBase{
     @FindBy(xpath = "//span[text()='Linen Blazer was added to your shopping cart.']")
     WebElement linenBlazerSuccessfullyAddedMessage;
 
-    @FindBy(xpath="//span[text()='Chelsea Tee was added to your shopping cart.']")
-    WebElement chelseaTeeAddedSuccessfullyMessage;
-
     @FindBy(xpath = "//span[text()='Linen Blazer was updated in your shopping cart.']")
     WebElement linenBlazerSuccessfullyUpdatedMessage;
 
     @FindBy(xpath = "//span[text()='Update Cart']")
     WebElement updateCartButton;
-
-    @FindBy(xpath = "//*[@class='products-grid']/li")
-    List<WebElement> multipleProducts;
 
     @FindBy(xpath = "//a[@class=\"logo\"]")
     WebElement logo;
@@ -115,15 +97,9 @@ public class UpdateCartPage extends TestBase{
         addProductToCart(linenBlazer,"22","78");
     }
 
-
     public boolean verifyLinenBlazerSuccessfullyAddedMessage(){
         testUtility.waitForElementPresent(linenBlazerSuccessfullyAddedMessage);
         return linenBlazerSuccessfullyAddedMessage.isDisplayed();
-    }
-
-    public boolean verifyChelseaTeaAdded(){
-        testUtility.waitForElementPresent(chelseaTeeAddedSuccessfullyMessage);
-        return chelseaTeeAddedSuccessfullyMessage.isDisplayed();
     }
 
     public boolean verifyLinenBlazerProductUpdatedSuccessfully(){
@@ -133,13 +109,13 @@ public class UpdateCartPage extends TestBase{
     }
 
 
-    public void changeQuantityMethod(){
+   /* public void changeQuantityMethod(){
         testUtility=new TestUtility(driver);
         testUtility.waitForElementPresent(quantityField);
         quantityField.sendKeys(Keys.CONTROL + "a");
         quantityField.sendKeys(Keys.DELETE);
         quantityField.sendKeys("5");
-    }
+    }*/
 
     public void changeProductSizeMethod(){
         testUtility.waitForElementPresent(editItemLink);
@@ -150,11 +126,7 @@ public class UpdateCartPage extends TestBase{
 
     public void returnToHomePage(){
         logo.click();
-    }
-
-
-}
-
+    }}
 
 
 
