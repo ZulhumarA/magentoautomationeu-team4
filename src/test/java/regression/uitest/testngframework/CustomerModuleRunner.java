@@ -19,6 +19,7 @@ public class CustomerModuleRunner extends TestBase {
     ExportCustomers exportCustomers;
     ResetCustomerPassword resetCustomerPassword;
     UpdateAnExistingCustomerPage updateAnExistingCustomerPage;
+    FilterCustomersByEmailPage filterCustomersByEmailPage;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -32,6 +33,7 @@ public class CustomerModuleRunner extends TestBase {
         updateAnExistingCustomerPage = new UpdateAnExistingCustomerPage(driver);
         assignCustomerGroupPage = new AssignCustomerGroupPage(driver);
         exportCustomers=new ExportCustomers(driver);
+        filterCustomersByEmailPage=new FilterCustomersByEmailPage(driver);
     }
 
     @Test
@@ -90,6 +92,14 @@ public class CustomerModuleRunner extends TestBase {
     @Test(description = "Ramile")
     public void ExportCustomers() {
         exportCustomers.ClikExport();
+    }
+
+
+    @Test(description = "Arzugul_customer manager can filter customer by email")
+    public void FilterCustomersByEmailPage(){
+        filterCustomersByEmailPage.filterEmail();
+        filterCustomersByEmailPage.verifyCustomersByEmail();
+
     }
 
     @AfterClass
