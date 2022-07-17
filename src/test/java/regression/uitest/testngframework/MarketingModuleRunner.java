@@ -41,7 +41,6 @@ public class MarketingModuleRunner extends TestBase {
         addNewsletterTemplatePage=new AddNewsletterTemplatePage(driver);
         addNewsletterTemplatePage.addNewsletterTemplate();
         Assert.assertTrue(addNewsletterTemplatePage.verifyNewsletterTemplateAddedSuccessfully());
-
     }
 
 

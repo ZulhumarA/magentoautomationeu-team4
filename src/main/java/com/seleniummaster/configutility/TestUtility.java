@@ -9,10 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestUtility {
 
-   private WebDriver driver;
+    private WebDriver driver;
 
-   private int timeout=Integer.parseInt(ApplicationConfig.readFromConfigProperties(
-            "config.properties","timeout"
+    private int timeout = Integer.parseInt(ApplicationConfig.readFromConfigProperties(
+            "config.properties", "timeout"
     ));
 
     Faker faker = new Faker();
@@ -28,39 +28,8 @@ public class TestUtility {
 
 
     public String generateFirstName() {
-        String firstName=faker.name().firstName();
+        String firstName = faker.name().firstName();
         return firstName;
-    }
-
-
-
-    public String generateLastName() {
-        String lastName=faker.name().lastName();
-        return lastName;
-    }
-
-
-
-
-    public  String generateCity() {
-        String city = faker.address().city();
-        return city;
-    }
-
-    public  String generateZip() {
-        String zip = faker.address().zipCode();
-        return zip;
-    }
-
-
-    public String fakeProductName(){
-        String productName=faker.commerce().productName();
-        return productName;
-    }
-
-    public String fakeEmail(){
-        String email=faker.internet().emailAddress();
-        return email;
     }
 
     public String generateTitle(){
@@ -68,19 +37,43 @@ public class TestUtility {
         return title;
     }
 
+    public String generateLastName() {
+        String lastName = faker.name().lastName();
+        return lastName;
+    }
+
+    public String generateCity() {
+        String city = faker.address().city();
+        return city;
+    }
+
+    public String generateZip() {
+        String zip = faker.address().zipCode();
+        return zip;
+    }
+
+    public String fakeProductName() {
+        String productName = faker.commerce().productName();
+        return productName;
+    }
+
+    public String fakeEmail() {
+        String email = faker.internet().emailAddress();
+        return email;
+    }
 
     public void waitForAlertPresent(){
         WebDriverWait wait=new WebDriverWait(driver,timeout);
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
-    public void selectValueFromDropDown(WebElement webelement,String value){
-        Select s=new Select(webelement);
+    public void selectValueFromDropDown(WebElement webelement, String value) {
+        Select s = new Select(webelement);
         s.selectByValue(value);
     }
 
-    public void selectValueFromDropDown(WebElement webelement,int index){
-        Select s=new Select(webelement);
+    public void selectValueFromDropDown(WebElement webelement, int index) {
+        Select s = new Select(webelement);
         s.selectByIndex(index);
     }
 
