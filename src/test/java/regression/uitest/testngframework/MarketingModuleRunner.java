@@ -7,6 +7,7 @@ import com.seleniummaster.ui.backend.marketingmodule.AddNewsletterTemplatePage;
 import com.seleniummaster.ui.backend.marketingmodule.DeleteNewsletterTemplatePage;
 import com.seleniummaster.ui.backend.marketingmodule.FilterShoppingCartPricingRuleByIdAndRule;
 import com.seleniummaster.ui.backend.marketingmodule.UpdateNewsletterTemplatePage;
+import com.seleniummaster.ui.backend.marketingmodule.ViewNewsletterSubscribersPage;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -20,6 +21,7 @@ public class MarketingModuleRunner extends TestBase {
     AddNewsletterTemplatePage addNewsletterTemplatePage;
     UpdateNewsletterTemplatePage updateNewsletterTemplatePage;
     DeleteNewsletterTemplatePage deleteNewsletterTemplatePage;
+    ViewNewsletterSubscribersPage viewNewsletterSubscribersPage;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -39,19 +41,19 @@ public class MarketingModuleRunner extends TestBase {
     }
 
     @Test
-    public void addNewsletterTemplateMethod(){
+    public void addNewsletterTemplateMethod() {
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("marketingManager");
-        addNewsletterTemplatePage=new AddNewsletterTemplatePage(driver);
+        addNewsletterTemplatePage = new AddNewsletterTemplatePage(driver);
         addNewsletterTemplatePage.addNewsletterTemplate();
         Assert.assertTrue(addNewsletterTemplatePage.verifyNewsletterTemplateAddedSuccessfully());
     }
 
     @Test
-    public void updateNewsletterTemplate(){
+    public void updateNewsletterTemplate() {
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("marketingManager");
-        updateNewsletterTemplatePage=new UpdateNewsletterTemplatePage(driver);
+        updateNewsletterTemplatePage = new UpdateNewsletterTemplatePage(driver);
         updateNewsletterTemplatePage.updateExistingNewsletterTemplate();
         Assert.assertTrue(updateNewsletterTemplatePage.verifyTemplateUpdatedSuccessfully());
     }
@@ -66,7 +68,12 @@ public class MarketingModuleRunner extends TestBase {
     }
 
     @Test
-    public void sadasd() {
+    public void viewNewsletterSubscribersMethod() {
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("marketingManager");
+        viewNewsletterSubscribersPage = new ViewNewsletterSubscribersPage(driver);
+        viewNewsletterSubscribersPage.viewNewsletterSubscribers();
+        Assert.assertTrue(viewNewsletterSubscribersPage.verifyNewsletterSubscribersViewed());
     }
 
     @AfterClass
