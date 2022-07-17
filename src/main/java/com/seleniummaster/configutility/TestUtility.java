@@ -63,6 +63,12 @@ public class TestUtility {
         return email;
     }
 
+    public String fakeTitle(){
+        String title=faker.name().title();
+        return title;
+    }
+
+
     public void waitForAlertPresent(){
         WebDriverWait wait=new WebDriverWait(driver,timeout);
         wait.until(ExpectedConditions.alertIsPresent());
