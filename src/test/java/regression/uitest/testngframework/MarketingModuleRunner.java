@@ -4,6 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.marketingmodule.AddNewsletterTemplatePage;
+import com.seleniummaster.ui.backend.marketingmodule.DeleteNewsletterTemplatePage;
 import com.seleniummaster.ui.backend.marketingmodule.FilterShoppingCartPricingRuleByIdAndRule;
 import com.seleniummaster.ui.backend.marketingmodule.UpdateNewsletterTemplatePage;
 import com.seleniummaster.ui.backend.marketingmodule.ViewNewsletterSubscribersPage;
@@ -19,6 +20,7 @@ public class MarketingModuleRunner extends TestBase {
     FilterShoppingCartPricingRuleByIdAndRule filterShoppingCartPricingRuleByIdAndRule;
     AddNewsletterTemplatePage addNewsletterTemplatePage;
     UpdateNewsletterTemplatePage updateNewsletterTemplatePage;
+    DeleteNewsletterTemplatePage deleteNewsletterTemplatePage;
     ViewNewsletterSubscribersPage viewNewsletterSubscribersPage;
 
     @BeforeClass
@@ -56,18 +58,15 @@ public class MarketingModuleRunner extends TestBase {
         Assert.assertTrue(updateNewsletterTemplatePage.verifyTemplateUpdatedSuccessfully());
     }
 
+    @Test
+    public void deleteTemplateMethod(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("marketingManager");
+        deleteNewsletterTemplatePage=new DeleteNewsletterTemplatePage(driver);
+        deleteNewsletterTemplatePage.deleteTemplate();
+        Assert.assertTrue(deleteNewsletterTemplatePage.verifyTemplateDeletedSuccessfully());
+    }
 
-
-
-
-
-
-
-
-
-
-
-    
     @Test
     public void viewNewsletterSubscribersMethod() {
         adminLoginPage = new AdminLoginPage(driver);
@@ -81,5 +80,4 @@ public class MarketingModuleRunner extends TestBase {
     public void tearDown() {
         closeBrowser();
     }
-
 }
