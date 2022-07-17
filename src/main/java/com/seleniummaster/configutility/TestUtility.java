@@ -77,6 +77,10 @@ public class TestUtility {
         s.selectByIndex(index);
     }
 
+    public int generateRandomNumbers(int max ,int min){
+        return ((int)(Math.random() * max) + min);
+    }
+
 }
 
 

@@ -3,11 +3,7 @@ package regression.uitest.testngframework;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
-import com.seleniummaster.ui.backend.marketingmodule.AddNewsletterTemplatePage;
-import com.seleniummaster.ui.backend.marketingmodule.DeleteNewsletterTemplatePage;
-import com.seleniummaster.ui.backend.marketingmodule.FilterShoppingCartPricingRuleByIdAndRule;
-import com.seleniummaster.ui.backend.marketingmodule.UpdateNewsletterTemplatePage;
-import com.seleniummaster.ui.backend.marketingmodule.ViewNewsletterSubscribersPage;
+import com.seleniummaster.ui.backend.marketingmodule.*;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -22,11 +18,24 @@ public class MarketingModuleRunner extends TestBase {
     UpdateNewsletterTemplatePage updateNewsletterTemplatePage;
     DeleteNewsletterTemplatePage deleteNewsletterTemplatePage;
     ViewNewsletterSubscribersPage viewNewsletterSubscribersPage;
+    AddNewCartPriceRule addNewCartPriceRule;
+    UpdateCartPriceRule updateCartPriceRule;
+
 
     @BeforeClass
     public void setUp(ITestContext context) {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
         context.setAttribute("driver", driver);
+    }
+
+    @Test
+    public void addNewCartPriceRule() {
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("marketingManager");
+        addNewCartPriceRule = new AddNewCartPriceRule(driver);
+        addNewCartPriceRule.OpenShoppingCartPricesRules();
+        addNewCartPriceRule.CreateShoppingCardRule();
+        Assert.assertTrue(addNewCartPriceRule.VerifyAddNewRule());
     }
 
     @Test
@@ -38,6 +47,17 @@ public class MarketingModuleRunner extends TestBase {
         Assert.assertTrue(filterShoppingCartPricingRuleByIdAndRule.changeIdAndVerifyIt());
         filterShoppingCartPricingRuleByIdAndRule.resetTheFilter();
         Assert.assertTrue(filterShoppingCartPricingRuleByIdAndRule.changeRuleNameAndVerify());
+    }
+
+    @Test
+    public void UpdateCartRule() {
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("marketingManager");
+        updateCartPriceRule=new UpdateCartPriceRule(driver);
+        updateCartPriceRule.OpenShoppingCartPricesRules();
+        updateCartPriceRule.UpdateRule();
+        Assert.assertTrue(updateCartPriceRule.VerifyUpdate());
+
     }
 
     @Test
@@ -59,10 +79,10 @@ public class MarketingModuleRunner extends TestBase {
     }
 
     @Test
-    public void deleteTemplateMethod(){
+    public void deleteTemplateMethod() {
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("marketingManager");
-        deleteNewsletterTemplatePage=new DeleteNewsletterTemplatePage(driver);
+        deleteNewsletterTemplatePage = new DeleteNewsletterTemplatePage(driver);
         deleteNewsletterTemplatePage.deleteTemplate();
         Assert.assertTrue(deleteNewsletterTemplatePage.verifyTemplateDeletedSuccessfully());
     }
