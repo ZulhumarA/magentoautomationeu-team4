@@ -63,7 +63,7 @@ public class TestUtility {
         return email;
     }
 
-    public String fakeTitle(){
+    public String generateTitle(){
         String title=faker.name().title();
         return title;
     }
