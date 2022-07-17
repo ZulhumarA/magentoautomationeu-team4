@@ -18,10 +18,6 @@ public class UpdateNewsletterTemplatePage {
 
     AdminLoginPage adminLoginPage;
 
-    String fieldToUpdate;
-
-    String updatedField;
-
     int textTemplateSizeOld;
 
     int textTemplateSizeNew;

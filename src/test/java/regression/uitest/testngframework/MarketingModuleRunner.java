@@ -4,6 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.marketingmodule.AddNewsletterTemplatePage;
+import com.seleniummaster.ui.backend.marketingmodule.DeleteNewsletterTemplatePage;
 import com.seleniummaster.ui.backend.marketingmodule.FilterShoppingCartPricingRuleByIdAndRule;
 import com.seleniummaster.ui.backend.marketingmodule.UpdateNewsletterTemplatePage;
 import org.testng.Assert;
@@ -18,6 +19,7 @@ public class MarketingModuleRunner extends TestBase {
     FilterShoppingCartPricingRuleByIdAndRule filterShoppingCartPricingRuleByIdAndRule;
     AddNewsletterTemplatePage addNewsletterTemplatePage;
     UpdateNewsletterTemplatePage updateNewsletterTemplatePage;
+    DeleteNewsletterTemplatePage deleteNewsletterTemplatePage;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -52,6 +54,15 @@ public class MarketingModuleRunner extends TestBase {
         updateNewsletterTemplatePage=new UpdateNewsletterTemplatePage(driver);
         updateNewsletterTemplatePage.updateExistingNewsletterTemplate();
         Assert.assertTrue(updateNewsletterTemplatePage.verifyTemplateUpdatedSuccessfully());
+    }
+
+    @Test
+    public void deleteTemplateMethod(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("marketingManager");
+        deleteNewsletterTemplatePage=new DeleteNewsletterTemplatePage(driver);
+        deleteNewsletterTemplatePage.deleteTemplate();
+        Assert.assertTrue(deleteNewsletterTemplatePage.verifyTemplateDeletedSuccessfully());
     }
 
     @Test
