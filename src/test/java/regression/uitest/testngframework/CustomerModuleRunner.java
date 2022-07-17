@@ -1,5 +1,6 @@
 package regression.uitest.testngframework;
 
+import com.github.javafaker.App;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
@@ -20,6 +21,7 @@ public class CustomerModuleRunner extends TestBase {
     ResetCustomerPassword resetCustomerPassword;
     UpdateAnExistingCustomerPage updateAnExistingCustomerPage;
     FilterCustomersByEmailPage filterCustomersByEmailPage;
+    AddNewAddressPage addNewAddressPage;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -34,6 +36,7 @@ public class CustomerModuleRunner extends TestBase {
         assignCustomerGroupPage = new AssignCustomerGroupPage(driver);
         exportCustomers=new ExportCustomers(driver);
         filterCustomersByEmailPage=new FilterCustomersByEmailPage(driver);
+        addNewAddressPage=new AddNewAddressPage(driver);
     }
 
     @Test
@@ -59,6 +62,21 @@ public class CustomerModuleRunner extends TestBase {
         addNewCustomerPage.enterPassword(ApplicationConfig.readFromConfigProperties("config.properties", "password2"));
         addNewCustomerPage.clickSaveButton();
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
+    }
+    @Test(description = "addNewCustomerAddress-Faruk")
+    public void AddNewAddressPage(){
+        addNewAddressPage.setClickEdit();
+        addNewAddressPage.setClickAddressLinks();
+        addNewAddressPage.setAddNewAddressButton();
+        addNewAddressPage.setEnterStreetAddress(ApplicationConfig.readFromConfigProperties("config.properties","StreetAddress"));
+        addNewAddressPage.setEnterStreetAddress1(ApplicationConfig.readFromConfigProperties("config.properties","StreetAddress1"));
+        addNewAddressPage.setEnterCountry();
+        addNewAddressPage.setEnterState(ApplicationConfig.readFromConfigProperties("config.properties","State"));
+        addNewAddressPage.setEnterCity(ApplicationConfig.readFromConfigProperties("config.properties","City"));
+        addNewAddressPage.setEnterPostCode(ApplicationConfig.readFromConfigProperties("config.properties","Postcode"));
+        addNewAddressPage.setEnterTelephone(ApplicationConfig.readFromConfigProperties("config.properties","Phone"));
+        addNewAddressPage.setAddSaveCustomerButton();
+        Assert.assertTrue(addNewAddressPage.addNewAddress());
     }
 
     @Test(description = "addNewCustomers")
