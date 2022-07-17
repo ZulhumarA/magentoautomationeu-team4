@@ -5,6 +5,7 @@ import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.marketingmodule.AddNewsletterTemplatePage;
 import com.seleniummaster.ui.backend.marketingmodule.FilterShoppingCartPricingRuleByIdAndRule;
+import com.seleniummaster.ui.backend.marketingmodule.UpdateNewsletterTemplatePage;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -16,6 +17,7 @@ public class MarketingModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     FilterShoppingCartPricingRuleByIdAndRule filterShoppingCartPricingRuleByIdAndRule;
     AddNewsletterTemplatePage addNewsletterTemplatePage;
+    UpdateNewsletterTemplatePage updateNewsletterTemplatePage;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -43,16 +45,21 @@ public class MarketingModuleRunner extends TestBase {
         Assert.assertTrue(addNewsletterTemplatePage.verifyNewsletterTemplateAddedSuccessfully());
     }
 
-
+    @Test
+    public void updateNewsletterTemplate(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("marketingManager");
+        updateNewsletterTemplatePage=new UpdateNewsletterTemplatePage(driver);
+        updateNewsletterTemplatePage.updateExistingNewsletterTemplate();
+        Assert.assertTrue(updateNewsletterTemplatePage.verifyTemplateUpdatedSuccessfully());
+    }
 
     @Test
     public void sadasd() {
-
     }
 
     @AfterClass
     public void tearDown() {
         closeBrowser();
     }
-
 }
