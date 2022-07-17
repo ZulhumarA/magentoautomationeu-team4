@@ -82,5 +82,4 @@ public class AddNewsletterTemplatePage {
     public boolean verifyNewsletterTemplateAddedSuccessfully(){
         return rowSizeOld < rowSizeNew;
     }
-    
 }
