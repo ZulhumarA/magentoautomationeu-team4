@@ -56,14 +56,6 @@ public class MarketingModuleRunner extends TestBase {
         Assert.assertTrue(updateNewsletterTemplatePage.verifyTemplateUpdatedSuccessfully());
     }
 
-    @Test
-    public void sadasd() {
-    }
-
-    @AfterClass
-    public void tearDown() {
-        closeBrowser();
-    }
 
 
 
@@ -84,4 +76,10 @@ public class MarketingModuleRunner extends TestBase {
         viewNewsletterSubscribersPage.viewNewsletterSubscribers();
         Assert.assertTrue(viewNewsletterSubscribersPage.verifyNewsletterSubscribersViewed());
     }
+
+    @AfterClass
+    public void tearDown() {
+        closeBrowser();
+    }
+
 }

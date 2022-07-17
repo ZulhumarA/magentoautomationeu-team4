@@ -34,7 +34,6 @@ public class ViewNewsletterSubscribersPage {
     @FindBy(xpath = "//*[@class='hor-scroll']/table/tbody/tr[1]/td[8]")
     WebElement customerStatus;
 
-
     public void viewNewsletterSubscribers(){
         testUtility.waitForElementPresent(newsletterButton);
         newsletterButton.click();
@@ -47,8 +46,4 @@ public class ViewNewsletterSubscribersPage {
         System.out.println("status of customer is: "+statusOfCustomer);
         return Objects.equals(statusOfCustomer, "Subscribed");
     }
-
-
-
-
 }
