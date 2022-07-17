@@ -12,7 +12,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class MarketingModuleRunner extends TestBase  {
+public class MarketingModuleRunner extends TestBase {
 
     AdminLoginPage adminLoginPage;
     FilterShoppingCartPricingRuleByIdAndRule filterShoppingCartPricingRuleByIdAndRule;
@@ -26,16 +26,15 @@ public class MarketingModuleRunner extends TestBase  {
     }
 
     @Test
-    public void FilterShoppingCartPricingRuleByIdAndRule(){
-        adminLoginPage=new AdminLoginPage(driver);
+    public void FilterShoppingCartPricingRuleByIdAndRule() {
+        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("marketingManager");
-        filterShoppingCartPricingRuleByIdAndRule=new FilterShoppingCartPricingRuleByIdAndRule(driver);
+        filterShoppingCartPricingRuleByIdAndRule = new FilterShoppingCartPricingRuleByIdAndRule(driver);
         filterShoppingCartPricingRuleByIdAndRule.OpenShoppingCartPricesRules();
         Assert.assertTrue(filterShoppingCartPricingRuleByIdAndRule.changeIdAndVerifyIt());
         filterShoppingCartPricingRuleByIdAndRule.resetTheFilter();
         Assert.assertTrue(filterShoppingCartPricingRuleByIdAndRule.changeRuleNameAndVerify());
     }
-
 
     @Test
     public void addNewsletterTemplateMethod(){
@@ -56,13 +55,11 @@ public class MarketingModuleRunner extends TestBase  {
     }
 
     @Test
-    public void sadasd(){
-
+    public void sadasd() {
     }
 
     @AfterClass
     public void tearDown() {
         closeBrowser();
     }
-
 }

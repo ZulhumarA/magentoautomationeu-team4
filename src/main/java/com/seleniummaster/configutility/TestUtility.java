@@ -62,8 +62,8 @@ public class TestUtility {
         return email;
     }
 
-    public void waitForAlertPresent() {
-        WebDriverWait wait = new WebDriverWait(driver, timeout);
+    public void waitForAlertPresent(){
+        WebDriverWait wait=new WebDriverWait(driver,timeout);
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
