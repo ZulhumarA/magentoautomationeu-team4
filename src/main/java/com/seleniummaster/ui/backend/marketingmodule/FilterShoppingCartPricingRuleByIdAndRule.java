@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class FilterShoppingCartPricingRuleByIdAndRule {
     WebElement NameFiled;
 
     @FindBy(css = "button[title=\"Search\"]")
-    WebElement SaveButton;
+    WebElement SearchButton;
 
     @FindBy(css = "button[title=\"Reset Filter\"]")
     WebElement resetButton;
@@ -55,7 +54,7 @@ public class FilterShoppingCartPricingRuleByIdAndRule {
 
         }
         RuleIdField.sendKeys(all_elements_text.get(0));
-        SaveButton.click();
+        SearchButton.click();
         List<WebElement> AllIdAfterFilter = driver.findElements(By.cssSelector("div[class='hor-scroll'] td[class='a-right ']"));
         if (AllId.size() == AllIdAfterFilter.size()) {
             return false;
@@ -80,7 +79,7 @@ public class FilterShoppingCartPricingRuleByIdAndRule {
             System.out.println(AllRuleName.get(i-1).getText());
         }
         NameFiled.sendKeys(all_RuleElements_text.get(0));
-        SaveButton.click();
+        SearchButton.click();
         List<WebElement> AllIdAfterFilter = driver.findElements(By.cssSelector("div[class='hor-scroll'] tr[title]:nth-child(1)>td:nth-child(2)"));
         if (numberOfAllRuleName == AllIdAfterFilter.size()) {
             return false;

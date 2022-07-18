@@ -37,6 +37,9 @@ public class UpdateCartPriceRule {
     @FindBy(css = "li[class='success-msg']")
     WebElement successfulMessage;
 
+    @FindBy(css="a[name=\"from_date\"]")
+    WebElement DateStart;
+
 
     public UpdateCartPriceRule(WebDriver driver) {
 
@@ -55,6 +58,8 @@ public class UpdateCartPriceRule {
     public void UpdateRule() {
         utility.waitForElementPresent(NameFiled);
         NameFiled.sendKeys("Get");
+        utility.waitForElementPresent(DateStart);
+        DateStart.click();
         utility.waitForElementPresent(FirstColumn);
         FirstColumn.click();
         utility.waitForElementPresent(RuleName);

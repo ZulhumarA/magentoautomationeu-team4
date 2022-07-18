@@ -21,6 +21,9 @@ public class AdminLoginPage extends TestBase {
      @FindBy(xpath = "//*[@value=\"Login\"]")
      WebElement loginButton;
 
+     @FindBy(css="a[class=\"link-logout\"]")
+     WebElement LogoutButton;
+
      public AdminLoginPage(WebDriver driver) {
           this.driver = driver;
           PageFactory.initElements(driver,this);
@@ -31,6 +34,10 @@ public class AdminLoginPage extends TestBase {
           userNameField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties",userName));
           passwordField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties","backEndPassword"));
           loginButton.click();
+     }
+
+     public void adminLogout(){
+          LogoutButton.click();
      }
 
 

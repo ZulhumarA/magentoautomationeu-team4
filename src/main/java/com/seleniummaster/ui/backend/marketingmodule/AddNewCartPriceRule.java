@@ -61,14 +61,10 @@ public class AddNewCartPriceRule {
         RuleName.sendKeys("Get" + ((int) (Math.random() * 100) + 5) + "% off in the shopping car");
         utility.waitForElementPresent(status);
         status.click();
-        Select select = new Select(status);
-        select.selectByIndex(((int) (Math.random() * 0) + 1));
-        Select select1 = new Select(Websites);
-        select1.selectByIndex(((int) (Math.random() * 1) + 14));
-        Select select2 = new Select(CustomerGroups);
-        select2.selectByIndex(((int) (Math.random() * 1) + 19));
-        Select select3 = new Select(Coupon);
-        select3.selectByIndex(0);
+        utility.selectValueFromDropDown(status, utility.generateRandomNumbers(0,1));
+        utility.selectValueFromDropDown(Websites, utility.generateRandomNumbers(1,14));
+        utility.selectValueFromDropDown(CustomerGroups, utility.generateRandomNumbers(1,15));
+        utility.selectValueFromDropDown(Coupon,0);
         utility.waitForElementPresent(SaveButton);
         SaveButton.click();
     }
