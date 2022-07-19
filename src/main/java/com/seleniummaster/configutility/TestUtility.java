@@ -51,11 +51,31 @@ public class TestUtility {
         String zip = faker.address().zipCode();
         return zip;
     }
-
-    public String fakeProductName() {
-        String productName = faker.commerce().productName();
-        return productName;
+    //Zulhumar's Fakes
+    public String fakeCategoryName() {
+        String categoryName = faker.name().name();
+        return categoryName;
     }
+    public String fakePageTitle() {
+        String title = faker.name().title();
+        return title;
+    }
+        public String metaKeywords() {
+            String metaKeyword = faker.commerce().productName();
+            return metaKeyword;
+        }
+    public String metaDescriptions() {
+        String metaDescription = faker.commerce().productName();
+        return metaDescription;
+    }
+
+    public String generateAdminName(){
+        String admin=faker.name().name();
+        return admin;
+    }
+
+      //Zulhumar's finished.
+
 
     public String fakeEmail() {
         String email = faker.internet().emailAddress();
