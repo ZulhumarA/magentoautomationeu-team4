@@ -18,6 +18,7 @@ public class CatalogModuleRunner extends TestBase {
 
     AddSubCategories addSubCategories ;
     EditSubCategories editSubCategories ;
+    AddProductsPage addProductsPage;
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -30,6 +31,7 @@ public class CatalogModuleRunner extends TestBase {
         deleteSubCategories = new DeleteSubCategories(driver);
         addSubCategories = new AddSubCategories(driver);
         editSubCategories= new EditSubCategories(driver);
+        addProductsPage=new AddProductsPage(driver);
     }
 
     @Test(description = "Add new attributes under a catalog-Zulhumar")
@@ -77,6 +79,22 @@ public class CatalogModuleRunner extends TestBase {
     public void EditSubCategories() {
         editSubCategories.SubCategoryEdit();
         Assert.assertTrue(editSubCategories.verifyEditSubCategorySuccessful());
+    }
+    @Test(description = "Catalog Manager can add product-Arzugul")
+    public void addProductsTest(){
+        addProductsPage.createProductSetting();
+        addProductsPage.addProductName(ApplicationConfig.readFromConfigProperties("config.properties","name"));
+        addProductsPage.addDescription(ApplicationConfig.readFromConfigProperties("config.properties","description"));
+        addProductsPage.addShortDescription(ApplicationConfig.readFromConfigProperties("config.properties","shortDescription"));
+        addProductsPage.addSKU(ApplicationConfig.readFromConfigProperties("config.properties","SKU"));
+        addProductsPage.addWeight(ApplicationConfig.readFromConfigProperties("config.properties","Weight"));
+        addProductsPage.selectProductStatus();
+        addProductsPage.selectVisibility();
+        addProductsPage.saveGeneralProductPage();
+        addProductsPage.addPrice(ApplicationConfig.readFromConfigProperties("config.properties","price"));
+        addProductsPage.selectTaxClass();
+        addProductsPage.saveProductInformation();
+        Assert.assertTrue(addProductsPage.verifyAddProductTest());
     }
 
     @AfterClass
