@@ -62,6 +62,8 @@ editRootCategories.editRootCatalogInformation();
     @Test(description = "Ramile")
     public void DeleteSubCategories() {
         deleteSubCategories.SubCategoryDelete();
+
+        //ui
         Assert.assertTrue(deleteSubCategories.verifyDeleteSubCategorySuccessful());
     }
 
