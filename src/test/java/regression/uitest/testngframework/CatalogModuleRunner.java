@@ -45,6 +45,12 @@ public class CatalogModuleRunner extends TestBase {
         addRootCategoriesZulhumar.fillCategoryInformationAndSave();
         Assert.assertTrue(addRootCategoriesZulhumar.verifyAddRootCategories());
     }
+@Test(description = "Zulhumar")
+   public void editRootCategory(){
+        EditRootCategories editRootCategories=new EditRootCategories(driver);
+        editRootCategories.openCategoriesPage();
+editRootCategories.editRootCatalogInformation();
+}
 
     @Test
     public void AddRootCategories() {
