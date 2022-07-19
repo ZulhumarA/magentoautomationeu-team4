@@ -32,7 +32,7 @@ public class CatalogModuleRunner extends TestBase {
         editSubCategories= new EditSubCategories(driver);
     }
 
-    @Test(description = "Add new attributes under a catalog-Zulhumar")
+    @Test(description = "Zulhumar")
     public void addNewAttributes() {
         addAttributeUnderCatalogPage = new AddAttributeUnderCatalogPage(driver);
         addAttributeUnderCatalogPage.addNewAttributeMethod();
@@ -45,6 +45,12 @@ public class CatalogModuleRunner extends TestBase {
         addRootCategoriesZulhumar.fillCategoryInformationAndSave();
         Assert.assertTrue(addRootCategoriesZulhumar.verifyAddRootCategories());
     }
+@Test(description = "Zulhumar")
+   public void editRootCategory(){
+       EditRootCategories editRootCategories=new EditRootCategories(driver);
+        editRootCategories.openCategoriesPage();
+
+}
 
     @Test
     public void AddRootCategories() {
