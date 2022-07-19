@@ -47,9 +47,9 @@ public class CatalogModuleRunner extends TestBase {
     }
 @Test(description = "Zulhumar")
    public void editRootCategory(){
-       EditRootCategories editRootCategories=new EditRootCategories(driver);
+        EditRootCategories editRootCategories=new EditRootCategories(driver);
         editRootCategories.openCategoriesPage();
-
+editRootCategories.editRootCatalogInformation();
 }
 
     @Test

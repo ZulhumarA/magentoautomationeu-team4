@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 
 public class EditRootCategories extends TestBase {
@@ -53,12 +54,15 @@ public class EditRootCategories extends TestBase {
     }
     public void editRootCatalogInformation(){
         testUtility.waitForElementPresent(rootName);
+        rootName.clear();
         rootName.sendKeys("New Project");
         testUtility.waitForElementPresent(isActive);
-        isActive.click();
+        Select select=new Select(isActive);
+        select.selectByValue("1");
         testUtility.waitForElementPresent(description);
         description.sendKeys("For better future");
         testUtility.waitForElementPresent(pageTitle);
+        pageTitle.clear();
         pageTitle.sendKeys("Fruits");
     }
 
