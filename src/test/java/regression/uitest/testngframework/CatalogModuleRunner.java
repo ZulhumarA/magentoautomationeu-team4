@@ -39,21 +39,13 @@ public class CatalogModuleRunner extends TestBase {
         addAttributeUnderCatalogPage = new AddAttributeUnderCatalogPage(driver);
         addAttributeUnderCatalogPage.addNewAttributeMethod();
         Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
-
-
-//    addAttributeUnderCatalogPage.moveToCatalogLink();
-//    addAttributeUnderCatalogPage.moveToAttributesLink();
-//    addAttributeUnderCatalogPage.moveToManageAttributesLink();
-//addAttributeUnderCatalogPage.clickOnAddNewAttributeLink();
-//addAttributeUnderCatalogPage.enterattributeCode(ApplicationConfig.readFromConfigProperties(
-//        "config.properties","attributeCode"));
-//addAttributeUnderCatalogPage.enterDefaultValue(ApplicationConfig.readFromConfigProperties(
-//        "config.properties","defaultValue"));
-//    addAttributeUnderCatalogPage.clickSaveAttributeButton();
-//addAttributeUnderCatalogPage.enterAdminField(ApplicationConfig.readFromConfigProperties(
-//        "config.properties","admin"));
-//addAttributeUnderCatalogPage.clickSaveAttributeBTN();
-        Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
+    }
+    @Test(description = "Zulhumar")
+    public void addNewRootCategories() throws InterruptedException {
+        AddRootCategoriesZulhumar addRootCategoriesZulhumar=new AddRootCategoriesZulhumar(driver);
+        addRootCategoriesZulhumar.openAddNewRootCategoryPage();
+        addRootCategoriesZulhumar.fillCategoryInformationAndSave();
+        Assert.assertTrue(addRootCategoriesZulhumar.verifyAddRootCategories());
     }
 
     @Test
@@ -97,9 +89,9 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(addProductsPage.verifyAddProductTest());
     }
 
-    @AfterClass
-    public void tearDown() {
-        closeBrowser();
-    }
-}
+  @AfterClass
+  public void tearDown() {
+      closeBrowser();
+   }
+        }
 

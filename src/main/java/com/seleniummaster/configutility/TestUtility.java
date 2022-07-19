@@ -9,10 +9,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestUtility {
 
-   private WebDriver driver;
+    private WebDriver driver;
 
-   private int timeout=Integer.parseInt(ApplicationConfig.readFromConfigProperties(
-            "config.properties","timeout"
+    private int timeout = Integer.parseInt(ApplicationConfig.readFromConfigProperties(
+            "config.properties", "timeout"
     ));
 
     Faker faker = new Faker();
@@ -28,38 +28,57 @@ public class TestUtility {
 
 
     public String generateFirstName() {
-        String firstName=faker.name().firstName();
+        String firstName = faker.name().firstName();
         return firstName;
     }
 
-
+    public String generateTitle(){
+        String title=faker.name().title();
+        return title;
+    }
 
     public String generateLastName() {
-        String lastName=faker.name().lastName();
+        String lastName = faker.name().lastName();
         return lastName;
     }
 
-
-
-
-    public  String generateCity() {
+    public String generateCity() {
         String city = faker.address().city();
         return city;
     }
 
-    public  String generateZip() {
+    public String generateZip() {
         String zip = faker.address().zipCode();
         return zip;
     }
-
-
-    public String fakeProductName(){
-        String productName=faker.commerce().productName();
-        return productName;
+    //Zulhumar's Fakes
+    public String fakeCategoryName() {
+        String categoryName = faker.name().name();
+        return categoryName;
+    }
+    public String fakePageTitle() {
+        String title = faker.name().title();
+        return title;
+    }
+        public String metaKeywords() {
+            String metaKeyword = faker.commerce().productName();
+            return metaKeyword;
+        }
+    public String metaDescriptions() {
+        String metaDescription = faker.commerce().productName();
+        return metaDescription;
     }
 
-    public String fakeEmail(){
-        String email=faker.internet().emailAddress();
+    public String generateAdminName(){
+        String admin=faker.name().name();
+        return admin;
+    }
+
+      //Zulhumar's finished.
+
+
+    public String fakeEmail() {
+        String email = faker.internet().emailAddress();
         return email;
     }
 
@@ -68,14 +87,18 @@ public class TestUtility {
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
-    public void selectValueFromDropDown(WebElement webelement,String value){
-        Select s=new Select(webelement);
+    public void selectValueFromDropDown(WebElement webelement, String value) {
+        Select s = new Select(webelement);
         s.selectByValue(value);
     }
 
-    public void selectValueFromDropDown(WebElement webelement,int index){
-        Select s=new Select(webelement);
+    public void selectValueFromDropDown(WebElement webelement, int index) {
+        Select s = new Select(webelement);
         s.selectByIndex(index);
+    }
+
+    public int generateRandomNumbers(int max, int min){
+        return ((int)(Math.random() * max) + min);
     }
 
 }
