@@ -46,14 +46,6 @@ public class AddProductsToShoppingCartPage extends TestBase {
         PageFactory.initElements(driver, this);
         testUtility = new TestUtility(driver);
     }
-    public void addProductToCartMethod(){
-        chelseaTea.click();
-        testUtility.selectValueFromDropDown(colorOption,"22");
-        testUtility.selectValueFromDropDown(sizeOption,"78");
-        addToCartBTN.click();
-    }
-
-
     public void addChelseaTeaToCart(){
         homePage.click();
         testUtility.waitForElementPresent(chelseaTea);

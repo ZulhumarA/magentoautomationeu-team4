@@ -51,7 +51,7 @@ public class CustomerModuleRunner extends TestBase {
     }
 
 
-    @Test(description = "customer manager can add new customer-Zulhumar")
+    @Test(description = "Zulhumar")
     public void addNewCustomers() {
         addNewCustomerPage.clickAddNewCustomer();
         addNewCustomerPage.enterPrefixField(ApplicationConfig.readFromConfigProperties("config.properties", "prefixfield"));
