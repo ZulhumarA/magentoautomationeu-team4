@@ -1,6 +1,7 @@
 package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.*;
+import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
 import com.seleniummaster.ui.backend.storemodule.DeleteWebsiteInfo;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -23,6 +24,14 @@ public class StoreModuleRunner extends TestBase {
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("storeManager");
     }
+@Test(description = "Create store view-Zulhumar")
+    public void CreateStoreView() throws InterruptedException {
+    CreateStoreViewPage createStoreViewPage=new CreateStoreViewPage(driver);
+    createStoreViewPage.openManageStoresPage();
+   createStoreViewPage.fillOutStoreViewInformation();
+   Assert.assertTrue(createStoreViewPage.verifyStoreViewSuccessfullyCreated());
+}
+
 
     @Test
     public void DeleteWebsiteInfo() {
