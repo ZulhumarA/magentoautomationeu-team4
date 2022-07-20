@@ -96,7 +96,7 @@ public class AssignCustomerGroupPage {
         }
         selectionCheckBox.click();
         testUtility.selectValueFromDropDown(actionsDropDownList,"assign_group");
-        testUtility.selectValueFromDropDown(assignGroupField,"85");
+        testUtility.selectValueFromDropDown(assignGroupField,"14");
         submitButton.click();
     }
 
