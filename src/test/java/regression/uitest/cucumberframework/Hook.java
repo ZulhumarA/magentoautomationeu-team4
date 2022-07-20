@@ -1,4 +1,4 @@
 package regression.uitest.cucumberframework;
 
-public class LoginPage {
+public class Hook {
 }
