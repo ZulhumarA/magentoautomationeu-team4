@@ -15,9 +15,10 @@ public class CatalogModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     AddAttributeUnderCatalogPage addAttributeUnderCatalogPage;
     DeleteSubCategories deleteSubCategories ;
-
     AddSubCategories addSubCategories ;
     EditSubCategories editSubCategories ;
+    AddSubcategoriesPage addSubcategoriesPage;
+
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -30,6 +31,7 @@ public class CatalogModuleRunner extends TestBase {
         deleteSubCategories = new DeleteSubCategories(driver);
         addSubCategories = new AddSubCategories(driver);
         editSubCategories= new EditSubCategories(driver);
+        addSubcategoriesPage=new AddSubcategoriesPage(driver);
     }
 
     @Test(description = "AddAttribute-Zulhumar")
@@ -82,6 +84,12 @@ deleteRootCategories.verifyDeleteRootCategory();
     public void EditSubCategories() {
         editSubCategories.SubCategoryEdit();
         Assert.assertTrue(editSubCategories.verifyEditSubCategorySuccessful());
+    }
+
+    @Test(description = "add subcategories page--Abide")
+    public void addSubcategories(){
+        addSubcategoriesPage.addSubcategories();
+        Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
     }
 
   @AfterClass
