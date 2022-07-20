@@ -22,6 +22,7 @@ public class CustomerModuleRunner extends TestBase {
     UpdateAnExistingCustomerPage updateAnExistingCustomerPage;
     FilterCustomersByEmailPage filterCustomersByEmailPage;
     AddNewAddressPage addNewAddressPage;
+    DeleteCustomerGroupsPage deleteCustomerGroupsPage;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -37,6 +38,7 @@ public class CustomerModuleRunner extends TestBase {
         exportCustomers=new ExportCustomers(driver);
         filterCustomersByEmailPage=new FilterCustomersByEmailPage(driver);
         addNewAddressPage=new AddNewAddressPage(driver);
+        deleteCustomerGroupsPage=new DeleteCustomerGroupsPage(driver);
     }
 
     @Test
@@ -119,6 +121,13 @@ public class CustomerModuleRunner extends TestBase {
         filterCustomersByEmailPage.verifyCustomersByEmail();
 
     }
+
+    @Test(description = "Abide")
+    public void deleteCustomerGroups(){
+        deleteCustomerGroupsPage.deleteCustomerGroup();
+        Assert.assertTrue(deleteCustomerGroupsPage.verifyCustomerGroupDeletedSuccessfully());
+    }
+
 
     @AfterClass
     public void tearDown() {
