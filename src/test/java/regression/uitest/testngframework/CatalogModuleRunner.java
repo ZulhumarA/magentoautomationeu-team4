@@ -32,26 +32,33 @@ public class CatalogModuleRunner extends TestBase {
         editSubCategories= new EditSubCategories(driver);
     }
 
-    @Test(description = "Zulhumar")
+    @Test(description = "AddAttribute-Zulhumar")
     public void addNewAttributes() {
         addAttributeUnderCatalogPage = new AddAttributeUnderCatalogPage(driver);
         addAttributeUnderCatalogPage.addNewAttributeMethod();
         Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
     }
-    @Test(description = "Zulhumar")
+    @Test(description = "AddRootCategory-Zulhumar")
     public void addNewRootCategories() throws InterruptedException {
         AddRootCategoriesZulhumar addRootCategoriesZulhumar=new AddRootCategoriesZulhumar(driver);
         addRootCategoriesZulhumar.openAddNewRootCategoryPage();
         addRootCategoriesZulhumar.fillCategoryInformationAndSave();
         Assert.assertTrue(addRootCategoriesZulhumar.verifyAddRootCategories());
     }
-@Test(description = "Zulhumar")
-   public void editRootCategory(){
+@Test(description = "Edit-Zulhumar")
+   public void editRootCategory()throws InterruptedException{
         EditRootCategories editRootCategories=new EditRootCategories(driver);
         editRootCategories.openCategoriesPage();
 editRootCategories.editRootCatalogInformation();
+    Assert.assertTrue(editRootCategories.verifyEditRootCategories());
 }
-
+@Test(description = "Edit-Zulhumar")
+public void deleteRootCategory(){
+        DeleteRootCategories deleteRootCategories=new DeleteRootCategories(driver);
+        deleteRootCategories.openCategoriesPage();
+        deleteRootCategories.deleteRootCategory();
+deleteRootCategories.verifyDeleteRootCategory();
+}
     @Test
     public void AddRootCategories() {
         AddRootCategories addRootCategories = new AddRootCategories(driver);

@@ -16,16 +16,18 @@ public class EditRootCategories extends TestBase {
     WebElement CatalogButton;
     @FindBy(xpath = "//span[text()='Manage Categories']")
     WebElement ManageCategoriesButton;
+    @FindBy(xpath = "//*[@id=\"extdd-276\"]")
+    WebElement MyCatalog;
     @FindBy(xpath = "//input[@id=\"group_4name\"]")
     WebElement rootName;
 
-    @FindBy(id="group_4is_active")
+    @FindBy(xpath="//select[@name=\"general[is_active]\"]")
     WebElement isActive;
 
-    @FindBy(id="group_4description")
+    @FindBy(xpath="//*[@id=\"group_4description\"]")
     WebElement description;
 
-    @FindBy(id="group_4meta_title")
+    @FindBy(xpath="//input[@id='group_4meta_title']")
     WebElement pageTitle;
 
     @FindBy(id="group_4meta_keywords")
@@ -52,21 +54,30 @@ public class EditRootCategories extends TestBase {
         testUtility.waitForElementPresent(ManageCategoriesButton);
         ManageCategoriesButton.click();
     }
-    public void editRootCatalogInformation(){
+    public void editRootCatalogInformation() throws InterruptedException {
+        testUtility.waitForElementPresent(MyCatalog);
+        MyCatalog.click();
         testUtility.waitForElementPresent(rootName);
         rootName.clear();
-        rootName.sendKeys("New Project");
+        testUtility.waitForElementPresent(rootName);
+        rootName.sendKeys("Team4Test"+testUtility.fakeCategoryName());
         testUtility.waitForElementPresent(isActive);
+        Thread.sleep(3000);
         Select select=new Select(isActive);
-        select.selectByValue("1");
-        testUtility.waitForElementPresent(description);
-        description.sendKeys("For better future");
-        testUtility.waitForElementPresent(pageTitle);
+        select.selectByVisibleText("Yes");
+
+      //  description.sendKeys(testUtility.generateDescription());
+      //  testUtility.waitForElementPresent(pageTitle);
         pageTitle.clear();
-        pageTitle.sendKeys("Fruits");
+        pageTitle.sendKeys(testUtility.fakePageTitle());
+        testUtility.waitForElementPresent(saveButton);
+        saveButton.click();
     }
 
-
+    public boolean verifyEditRootCategories()  {
+        testUtility.waitForElementPresent(successfulSavesMessage);
+        return successfulSavesMessage.isDisplayed();
+    }
 
 
 }

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Locale;
+
 public class TestUtility {
 
     private WebDriver driver;
@@ -32,6 +34,7 @@ public class TestUtility {
         return firstName;
     }
 
+
     public String generateTitle(){
         String title=faker.name().title();
         return title;
@@ -52,6 +55,11 @@ public class TestUtility {
         return zip;
     }
     //Zulhumar's Fakes
+    public String generateCode(){
+     //   String attributeCode=faker.code().toString().toLowerCase();
+        String attributeCode=faker.toString().toLowerCase();
+        return attributeCode;
+    }
     public String fakeCategoryName() {
         String categoryName = faker.name().name();
         return categoryName;
@@ -73,7 +81,10 @@ public class TestUtility {
         String admin=faker.name().name();
         return admin;
     }
-
+    public String generateDescription(){
+        String description=faker.name().fullName();
+        return description;
+    }
       //Zulhumar's finished.
 
 

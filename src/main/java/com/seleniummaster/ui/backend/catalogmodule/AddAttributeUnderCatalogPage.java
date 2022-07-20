@@ -24,8 +24,7 @@ public class AddAttributeUnderCatalogPage extends TestBase {
 WebElement attributeCode;
 @FindBy(xpath = "(//span[text()='Save Attribute'])[1]")
 WebElement saveAttributeButton;
-
-@FindBy(xpath = "//input[@class='input-text required-option validation-failed']")
+@FindBy(xpath = "//input[@name=\"frontend_label[0]\"]")
 WebElement adminField;
 @FindBy(xpath = "//span[text()='Save Attribute']")
     WebElement savaAttributeBTN;
@@ -44,13 +43,13 @@ WebElement successfulMessage;
         attributesLink.click();
         manageAttributesLink.click();
         addNewAttributeButton.click();
-        attributeCode.sendKeys(ApplicationConfig.readFromConfigProperties
-                ("config.properties","attributeCode"));
-       // attributeCode.sendKeys(testUtility.generateAttributeCode());
+        testUtility.waitForElementPresent(attributeCode);
+       attributeCode.sendKeys(ApplicationConfig.readFromConfigProperties
+               ("config.properties","attributeCode"));
+        //attributeCode.sendKeys(testUtility.generateCode());
         saveAttributeButton.click();
-        adminField.sendKeys(ApplicationConfig.readFromConfigProperties
-                ("config.properties","admin"));
-       // adminField.sendKeys(testUtility.generateAdminName());
+        testUtility.waitForElementPresent(adminField);
+   adminField.sendKeys(testUtility.generateAdminName());
         savaAttributeBTN.click();
     }
     public boolean verifyAttributeAddedSuccessfully(){
