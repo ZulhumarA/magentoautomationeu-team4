@@ -1,6 +1,7 @@
 package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.*;
+import com.seleniummaster.ui.backend.storemodule.AddProductCategories;
 import com.seleniummaster.ui.backend.storemodule.DeleteWebsiteInfo;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -13,7 +14,7 @@ public class StoreModuleRunner extends TestBase {
     TestUtility testUtility;
     AdminLoginPage adminLoginPage;
     DeleteWebsiteInfo deleteWebsite;
-
+    AddProductCategories addProductCategories;
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -22,6 +23,7 @@ public class StoreModuleRunner extends TestBase {
         context.setAttribute("driver", driver);
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("storeManager");
+        addProductCategories = new AddProductCategories(driver);
     }
 
     @Test
@@ -29,6 +31,22 @@ public class StoreModuleRunner extends TestBase {
         deleteWebsite = new DeleteWebsiteInfo(driver);
         deleteWebsite.DeleteWebsiteInformation();
         Assert.assertTrue(deleteWebsite.VerifyDeletedMassageSuccessfully());
+    }
+
+    @Test(description = "Add Product Categories-Faruk")
+    public void AddProductCategories(){
+        addProductCategories.setCatalogButton();
+        addProductCategories.setManegeCategoriesButton();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        addProductCategories.setName(ApplicationConfig.readFromConfigProperties("config.properties","NameF"));
+        addProductCategories.setIsActive();
+        addProductCategories.setIncludeInNavigationMenu();
+        addProductCategories.setSaveCategoryButton();
+        Assert.assertTrue(addProductCategories.VerifySavedMassageSuccessfully());
     }
 
     @AfterClass(enabled = false)
