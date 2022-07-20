@@ -24,6 +24,9 @@ public class AdminLoginPage extends TestBase {
      @FindBy(css="a[class=\"link-logout\"]")
      WebElement LogoutButton;
 
+     @FindBy(css = "p.super")
+     WebElement managerSuccessfullyLoggedInField;
+
      public AdminLoginPage(WebDriver driver) {
           this.driver = driver;
           PageFactory.initElements(driver,this);
@@ -34,6 +37,11 @@ public class AdminLoginPage extends TestBase {
           userNameField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties",userName));
           passwordField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties","backEndPassword"));
           loginButton.click();
+     }
+
+     public boolean verifyAdminLoginSuccessfully(){
+          testUtility.waitForElementPresent(managerSuccessfullyLoggedInField);
+          return (managerSuccessfullyLoggedInField.isDisplayed());
      }
 
      public void adminLogout(){
