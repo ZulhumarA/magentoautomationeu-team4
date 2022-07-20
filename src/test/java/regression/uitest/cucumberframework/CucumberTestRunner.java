@@ -1,4 +1,4 @@
 package regression.uitest.cucumberframework;
 
-public class DashBoardPage {
+public class CucumberTestRunner {
 }
