@@ -3,7 +3,6 @@ package regression.uitest.cucumberframework;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
-import com.seleniummaster.configutility.TestUtility;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -12,33 +11,37 @@ public class LoginSteps extends TestBase {
 
     AdminLoginPage adminLoginPage;
 
-
     @Given("admin user already on the login page")
     public void adminUserAlreadyOnTheLoginPage() {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","backEndURL"));
     }
 
-    @When("store manager enters valid username and password to click on login button")
-    public void storeManagerEntersValidUsernameAndPasswordToClickOnLoginButton() {
+    @When("store manager enters valid username and password and click on login button")
+    public void storeManagerEntersValidUsernameAndPasswordAndClickOnLoginButton() {
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("storeManager");
     }
 
-    @Then("store manager should be able to login successfully")
-    public void storeManagerShouldBeAbleToLoginSuccessfully() {
+    @Then("manager should be able to login successfully")
+    public void managerShouldBeAbleToLoginSuccessfully() {
+        adminLoginPage.verifyAdminLoginSuccessfully();
     }
 
-    @When("marketing manager enters valid username and password to click on login button")
-    public void marketingManagerEntersValidUsernameAndPasswordToClickOnLoginButton() {
+    @When("marketing manager enters valid username and password and click on login button")
+    public void marketingManagerEntersValidUsernameAndPasswordAndClickOnLoginButton() {
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("marketingManager");
     }
 
-    @Then("marketing manager should be able to login successfully")
-    public void marketingManagerShouldBeAbleToLoginSuccessfully() {
+    @When("sales manager enters valid username and password and click on login button")
+    public void salesManagerEntersValidUsernameAndPasswordAndClickOnLoginButton() {
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("salesManager");
     }
 
-    @When("reporting manager enters valid username and password to click on login button")
-    public void reportingManagerEntersValidUsernameAndPasswordToClickOnLoginButton() {
-    }
-
-    @Then("reporting manager should be able to login successfully")
-    public void reportingManagerShouldBeAbleToLoginSuccessfully() {
+    @When("reporting manager enters valid username and password and click on login button")
+    public void reportingManagerEntersValidUsernameAndPasswordAndClickOnLoginButton() {
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
     }
 }
