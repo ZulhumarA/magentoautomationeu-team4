@@ -1,13 +1,18 @@
 package com.seleniummaster.configutility;
 
 import com.github.javafaker.Faker;
+import com.google.gson.Gson;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Locale;
+import java.util.Map;
 
 public class TestUtility {
 
@@ -122,6 +127,9 @@ public class TestUtility {
         }
     }
 
+
 }
+
+
 
 
