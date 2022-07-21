@@ -1,5 +1,9 @@
-Feature: Feature: Marketing manager can manage Newsletter templates and can see the newsletter subscribers
+Feature:Marketing manager can manage Newsletter templates and can see the newsletter subscribers
 
+Background:
+  Given admin user already on the login page
+  When marketing manager enters valid username and password and click on login button
+  Then manager should be able to login successfully
 
   @AddNewsletterTemplate
   Scenario: marketing manager can add a newsletter template
