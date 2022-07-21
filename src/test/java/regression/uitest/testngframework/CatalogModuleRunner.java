@@ -15,10 +15,10 @@ public class CatalogModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     AddAttributeUnderCatalogPage addAttributeUnderCatalogPage;
     DeleteSubCategories deleteSubCategories ;
-
     AddSubCategories addSubCategories ;
     EditSubCategories editSubCategories ;
-    AddProductsPage addProductsPage;
+    AddSubcategoriesPage addSubcategoriesPage;
+
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -31,23 +31,36 @@ public class CatalogModuleRunner extends TestBase {
         deleteSubCategories = new DeleteSubCategories(driver);
         addSubCategories = new AddSubCategories(driver);
         editSubCategories= new EditSubCategories(driver);
-        addProductsPage=new AddProductsPage(driver);
+        addSubcategoriesPage=new AddSubcategoriesPage(driver);
     }
 
-    @Test(description = "Add new attributes under a catalog-Zulhumar")
+    @Test(description = "AddAttribute-Zulhumar")
     public void addNewAttributes() {
         addAttributeUnderCatalogPage = new AddAttributeUnderCatalogPage(driver);
         addAttributeUnderCatalogPage.addNewAttributeMethod();
         Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
     }
-    @Test(description = "Zulhumar")
+    @Test(description = "AddRootCategory-Zulhumar")
     public void addNewRootCategories() throws InterruptedException {
         AddRootCategoriesZulhumar addRootCategoriesZulhumar=new AddRootCategoriesZulhumar(driver);
         addRootCategoriesZulhumar.openAddNewRootCategoryPage();
         addRootCategoriesZulhumar.fillCategoryInformationAndSave();
         Assert.assertTrue(addRootCategoriesZulhumar.verifyAddRootCategories());
     }
-
+@Test(description = "Edit-Zulhumar")
+   public void editRootCategory()throws InterruptedException{
+        EditRootCategories editRootCategories=new EditRootCategories(driver);
+        editRootCategories.openCategoriesPage();
+editRootCategories.editRootCatalogInformation();
+    Assert.assertTrue(editRootCategories.verifyEditRootCategories());
+}
+@Test(description = "Edit-Zulhumar")
+public void deleteRootCategory(){
+        DeleteRootCategories deleteRootCategories=new DeleteRootCategories(driver);
+        deleteRootCategories.openCategoriesPage();
+        deleteRootCategories.deleteRootCategory();
+deleteRootCategories.verifyDeleteRootCategory();
+}
     @Test
     public void AddRootCategories() {
         AddRootCategories addRootCategories = new AddRootCategories(driver);
@@ -72,21 +85,11 @@ public class CatalogModuleRunner extends TestBase {
         editSubCategories.SubCategoryEdit();
         Assert.assertTrue(editSubCategories.verifyEditSubCategorySuccessful());
     }
-    @Test(description = "Catalog Manager can add product-Arzugul")
-    public void addProductsTest(){
-        addProductsPage.createProductSetting();
-        addProductsPage.addProductName(ApplicationConfig.readFromConfigProperties("config.properties","name"));
-        addProductsPage.addDescription(ApplicationConfig.readFromConfigProperties("config.properties","description"));
-        addProductsPage.addShortDescription(ApplicationConfig.readFromConfigProperties("config.properties","shortDescription"));
-        addProductsPage.addSKU(ApplicationConfig.readFromConfigProperties("config.properties","SKU"));
-        addProductsPage.addWeight(ApplicationConfig.readFromConfigProperties("config.properties","Weight"));
-        addProductsPage.selectProductStatus();
-        addProductsPage.selectVisibility();
-        addProductsPage.saveGeneralProductPage();
-        addProductsPage.addPrice(ApplicationConfig.readFromConfigProperties("config.properties","price"));
-        addProductsPage.selectTaxClass();
-        addProductsPage.saveProductInformation();
-        Assert.assertTrue(addProductsPage.verifyAddProductTest());
+
+    @Test(description = "add subcategories page--Abide")
+    public void addSubcategories(){
+        addSubcategoriesPage.addSubcategories();
+        Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
     }
 
   @AfterClass

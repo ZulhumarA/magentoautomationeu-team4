@@ -57,7 +57,7 @@ public class MarketingModuleRunner extends TestBase {
         Assert.assertTrue(updateCartPriceRule.VerifyUpdate());
     }
 
-    @Test
+    @Test(description = "Gvlmihre")
     public void addNewsletterTemplateMethod() {
 //        adminLoginPage = new AdminLoginPage(driver);
 //        adminLoginPage.adminLogin("marketingManager");
@@ -66,7 +66,7 @@ public class MarketingModuleRunner extends TestBase {
         Assert.assertTrue(addNewsletterTemplatePage.verifyNewsletterTemplateAddedSuccessfully());
     }
 
-    @Test
+    @Test(description = "Gvlmihre")
     public void updateNewsletterTemplate() {
 //        adminLoginPage = new AdminLoginPage(driver);
 //        adminLoginPage.adminLogin("marketingManager");
@@ -75,7 +75,7 @@ public class MarketingModuleRunner extends TestBase {
         Assert.assertTrue(updateNewsletterTemplatePage.verifyTemplateUpdatedSuccessfully());
     }
 
-    @Test
+    @Test(description = "Gvlmihre")
     public void deleteTemplateMethod() {
 //        adminLoginPage = new AdminLoginPage(driver);
 //        adminLoginPage.adminLogin("marketingManager");
@@ -84,7 +84,7 @@ public class MarketingModuleRunner extends TestBase {
         Assert.assertTrue(deleteNewsletterTemplatePage.verifyTemplateDeletedSuccessfully());
     }
 
-    @Test
+    @Test(description = "Gvlmihre")
     public void viewNewsletterSubscribersMethod() {
 //        adminLoginPage = new AdminLoginPage(driver);
 //        adminLoginPage.adminLogin("marketingManager");
