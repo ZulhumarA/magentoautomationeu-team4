@@ -1,6 +1,7 @@
 package com.seleniummaster.configutility;
 
 import com.github.javafaker.Faker;
+import org.apache.commons.lang3.RandomStringUtils;
 import com.google.gson.Gson;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -90,6 +91,15 @@ public class TestUtility {
         String description=faker.name().fullName();
         return description;
     }
+    public String  generateRandomLetter() {
+        int length = 10;
+        boolean useLetters = true;
+        boolean useNumbers = false;
+        String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+        System.out.println(generatedString.toLowerCase());
+return generatedString.toLowerCase();
+    }
+
       //Zulhumar's finished.
 
 
@@ -127,9 +137,6 @@ public class TestUtility {
         }
     }
 
-
 }
-
-
 
 
