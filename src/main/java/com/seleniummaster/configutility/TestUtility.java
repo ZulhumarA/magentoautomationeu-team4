@@ -1,13 +1,12 @@
 package com.seleniummaster.configutility;
 
 import com.github.javafaker.Faker;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.Locale;
 
 public class TestUtility {
 
@@ -85,6 +84,15 @@ public class TestUtility {
         String description=faker.name().fullName();
         return description;
     }
+    public String  generateRandomLetter() {
+        int length = 10;
+        boolean useLetters = true;
+        boolean useNumbers = false;
+        String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+        System.out.println(generatedString.toLowerCase());
+return generatedString.toLowerCase();
+    }
+
       //Zulhumar's finished.
 
 

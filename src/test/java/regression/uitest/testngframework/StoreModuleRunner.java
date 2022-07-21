@@ -4,6 +4,7 @@ import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.storemodule.AddProductCategories;
 import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
 import com.seleniummaster.ui.backend.storemodule.DeleteWebsiteInfo;
+import com.seleniummaster.ui.backend.storemodule.EditStoreViewPage;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -33,8 +34,14 @@ public class StoreModuleRunner extends TestBase {
    createStoreViewPage.fillOutStoreViewInformation();
    Assert.assertTrue(createStoreViewPage.verifyStoreViewSuccessfullyCreated());
 }
+@Test(description = "Edit Store view-Zulhumar",dependsOnMethods = "CreateStoreView")
+public void EditStoreView(){
+    EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
+    editStoreViewPage.openManageStoresPage();
+    editStoreViewPage.editStoreViewMethod();
+    Assert.assertTrue(editStoreViewPage.verifyStoreViewSuccessfullyUpdated());
 
-
+}
     @Test
     public void DeleteWebsiteInfo() {
         deleteWebsite = new DeleteWebsiteInfo(driver);
@@ -58,7 +65,7 @@ public class StoreModuleRunner extends TestBase {
         Assert.assertTrue(addProductCategories.VerifySavedMassageSuccessfully());
     }
 
-    @AfterClass(enabled = false)
+    @AfterClass
     public void tearDown() {
         closeBrowser();
     }
