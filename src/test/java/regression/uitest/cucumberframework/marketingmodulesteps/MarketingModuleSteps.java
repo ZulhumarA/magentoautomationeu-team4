@@ -4,6 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.marketingmodule.AddNewsletterTemplatePage;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -38,6 +39,11 @@ public class MarketingModuleSteps extends TestBase {
     @Then("a new newsletter template should be added")
     public void aNewNewsletterTemplateShouldBeAdded() {
         addNewsletterTemplatePage.verifyNewsletterTemplateAddedSuccessfully();
+    }
+
+    @After
+    public void teardown(){
+       closeBrowser();
     }
 
 }
