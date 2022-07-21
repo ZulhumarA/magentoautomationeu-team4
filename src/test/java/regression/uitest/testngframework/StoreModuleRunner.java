@@ -36,6 +36,8 @@ public class StoreModuleRunner extends TestBase {
 }
 @Test(description = "Edit Store view-Zulhumar",priority = 1,dependsOnMethods = "CreateStoreView")
 public void EditStoreView(){
+
+
     EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
     editStoreViewPage.openManageStoresPage();
     editStoreViewPage.editStoreViewMethod();
