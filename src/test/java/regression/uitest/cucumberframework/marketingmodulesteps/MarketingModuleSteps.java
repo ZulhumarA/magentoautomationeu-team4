@@ -16,8 +16,9 @@ public class MarketingModuleSteps extends TestBase {
     String configFile="config.properties";
 
     @Before
-    public void setUp(){
-        browserSetUp(ApplicationConfig.readFromConfigProperties(configFile,"backEndURL"));
+    public void setUp() {
+        browserSetUp(ApplicationConfig.readFromConfigProperties
+                (configFile,"backEndURL"));
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("marketingManager");
     }
@@ -26,20 +27,17 @@ public class MarketingModuleSteps extends TestBase {
     public void marketingManagerOnTheDashboardPage() {
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.verifyAdminLoginSuccessfully();
-
+        addNewsletterTemplatePage=new AddNewsletterTemplatePage(driver);
     }
 
     @When("marketing manager add a newsletter template")
     public void marketingManagerAddANewsletterTemplate() {
-        addNewsletterTemplatePage=new AddNewsletterTemplatePage(driver);
         addNewsletterTemplatePage.addNewsletterTemplate();
     }
 
     @Then("a new newsletter template should be added")
     public void aNewNewsletterTemplateShouldBeAdded() {
-        addNewsletterTemplatePage=new AddNewsletterTemplatePage(driver);
         addNewsletterTemplatePage.verifyNewsletterTemplateAddedSuccessfully();
     }
-
 
 }
