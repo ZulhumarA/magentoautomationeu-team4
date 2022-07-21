@@ -25,6 +25,8 @@ WebElement StoreID;
 WebElement SaveButton;
 @FindBy(xpath="//span[contains(text(),\"The store view has been saved\")]")
 WebElement SuccessfulCreatedMessage;
+@FindBy(css="select[id='store_is_active']")
+WebElement StatusField;
     public CreateStoreViewPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -41,9 +43,11 @@ WebElement SuccessfulCreatedMessage;
 public void fillOutStoreViewInformation() throws InterruptedException {
         Thread.sleep(3000);
        // testUtility.waitForElementPresent(StoreName);
-        StoreName.sendKeys("Zulhumar-"+testUtility.fakeCategoryName());
+        StoreName.sendKeys("Zulhumaraman");
         testUtility.waitForElementPresent(StoreID);
-        StoreID.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties","storeCode"));
+        StoreID.sendKeys(testUtility.generateRandomLetter());
+        testUtility.waitForElementPresent(StatusField);
+        testUtility.selectValueFromDropDown(StatusField,1);
         testUtility.waitForElementPresent(SaveButton);
         SaveButton.click();
 }

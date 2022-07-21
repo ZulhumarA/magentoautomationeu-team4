@@ -34,9 +34,9 @@ public class StoreModuleRunner extends TestBase {
    createStoreViewPage.fillOutStoreViewInformation();
    Assert.assertTrue(createStoreViewPage.verifyStoreViewSuccessfullyCreated());
 }
-@Test(description = "Edit Store view-Zulhumar",dependsOnMethods = "CreateStoreView")
-public void EditStoreView(){
-    EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
+@Test(description = "Edit Store view-Zulhumar",priority = 1,dependsOnMethods = "CreateStoreView")
+public void EditStoreView() {
+    EditStoreViewPage editStoreViewPage = new EditStoreViewPage(driver);
     editStoreViewPage.openManageStoresPage();
     editStoreViewPage.editStoreViewMethod();
     Assert.assertTrue(editStoreViewPage.verifyStoreViewSuccessfullyUpdated());
@@ -49,7 +49,7 @@ public void EditStoreView(){
         Assert.assertTrue(deleteWebsite.VerifyDeletedMassageSuccessfully());
     }
 
-    @Test(description = "Add Product Categories-Faruk")
+    @Test(description = "Add Product Categories-Faruk",priority = 2)
     public void AddProductCategories(){
         addProductCategories.setCatalogButton();
         addProductCategories.setManegeCategoriesButton();
