@@ -24,6 +24,7 @@ public class MarketingNewsletterSteps extends TestBase {
         adminLoginPage.adminLogin("marketingManager");
     }
 
+    //add newsletter template test case
     @Given("marketing manager on the dashboard page")
     public void marketingManagerOnTheDashboardPage() {
         adminLoginPage=new AdminLoginPage(driver);
@@ -41,6 +42,7 @@ public class MarketingNewsletterSteps extends TestBase {
         addNewsletterTemplatePage.verifyNewsletterTemplateAddedSuccessfully();
     }
 
+    //
     @After
     public void teardown(){
        closeBrowser();
