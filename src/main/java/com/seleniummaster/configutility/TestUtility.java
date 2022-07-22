@@ -2,11 +2,18 @@ package com.seleniummaster.configutility;
 
 import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
+import com.google.gson.Gson;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Locale;
+import java.util.Map;
 
 public class TestUtility {
 
@@ -54,11 +61,6 @@ public class TestUtility {
         return zip;
     }
     //Zulhumar's Fakes
-    public String generateCode(){
-     //   String attributeCode=faker.code().toString().toLowerCase();
-        String attributeCode=faker.toString().toLowerCase();
-        return attributeCode;
-    }
     public String fakeCategoryName() {
         String categoryName = faker.name().name();
         return categoryName;
@@ -80,17 +82,14 @@ public class TestUtility {
         String admin=faker.name().name();
         return admin;
     }
-    public String generateDescription(){
-        String description=faker.name().fullName();
-        return description;
-    }
+
     public String  generateRandomLetter() {
         int length = 10;
         boolean useLetters = true;
         boolean useNumbers = false;
         String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
         System.out.println(generatedString.toLowerCase());
-return generatedString.toLowerCase();
+        return generatedString.toLowerCase();
     }
 
       //Zulhumar's finished.
