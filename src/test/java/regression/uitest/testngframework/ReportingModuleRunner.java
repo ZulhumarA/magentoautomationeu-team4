@@ -27,7 +27,7 @@ public class ReportingModuleRunner extends TestBase {
         context.setAttribute("driver",driver);
     }
 
-    @Test
+    @Test(description = "Gvlmihre")
     public void viewProductsOrderedReportMethod(){
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
@@ -36,7 +36,7 @@ public class ReportingModuleRunner extends TestBase {
         Assert.assertTrue(productsOrderedReportPage.verifyProductsOrderedReportDisplayed());
     }
 
-    @Test
+    @Test(description = "Gvlmihre")
     public void viewProductsMostViewedReportMethod(){
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
@@ -45,7 +45,7 @@ public class ReportingModuleRunner extends TestBase {
         Assert.assertTrue(productsMostViewedReportPage.verifyProductsMostViewedReportDisplayed());
     }
 
-    @Test
+    @Test(description = "Gvlmihre")
     public void viewProductsLowStockReportMethod(){
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
