@@ -38,7 +38,7 @@ public void OpenCustomersNewAccountReportPage(){
     testUtility.waitForElementPresent(CustomerReportsLink);
     CustomerReportsLink.click();
     testUtility.waitForElementPresent(NewAccountsLink);
-NewAccountsLink.click();
+    NewAccountsLink.click();
 }
 public void ShowNewAccountReportMethod(String startDate,String endDate) throws InterruptedException {
   //  Thread.sleep(3000);

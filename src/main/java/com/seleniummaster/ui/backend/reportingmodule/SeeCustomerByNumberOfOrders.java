@@ -7,11 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SeeCustomerByOrdersTotalReport extends TestBase {
+public class SeeCustomerByNumberOfOrders extends TestBase {
     TestUtility testUtility;
     WebDriver driver;
 
-    public SeeCustomerByOrdersTotalReport(WebDriver driver) {
+    public SeeCustomerByNumberOfOrders(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver,this);
         testUtility=new TestUtility(driver);
@@ -20,7 +20,7 @@ public class SeeCustomerByOrdersTotalReport extends TestBase {
     WebElement ReportsLink;
     @FindBy(xpath="(//span[contains(text(),\"Customers\")])[1]")
     WebElement CustomerReportsLink;
-    @FindBy(xpath="//*[@id=\"nav\"]/li[3]/ul/li[4]/ul/li[2]/a/span")
+    @FindBy(xpath="(//*[contains(text(),\"Customers by number of orders\")]")
     WebElement  ByOrdersTotal;
     @FindBy(xpath="//input[@id='period_date_from']")
     WebElement ReportFrom;
@@ -30,32 +30,28 @@ public class SeeCustomerByOrdersTotalReport extends TestBase {
     WebElement ShowBy;
     @FindBy(css="button[title=\"Refresh\"]")
     WebElement Refresh;
-    @FindBy(xpath="//*[contains(text(),\"Jan 8, 2020\")]")
-    WebElement ResultPeriod;
-    public void OpenCustomerByOrdersTotalReportPage() throws InterruptedException {
+    public void OpenCustomerByOrdersTotalReportPage(){
         testUtility.waitForElementPresent(ReportsLink);
         ReportsLink.click();
         testUtility.waitForElementPresent(CustomerReportsLink);
         CustomerReportsLink.click();
-        Thread.sleep(3000);
-        //testUtility.waitForElementPresent(ByOrdersTotal);
+        testUtility.waitForElementPresent(ByOrdersTotal);
         ByOrdersTotal.click();
 
     }
-    public void ShowCustomersByOrdersTotalReportMethod(String startDate,String endDate) throws InterruptedException {
+    public void ShowNewAccountReportMethod(String startDate,String endDate) throws InterruptedException {
         //  Thread.sleep(3000);
         testUtility.waitForElementPresent(ReportFrom);
         ReportFrom.sendKeys(startDate);
         testUtility.waitForElementPresent(ReportTo);
         ReportTo.sendKeys(endDate);
         testUtility.waitForElementPresent(ShowBy);
-        testUtility.selectValueFromDropDown(ShowBy,"day");
+        testUtility.selectValueFromDropDown(ShowBy,"month");
         testUtility.waitForElementPresent(Refresh);
         Refresh.click();
     }
-    public boolean verifyReportsDisplayed(){
-        testUtility.waitForElementPresent(ResultPeriod);
-        return ResultPeriod.isDisplayed();
+    public void verifyReportsDisplayed(){
+        //testUtility.waitForElementPresent();
     }
 
 }

@@ -4,10 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
-import com.seleniummaster.ui.backend.reportingmodule.ProductsLowStockReportPage;
-import com.seleniummaster.ui.backend.reportingmodule.ProductsMostViewedReportPage;
-import com.seleniummaster.ui.backend.reportingmodule.ProductsOrderedReportPage;
-import com.seleniummaster.ui.backend.reportingmodule.SeeCustomersNewAccountReport;
+import com.seleniummaster.ui.backend.reportingmodule.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -40,13 +37,18 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
                    "config.properties","endDate"));
     Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
                  }
-//    @Test(description = "Zulhumar")
-//    public void SeeCustomerByOrderTotalReport (){
-//        adminLoginPage=new AdminLoginPage(driver);
-//        adminLoginPage.adminLogin("reportingManager");
-//        SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport=new SeeCustomerByOrdersTotalReport(driver);
-//        seeCustomerByOrdersTotalReport.OpenCustomerByOrdersTotalReportPage();
-//    }
+    @Test(description = "Zulhumar")
+    public void SeeCustomerByOrderTotalReport () throws InterruptedException{
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport=new SeeCustomerByOrdersTotalReport(driver);
+        seeCustomerByOrdersTotalReport.OpenCustomerByOrdersTotalReportPage();
+        seeCustomerByOrdersTotalReport.ShowCustomersByOrdersTotalReportMethod(   ApplicationConfig.readFromConfigProperties(
+                        "config.properties","startDate1"),
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties","endDate1"));
+        Assert.assertTrue(seeCustomerByOrdersTotalReport.verifyReportsDisplayed());
+    }
 
     @Test(description = "Gvlmihre")
     public void viewProductsOrderedReportMethod(){
