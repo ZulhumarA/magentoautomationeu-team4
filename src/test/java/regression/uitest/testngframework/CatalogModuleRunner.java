@@ -93,19 +93,9 @@ deleteRootCategories.verifyDeleteRootCategory();
 
     @Test(description ="Arzugul")
     public void addProductsTest(){
-        addProduct.createProductSetting();
-        addProduct.addProductName(ApplicationConfig.readFromConfigProperties("config.properties","name"));
-        addProduct.addDescription(ApplicationConfig.readFromConfigProperties("config.properties","description"));
-        addProduct.addShortDescription(ApplicationConfig.readFromConfigProperties("config.properties","shortDescription"));
-        addProduct.addSKU(ApplicationConfig.readFromConfigProperties("config.properties","SKU"));
-        addProduct.addWeight(ApplicationConfig.readFromConfigProperties("config.properties","Weight"));
-        addProduct.selectProductStatus();
-        addProduct.selectVisibility();
-        addProduct.saveGeneralProductPage();
-        addProduct.addPrice(ApplicationConfig.readFromConfigProperties("config.properties","price"));
-        addProduct.selectTaxClass();
-        addProduct.saveProductInformation();
+        addProduct.addProductInformation();
         Assert.assertTrue(addProduct.verifyAddProductTest());
+
     }
 
   @AfterClass
