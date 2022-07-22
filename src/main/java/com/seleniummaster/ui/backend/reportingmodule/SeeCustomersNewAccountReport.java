@@ -32,6 +32,11 @@ WebElement ShowBy;
 WebElement Refresh;
 @FindBy(xpath = "//*[contains(text(),\"07/2019\")]")
 WebElement ResultPeriod;
+    @FindBy(css=".link-logout")
+    WebElement logOutLink;
+
+
+
 public void OpenCustomersNewAccountReportPage(){
     testUtility.waitForElementPresent(ReportsLink);
     ReportsLink.click();
@@ -39,6 +44,7 @@ public void OpenCustomersNewAccountReportPage(){
     CustomerReportsLink.click();
     testUtility.waitForElementPresent(NewAccountsLink);
     NewAccountsLink.click();
+
 }
 public void ShowNewAccountReportMethod(String startDate,String endDate) throws InterruptedException {
   //  Thread.sleep(3000);
@@ -55,5 +61,8 @@ public boolean verifyReportsDisplayed(){
     testUtility.waitForElementPresent(ResultPeriod);
     return ResultPeriod.isDisplayed();
 }
-
+public void logOut(){
+    testUtility.waitForElementPresent(logOutLink);
+    logOutLink.click();
+}
 }

@@ -30,6 +30,13 @@ public class SeeCustomerByNumberOfOrders extends TestBase {
     WebElement ShowBy;
     @FindBy(css="button[title=\"Refresh\"]")
     WebElement Refresh;
+
+
+    @FindBy(css=".link-logout")
+    WebElement logOutLink;
+
+
+
     public void OpenCustomerByOrdersTotalReportPage(){
         testUtility.waitForElementPresent(ReportsLink);
         ReportsLink.click();

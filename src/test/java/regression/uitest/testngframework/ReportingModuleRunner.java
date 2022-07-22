@@ -36,6 +36,7 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
           ApplicationConfig.readFromConfigProperties(
                    "config.properties","endDate"));
     Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
+    seeCustomersNewAccountReport.logOut();
                  }
 
     @Test(description = "Zulhumar")
@@ -49,6 +50,7 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
                 ApplicationConfig.readFromConfigProperties(
                         "config.properties","endDate1"));
         Assert.assertTrue(seeCustomerByOrdersTotalReport.verifyReportsDisplayed());
+       seeCustomerByOrdersTotalReport.logOut();
     }
 
     @Test(description = "Gvlmihre")
