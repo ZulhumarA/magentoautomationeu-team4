@@ -20,7 +20,7 @@ public class SeeCustomerByOrdersTotalReport extends TestBase {
     WebElement ReportsLink;
     @FindBy(xpath="(//span[contains(text(),\"Customers\")])[1]")
     WebElement CustomerReportsLink;
-    @FindBy(xpath="//span[contains(text(),\"Customers by number of orders\")]")
+    @FindBy(xpath="//span[contains(text(),\"Customers by orders total\")]")
     WebElement  ByOrdersTotal;
     @FindBy(xpath="//input[@id='period_date_from']")
     WebElement ReportFrom;
@@ -58,9 +58,5 @@ public class SeeCustomerByOrdersTotalReport extends TestBase {
     public boolean verifyReportsDisplayed(){
         testUtility.waitForElementPresent(ResultPeriod);
         return ResultPeriod.isDisplayed();
-    }
-    public void logOut(){
-        testUtility.waitForElementPresent(logOutLink);
-        logOutLink.click();
     }
 }

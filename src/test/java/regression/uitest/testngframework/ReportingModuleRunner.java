@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -36,7 +37,6 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
           ApplicationConfig.readFromConfigProperties(
                    "config.properties","endDate"));
     Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
-    seeCustomersNewAccountReport.logOut();
                  }
 
     @Test(description = "Zulhumar")
@@ -50,7 +50,21 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
                 ApplicationConfig.readFromConfigProperties(
                         "config.properties","endDate1"));
         Assert.assertTrue(seeCustomerByOrdersTotalReport.verifyReportsDisplayed());
-       seeCustomerByOrdersTotalReport.logOut();
+    }
+    @Test(description = "Zulhumar")
+    public void SeeCustomerByNumberOfOrder ()throws InterruptedException{
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        SeeCustomerByNumberOfOrders seeCustomerByNumberOfOrders=new SeeCustomerByNumberOfOrders(driver);
+        seeCustomerByNumberOfOrders.OpenCustomerByNumberOfOrdersPage();
+        seeCustomerByNumberOfOrders.ShowCustomersByNumberOfOrdersReportMethod(
+ ApplicationConfig.readFromConfigProperties(
+                                "config.properties","startDate2"),
+                        ApplicationConfig.readFromConfigProperties(
+                                "config.properties","endDate2"));
+Assert.assertTrue(seeCustomerByNumberOfOrders.verifyReportsDisplayed());
+
+
     }
 
     @Test(description = "Gvlmihre")
@@ -81,7 +95,11 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
 
 
     }
-
+@AfterMethod
+public void logOut(){
+        AdminLoginPage adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogout();
+}
 
     @AfterClass
     public void tearDown() {

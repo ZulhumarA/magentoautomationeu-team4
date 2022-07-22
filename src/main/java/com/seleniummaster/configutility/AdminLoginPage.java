@@ -21,7 +21,7 @@ public class AdminLoginPage extends TestBase {
      @FindBy(xpath = "//*[@value=\"Login\"]")
      WebElement loginButton;
 
-     @FindBy(css="a[class=\"link-logout\"]")
+     @FindBy(css=".link-logout")
      WebElement LogoutButton;
 
      @FindBy(css = "p.super")
@@ -44,7 +44,8 @@ public class AdminLoginPage extends TestBase {
           return (managerSuccessfullyLoggedInField.isDisplayed());
      }
 
-     public void adminLogout(){
+     public void adminLogout()
+     {
           LogoutButton.click();
      }
 
