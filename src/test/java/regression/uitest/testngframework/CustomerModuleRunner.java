@@ -24,7 +24,7 @@ public class CustomerModuleRunner extends TestBase {
     AddNewAddressPage addNewAddressPage;
     DeleteCustomerGroupsPage deleteCustomerGroupsPage;
     FilterCustomersByGroupPage filterCustomersByGroupPage;
-    FilterCustomerCountryStateAndWebsite filterCustomerCountryStateAndWebsite;
+    //FilterCustomerCountryStateAndWebsite filterCustomerCountryStateAndWebsite;
 
     @BeforeClass
     public void setUp(ITestContext context) {
