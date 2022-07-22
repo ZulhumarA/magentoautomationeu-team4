@@ -4,7 +4,10 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
-import com.seleniummaster.ui.backend.reportingmodule.*;
+import com.seleniummaster.ui.backend.reportingmodule.ProductsLowStockReportPage;
+import com.seleniummaster.ui.backend.reportingmodule.ProductsMostViewedReportPage;
+import com.seleniummaster.ui.backend.reportingmodule.ProductsOrderedReportPage;
+import com.seleniummaster.ui.backend.reportingmodule.SeeCustomersNewAccountReport;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -45,8 +48,7 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
 //        seeCustomerByOrdersTotalReport.OpenCustomerByOrdersTotalReportPage();
 //    }
 
-
-    @Test(description = "Gulmire")
+    @Test(description = "Gvlmihre")
     public void viewProductsOrderedReportMethod(){
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
@@ -55,7 +57,7 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
         Assert.assertTrue(productsOrderedReportPage.verifyProductsOrderedReportDisplayed());
     }
 
-    @Test(description = "Gulmire")
+    @Test(description = "Gvlmihre")
     public void viewProductsMostViewedReportMethod(){
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
@@ -64,7 +66,7 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
         Assert.assertTrue(productsMostViewedReportPage.verifyProductsMostViewedReportDisplayed());
     }
 
-    @Test(description = "Gulmire")
+    @Test(description = "Gvlmihre")
     public void viewProductsLowStockReportMethod(){
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
@@ -76,7 +78,7 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
     }
 
 
-    @AfterClass(enabled = false)
+    @AfterClass
     public void tearDown() {
         closeBrowser();
     }
