@@ -3,7 +3,7 @@ Feature: Marketing manager can manage Newsletter templates and can see the newsl
   @AddNewsletterTemplate
   Scenario: marketing manager can add a newsletter template
     Given marketing manager on the dashboard page
-    When marketing manager add a newsletter template
+    When marketing manager adds a newsletter template
     Then a new newsletter template should be added
 
   @UpdateNewsletterTemplate
@@ -12,7 +12,7 @@ Feature: Marketing manager can manage Newsletter templates and can see the newsl
     When marketing manager updates a newsletter template
     Then the newsletter template should be updated
 
-  @deleteNewsletterTemplate
+  @DeleteNewsletterTemplate
   Scenario: marketing manager can delete a newsletter template
     Given marketing manager on the dashboard page
     When marketing manager deletes a newsletter template
