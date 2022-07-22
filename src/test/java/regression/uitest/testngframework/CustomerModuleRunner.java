@@ -1,6 +1,5 @@
 package regression.uitest.testngframework;
 
-import com.github.javafaker.App;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
@@ -24,7 +23,8 @@ public class CustomerModuleRunner extends TestBase {
     AddNewAddressPage addNewAddressPage;
     DeleteCustomerGroupsPage deleteCustomerGroupsPage;
     FilterCustomersByGroupPage filterCustomersByGroupPage;
-    //FilterCustomerCountryStateAndWebsite filterCustomerCountryStateAndWebsite;
+    FilterCustomerCountryStateAndWebsite filterCustomerCountryStateAndWebsite;
+
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -42,7 +42,7 @@ public class CustomerModuleRunner extends TestBase {
         addNewAddressPage=new AddNewAddressPage(driver);
         deleteCustomerGroupsPage=new DeleteCustomerGroupsPage(driver);
         filterCustomersByGroupPage=new FilterCustomersByGroupPage(driver);
-        //filterCustomerCountryStateAndWebsite=new FilterCustomerCountryStateAndWebsite(driver);
+        filterCustomerCountryStateAndWebsite=new FilterCustomerCountryStateAndWebsite(driver);
     }
 
     @Test
@@ -140,9 +140,9 @@ public class CustomerModuleRunner extends TestBase {
 
      @Test(description = "Kadirya")
      public void FilterCustomerCountryStateAndWebsite(){
-//         filterCustomerCountryStateAndWebsite.filterCustomerByCountry();
-//         filterCustomerCountryStateAndWebsite.filterCustomerByWebsite();
-//         filterCustomerCountryStateAndWebsite.filterCustomerByState();
+        filterCustomerCountryStateAndWebsite.filterCustomerByCountry();
+         filterCustomerCountryStateAndWebsite.filterCustomerByWebsite();
+         filterCustomerCountryStateAndWebsite.filteCustomerByState();
 
          Assert.assertTrue(true);
      }
