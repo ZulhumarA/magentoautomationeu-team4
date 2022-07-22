@@ -4,9 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
-import com.seleniummaster.ui.backend.reportingmodule.ProductsLowStockReportPage;
-import com.seleniummaster.ui.backend.reportingmodule.ProductsMostViewedReportPage;
-import com.seleniummaster.ui.backend.reportingmodule.ProductsOrderedReportPage;
+import com.seleniummaster.ui.backend.reportingmodule.*;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -26,8 +24,29 @@ public class ReportingModuleRunner extends TestBase {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","backEndURL"));
         context.setAttribute("driver",driver);
     }
+@Test(description = "Zulhumar")
+public void SeeCustomerNewAccountReport()throws InterruptedException{
+    adminLoginPage=new AdminLoginPage(driver);
+    adminLoginPage.adminLogin("reportingManager");
+    SeeCustomersNewAccountReport seeCustomersNewAccountReport=new SeeCustomersNewAccountReport(driver);
+    seeCustomersNewAccountReport.OpenCustomersNewAccountReportPage();
+    seeCustomersNewAccountReport.ShowNewAccountReportMethod(
+            ApplicationConfig.readFromConfigProperties(
+                   "config.properties","startDate"),
+          ApplicationConfig.readFromConfigProperties(
+                   "config.properties","endDate"));
+    Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
+                 }
+//    @Test(description = "Zulhumar")
+//    public void SeeCustomerByOrderTotalReport (){
+//        adminLoginPage=new AdminLoginPage(driver);
+//        adminLoginPage.adminLogin("reportingManager");
+//        SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport=new SeeCustomerByOrdersTotalReport(driver);
+//        seeCustomerByOrdersTotalReport.OpenCustomerByOrdersTotalReportPage();
+//    }
 
-    @Test
+
+    @Test(description = "Gulmire")
     public void viewProductsOrderedReportMethod(){
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
@@ -36,7 +55,7 @@ public class ReportingModuleRunner extends TestBase {
         Assert.assertTrue(productsOrderedReportPage.verifyProductsOrderedReportDisplayed());
     }
 
-    @Test
+    @Test(description = "Gulmire")
     public void viewProductsMostViewedReportMethod(){
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
@@ -45,7 +64,7 @@ public class ReportingModuleRunner extends TestBase {
         Assert.assertTrue(productsMostViewedReportPage.verifyProductsMostViewedReportDisplayed());
     }
 
-    @Test
+    @Test(description = "Gulmire")
     public void viewProductsLowStockReportMethod(){
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
@@ -57,7 +76,7 @@ public class ReportingModuleRunner extends TestBase {
     }
 
 
-    @AfterClass
+    @AfterClass(enabled = false)
     public void tearDown() {
         closeBrowser();
     }
