@@ -1,6 +1,5 @@
 package regression.uitest.testngframework;
 
-import com.github.javafaker.App;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
@@ -142,7 +141,7 @@ public class CustomerModuleRunner extends TestBase {
      public void FilterCustomerCountryStateAndWebsite(){
          filterCustomerCountryStateAndWebsite.filterCustomerByCountry();
          filterCustomerCountryStateAndWebsite.filterCustomerByWebsite();
-         filterCustomerCountryStateAndWebsite.filterCustomerByState();
+         filterCustomerCountryStateAndWebsite.filteCustomerByState();
 
          Assert.assertTrue(true);
      }
