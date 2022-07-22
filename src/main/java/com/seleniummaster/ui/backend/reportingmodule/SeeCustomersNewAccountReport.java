@@ -61,8 +61,4 @@ public boolean verifyReportsDisplayed(){
     testUtility.waitForElementPresent(ResultPeriod);
     return ResultPeriod.isDisplayed();
 }
-public void logOut(){
-    testUtility.waitForElementPresent(logOutLink);
-    logOutLink.click();
-}
 }

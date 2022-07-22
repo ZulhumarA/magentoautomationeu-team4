@@ -20,8 +20,8 @@ public class SeeCustomerByNumberOfOrders extends TestBase {
     WebElement ReportsLink;
     @FindBy(xpath="(//span[contains(text(),\"Customers\")])[1]")
     WebElement CustomerReportsLink;
-    @FindBy(xpath="(//*[contains(text(),\"Customers by number of orders\")]")
-    WebElement  ByOrdersTotal;
+    @FindBy(xpath="//span[contains(text(),\"Customers by number of orders\")]")
+    WebElement  ByNumberOfOrder;
     @FindBy(xpath="//input[@id='period_date_from']")
     WebElement ReportFrom;
     @FindBy(css="input[name=\"report_to\"]")
@@ -30,35 +30,37 @@ public class SeeCustomerByNumberOfOrders extends TestBase {
     WebElement ShowBy;
     @FindBy(css="button[title=\"Refresh\"]")
     WebElement Refresh;
+@FindBy(xpath="//th[contains(text(),\"Total\")]")
+WebElement ResultPeriod;
 
 
-    @FindBy(css=".link-logout")
-    WebElement logOutLink;
 
 
-
-    public void OpenCustomerByOrdersTotalReportPage(){
+    public void  OpenCustomerByNumberOfOrdersPage() throws InterruptedException {
         testUtility.waitForElementPresent(ReportsLink);
         ReportsLink.click();
         testUtility.waitForElementPresent(CustomerReportsLink);
         CustomerReportsLink.click();
-        testUtility.waitForElementPresent(ByOrdersTotal);
-        ByOrdersTotal.click();
+        Thread.sleep(3000);
+     //   testUtility.waitForElementPresent(ByNumberOfOrder);
+        ByNumberOfOrder.click();
 
     }
-    public void ShowNewAccountReportMethod(String startDate,String endDate) throws InterruptedException {
+    public void ShowCustomersByNumberOfOrdersReportMethod(String startDate,String endDate) throws InterruptedException {
         //  Thread.sleep(3000);
         testUtility.waitForElementPresent(ReportFrom);
         ReportFrom.sendKeys(startDate);
         testUtility.waitForElementPresent(ReportTo);
         ReportTo.sendKeys(endDate);
         testUtility.waitForElementPresent(ShowBy);
-        testUtility.selectValueFromDropDown(ShowBy,"month");
+        testUtility.selectValueFromDropDown(ShowBy,"year");
         testUtility.waitForElementPresent(Refresh);
         Refresh.click();
     }
-    public void verifyReportsDisplayed(){
-        //testUtility.waitForElementPresent();
+    public boolean verifyReportsDisplayed(){
+        testUtility.waitForElementPresent(ResultPeriod);
+        return ResultPeriod.isDisplayed();
+    }
     }
 
-}
+
