@@ -23,7 +23,7 @@ public class MarketingNewsletterSteps extends TestBase {
     ViewNewsletterSubscribersPage viewNewsletterSubscribersPage;
     String configFile="config.properties";
 
-    @Before
+    @Before("@AddNewsletterTemplate or @UpdateNewsletterTemplate or @DeleteNewsletterTemplate or @ViewNewsletterSubscribers")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
@@ -42,6 +42,7 @@ public class MarketingNewsletterSteps extends TestBase {
         viewNewsletterSubscribersPage=new ViewNewsletterSubscribersPage(driver);
     }
 
+    //add newsletter template test case(Gvlmihre)
     @When("marketing manager adds a newsletter template")
     public void marketingManagerAddsANewsletterTemplate() {
         addNewsletterTemplatePage.addNewsletterTemplate();
@@ -52,7 +53,7 @@ public class MarketingNewsletterSteps extends TestBase {
         addNewsletterTemplatePage.verifyNewsletterTemplateAddedSuccessfully();
     }
 
-    //update newsletter template test case(Gvlmihre)
+    //update newsletter template test case (Gvlmihre)
     @When("marketing manager updates a newsletter template")
     public void marketingManagerUpdatesANewsletterTemplate() {
         updateNewsletterTemplatePage.updateExistingNewsletterTemplate();
@@ -63,7 +64,7 @@ public class MarketingNewsletterSteps extends TestBase {
         Assert.assertTrue(updateNewsletterTemplatePage.verifyTemplateUpdatedSuccessfully());
     }
 
-    //delete newsletter template test case(Gvlmihre)
+    //delete newsletter template test case (Gvlmihre)
     @When("marketing manager deletes a newsletter template")
     public void marketingManagerDeletesANewsletterTemplate() {
         deleteNewsletterTemplatePage.deleteTemplate();
@@ -74,7 +75,7 @@ public class MarketingNewsletterSteps extends TestBase {
         Assert.assertTrue(deleteNewsletterTemplatePage.verifyTemplateDeletedSuccessfully());
     }
 
-    //view newsletter subscribers test case(Gvlmihre)
+    //view newsletter subscribers test case (Gvlmihre)
     @When("marketing manager views newsletter subscribers")
     public void marketingManagerViewsNewsletterSubscribers() {
         viewNewsletterSubscribersPage.viewNewsletterSubscribers();
@@ -85,7 +86,7 @@ public class MarketingNewsletterSteps extends TestBase {
         Assert.assertTrue(viewNewsletterSubscribersPage.verifyNewsletterSubscribersViewed());
     }
 
-    @After
+    @After("@AddNewsletterTemplate or @UpdateNewsletterTemplate or @DeleteNewsletterTemplate or @ViewNewsletterSubscribers")
     public void teardown(){
         closeBrowser();
     }
