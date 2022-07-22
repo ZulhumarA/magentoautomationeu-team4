@@ -7,6 +7,7 @@ import com.seleniummaster.configutility.TestUtility;
 import com.seleniummaster.ui.backend.reportingmodule.ProductsLowStockReportPage;
 import com.seleniummaster.ui.backend.reportingmodule.ProductsMostViewedReportPage;
 import com.seleniummaster.ui.backend.reportingmodule.ProductsOrderedReportPage;
+import com.seleniummaster.ui.backend.reportingmodule.SeeCustomersNewAccountReport;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
@@ -26,6 +27,26 @@ public class ReportingModuleRunner extends TestBase {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","backEndURL"));
         context.setAttribute("driver",driver);
     }
+@Test(description = "Zulhumar")
+public void SeeCustomerNewAccountReport()throws InterruptedException{
+    adminLoginPage=new AdminLoginPage(driver);
+    adminLoginPage.adminLogin("reportingManager");
+    SeeCustomersNewAccountReport seeCustomersNewAccountReport=new SeeCustomersNewAccountReport(driver);
+    seeCustomersNewAccountReport.OpenCustomersNewAccountReportPage();
+    seeCustomersNewAccountReport.ShowNewAccountReportMethod(
+            ApplicationConfig.readFromConfigProperties(
+                   "config.properties","startDate"),
+          ApplicationConfig.readFromConfigProperties(
+                   "config.properties","endDate"));
+    Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
+                 }
+//    @Test(description = "Zulhumar")
+//    public void SeeCustomerByOrderTotalReport (){
+//        adminLoginPage=new AdminLoginPage(driver);
+//        adminLoginPage.adminLogin("reportingManager");
+//        SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport=new SeeCustomerByOrdersTotalReport(driver);
+//        seeCustomerByOrdersTotalReport.OpenCustomerByOrdersTotalReportPage();
+//    }
 
     @Test(description = "Gvlmihre")
     public void viewProductsOrderedReportMethod(){
