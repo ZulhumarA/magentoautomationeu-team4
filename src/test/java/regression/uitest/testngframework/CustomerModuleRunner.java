@@ -25,6 +25,7 @@ public class CustomerModuleRunner extends TestBase {
     FilterCustomersByGroupPage filterCustomersByGroupPage;
     FilterCustomerCountryStateAndWebsite filterCustomerCountryStateAndWebsite;
 
+
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -139,7 +140,7 @@ public class CustomerModuleRunner extends TestBase {
 
      @Test(description = "Kadirya")
      public void FilterCustomerCountryStateAndWebsite(){
-         filterCustomerCountryStateAndWebsite.filterCustomerByCountry();
+        filterCustomerCountryStateAndWebsite.filterCustomerByCountry();
          filterCustomerCountryStateAndWebsite.filterCustomerByWebsite();
          filterCustomerCountryStateAndWebsite.filteCustomerByState();
 

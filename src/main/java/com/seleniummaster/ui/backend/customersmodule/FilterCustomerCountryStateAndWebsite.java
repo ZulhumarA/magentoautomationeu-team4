@@ -1,5 +1,6 @@
 package com.seleniummaster.ui.backend.customersmodule;
 
+
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import static com.seleniummaster.configutility.ApplicationConfig.readFromConfigProperties;
 
-public class FilterCustomerCountryStateAndWebsite extends TestBase {
+ public class FilterCustomerCountryStateAndWebsite extends TestBase {
     WebDriver driver;
     String configFile = "config.properties";
     String webSite;
@@ -67,23 +68,20 @@ public class FilterCustomerCountryStateAndWebsite extends TestBase {
     public void filterCustomerByWebsite(){
         testUtility.waitForElementPresent(websiteField);
         try {
-                websiteField.click();
-            }catch(org.openqa.selenium.StaleElementReferenceException ex)
-            {
-                Select selectWebsite=new Select(websiteField);
-                selectWebsite.selectByIndex(3);
-                testUtility.sleep(5);
-                searchButton.click();
-            }
+            websiteField.click();
+        }catch(org.openqa.selenium.StaleElementReferenceException ex)
+        {
+            Select selectWebsite=new Select(websiteField);
+            selectWebsite.selectByIndex(3);
+            testUtility.sleep(5);
+            searchButton.click();
+        }
     }
-    public void verifyFilterByWebsite(){
-        if(driver.getPageSource().contains("www.amazon.com")){
+    public void verifyFilterByWebsite() {
+        if (driver.getPageSource().contains("www.amazon.com")) {
             System.out.println("Customer Manager Can filter by website test is Passed!");
-        }else {
+        } else {
             System.out.println("Customer Manager Can filter by website test is Faild!");
 
         }
-    }
-
-
-}
+    }}

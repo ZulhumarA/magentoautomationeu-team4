@@ -49,7 +49,11 @@ public class AddNewsletterTemplatePage {
     @FindBy(xpath = "//span[text()='Save Template']")
     WebElement saveTemplateButton;
 
+    @FindBy(xpath = "//span[text()='Dashboard']")
+    WebElement dashboardField;
+
     public void addNewsletterTemplate(){
+
         testUtility.waitForElementPresent(newsletterButton);
         newsletterButton.click();
         testUtility.waitForElementPresent(newsletterTemplateButton);
@@ -81,5 +85,10 @@ public class AddNewsletterTemplatePage {
 
     public boolean verifyNewsletterTemplateAddedSuccessfully(){
         return rowSizeOld < rowSizeNew;
+    }
+
+    public void clickOnTheDashboardField(){
+        testUtility.waitForElementPresent(dashboardField);
+        dashboardField.click();
     }
 }
