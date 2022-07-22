@@ -20,7 +20,7 @@ public class SeeCustomerByOrdersTotalReport extends TestBase {
     WebElement ReportsLink;
     @FindBy(xpath="(//span[contains(text(),\"Customers\")])[1]")
     WebElement CustomerReportsLink;
-    @FindBy(xpath="//*[@id=\"nav\"]/li[3]/ul/li[4]/ul/li[2]/a/span")
+    @FindBy(xpath="//span[contains(text(),\"Customers by number of orders\")]")
     WebElement  ByOrdersTotal;
     @FindBy(xpath="//input[@id='period_date_from']")
     WebElement ReportFrom;
@@ -37,8 +37,8 @@ public class SeeCustomerByOrdersTotalReport extends TestBase {
         ReportsLink.click();
         testUtility.waitForElementPresent(CustomerReportsLink);
         CustomerReportsLink.click();
-        Thread.sleep(3000);
-        //testUtility.waitForElementPresent(ByOrdersTotal);
+      //  Thread.sleep(3000);
+        testUtility.waitForElementPresent(ByOrdersTotal);
         ByOrdersTotal.click();
 
     }

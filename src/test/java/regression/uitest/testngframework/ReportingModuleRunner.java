@@ -37,6 +37,7 @@ public void SeeCustomerNewAccountReport()throws InterruptedException{
                    "config.properties","endDate"));
     Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
                  }
+
     @Test(description = "Zulhumar")
     public void SeeCustomerByOrderTotalReport () throws InterruptedException{
         adminLoginPage=new AdminLoginPage(driver);
