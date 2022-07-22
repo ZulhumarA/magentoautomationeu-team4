@@ -16,7 +16,7 @@ public class MarketingNewsletterSteps extends TestBase {
     AddNewsletterTemplatePage addNewsletterTemplatePage;
     String configFile="config.properties";
 
-    @Before
+    @Before("@AddNewsletterTemplate")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
