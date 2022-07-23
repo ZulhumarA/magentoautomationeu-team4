@@ -2,6 +2,9 @@ package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.catalogmodule.*;
+import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -95,6 +98,16 @@ public class CatalogModuleRunner extends TestBase {
         addSubcategoriesPage.addSubcategories();
         Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
     }
+
+    @Test(description = "ViewCategories--Zulpikar")
+    public void ViewCategories(){
+        ViewCategoriesPage viewCategoriesPage=new ViewCategoriesPage(driver);
+        viewCategoriesPage.ViewCategories();
+        viewCategoriesPage.ClickOnDefaultCategory();
+        Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
+    }
+
+
 
     @Test(description = "Arzugul")
     public void addProductsTest() {
