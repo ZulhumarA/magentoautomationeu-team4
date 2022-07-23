@@ -1,3 +1,4 @@
+@NewsletterTest
 Feature: Marketing manager can manage Newsletter templates and can see the newsletter subscribers
 
   @AddNewsletterTemplate
