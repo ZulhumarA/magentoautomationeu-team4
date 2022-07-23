@@ -15,10 +15,11 @@ public class CatalogModuleRunner extends TestBase {
     TestUtility testUtility;
     AdminLoginPage adminLoginPage;
     AddAttributeUnderCatalogPage addAttributeUnderCatalogPage;
-    DeleteSubCategories deleteSubCategories ;
-    AddSubCategories addSubCategories ;
-    EditSubCategories editSubCategories ;
+    DeleteSubCategories deleteSubCategories;
+    AddSubCategories addSubCategories;
+    EditSubCategories editSubCategories;
     AddSubcategoriesPage addSubcategoriesPage;
+    AddProduct addProduct;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -31,9 +32,9 @@ public class CatalogModuleRunner extends TestBase {
         adminLoginPage.adminLogin("catalogManager");
         deleteSubCategories = new DeleteSubCategories(driver);
         addSubCategories = new AddSubCategories(driver);
-        editSubCategories= new EditSubCategories(driver);
-        addSubcategoriesPage=new AddSubcategoriesPage(driver);
-
+        editSubCategories = new EditSubCategories(driver);
+        addSubcategoriesPage = new AddSubcategoriesPage(driver);
+        addProduct = new AddProduct(driver);
     }
 
     @Test(description = "AddAttribute-Zulhumar")
@@ -42,27 +43,31 @@ public class CatalogModuleRunner extends TestBase {
         addAttributeUnderCatalogPage.addNewAttributeMethod();
         Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
     }
+
     @Test(description = "AddRootCategory-Zulhumar")
     public void addNewRootCategories() throws InterruptedException {
-        AddRootCategoriesZulhumar addRootCategoriesZulhumar=new AddRootCategoriesZulhumar(driver);
+        AddRootCategoriesZulhumar addRootCategoriesZulhumar = new AddRootCategoriesZulhumar(driver);
         addRootCategoriesZulhumar.openAddNewRootCategoryPage();
         addRootCategoriesZulhumar.fillCategoryInformationAndSave();
         Assert.assertTrue(addRootCategoriesZulhumar.verifyAddRootCategories());
     }
-@Test(description = "Edit-Zulhumar")
-   public void editRootCategory()throws InterruptedException{
-        EditRootCategories editRootCategories=new EditRootCategories(driver);
+
+    @Test(description = "Edit-Zulhumar")
+    public void editRootCategory() throws InterruptedException {
+        EditRootCategories editRootCategories = new EditRootCategories(driver);
         editRootCategories.openCategoriesPage();
-editRootCategories.editRootCatalogInformation();
-    Assert.assertTrue(editRootCategories.verifyEditRootCategories());
-}
-@Test(description = "Edit-Zulhumar")
-public void deleteRootCategory(){
-        DeleteRootCategories deleteRootCategories=new DeleteRootCategories(driver);
+        editRootCategories.editRootCatalogInformation();
+        Assert.assertTrue(editRootCategories.verifyEditRootCategories());
+    }
+
+    @Test(description = "Edit-Zulhumar")
+    public void deleteRootCategory() {
+        DeleteRootCategories deleteRootCategories = new DeleteRootCategories(driver);
         deleteRootCategories.openCategoriesPage();
         deleteRootCategories.deleteRootCategory();
-deleteRootCategories.verifyDeleteRootCategory();
-}
+        deleteRootCategories.verifyDeleteRootCategory();
+    }
+
     @Test
     public void AddRootCategories() {
         AddRootCategories addRootCategories = new AddRootCategories(driver);
@@ -89,7 +94,7 @@ deleteRootCategories.verifyDeleteRootCategory();
     }
 
     @Test(description = "add subcategories page--Abide")
-    public void addSubcategories(){
+    public void addSubcategories() {
         addSubcategoriesPage.addSubcategories();
         Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
     }
@@ -104,9 +109,16 @@ deleteRootCategories.verifyDeleteRootCategory();
 
 
 
-  @AfterClass
-  public void tearDown() {
-      closeBrowser();
-   }
-        }
+    @Test(description = "Arzugul")
+    public void addProductsTest() {
+        addProduct.addProductInformation();
+        Assert.assertTrue(addProduct.verifyAddProductTest());
+
+    }
+
+    @AfterClass
+    public void tearDown() {
+        closeBrowser();
+    }
+}
 

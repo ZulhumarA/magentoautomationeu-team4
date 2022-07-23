@@ -21,7 +21,7 @@ public class ReportingProductsSteps extends TestBase {
     ProductsLowStockReportPage productsLowStockReportPage;
     String configFile="config.properties";
 
-    @Before("@ViewProductsOrderedReport or @ViewProductsMostViewedReport or @ViewProductsLowStockReport")
+    @Before("@ReportingProductsTest")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
@@ -71,7 +71,7 @@ public class ReportingProductsSteps extends TestBase {
         productsLowStockReportPage.verifyProductsLowStockReportDisplayed();
     }
 
-    @After("@ViewProductsOrderedReport or @ViewProductsMostViewedReport or @ViewProductsLowStockReport")
+    @After("@ReportingProductsTest")
     public void tearDown(){
         closeBrowser();
     }

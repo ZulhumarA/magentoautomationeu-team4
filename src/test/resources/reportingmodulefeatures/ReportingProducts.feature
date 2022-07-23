@@ -1,3 +1,4 @@
+@ReportingProductsTest
 Feature: Reporting manager can view products related reports
 
   @ViewProductsOrderedReport
