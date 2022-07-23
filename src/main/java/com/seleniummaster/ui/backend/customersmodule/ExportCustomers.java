@@ -11,19 +11,14 @@ public class ExportCustomers {
 
     WebDriver driver;
 
-
-
-
-    @FindBy(css="button[title='Export']")
+    @FindBy(css = "button[title='Export']")
     WebElement ExportButton;
 
     public ExportCustomers(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver,this);
-        testUtility=new TestUtility(driver);
+        PageFactory.initElements(driver, this);
+        testUtility = new TestUtility(driver);
     }
-
-
 
     public void ClickExport() {
         testUtility.waitForElementPresent(ExportButton);
