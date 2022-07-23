@@ -4,6 +4,7 @@ import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.catalogmodule.*;
 import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -32,6 +33,7 @@ public class CatalogModuleRunner extends TestBase {
         addSubCategories = new AddSubCategories(driver);
         editSubCategories= new EditSubCategories(driver);
         addSubcategoriesPage=new AddSubcategoriesPage(driver);
+
     }
 
     @Test(description = "AddAttribute-Zulhumar")
@@ -91,6 +93,16 @@ deleteRootCategories.verifyDeleteRootCategory();
         addSubcategoriesPage.addSubcategories();
         Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
     }
+
+    @Test(description = "ViewCategories--Zulpikar")
+    public void ViewCategories(){
+        ViewCategoriesPage viewCategoriesPage=new ViewCategoriesPage(driver);
+        viewCategoriesPage.ViewCategories();
+        viewCategoriesPage.ClickOnDefaultCategory();
+        Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
+    }
+
+
 
   @AfterClass
   public void tearDown() {
