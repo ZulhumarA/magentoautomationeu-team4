@@ -2,8 +2,6 @@ package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.catalogmodule.*;
-import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -18,6 +16,7 @@ public class CatalogModuleRunner extends TestBase {
     AddSubCategories addSubCategories ;
     EditSubCategories editSubCategories ;
     AddSubcategoriesPage addSubcategoriesPage;
+    AddProduct addProduct;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -32,6 +31,7 @@ public class CatalogModuleRunner extends TestBase {
         addSubCategories = new AddSubCategories(driver);
         editSubCategories= new EditSubCategories(driver);
         addSubcategoriesPage=new AddSubcategoriesPage(driver);
+        addProduct=new AddProduct(driver);
     }
 
     @Test(description = "AddAttribute-Zulhumar")
@@ -67,7 +67,6 @@ deleteRootCategories.verifyDeleteRootCategory();
         addRootCategories.NewRootCategoryInformation("Car");
         Assert.assertTrue(addRootCategories.VerifyAddRootCategoriesSuccessfully());
     }
-
     @Test(description = "Ramile")
     public void DeleteSubCategories() {
         deleteSubCategories.SubCategoryDelete();
@@ -90,6 +89,13 @@ deleteRootCategories.verifyDeleteRootCategory();
     public void addSubcategories(){
         addSubcategoriesPage.addSubcategories();
         Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
+    }
+
+    @Test(description ="Arzugul")
+    public void addProductsTest(){
+        addProduct.addProductInformation();
+        Assert.assertTrue(addProduct.verifyAddProductTest());
+
     }
 
   @AfterClass
