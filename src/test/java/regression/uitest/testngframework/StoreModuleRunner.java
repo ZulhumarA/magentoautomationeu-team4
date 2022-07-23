@@ -3,6 +3,7 @@ package regression.uitest.testngframework;
 import com.github.javafaker.App;
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.storemodule.*;
+import org.openqa.selenium.Alert;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -15,8 +16,10 @@ public class StoreModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     DeleteWebsiteInfo deleteWebsite;
     AddProductCategories addProductCategories;
-
     CanUpdateProductPage canUpdateProductPage;
+    CanDeleteProductPage canDeleteProductPage;
+
+
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -88,6 +91,24 @@ public class StoreModuleRunner extends TestBase {
         canUpdateProductPage.setEnterMetaDescription(ApplicationConfig.readFromConfigProperties("config.properties","MetaDescription"));
         canUpdateProductPage.setSaveCategoryButton();
         Assert.assertTrue(canUpdateProductPage.VerifySavedMassageSuccessfully());
+    }
+    @Test(description = "Can Delete Product Categories-Faruk",priority = 4)
+    public void CanDeleteProductPage(){
+        canDeleteProductPage=new CanDeleteProductPage(driver);
+        canDeleteProductPage.setCatalogButton();
+        canDeleteProductPage.setManegeCategoriesButton();
+        canDeleteProductPage.setClickFileName();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        canDeleteProductPage.setClickDeleteCategory();
+        Alert alert = driver.switchTo().alert();
+        String text = alert.getText();
+        System.out.println(text);
+        alert.accept();
+        Assert.assertTrue(canDeleteProductPage.VerifyDeleteMassageSuccessfully());
     }
 
     @AfterClass
