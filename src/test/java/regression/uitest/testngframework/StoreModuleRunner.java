@@ -1,10 +1,8 @@
 package regression.uitest.testngframework;
 
+import com.github.javafaker.App;
 import com.seleniummaster.configutility.*;
-import com.seleniummaster.ui.backend.storemodule.AddProductCategories;
-import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
-import com.seleniummaster.ui.backend.storemodule.DeleteWebsiteInfo;
-import com.seleniummaster.ui.backend.storemodule.EditStoreViewPage;
+import com.seleniummaster.ui.backend.storemodule.*;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -18,6 +16,7 @@ public class StoreModuleRunner extends TestBase {
     DeleteWebsiteInfo deleteWebsite;
     AddProductCategories addProductCategories;
 
+    CanUpdateProductPage canUpdateProductPage;
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -66,6 +65,29 @@ public class StoreModuleRunner extends TestBase {
         addProductCategories.setIncludeInNavigationMenu();
         addProductCategories.setSaveCategoryButton();
         Assert.assertTrue(addProductCategories.VerifySavedMassageSuccessfully());
+    }
+    @Test(description = "Can Update Product Categories-Faruk",priority = 3)
+      public void CanUpdateProductPage(){
+        canUpdateProductPage=new CanUpdateProductPage(driver);
+        canUpdateProductPage.setCatalogButton();
+        canUpdateProductPage.setManegeCategoriesButton();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        canUpdateProductPage.setClickFileName();
+        canUpdateProductPage.setEnterDescription(ApplicationConfig.readFromConfigProperties("config.properties","Description"));
+        canUpdateProductPage.setEnterPageTitle(ApplicationConfig.readFromConfigProperties("config.properties","PageTitle"));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        canUpdateProductPage.setEnterMetaKeywords(ApplicationConfig.readFromConfigProperties("config.properties","MetaKeywords"));
+        canUpdateProductPage.setEnterMetaDescription(ApplicationConfig.readFromConfigProperties("config.properties","MetaDescription"));
+        canUpdateProductPage.setSaveCategoryButton();
+        Assert.assertTrue(canUpdateProductPage.VerifySavedMassageSuccessfully());
     }
 
     @AfterClass

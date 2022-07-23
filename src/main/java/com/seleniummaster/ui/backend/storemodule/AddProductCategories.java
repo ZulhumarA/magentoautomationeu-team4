@@ -54,11 +54,11 @@ public class AddProductCategories extends TestBase {
     }
 
     public void setIsActive() {
-        testUtility.selectValueFromDropDown(isActive,"1");
+        testUtility.selectValueFromDropDown(isActive, "1");
     }
 
     public void setIncludeInNavigationMenu() {
-        testUtility.selectValueFromDropDown(includeInNavigationMenu,"1");
+        testUtility.selectValueFromDropDown(includeInNavigationMenu, "1");
     }
 
     public void setSaveCategoryButton() {
