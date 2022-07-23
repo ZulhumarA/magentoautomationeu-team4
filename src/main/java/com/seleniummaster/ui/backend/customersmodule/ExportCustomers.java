@@ -25,7 +25,7 @@ public class ExportCustomers {
 
 
 
-    public void ClikExport() {
+    public void ClickExport() {
         testUtility.waitForElementPresent(ExportButton);
         ExportButton.click();
     }
