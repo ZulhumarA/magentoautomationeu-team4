@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CatalogModuleRunner extends TestBase {
@@ -17,7 +18,7 @@ public class CatalogModuleRunner extends TestBase {
     EditSubCategories editSubCategories;
     AddSubcategoriesPage addSubcategoriesPage;
     AddProduct addProduct;
-    EditProduct editProduct;
+    DeleteProduct deleteProduct;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -33,7 +34,7 @@ public class CatalogModuleRunner extends TestBase {
         editSubCategories = new EditSubCategories(driver);
         addSubcategoriesPage = new AddSubcategoriesPage(driver);
         addProduct = new AddProduct(driver);
-        editProduct=new EditProduct(driver);
+        deleteProduct=new DeleteProduct(driver);
     }
 
     @Test(description = "AddAttribute-Zulhumar")
@@ -98,33 +99,25 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
     }
 
-    @Test(description = "ViewCategories--Zulpikar")
-    public void ViewCategories(){
-        ViewCategoriesPage viewCategoriesPage=new ViewCategoriesPage(driver);
-        viewCategoriesPage.ViewCategories();
-        viewCategoriesPage.ClickOnDefaultCategory();
-        Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
-    }
-
-
-
     @Test(description = "Arzugul")
-    public void addProductsTest() {
+    public void addProductsTest() throws InterruptedException {
         addProduct.addProductInformation("Team4");
         Assert.assertTrue(addProduct.verifyAddProductTest());
+    }
+
+    @Test(description="Arzugul")
+    public void DeleteProductTest() throws InterruptedException {
+        deleteProduct.deleteAddedProduct("Team4");
+        Assert.assertTrue(deleteProduct.verifyDeleteProduct());
 
     }
 
-    @Test(description = "Arzugul")
-    public void editProductTest(){
-
+        @AfterClass
+        public void tearDown () {
+            closeBrowser();
+        }
 
 
     }
 
-    @AfterClass
-    public void tearDown() {
-        closeBrowser();
-    }
-}
 

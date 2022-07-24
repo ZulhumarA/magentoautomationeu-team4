@@ -49,8 +49,7 @@ public class DeleteCustomerPage extends TestBase {
         searchButton.click();
     }
 
-    public void clickOnCustomer() throws InterruptedException {
-        Thread.sleep(3000);
+    public void clickOnCustomer(){
         testUtility.waitForElementPresent(customerHalit);
         customerHalit.click();
     }

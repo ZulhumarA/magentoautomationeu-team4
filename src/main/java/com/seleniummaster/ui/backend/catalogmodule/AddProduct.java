@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class AddProduct {
 
@@ -20,10 +21,10 @@ public class AddProduct {
     @FindBy(xpath="//*[@id='product_type']")
     WebElement ProductTypeLink;
 
-    @FindBy(xpath = "//td[contains(.,'Continue')]")
+    @FindBy(css = "#continue_button button")
     WebElement ContinueButton;
 
-    @FindBy(xpath= "//input[@type=\"text\"]")
+    @FindBy(xpath= "//*[@id ='name']")
     WebElement NameLink;
 
     @FindBy(xpath = "//*[@id ='description']")
@@ -62,33 +63,34 @@ public class AddProduct {
         testUtility = new TestUtility(driver);
     }
 
-    public void addProductInformation(){
+    public void addProductInformation(String ProductName)  {
         testUtility.waitForElementPresent(AddProductsLink);
         AddProductsLink.click();
         testUtility.waitForElementPresent(AttributeSetLink);
-        testUtility.selectValueFromDropDown(AttributeSetLink,"shoes");
-        testUtility.selectValueFromDropDown(ProductTypeLink,"Simple Product");
+        testUtility.selectValueFromDropDown(AttributeSetLink,"11");
+        Select select = new Select(ProductTypeLink);
+        select.selectByVisibleText("Simple Product");
         testUtility.waitForElementPresent(ContinueButton);
         ContinueButton.click();
         testUtility.waitForElementPresent(NameLink);
-        NameLink.sendKeys("Adidas");
+        NameLink.sendKeys(ProductName);
         testUtility.waitForElementPresent(DescriptionLink);
-        DescriptionLink.sendKeys("Europe 38");
+        DescriptionLink.sendKeys(testUtility.generateRandomLetter());
         testUtility.waitForElementPresent(ShortDescriptionLink);
-        ShortDescriptionLink.sendKeys("women");
+        ShortDescriptionLink.sendKeys(testUtility.generateRandomLetter());
         testUtility.waitForElementPresent(SKULink);
-        SKULink.sendKeys("TRB9897770R00000l");
+        SKULink.sendKeys(String.valueOf(testUtility.generateRandomNumber()));
         testUtility.waitForElementPresent(Weight);
-        Weight.sendKeys("0.5kg");
+        Weight.sendKeys(String.valueOf(testUtility.generateRandomNumber()));
         testUtility.waitForElementPresent(StatusDropDownList);
-        testUtility.selectValueFromDropDown(StatusDropDownList,"Enabled");
+        testUtility.selectValueFromDropDown(StatusDropDownList,"1");
         testUtility.waitForElementPresent(VisibilityLink);
-        testUtility.selectValueFromDropDown(VisibilityLink,"Catalog");
+        testUtility.selectValueFromDropDown(VisibilityLink,"4");
         testUtility.waitForElementPresent(SaveButton);
         SaveButton.click();
         testUtility.waitForElementPresent(PriceLink);
-        PriceLink.sendKeys("100$");
-        testUtility.selectValueFromDropDown(TextClass,"Shipping");
+        PriceLink.sendKeys(String.valueOf(testUtility.generateRandomNumber()));
+        testUtility.selectValueFromDropDown(TextClass,"0");
         testUtility.waitForElementPresent(SaveButton);
         SaveButton.click();
     }
@@ -97,7 +99,6 @@ public class AddProduct {
         return
                 SuccessMessage.isDisplayed();
     }
-
 
 
 

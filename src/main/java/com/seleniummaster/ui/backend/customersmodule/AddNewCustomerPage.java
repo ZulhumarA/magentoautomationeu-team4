@@ -44,17 +44,42 @@ public class AddNewCustomerPage extends TestBase {
         testUtility = new TestUtility(driver);
     }
 
-    public void addNewCustomerMethod(String firstName,String lastName,String email,String password) {
+    public void clickAddNewCustomer() {
         testUtility.waitForElementPresent(addNewCustomerLink);
         addNewCustomerLink.click();
+    }
+
+    public void enterPrefixField(String prefix) {
+        testUtility.waitForElementPresent(prefixField);
+        prefixField.sendKeys(prefix);
+    }
+
+    public void enterFirstName(String firstName) {
         testUtility.waitForElementPresent(firstNameField);
         firstNameField.sendKeys(firstName);
+    }
+
+    public void enterLastName(String lastName) {
         testUtility.waitForElementPresent(lastNameField);
         lastNameField.sendKeys(lastName);
+    }
+
+    public void enterEmail(String email) {
         testUtility.waitForElementPresent(emailField);
         emailField.sendKeys(email);
+    }
+
+    public void enterTaxNumber(String taxNumber) {
+        testUtility.waitForElementPresent(taxNumberField);
+        taxNumberField.sendKeys(taxNumber);
+    }
+
+    public void enterPassword(String password1) {
         testUtility.waitForElementPresent(passwordfield);
-        passwordfield.sendKeys(password);
+        passwordfield.sendKeys(password1);
+    }
+
+    public void clickSaveButton() {
         testUtility.waitForElementPresent(saveCustomerButton);
         saveCustomerButton.click();
     }

@@ -34,9 +34,8 @@ public class ResetCustomerPassword {
         testUtility = new TestUtility(driver);
     }
 
-    public void EditCustomerInformation(int NewPassword) throws InterruptedException {
-        Thread.sleep(3000);
-        //testUtility.waitForElementPresent(EditButton);
+    public void EditCustomerInformation(int NewPassword) {
+        testUtility.waitForElementPresent(EditButton);
         EditButton.click();
         testUtility.waitForElementPresent(accountInformationButton);
         accountInformationButton.click();

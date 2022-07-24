@@ -11,18 +11,17 @@ import org.openqa.selenium.support.ui.Select;
 
 import static com.seleniummaster.configutility.ApplicationConfig.readFromConfigProperties;
 
- public class FilterCustomerCountryStateAndWebsite extends TestBase {
+public class FilterCustomerCountryStateAndWebsite extends TestBase {
     WebDriver driver;
     String configFile = "config.properties";
     String webSite;
     //String statevalue;
     TestUtility testUtility;
-
-    public FilterCustomerCountryStateAndWebsite(WebDriver driver) {
-        this.driver = driver;
+public  FilterCustomerCountryStateAndWebsite(WebDriver driver) {
+      this.driver = driver;
         PageFactory.initElements(driver, this);
-        testUtility = new TestUtility(driver);
-    }
+    testUtility = new TestUtility(driver);
+}
     @FindBy(id="customerGrid_filter_billing_country_id")
     WebElement countryField;
     @FindBy(id="customerGrid_filter_billing_region")
@@ -77,11 +76,12 @@ import static com.seleniummaster.configutility.ApplicationConfig.readFromConfigP
             searchButton.click();
         }
     }
-    public void verifyFilterByWebsite() {
-        if (driver.getPageSource().contains("www.amazon.com")) {
+    public void verifyFilterByWebsite(){
+        if(driver.getPageSource().contains("www.amazon.com")){
             System.out.println("Customer Manager Can filter by website test is Passed!");
-        } else {
+        }else {
             System.out.println("Customer Manager Can filter by website test is Faild!");
 
         }
-    }}
+    }
+}
