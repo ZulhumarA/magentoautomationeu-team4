@@ -46,16 +46,10 @@ public class CustomerModuleRunner extends TestBase {
     }
 
     @Test
-    public void customerManagerLogin() {
-        adminLoginPage.adminLogin("customerManager");
-    }
-
-    @Test
     public void ResetCustomerPassword() {
         resetCustomerPassword.EditCustomerInformation(1234567);
         Assert.assertTrue(resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
-
 
     @Test(description = "Zulhumar")
     public void addNewCustomers() {

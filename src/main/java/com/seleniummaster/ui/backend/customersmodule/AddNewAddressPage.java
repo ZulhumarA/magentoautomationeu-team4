@@ -16,7 +16,7 @@ public class AddNewAddressPage extends TestBase {
     WebElement addressLinks;
     @FindBy(xpath = "//*[span='Add New Address']")
     WebElement addNewAddressButton;
-    @FindBy(id = "//*[@class='input-text required-entry']")
+    @FindBy(id = "_item1street0")
     WebElement enterStreetAddress;
     @FindBy(id = "_item1street1")
     WebElement enterStreetAddress1;
@@ -55,7 +55,8 @@ public class AddNewAddressPage extends TestBase {
     }
 
     public void setEnterStreetAddress(String address){
-        testUtility.waitForElementPresent(enterStreetAddress);
+        //testUtility.waitForElementPresent(enterStreetAddress);
+        testUtility.sleep(3);
         enterStreetAddress.sendKeys(address);
     }
     public void setEnterStreetAddress1(String address1){
