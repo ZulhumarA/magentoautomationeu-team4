@@ -49,7 +49,7 @@ public class CustomerModuleRunner extends TestBase {
         adminLoginPage.adminLogin("customerManager");
     }
     @Test
-    public void ResetCustomerPassword() {
+    public void ResetCustomerPassword() throws InterruptedException{
         resetCustomerPassword.EditCustomerInformation(1234567);
         Assert.assertTrue(resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
@@ -57,7 +57,7 @@ public class CustomerModuleRunner extends TestBase {
     @Test(description = "Zulhumar")
     public void addNewCustomers() {
         addNewCustomerPage.addNewCustomerMethod(
-                testUtility.generateFirstName(),testUtility.
+                ApplicationConfig.readFromConfigProperties("config.properties","userName"),testUtility.
                         generateLastName(),testUtility.fakeEmail(),testUtility.generatePassword());
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
     }
