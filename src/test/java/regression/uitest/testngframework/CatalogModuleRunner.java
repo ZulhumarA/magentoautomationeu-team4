@@ -2,9 +2,6 @@ package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.catalogmodule.*;
-import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -20,6 +17,7 @@ public class CatalogModuleRunner extends TestBase {
     EditSubCategories editSubCategories;
     AddSubcategoriesPage addSubcategoriesPage;
     AddProduct addProduct;
+    EditProduct editProduct;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -35,6 +33,7 @@ public class CatalogModuleRunner extends TestBase {
         editSubCategories = new EditSubCategories(driver);
         addSubcategoriesPage = new AddSubcategoriesPage(driver);
         addProduct = new AddProduct(driver);
+        editProduct=new EditProduct(driver);
     }
 
     @Test(description = "AddAttribute-Zulhumar")
@@ -111,8 +110,15 @@ public class CatalogModuleRunner extends TestBase {
 
     @Test(description = "Arzugul")
     public void addProductsTest() {
-        addProduct.addProductInformation();
+        addProduct.addProductInformation("Team4");
         Assert.assertTrue(addProduct.verifyAddProductTest());
+
+    }
+
+    @Test(description = "Arzugul")
+    public void editProductTest(){
+
+
 
     }
 
