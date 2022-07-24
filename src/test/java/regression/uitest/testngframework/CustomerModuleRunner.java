@@ -29,7 +29,7 @@ public class CustomerModuleRunner extends TestBase {
         testUtility = new TestUtility(driver);
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
         context.setAttribute("driver", driver);
-      //  adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage = new AdminLoginPage(driver);
        // adminLoginPage.adminLogin("customerManager");
         resetCustomerPassword = new ResetCustomerPassword(driver);
         addNewCustomerPage = new AddNewCustomerPage(driver);
@@ -44,8 +44,7 @@ public class CustomerModuleRunner extends TestBase {
     }
 
     @BeforeMethod
-    public void PublicLogin(){
-        adminLoginPage=new AdminLoginPage(driver);
+    public void publicLogin(){
         adminLoginPage.adminLogin("customerManager");
     }
     @Test
@@ -57,8 +56,8 @@ public class CustomerModuleRunner extends TestBase {
     @Test(description = "Zulhumar")
     public void addNewCustomers() {
         addNewCustomerPage.addNewCustomerMethod(
-                ApplicationConfig.readFromConfigProperties("config.properties","userName"),testUtility.
-                        generateLastName(),testUtility.fakeEmail(),testUtility.generatePassword());
+                ApplicationConfig.readFromConfigProperties("config.properties","userName"),
+                testUtility.generateLastName(),testUtility.fakeEmail(),testUtility.generatePassword());
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
     }
 
@@ -137,12 +136,11 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(true);
     }
 
-
     @AfterMethod
-    public void LohOut() {
-        adminLoginPage = new AdminLoginPage(driver);
+    public void logOut() {
         adminLoginPage.adminLogout();
     }
+
     @AfterClass
     public void tearDown() {
         closeBrowser();
