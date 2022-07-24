@@ -75,7 +75,7 @@ public class AddProduct {
         testUtility.waitForElementPresent(NameLink);
         NameLink.sendKeys(ProductName);
         testUtility.waitForElementPresent(DescriptionLink);
-        DescriptionLink.sendKeys(testUtility.generateRandomSentence());
+        DescriptionLink.sendKeys(testUtility.generateRandomLetter());
         testUtility.waitForElementPresent(ShortDescriptionLink);
         ShortDescriptionLink.sendKeys(testUtility.generateRandomLetter());
         testUtility.waitForElementPresent(SKULink);
