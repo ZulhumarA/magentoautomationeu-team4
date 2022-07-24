@@ -19,6 +19,7 @@ public class CatalogModuleRunner extends TestBase {
     AddSubcategoriesPage addSubcategoriesPage;
     AddProduct addProduct;
     DeleteProduct deleteProduct;
+    EditProduct editProduct;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -35,6 +36,7 @@ public class CatalogModuleRunner extends TestBase {
         addSubcategoriesPage = new AddSubcategoriesPage(driver);
         addProduct = new AddProduct(driver);
         deleteProduct=new DeleteProduct(driver);
+        editProduct=new EditProduct(driver);
     }
 
     @Test(description = "AddAttribute-Zulhumar")
@@ -99,16 +101,22 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
     }
 
-    @Test(description = "Arzugul")
+    @Test(description = "Add product--Arzugul")
     public void addProductsTest() throws InterruptedException {
         addProduct.addProductInformation("Team4");
         Assert.assertTrue(addProduct.verifyAddProductTest());
     }
 
-    @Test(description="Arzugul")
+    @Test(description="Delete Product--Arzugul")
     public void DeleteProductTest() throws InterruptedException {
         deleteProduct.deleteAddedProduct("Team4");
         Assert.assertTrue(deleteProduct.verifyDeleteProduct());
+
+    }
+    @Test(description = "Edit Product--arzugul")
+    public void EditProductTest() throws InterruptedException {
+        editProduct.editProductInfo("Team4");
+        Assert.assertTrue(editProduct.verifyEditProductTest());
 
     }
 

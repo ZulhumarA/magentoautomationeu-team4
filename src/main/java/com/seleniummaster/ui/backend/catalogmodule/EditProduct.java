@@ -77,7 +77,7 @@ public class EditProduct extends TestBase {
 
 
     }
-    public boolean verifyAddProductTest() {
+    public boolean verifyEditProductTest() {
         testUtility.waitForElementPresent(SuccessMessage);
         return
                 SuccessMessage.isDisplayed();
