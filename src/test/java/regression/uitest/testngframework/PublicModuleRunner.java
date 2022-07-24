@@ -64,7 +64,6 @@ public class PublicModuleRunner extends TestBase {
         viewAccountInformationPage.openAccountInformation();
         Assert.assertTrue(viewAccountInformationPage.verifyAccountInformation());
         publicLoginPage.LogOutAndBackToLogInPage();
-
     }
 
     @Test(description = "Shohret")
@@ -88,7 +87,6 @@ public class PublicModuleRunner extends TestBase {
     public void createAnAccount() {
         createAnAccountPage.fillAccountRegistrationForm();
         Assert.assertTrue(createAnAccountPage.verifyCreateAnAccountSuccessful());
-
     }
 
     @Test(dataProvider = "publicChangPasswordTest", description = "a user should be able chang password", dependsOnMethods = "createAnAccount", priority = 4)

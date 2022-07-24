@@ -98,7 +98,8 @@ public class UpdateCartPage extends TestBase{
     }
 
     public boolean verifyLinenBlazerSuccessfullyAddedMessage(){
-        testUtility.waitForElementPresent(linenBlazerSuccessfullyAddedMessage);
+        //testUtility.waitForElementPresent(linenBlazerSuccessfullyAddedMessage);
+        testUtility.sleep(3);
         return linenBlazerSuccessfullyAddedMessage.isDisplayed();
     }
 

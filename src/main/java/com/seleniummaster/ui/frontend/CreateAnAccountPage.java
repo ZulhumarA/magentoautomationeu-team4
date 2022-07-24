@@ -50,8 +50,7 @@ public class CreateAnAccountPage extends TestBase {
     public CreateAnAccountPage(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver,this);
-        TestUtility testUtility=new TestUtility(driver);
-
+        testUtility=new TestUtility(driver);
     }
 
     public void makeEmailAndPassword(){
@@ -68,6 +67,7 @@ public class CreateAnAccountPage extends TestBase {
         password.sendKeys("12345678943");
         confirmPassword.sendKeys("12345678943");
         isSubscribed.click();
+        testUtility.sleep(3);
         registerButton.click();
     }
 
