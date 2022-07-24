@@ -2,18 +2,11 @@ package com.seleniummaster.configutility;
 
 import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
-import com.google.gson.Gson;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.io.Reader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Locale;
-import java.util.Map;
 
 public class TestUtility {
 
@@ -90,6 +83,11 @@ public class TestUtility {
         String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
         System.out.println(generatedString.toLowerCase());
         return generatedString.toLowerCase();
+    }
+    public String generatePassword(){
+        long length=8;
+        String generateLong= RandomStringUtils.randomNumeric((int) length);
+        return generateLong;
     }
 
       //Zulhumar's finished.

@@ -32,8 +32,7 @@ public class SeeCustomerByOrdersTotalReport extends TestBase {
     WebElement Refresh;
     @FindBy(xpath="//*[contains(text(),\"Jan 8, 2020\")]")
     WebElement ResultPeriod;
-    @FindBy(css=".link-logout")
-    WebElement logOutLink;
+
     public void OpenCustomerByOrdersTotalReportPage() throws InterruptedException {
         testUtility.waitForElementPresent(ReportsLink);
         ReportsLink.click();
