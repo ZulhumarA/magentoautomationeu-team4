@@ -3,17 +3,20 @@ package com.seleniummaster.configutility;
 import com.github.javafaker.Faker;
 import org.apache.commons.lang3.RandomStringUtils;
 import com.google.gson.Gson;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Quotes;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class TestUtility {
 
@@ -115,8 +118,16 @@ public class TestUtility {
         s.selectByIndex(index);
     }
 
-    public int generateRandomNumbers(int max, int min){
+        public int generateRandomNumbers(int max, int min){
         return ((int)(Math.random() * max) + min);
+    }
+    public String generateRandomSentence() {
+        return faker.lorem().sentence();
+    }
+
+    public int generateRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(100);
     }
 
 

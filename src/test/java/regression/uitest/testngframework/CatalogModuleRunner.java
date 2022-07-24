@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CatalogModuleRunner extends TestBase {
@@ -17,6 +18,7 @@ public class CatalogModuleRunner extends TestBase {
     EditSubCategories editSubCategories;
     AddSubcategoriesPage addSubcategoriesPage;
     AddProduct addProduct;
+    DeleteProduct deleteProduct;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -32,6 +34,7 @@ public class CatalogModuleRunner extends TestBase {
         editSubCategories = new EditSubCategories(driver);
         addSubcategoriesPage = new AddSubcategoriesPage(driver);
         addProduct = new AddProduct(driver);
+        deleteProduct=new DeleteProduct(driver);
     }
 
     @Test(description = "AddAttribute-Zulhumar")
@@ -97,15 +100,24 @@ public class CatalogModuleRunner extends TestBase {
     }
 
     @Test(description = "Arzugul")
-    public void addProductsTest() {
-        addProduct.addProductInformation();
+    public void addProductsTest() throws InterruptedException {
+        addProduct.addProductInformation("Team4-CatalogProduct");
         Assert.assertTrue(addProduct.verifyAddProductTest());
+    }
+
+    @Test(description="Arzugul")
+    public void DeleteProductTest() throws InterruptedException {
+        deleteProduct.deleteAddedProduct("Team4-CatalogProduct");
+        Assert.assertTrue(deleteProduct.verifyDeleteProduct());
 
     }
 
-    @AfterClass
-    public void tearDown() {
-        closeBrowser();
+        @AfterClass
+        public void tearDown () {
+            closeBrowser();
+        }
+
+
     }
-}
+
 
