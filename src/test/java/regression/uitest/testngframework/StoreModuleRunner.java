@@ -15,7 +15,7 @@ public class StoreModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     DeleteWebsiteInfo deleteWebsite;
     AddProductCategories addProductCategories;
-
+    CanAddProducts canAddProducts;
     CanUpdateProductPage canUpdateProductPage;
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -49,6 +49,16 @@ public class StoreModuleRunner extends TestBase {
         deleteWebsite = new DeleteWebsiteInfo(driver);
         deleteWebsite.DeleteWebsiteInformation();
         Assert.assertTrue(deleteWebsite.VerifyDeletedMassageSuccessfully());
+    }
+
+    @Test
+    public void CanAddProducts(){
+        CanAddProducts canAddProducts=new CanAddProducts(driver);
+        canAddProducts.setCatalogButton();
+        canAddProducts.setManegeProductsButton();
+        canAddProducts.addProduct();
+        Assert.assertTrue(addProductCategories.VerifySavedMassageSuccessfully());
+
     }
 
     @Test(description = "Add Product Categories-Faruk", priority = 2)
