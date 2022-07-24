@@ -101,13 +101,13 @@ public class CatalogModuleRunner extends TestBase {
 
     @Test(description = "Arzugul")
     public void addProductsTest() throws InterruptedException {
-        addProduct.addProductInformation("Team4-CatalogProduct");
+        addProduct.addProductInformation("Team4");
         Assert.assertTrue(addProduct.verifyAddProductTest());
     }
 
     @Test(description="Arzugul")
     public void DeleteProductTest() throws InterruptedException {
-        deleteProduct.deleteAddedProduct("Team4-CatalogProduct");
+        deleteProduct.deleteAddedProduct("Team4");
         Assert.assertTrue(deleteProduct.verifyDeleteProduct());
 
     }
