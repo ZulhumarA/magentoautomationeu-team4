@@ -7,9 +7,7 @@ import com.seleniummaster.configutility.TestUtility;
 import com.seleniummaster.ui.backend.customersmodule.*;
 import org.testng.Assert;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class CustomerModuleRunner extends TestBase {
     TestUtility testUtility;
@@ -31,8 +29,8 @@ public class CustomerModuleRunner extends TestBase {
         testUtility = new TestUtility(driver);
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
         context.setAttribute("driver", driver);
-        adminLoginPage = new AdminLoginPage(driver);
-        adminLoginPage.adminLogin("customerManager");
+      //  adminLoginPage = new AdminLoginPage(driver);
+       // adminLoginPage.adminLogin("customerManager");
         resetCustomerPassword = new ResetCustomerPassword(driver);
         addNewCustomerPage = new AddNewCustomerPage(driver);
         updateAnExistingCustomerPage = new UpdateAnExistingCustomerPage(driver);
@@ -45,6 +43,11 @@ public class CustomerModuleRunner extends TestBase {
         filterCustomerCountryStateAndWebsite = new FilterCustomerCountryStateAndWebsite(driver);
     }
 
+    @BeforeMethod
+    public void PublicLogin(){
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("customerManager");
+    }
     @Test
     public void ResetCustomerPassword() {
         resetCustomerPassword.EditCustomerInformation(1234567);
@@ -135,6 +138,11 @@ public class CustomerModuleRunner extends TestBase {
     }
 
 
+    @AfterMethod
+    public void LohOut() {
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogout();
+    }
     @AfterClass
     public void tearDown() {
         closeBrowser();
