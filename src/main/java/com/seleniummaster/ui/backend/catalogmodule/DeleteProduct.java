@@ -58,5 +58,4 @@ public class DeleteProduct  extends TestBase {
                 DeleteSuccessMessage.isDisplayed();
 
     }
-
 }
