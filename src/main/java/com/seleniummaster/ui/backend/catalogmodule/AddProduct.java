@@ -104,6 +104,7 @@ public class AddProduct {
 
 
 
+
 //   // public void clickAddNewProduct() {
 //            testUtility.waitForElementPresent(AddProductsLink);
 //            AddProductsLink.click();

@@ -22,13 +22,16 @@ public class DeleteProduct  extends TestBase {
     @FindBy(id ="productGrid_product_filter_name")
     WebElement FilterAddedProductLInk;
 
+    @FindBy(xpath= "//*[@id ='name']")
+    WebElement NameLink;
+
     @FindBy(xpath ="//span[text()='Delete']")
     WebElement DeleteButton;
 
-    @FindBy(xpath ="//span[text()='Search']")
+    @FindBy(css ="button[title=\"Search\"]")
     WebElement SearchButton;
 
-    @FindBy(css ="td:nth-child(3)")
+    @FindBy(css ="#productGrid_table > tbody > tr > td:nth-child(3)")
     WebElement SearchedProductLink;
 
     @FindBy(xpath = "//*[@id=\"messages\"]/ul/li/ul/li/span")
@@ -37,12 +40,17 @@ public class DeleteProduct  extends TestBase {
     public void deleteAddedProduct(String ProductName) throws InterruptedException {
         testUtility.waitForElementPresent(FilterAddedProductLInk);
         FilterAddedProductLInk.sendKeys(ProductName);
-        testUtility.waitForElementPresent(SearchButton);
+        Thread.sleep(3000);
         SearchButton.click();
+        Thread.sleep(3000);
         testUtility.waitForElementPresent(SearchedProductLink);
         SearchedProductLink.click();
+        Thread.sleep(3000);
+        testUtility.waitForElementPresent(NameLink);
+        Thread.sleep(3000);
         testUtility.waitForElementPresent(DeleteButton);
-        testUtility.waitForAlertPresent();
+        DeleteButton.click();
+        driver.switchTo().alert().accept();
     }
     public boolean verifyDeleteProduct(){
         testUtility.waitForElementPresent(DeleteSuccessMessage);
@@ -50,6 +58,5 @@ public class DeleteProduct  extends TestBase {
                 DeleteSuccessMessage.isDisplayed();
 
     }
-
 
 }
