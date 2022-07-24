@@ -59,14 +59,9 @@ public class CustomerModuleRunner extends TestBase {
 
     @Test(description = "Zulhumar")
     public void addNewCustomers() {
-        addNewCustomerPage.clickAddNewCustomer();
-        addNewCustomerPage.enterPrefixField(ApplicationConfig.readFromConfigProperties("config.properties", "prefixfield"));
-        addNewCustomerPage.enterFirstName(ApplicationConfig.readFromConfigProperties("config.properties", "userName"));
-        addNewCustomerPage.enterLastName(ApplicationConfig.readFromConfigProperties("config.properties", "lastName"));
-        addNewCustomerPage.enterEmail(ApplicationConfig.readFromConfigProperties("config.properties", "email"));
-        addNewCustomerPage.enterTaxNumber(ApplicationConfig.readFromConfigProperties("config.properties", "taxNumber"));
-        addNewCustomerPage.enterPassword(ApplicationConfig.readFromConfigProperties("config.properties", "password2"));
-        addNewCustomerPage.clickSaveButton();
+        addNewCustomerPage.addNewCustomerMethod(
+                testUtility.generateFirstName(),testUtility.
+                        generateLastName(),testUtility.fakeEmail(),testUtility.generatePassword());
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
     }
 
