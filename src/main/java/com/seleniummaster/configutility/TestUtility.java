@@ -53,7 +53,6 @@ public class TestUtility {
         String zip = faker.address().zipCode();
         return zip;
     }
-    //Zulhumar's Fakes
     public String fakeCategoryName() {
         String categoryName = faker.name().name();
         return categoryName;
@@ -89,8 +88,6 @@ public class TestUtility {
         String generateLong= RandomStringUtils.randomNumeric((int) length);
         return generateLong;
     }
-
-      //Zulhumar's finished.
 
 
     public String fakeEmail() {
