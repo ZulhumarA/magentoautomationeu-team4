@@ -39,7 +39,7 @@ public class StoreModuleRunner extends TestBase {
         Assert.assertTrue(createStoreViewPage.verifyStoreViewSuccessfullyCreated());
     }
 
-    @Test(description = "Edit Store view-Zulhumar", priority = 1, dependsOnMethods = "CreateStoreView")
+    @Test(description = "Edit Store view-Zulhumar", priority = 1)
     public void EditStoreView() {
         EditStoreViewPage editStoreViewPage = new EditStoreViewPage(driver);
         editStoreViewPage.openManageStoresPage();
