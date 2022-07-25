@@ -56,7 +56,7 @@ public class CustomerModuleRunner extends TestBase {
     @Test(description = "Zulhumar")
     public void addNewCustomers() {
         addNewCustomerPage.addNewCustomerMethod(
-                ApplicationConfig.readFromConfigProperties("config.properties","userName"),
+                ApplicationConfig.readFromConfigProperties("config.properties","customerName"),
                 testUtility.generateLastName(),testUtility.fakeEmail(),testUtility.generatePassword());
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
     }

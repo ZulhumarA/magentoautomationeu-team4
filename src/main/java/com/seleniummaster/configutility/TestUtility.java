@@ -55,7 +55,6 @@ public class TestUtility {
         String zip = faker.address().zipCode();
         return zip;
     }
-    //Zulhumar's Fakes
     public String fakeCategoryName() {
         String categoryName = faker.name().name();
         return categoryName;
@@ -92,8 +91,6 @@ public class TestUtility {
         return generateLong;
     }
 
-      //Zulhumar's finished.
-
 
     public String fakeEmail() {
         String email = faker.internet().emailAddress();
@@ -119,10 +116,17 @@ public class TestUtility {
         return ((int)(Math.random() * max) + min);
     }
 
+    public String generateRandomSentence() {
+        return faker.lorem().sentence();
+    }
+
+
     public int generateRandomNumber() {
         Random random = new Random();
         return random.nextInt(100);
+
     }
+
 
     public void sleep(int second){
         try {
