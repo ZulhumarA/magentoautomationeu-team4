@@ -13,6 +13,7 @@ import org.junit.runner.RunWith;
                   "junit:target/cucumber-results.xml"
                  },
         features = {"src/test/resources"},
+        glue = "uitest",
         tags ="@ReportingProductsTest")
 
 public class CucumberTestRunner {
