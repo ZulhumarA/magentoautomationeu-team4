@@ -43,7 +43,8 @@ WebElement StatusField;
 public void fillOutStoreViewInformation() throws InterruptedException {
         Thread.sleep(3000);
        // testUtility.waitForElementPresent(StoreName);
-        StoreName.sendKeys("Zulhumaraman");
+        StoreName.sendKeys(ApplicationConfig.readFromConfigProperties(
+                "config.properties","storeName"));
         testUtility.waitForElementPresent(StoreID);
         StoreID.sendKeys(testUtility.generateRandomLetter());
         testUtility.waitForElementPresent(StatusField);
