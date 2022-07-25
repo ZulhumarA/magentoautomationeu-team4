@@ -2,13 +2,11 @@ package regression.uitest.testngframework;
 
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.catalogmodule.*;
-import com.seleniummaster.ui.backend.customersmodule.AddNewCustomerPage;
-import org.apache.xmlbeans.impl.xb.xsdschema.Public;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CatalogModuleRunner extends TestBase {
@@ -20,6 +18,9 @@ public class CatalogModuleRunner extends TestBase {
     EditSubCategories editSubCategories;
     AddSubcategoriesPage addSubcategoriesPage;
     AddProduct addProduct;
+    DeleteProduct deleteProduct;
+    EditProduct editProduct;
+
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -35,6 +36,8 @@ public class CatalogModuleRunner extends TestBase {
         editSubCategories = new EditSubCategories(driver);
         addSubcategoriesPage = new AddSubcategoriesPage(driver);
         addProduct = new AddProduct(driver);
+        deleteProduct=new DeleteProduct(driver);
+        editProduct=new EditProduct(driver);
     }
 
     @Test(description = "AddAttribute-Zulhumar")
@@ -99,26 +102,31 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
     }
 
-    @Test(description = "ViewCategories--Zulpikar")
-    public void ViewCategories(){
-        ViewCategoriesPage viewCategoriesPage=new ViewCategoriesPage(driver);
-        viewCategoriesPage.ViewCategories();
-        viewCategoriesPage.ClickOnDefaultCategory();
-        Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
-    }
-
-
-
-    @Test(description = "Arzugul")
-    public void addProductsTest() {
-        addProduct.addProductInformation();
+    @Test(description = "Add product--Arzugul")
+    public void addProductsTest() throws InterruptedException {
+        addProduct.addProductInformation("Team4");
         Assert.assertTrue(addProduct.verifyAddProductTest());
+    }
+
+    @Test(description="Delete Product--Arzugul")
+    public void DeleteProductTest() throws InterruptedException {
+        deleteProduct.deleteAddedProduct("Team4");
+        Assert.assertTrue(deleteProduct.verifyDeleteProduct());
+
+    }
+    @Test(description = "Edit Product--arzugul")
+    public void EditProductTest() throws InterruptedException {
+        editProduct.editProductInfo("Team4");
+        Assert.assertTrue(editProduct.verifyEditProductTest());
+    }
+
+        @AfterClass
+        public void tearDown () {
+            closeBrowser();
+        }
+
 
     }
 
-    @AfterClass
-    public void tearDown() {
-        closeBrowser();
-    }
-}
+
 

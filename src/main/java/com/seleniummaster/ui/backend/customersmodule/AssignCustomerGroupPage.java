@@ -71,7 +71,7 @@ public class AssignCustomerGroupPage {
         testUtility.waitForElementPresent(addNewCustomerButton);
         addNewCustomerButton.click();
         testUtility.selectValueFromDropDown(associateWebsiteField,"1");
-        testUtility.selectValueFromDropDown(groupField,"8");
+        testUtility.selectValueFromDropDown(groupField,"1");
         firstNameField.sendKeys("Team4Test "+testUtility.generateFirstName());
         lastNameField.sendKeys("Team4Test "+testUtility.generateLastName());
         emailField.sendKeys("Team4Test"+testUtility.fakeEmail());

@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Random;
+
 public class TestUtility {
 
     private WebDriver driver;
@@ -114,6 +116,16 @@ public class TestUtility {
         return ((int)(Math.random() * max) + min);
     }
 
+    public String generateRandomSentence() {
+        return faker.lorem().sentence();
+    }
+
+
+    public int generateRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(100);
+
+    }
 
 
     public void sleep(int second){

@@ -140,7 +140,7 @@ public class CustomerModuleRunner extends TestBase {
     public void logOut() {
         adminLoginPage.adminLogout();
     }
-
+    
     @AfterClass
     public void tearDown() {
         closeBrowser();
