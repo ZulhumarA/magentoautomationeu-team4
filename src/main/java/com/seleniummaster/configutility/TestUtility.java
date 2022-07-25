@@ -119,10 +119,17 @@ public class TestUtility {
         return ((int)(Math.random() * max) + min);
     }
 
+    public String generateRandomSentence() {
+        return faker.lorem().sentence();
+    }
+
+
     public int generateRandomNumber() {
         Random random = new Random();
         return random.nextInt(100);
+
     }
+
 
     public void sleep(int second){
         try {

@@ -98,7 +98,9 @@ public class AddProduct {
         testUtility.waitForElementPresent(SuccessMessage);
         return
                 SuccessMessage.isDisplayed();
+
     }
+
 
 
 
