@@ -57,7 +57,7 @@ public class StoreModuleRunner extends TestBase {
         canAddProducts.setCatalogButton();
         canAddProducts.setManegeProductsButton();
         canAddProducts.addProduct();
-        Assert.assertTrue(addProductCategories.VerifySavedMassageSuccessfully());
+        Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
 
     }
 

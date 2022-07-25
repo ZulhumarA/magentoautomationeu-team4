@@ -4,6 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
+import com.seleniummaster.ui.backend.storemodule.CanAddProducts;
 import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
 import com.seleniummaster.ui.backend.storemodule.EditStoreViewPage;
 import io.cucumber.java.After;
@@ -16,6 +17,7 @@ import org.testng.Assert;
 public class StoreModuleSteps extends TestBase {
     CreateStoreViewPage createStoreViewPage;
     EditStoreViewPage editStoreViewPage;
+    CanAddProducts canAddProducts;
     String configFile="config.properties";
     AdminLoginPage adminLoginPage;
     @Before("@ManageStoreTest")
@@ -63,6 +65,25 @@ public class StoreModuleSteps extends TestBase {
         Assert.assertTrue(editStoreViewPage.verifyStoreViewSuccessfullyUpdated());
     }
 
+
+//Kadirya
+@When("store manager should be able to add product")
+   public void store_manager_should_be_able_to_add_product() {
+    CanAddProducts canAddProducts=new CanAddProducts(driver);
+    canAddProducts.setCatalogButton();
+    canAddProducts.setManegeProductsButton();
+    canAddProducts.addProduct();
+}
+    @Then("a new product should be added")
+    public void a_new_product_should_be_added() {
+        CanAddProducts canAddProducts=new CanAddProducts(driver);
+        Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
+    }
+
+
+
+
+
     @After("@ManageStoreTest")
     public void tearDown()
     {
@@ -70,4 +91,3 @@ public class StoreModuleSteps extends TestBase {
     }
 
 }
-
