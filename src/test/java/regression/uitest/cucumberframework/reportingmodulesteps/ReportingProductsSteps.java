@@ -6,6 +6,7 @@ import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.reportingmodule.ProductsLowStockReportPage;
 import com.seleniummaster.ui.backend.reportingmodule.ProductsMostViewedReportPage;
 import com.seleniummaster.ui.backend.reportingmodule.ProductsOrderedReportPage;
+import com.seleniummaster.ui.backend.reportingmodule.SeeCustomersNewAccountReport;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -20,7 +21,7 @@ public class ReportingProductsSteps extends TestBase {
     ProductsMostViewedReportPage productsMostViewedReportPage;
     ProductsLowStockReportPage productsLowStockReportPage;
     String configFile="config.properties";
-
+SeeCustomersNewAccountReport seeCustomersNewAccountReport;
     @Before("@ReportingProductsTest")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
@@ -36,6 +37,7 @@ public class ReportingProductsSteps extends TestBase {
         productsOrderedReportPage=new ProductsOrderedReportPage(driver);
         productsMostViewedReportPage=new ProductsMostViewedReportPage(driver);
         productsLowStockReportPage=new ProductsLowStockReportPage(driver);
+        seeCustomersNewAccountReport=new SeeCustomersNewAccountReport(driver);
     }
 
     // products ordered report test case (Gvlmihre)
@@ -70,6 +72,26 @@ public class ReportingProductsSteps extends TestBase {
     public void productsLowStockReportShouldBeDisplayed() {
         productsLowStockReportPage.verifyProductsLowStockReportDisplayed();
     }
+
+
+    //opens the Customers New Account Report-Zulhumar
+    @When("reporting manager opens the Customers New Account Report")
+    public void reportingManagerOpensTheCustomersNewAccountReport() throws InterruptedException {
+       seeCustomersNewAccountReport.OpenCustomersNewAccountReportPage();
+       seeCustomersNewAccountReport.ShowNewAccountReportMethod(ApplicationConfig.readFromConfigProperties(
+                       "config.properties","startDate"),
+               ApplicationConfig.readFromConfigProperties(
+                       "config.properties","endDate"));
+
+    }
+
+    @Then("Customers New Account Report should be displayed")
+    public void customersNewAccountReportShouldBeDisplayed() {
+
+        Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
+    }
+
+
 
     @After("@ReportingProductsTest")
     public void tearDown(){

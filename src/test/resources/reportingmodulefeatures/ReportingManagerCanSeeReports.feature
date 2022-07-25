@@ -1,5 +1,5 @@
 @ReportingProductsTest
-Feature: Reporting manager can view products related reports
+Feature: Reporting manager can view related reports
 
   @ViewProductsOrderedReport
   Scenario: reporting manager can view Products Ordered Report
@@ -19,3 +19,8 @@ Feature: Reporting manager can view products related reports
     When reporting manager opens the products low stock report
     Then products low stock report should be displayed
 
+  @ViewCustomersNewAccountReport
+  Scenario: reporting manager can view Customers New Account Report
+    Given reporting manager on the dashboard page
+    When reporting manager opens the Customers New Account Report
+    Then Customers New Account Report should be displayed
