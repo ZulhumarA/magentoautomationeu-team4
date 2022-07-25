@@ -40,7 +40,7 @@ public class AdminLoginPage extends TestBase {
      }
 
      public boolean verifyAdminLoginSuccessfully(){
-          testUtility.waitForElementPresent(managerSuccessfullyLoggedInField);
+          testUtility.waitForElementPresent( managerSuccessfullyLoggedInField);
           return (managerSuccessfullyLoggedInField.isDisplayed());
      }
 

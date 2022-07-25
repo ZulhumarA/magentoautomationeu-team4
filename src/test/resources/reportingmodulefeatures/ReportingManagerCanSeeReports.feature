@@ -1,4 +1,4 @@
-@ReportingProductsTest
+@ReportingModuleTests
 Feature: Reporting manager can view related reports
 
   @ViewProductsOrderedReport
@@ -24,3 +24,10 @@ Feature: Reporting manager can view related reports
     Given reporting manager on the dashboard page
     When reporting manager opens the Customers New Account Report
     Then Customers New Account Report should be displayed
+
+
+  @ViewCustomersByOrdersTotalReport
+  Scenario: reporting manager can view Customers By Orders Total Report
+    Given reporting manager on the dashboard page
+    When reporting manager opens the Customers By Ordes Total Report
+    Then Customers By Orders Total Report should be displayed
