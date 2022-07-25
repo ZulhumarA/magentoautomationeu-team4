@@ -83,9 +83,5 @@ public class EditProduct extends TestBase {
                 SuccessMessage.isDisplayed();
     }
 
-
-
-
-
 }
 

@@ -117,7 +117,6 @@ public class CatalogModuleRunner extends TestBase {
     public void EditProductTest() throws InterruptedException {
         editProduct.editProductInfo("Team4");
         Assert.assertTrue(editProduct.verifyEditProductTest());
-
     }
 
         @AfterClass
