@@ -24,6 +24,7 @@ public class StoreModuleSteps extends TestBase {
                 (configFile,"backEndURL"));
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("storeManager");
+
     }
 
 //Store Manager can create a store view Zulhumar
@@ -31,15 +32,12 @@ public class StoreModuleSteps extends TestBase {
     public void storeManagerOnTheDashboardPage() {
        adminLoginPage=new AdminLoginPage(driver);
         Assert.assertTrue(adminLoginPage.verifyAdminLoginSuccessfully());
-        CreateStoreViewPage createStoreViewPage=new CreateStoreViewPage(driver);
-        EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
+
     }
-
-
 
     @When("store manager create a new store view")
     public void storeManagerCreateANewStoreView() throws InterruptedException {
-        createStoreViewPage=new CreateStoreViewPage(driver);
+       createStoreViewPage= new CreateStoreViewPage(driver);
         createStoreViewPage.openManageStoresPage();
       createStoreViewPage.fillOutStoreViewInformation();
 
@@ -48,20 +46,23 @@ public class StoreModuleSteps extends TestBase {
 
     @Then("successfully created message should be displayed")
     public void successfullyCreatedMessageShouldBeDisplayed() {
+        editStoreViewPage=new EditStoreViewPage(driver);
         createStoreViewPage.verifyStoreViewSuccessfullyCreated();
 
     }
     //Store Manager can edit a store view zulhumar
     @When("store manager edit a store view")
     public void storeManagerEditAStoreView() {
+       EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
         editStoreViewPage.openManageStoresPage();
         editStoreViewPage.editStoreViewMethod();
     }
-
     @Then("successfully edited message should be displayed")
     public void successfullyEditedMessageShouldBeDisplayed() {
-       editStoreViewPage.verifyStoreViewSuccessfullyUpdated();
+      EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
+        Assert.assertTrue(editStoreViewPage.verifyStoreViewSuccessfullyUpdated());
     }
+
     @After("@ManageStoreTest")
     public void tearDown()
     {

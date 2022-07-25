@@ -13,9 +13,9 @@ Feature: Store manager can manage stores
 
 
 
-  #store manager should be able to edit a store view-Zulhumar
-#  @EditStoreView
-#  Scenario: store manager can edit a store view
-#    Given store manager on the dashboard page
-#    When store manager edit a store view
-#    Then successfully edited message should be displayed
+ # store manager should be able to edit a store view-Zulhumar
+  @EditStoreView
+  Scenario: store manager can edit a store view
+    Given store manager on the dashboard page
+    When store manager edit a store view
+    Then successfully edited message should be displayed
