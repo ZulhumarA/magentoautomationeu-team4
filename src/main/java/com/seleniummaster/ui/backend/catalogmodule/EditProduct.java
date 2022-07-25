@@ -7,7 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class EditProduct extends TestBase {
+public class
+EditProduct extends TestBase {
     TestUtility testUtility;
     WebDriver driver;
 

@@ -21,6 +21,7 @@ public class CatalogModuleRunner extends TestBase {
     DeleteProduct deleteProduct;
     EditProduct editProduct;
 
+
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);

@@ -123,9 +123,11 @@ public class TestUtility {
         return faker.lorem().sentence();
     }
 
+
     public int generateRandomNumber() {
         Random random = new Random();
         return random.nextInt(100);
+
     }
 
 
