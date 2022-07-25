@@ -61,6 +61,10 @@ public class StoreModuleRunner extends TestBase {
 
     }
 
+
+
+
+
     @Test(description = "Add Product Categories-Faruk", priority = 2)
     public void AddProductCategories() {
         addProductCategories.setCatalogButton();
