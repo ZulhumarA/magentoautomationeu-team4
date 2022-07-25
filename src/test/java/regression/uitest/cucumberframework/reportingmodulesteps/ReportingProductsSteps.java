@@ -3,10 +3,7 @@ package regression.uitest.cucumberframework.reportingmodulesteps;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
-import com.seleniummaster.ui.backend.reportingmodule.ProductsLowStockReportPage;
-import com.seleniummaster.ui.backend.reportingmodule.ProductsMostViewedReportPage;
-import com.seleniummaster.ui.backend.reportingmodule.ProductsOrderedReportPage;
-import com.seleniummaster.ui.backend.reportingmodule.SeeCustomersNewAccountReport;
+import com.seleniummaster.ui.backend.reportingmodule.*;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -22,7 +19,9 @@ public class ReportingProductsSteps extends TestBase {
     ProductsLowStockReportPage productsLowStockReportPage;
     String configFile="config.properties";
 SeeCustomersNewAccountReport seeCustomersNewAccountReport;
-    @Before("@ReportingProductsTest")
+SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
+
+    @Before("@ReportingModuleTests")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
@@ -38,6 +37,7 @@ SeeCustomersNewAccountReport seeCustomersNewAccountReport;
         productsMostViewedReportPage=new ProductsMostViewedReportPage(driver);
         productsLowStockReportPage=new ProductsLowStockReportPage(driver);
         seeCustomersNewAccountReport=new SeeCustomersNewAccountReport(driver);
+        seeCustomerByOrdersTotalReport=new SeeCustomerByOrdersTotalReport(driver);
     }
 
     // products ordered report test case (Gvlmihre)
@@ -87,14 +87,29 @@ SeeCustomersNewAccountReport seeCustomersNewAccountReport;
 
     @Then("Customers New Account Report should be displayed")
     public void customersNewAccountReportShouldBeDisplayed() {
-
         Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
     }
 
+//opens the Customers By Ordered Total Report-Zulhumar
+    @When("reporting manager opens the Customers By Ordes Total Report")
+    public void reportingManagerOpensTheCustomersByOrdersTotalReport() throws InterruptedException {
 
-
-    @After("@ReportingProductsTest")
-    public void tearDown(){
-        closeBrowser();
+        seeCustomerByOrdersTotalReport.OpenCustomerByOrdersTotalReportPage();
+        seeCustomerByOrdersTotalReport.ShowCustomersByOrdersTotalReportMethod(ApplicationConfig.readFromConfigProperties(
+                        "config.properties","startDate1"),
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties","endDate1"));
     }
+
+    @Then("Customers By Orders Total Report should be displayed")
+    public void customersByOrdersTotalReportShouldBeDisplayed() {
+        Assert.assertTrue(seeCustomerByOrdersTotalReport.verifyReportsDisplayed());
+    }
+
+
+
+   @After("@ReportingModuleTests")
+   public void tearDown(){
+        closeBrowser();
+   }
 }
