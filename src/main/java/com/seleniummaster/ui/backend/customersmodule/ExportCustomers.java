@@ -30,5 +30,10 @@ public class ExportCustomers {
         ExportButton.click();
     }
 
-
+    public boolean verifyExportCustomer() {
+        if (ExportButton.isEnabled()) {
+            return true;
+        } else
+            return false;
+    }
 }

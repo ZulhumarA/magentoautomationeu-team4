@@ -115,7 +115,7 @@ public class CustomerModuleRunner extends TestBase {
 
     @Test(description = "Ramile")
     public void ExportCustomers() {
-        exportCustomers.ClikExport();
+        exportCustomers.ClikExport(); exportCustomers.verifyExportCustomer();
     }
 
 
