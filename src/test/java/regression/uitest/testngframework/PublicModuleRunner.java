@@ -24,7 +24,7 @@ public class PublicModuleRunner extends TestBase {
     SeeMyProductReviewsLinkAndContents seeMyProductReviewsLinkAndContents;
     CreateAnAccountPage createAnAccountPage;
     ChangPasswordPage changPasswordPage;
-    TestUtility testUtility;
+
 
 
     @BeforeClass

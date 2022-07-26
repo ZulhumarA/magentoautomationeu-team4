@@ -18,16 +18,28 @@ public class StoreModuleSteps extends TestBase {
     CreateStoreViewPage createStoreViewPage;
     EditStoreViewPage editStoreViewPage;
     CanAddProducts canAddProducts;
-    String configFile="config.properties";
+    String configFile = "config.properties";
     AdminLoginPage adminLoginPage;
-    @Before("@ManageStoreTest")
-    public void setUp() {
+
+    @Given("user Already on the login page")
+    public void userAlreadyOnTheLoginPage() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
-        adminLoginPage=new AdminLoginPage(driver);
-        adminLoginPage.adminLogin("storeManager");
-
     }
+
+    @When("user enter valid userName  and valid Password and click on login Button")
+    public void userEnterValidUserNameAndValidPasswordAndClickOnLoginButton() {
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("storeManager");}
+
+
+    @Then("user should able to login successfully")
+    public void userShouldAbleToLoginSuccessfully() {
+        adminLoginPage=new AdminLoginPage(driver);
+        Assert.assertTrue(adminLoginPage.verifyAdminLoginSuccessfully());
+    }
+
+
 
 //Store Manager can create a store view Zulhumar
     @Given("store manager on the dashboard page")
@@ -79,10 +91,6 @@ public class StoreModuleSteps extends TestBase {
         CanAddProducts canAddProducts=new CanAddProducts(driver);
         Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
     }
-
-
-
-
 
     @After("@ManageStoreTest")
     public void tearDown()
