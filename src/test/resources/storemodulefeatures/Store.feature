@@ -16,6 +16,9 @@ Background:
     Examples: :
   | StoreName             | StoreID |    |StatusField|
   | Zulhumaraman          | aqswde  |    | Enabled |
+
+
+
  # store manager should be able to edit a store view-Zulhumar
   @EditStoreView
   Scenario: store manager can edit a store view
