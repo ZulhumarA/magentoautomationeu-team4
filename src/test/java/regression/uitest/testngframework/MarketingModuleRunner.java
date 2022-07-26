@@ -23,6 +23,8 @@ public class MarketingModuleRunner extends TestBase {
     UpdateCartPriceRule updateCartPriceRule;
     AddNewCatalogPriceRule addNewCatalogPriceRule;
 
+    AddNewCartPriceRuleAbide addNewCartPriceRuleAbide;
+    DeleteNewsletterTemplatesPageAbide deleteNewsletterTemplatesPageAbide;
 
 
     @BeforeClass
@@ -101,11 +103,26 @@ public class MarketingModuleRunner extends TestBase {
 
     }
 
+    @Test(description = "delete newsletter template page--Abide")
+    public void deleteNewsletterTemplatesAbide(){
+        deleteNewsletterTemplatesPageAbide=new DeleteNewsletterTemplatesPageAbide(driver);
+        deleteNewsletterTemplatesPageAbide.deleteNewsletterTemplates();
+        Assert.assertTrue(deleteNewsletterTemplatesPageAbide.deleteNewsLetterTemplateSuccessfully());
+    }
+
+
 //    @AfterMethod
 //    public void logout(){
 //        adminLoginPage = new AdminLoginPage(driver);
 //        adminLoginPage.adminLogout();
 //    }
+
+    @Test(description = "add new cart price rule--Abide")
+    public void AddNewCartPriceRuleAbide(){
+        addNewCartPriceRuleAbide=new AddNewCartPriceRuleAbide(driver);
+        addNewCartPriceRuleAbide.addNewCartPriceRuleMethod();
+        Assert.assertTrue(addNewCartPriceRuleAbide.verifyCartPriceRulesAddedSuccessfully());
+    }
     @AfterClass
     public void tearDown() {
         closeBrowser();

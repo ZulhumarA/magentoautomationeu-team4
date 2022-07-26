@@ -40,14 +40,14 @@ public class CatalogModuleRunner extends TestBase {
         editProduct=new EditProduct(driver);
     }
 
-    @Test(description = "AddAttribute-Zulhumar")
+    @Test(description = "Zulhumar")
     public void addNewAttributes() {
         addAttributeUnderCatalogPage = new AddAttributeUnderCatalogPage(driver);
         addAttributeUnderCatalogPage.addNewAttributeMethod();
         Assert.assertTrue(addAttributeUnderCatalogPage.verifyAttributeAddedSuccessfully());
     }
 
-    @Test(description = "AddRootCategory-Zulhumar")
+    @Test(description = "Zulhumar")
     public void addNewRootCategories() throws InterruptedException {
         AddRootCategoriesZulhumar addRootCategoriesZulhumar = new AddRootCategoriesZulhumar(driver);
         addRootCategoriesZulhumar.openAddNewRootCategoryPage();
@@ -55,7 +55,7 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(addRootCategoriesZulhumar.verifyAddRootCategories());
     }
 
-    @Test(description = "Edit-Zulhumar")
+    @Test(description = "Zulhumar")
     public void editRootCategory() throws InterruptedException {
         EditRootCategories editRootCategories = new EditRootCategories(driver);
         editRootCategories.openCategoriesPage();
@@ -63,25 +63,12 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(editRootCategories.verifyEditRootCategories());
     }
 
-    @Test(description = "Edit-Zulhumar")
+    @Test(description = "Zulhumar")
     public void deleteRootCategory() {
         DeleteRootCategories deleteRootCategories = new DeleteRootCategories(driver);
         deleteRootCategories.openCategoriesPage();
         deleteRootCategories.deleteRootCategory();
         deleteRootCategories.verifyDeleteRootCategory();
-    }
-
-    @Test
-    public void AddRootCategories() {
-        AddRootCategories addRootCategories = new AddRootCategories(driver);
-        addRootCategories.NewRootCategoryInformation("Car");
-        Assert.assertTrue(addRootCategories.VerifyAddRootCategoriesSuccessfully());
-    }
-
-    @Test(description = "Ramile")
-    public void DeleteSubCategories() {
-        deleteSubCategories.SubCategoryDelete();
-        Assert.assertTrue(deleteSubCategories.verifyDeleteSubCategorySuccessful());
     }
 
     @Test(description = "Ramile")
@@ -96,36 +83,42 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(editSubCategories.verifyEditSubCategorySuccessful());
     }
 
-    @Test(description = "add subcategories page--Abide")
-    public void addSubcategories() {
-        addSubcategoriesPage.addSubcategories();
-        Assert.assertTrue(addSubcategoriesPage.verifySubcategoriesAddedSuccessfully());
+    @Test(description = "Ramile")
+    public void DeleteSubCategories() {
+        deleteSubCategories.SubCategoryDelete();
+        Assert.assertTrue(deleteSubCategories.verifyDeleteSubCategorySuccessful());
     }
 
-    @Test(description = "Add product--Arzugul")
+    @Test(description = "Arzugul")
     public void addProductsTest() throws InterruptedException {
         addProduct.addProductInformation("Team4");
         Assert.assertTrue(addProduct.verifyAddProductTest());
     }
 
-    @Test(description="Delete Product--Arzugul")
-    public void DeleteProductTest() throws InterruptedException {
-        deleteProduct.deleteAddedProduct("Team4");
-        Assert.assertTrue(deleteProduct.verifyDeleteProduct());
-
-    }
-    @Test(description = "Edit Product--arzugul")
+    @Test(description = "arzugul")
     public void EditProductTest() throws InterruptedException {
         editProduct.editProductInfo("Team4");
         Assert.assertTrue(editProduct.verifyEditProductTest());
     }
 
-        @AfterClass
-        public void tearDown () {
+    @Test(description="Arzugul")
+    public void DeleteProductTest() throws InterruptedException {
+        deleteProduct.deleteAddedProduct("Team4");
+        Assert.assertTrue(deleteProduct.verifyDeleteProduct());
+    }
+
+    @Test(description = "Zulpikar")
+    public void ViewCategories(){
+        ViewCategoriesPage viewCategoriesPage=new ViewCategoriesPage(driver);
+        viewCategoriesPage.ViewCategories();
+        viewCategoriesPage.ClickOnDefaultCategory();
+        Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
+    }
+
+    @AfterClass
+    public void tearDown () {
             closeBrowser();
         }
-
-
     }
 
 
