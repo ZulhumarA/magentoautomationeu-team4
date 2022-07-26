@@ -18,7 +18,6 @@ public class StoreModuleRunner extends TestBase {
     CanAddProducts canAddProducts;
     CanUpdateProductPage canUpdateProductPage;
     CancelOrdersPage cancelOrdersPage;
-
     StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -109,6 +108,18 @@ public class StoreModuleRunner extends TestBase {
     cancelOrdersPage.cancelOrders();
     Assert.assertTrue(cancelOrdersPage.verifyCancelOrdersSuccessfully());
     }
+
+
+    @Test(description = "Kadirya")
+    public void StoreManagerCanUpdateProduct(){
+        storeManagerCanUpdateProduct=new StoreManagerCanUpdateProduct(driver);
+        storeManagerCanUpdateProduct.setCatalogButton();
+        storeManagerCanUpdateProduct.setManegeProductsButton();
+        storeManagerCanUpdateProduct.UpdateProduct();
+        Assert.assertTrue(storeManagerCanUpdateProduct.VerifySavedMassageSuccessfully());
+
+    }
+
 
     @AfterClass
     public void tearDown() {

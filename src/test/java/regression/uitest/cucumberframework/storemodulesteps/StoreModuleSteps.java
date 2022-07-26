@@ -22,10 +22,19 @@ public class StoreModuleSteps extends TestBase {
     String configFile="config.properties";
     CanAddProducts canAddProducts;
     AdminLoginPage adminLoginPage;
+
     @Before("@ManageStoreTest")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("storeManager");
+    }
+
+    @After("@ManageStoreTest")
+    public void tearDown()
+    {
+        closeBrowser();
     }
 
     @When("user enter valid userName  and valid Password and click on login Button")
@@ -78,7 +87,8 @@ public class StoreModuleSteps extends TestBase {
     }
 
 
-//Kadirya
+//CanAddProducts--Kadirya
+
 @When("store manager should be able to add product")
    public void store_manager_should_be_able_to_add_product() {
     CanAddProducts canAddProducts=new CanAddProducts(driver);
@@ -92,11 +102,23 @@ public class StoreModuleSteps extends TestBase {
         Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
     }
 
-    @After("@ManageStoreTest")
-    public void tearDown()
-    {
-        closeBrowser();
+
+   //StoreManagerCanUpdateProduct--Kadirya
+
+    @When("store manager should be able to update product")
+    public void store_manager_should_be_able_to_update_product() {
+        storeManagerCanUpdateProduct = new StoreManagerCanUpdateProduct(driver);
+        storeManagerCanUpdateProduct.setCatalogButton();
+        storeManagerCanUpdateProduct.setManegeProductsButton();
+        storeManagerCanUpdateProduct.UpdateProduct();
     }
 
-}
+    @Then("a new product should be updated")
+    public void a_new_product_should_be_updated() {
+        storeManagerCanUpdateProduct=new StoreManagerCanUpdateProduct(driver);
+        Assert.assertTrue(storeManagerCanUpdateProduct.VerifySavedMassageSuccessfully());
 
+    }
+
+
+}
