@@ -19,93 +19,108 @@ public class ReportingModuleRunner extends TestBase {
     ProductsOrderedReportPage productsOrderedReportPage;
     ProductsMostViewedReportPage productsMostViewedReportPage;
     ProductsLowStockReportPage productsLowStockReportPage;
+    SeeProductsCartsReportPage seeProductsCartsReportPage;
 
     @BeforeClass
-    public void setUp(ITestContext context){
-        browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties","backEndURL"));
-        context.setAttribute("driver",driver);
+    public void setUp(ITestContext context) {
+        browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
+        context.setAttribute("driver", driver);
     }
-@Test(description = "Zulhumar")
-public void SeeCustomerNewAccountReport()throws InterruptedException{
-    adminLoginPage=new AdminLoginPage(driver);
-    adminLoginPage.adminLogin("reportingManager");
-    SeeCustomersNewAccountReport seeCustomersNewAccountReport=new SeeCustomersNewAccountReport(driver);
-    seeCustomersNewAccountReport.OpenCustomersNewAccountReportPage();
-    seeCustomersNewAccountReport.ShowNewAccountReportMethod(
-            ApplicationConfig.readFromConfigProperties(
-                   "config.properties","startDate"),
-          ApplicationConfig.readFromConfigProperties(
-                   "config.properties","endDate"));
-    Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
-                 }
 
     @Test(description = "Zulhumar")
-    public void SeeCustomerByOrderTotalReport () throws InterruptedException{
-        adminLoginPage=new AdminLoginPage(driver);
+    public void SeeCustomerNewAccountReport() throws InterruptedException {
+        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
-        SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport=new SeeCustomerByOrdersTotalReport(driver);
-        seeCustomerByOrdersTotalReport.OpenCustomerByOrdersTotalReportPage();
-        seeCustomerByOrdersTotalReport.ShowCustomersByOrdersTotalReportMethod(   ApplicationConfig.readFromConfigProperties(
-                        "config.properties","startDate1"),
+        SeeCustomersNewAccountReport seeCustomersNewAccountReport = new SeeCustomersNewAccountReport(driver);
+        seeCustomersNewAccountReport.OpenCustomersNewAccountReportPage();
+        seeCustomersNewAccountReport.ShowNewAccountReportMethod(
                 ApplicationConfig.readFromConfigProperties(
-                        "config.properties","endDate1"));
+                        "config.properties", "startDate"),
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "endDate"));
+        Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
+    }
+
+    @Test(description = "Zulhumar")
+    public void SeeCustomerByOrderTotalReport() throws InterruptedException {
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport = new SeeCustomerByOrdersTotalReport(driver);
+        seeCustomerByOrdersTotalReport.OpenCustomerByOrdersTotalReportPage();
+        seeCustomerByOrdersTotalReport.ShowCustomersByOrdersTotalReportMethod(ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "startDate1"),
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "endDate1"));
         Assert.assertTrue(seeCustomerByOrdersTotalReport.verifyReportsDisplayed());
     }
+
     @Test(description = "Zulhumar")
-    public void SeeCustomerByNumberOfOrder ()throws InterruptedException{
-        adminLoginPage=new AdminLoginPage(driver);
+    public void SeeCustomerByNumberOfOrder() throws InterruptedException {
+        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
-        SeeCustomerByNumberOfOrders seeCustomerByNumberOfOrders=new SeeCustomerByNumberOfOrders(driver);
+        SeeCustomerByNumberOfOrders seeCustomerByNumberOfOrders = new SeeCustomerByNumberOfOrders(driver);
         seeCustomerByNumberOfOrders.OpenCustomerByNumberOfOrdersPage();
         seeCustomerByNumberOfOrders.ShowCustomersByNumberOfOrdersReportMethod(
- ApplicationConfig.readFromConfigProperties(
-                                "config.properties","startDate2"),
-                        ApplicationConfig.readFromConfigProperties(
-                                "config.properties","endDate2"));
-Assert.assertTrue(seeCustomerByNumberOfOrders.verifyReportsDisplayed());
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "startDate2"),
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "endDate2"));
+        Assert.assertTrue(seeCustomerByNumberOfOrders.verifyReportsDisplayed());
 
 
     }
 
     @Test(description = "Gvlmihre")
-    public void viewProductsOrderedReportMethod(){
-        adminLoginPage=new AdminLoginPage(driver);
+    public void viewProductsOrderedReportMethod() {
+        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
-        productsOrderedReportPage=new ProductsOrderedReportPage(driver);
-        productsOrderedReportPage.viewProductsOrderedReport("01/01/2020","01/01/2022");
+        productsOrderedReportPage = new ProductsOrderedReportPage(driver);
+        productsOrderedReportPage.viewProductsOrderedReport("01/01/2020", "01/01/2022");
         Assert.assertTrue(productsOrderedReportPage.verifyProductsOrderedReportDisplayed());
     }
 
     @Test(description = "Gvlmihre")
-    public void viewProductsMostViewedReportMethod(){
-        adminLoginPage=new AdminLoginPage(driver);
+    public void viewProductsMostViewedReportMethod() {
+        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
-        productsMostViewedReportPage=new ProductsMostViewedReportPage(driver);
-        productsMostViewedReportPage.viewProductsMostViewedReport("1/1/2020","1/1/2022");
+        productsMostViewedReportPage = new ProductsMostViewedReportPage(driver);
+        productsMostViewedReportPage.viewProductsMostViewedReport("1/1/2020", "1/1/2022");
         Assert.assertTrue(productsMostViewedReportPage.verifyProductsMostViewedReportDisplayed());
     }
 
     @Test(description = "Gvlmihre")
-    public void viewProductsLowStockReportMethod(){
-        adminLoginPage=new AdminLoginPage(driver);
+    public void viewProductsLowStockReportMethod() {
+        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
-        productsLowStockReportPage=new ProductsLowStockReportPage(driver);
+        productsLowStockReportPage = new ProductsLowStockReportPage(driver);
         productsLowStockReportPage.viewProductsLowStockReport();
         Assert.assertTrue(productsLowStockReportPage.verifyProductsLowStockReportDisplayed());
 
 
     }
-@AfterMethod
-public void logOut(){
-        AdminLoginPage adminLoginPage=new AdminLoginPage(driver);
+
+    @Test(description = "SeeProductsCartsReport-Faruk")
+    public void SeeProductsCartsReportPage(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeProductsCartsReportPage=new SeeProductsCartsReportPage(driver);
+        seeProductsCartsReportPage.clickReportButton();
+        seeProductsCartsReportPage.clickShoppingCartsButton();
+        seeProductsCartsReportPage.clickProductInCartsButton();
+        seeProductsCartsReportPage.clickExportButton();
+        Assert.assertTrue(seeProductsCartsReportPage.VerifyMassageDisplay());
+    }
+
+    @AfterMethod
+    public void logOut() {
+        AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogout();
-}
+    }
 
     @AfterClass
     public void tearDown() {
         closeBrowser();
     }
-
 
 
 }
