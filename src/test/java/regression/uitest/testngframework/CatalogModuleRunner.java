@@ -22,6 +22,7 @@ public class CatalogModuleRunner extends TestBase {
     EditProduct editProduct;
 
 
+
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -114,6 +115,7 @@ public class CatalogModuleRunner extends TestBase {
         viewCategoriesPage.ClickOnDefaultCategory();
         Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
     }
+
 
     @AfterClass
     public void tearDown () {

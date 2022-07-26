@@ -22,6 +22,8 @@ public class CustomerModuleRunner extends TestBase {
     DeleteCustomerGroupsPage deleteCustomerGroupsPage;
     FilterCustomersByGroupPage filterCustomersByGroupPage;
     FilterCustomerCountryStateAndWebsite filterCustomerCountryStateAndWebsite;
+    AddAndUpdateExistingCustomerGroupsPage addAndUpdateExistingCustomerGroups;
+
 AddNewCustomerGroups addNewCustomerGroups;
 
     @BeforeClass
@@ -42,13 +44,13 @@ AddNewCustomerGroups addNewCustomerGroups;
         filterCustomersByGroupPage = new FilterCustomersByGroupPage(driver);
         filterCustomerCountryStateAndWebsite = new FilterCustomerCountryStateAndWebsite(driver);
         addNewCustomerGroups=new AddNewCustomerGroups(driver);
+        addAndUpdateExistingCustomerGroups = new AddAndUpdateExistingCustomerGroupsPage(driver);
     }
 
     @BeforeMethod
     public void publicLogin(){
         adminLoginPage.adminLogin("customerManager");
     }
-
 
     @Test(description = "Mahmut")
     public void resetCustomerPassword() throws InterruptedException{
@@ -146,6 +148,15 @@ Assert.assertTrue(addNewCustomerGroups.verifyCustomerGroupSuccessfullyAdded());
         Assert.assertTrue(true);
     }
 
+    @Test(description = "Habibullah")
+    public void addAndUpdateExistingCustomerGroups(){
+        addAndUpdateExistingCustomerGroups.navigateToCustomerGroups();
+        addAndUpdateExistingCustomerGroups.addNewCustomerGroup();
+        addAndUpdateExistingCustomerGroups.verifyNewCustomerGroupAddedSuccessful();
+        addAndUpdateExistingCustomerGroups.navigateToCustomerGroups();
+        addAndUpdateExistingCustomerGroups.updateExistingCustomerGroup();
+        addAndUpdateExistingCustomerGroups.verifyNewCustomerGroupAddedSuccessful();
+    }
     @AfterMethod
     public void logOut() {
         adminLoginPage.adminLogout();
