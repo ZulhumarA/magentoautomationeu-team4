@@ -14,7 +14,6 @@ Feature: Sales Manager should be able to view coupons in the Reports, view and a
     When Sales Manager views shopping cart
     Then Shopping cart should be viewed
 
-
   @ViewAndAddCreditMemos
   Scenario: Sales Manager can view and add credit memos
     Given Sales Manager on the dashboard page
