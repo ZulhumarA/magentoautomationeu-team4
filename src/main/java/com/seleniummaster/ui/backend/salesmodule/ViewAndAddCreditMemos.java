@@ -10,7 +10,7 @@ public class ViewAndAddCreditMemos {
     TestUtility testUtility;
     WebDriver driver;
 
-    @FindBy(xpath="//span[contains(.,'Sales')]")
+    @FindBy(xpath = "//span[text()=\"Sales\"]")
     WebElement Sales;
 
     @FindBy(xpath="//span[contains(.,'Credit Memos')]")
@@ -33,10 +33,6 @@ public class ViewAndAddCreditMemos {
 
     @FindBy(css="button[title='Send Email']")
     WebElement SendEmailButton;
-
-    @FindBy(xpath="//a[contains(text(),'Are you sure you want to send Creditmemo email to customer?')]")
-    WebElement IsActive;
-
 
     @FindBy(xpath="//span[contains(.,'The message was sent.')]")
     WebElement SuccessfulMessage;
@@ -66,9 +62,7 @@ public class ViewAndAddCreditMemos {
             throw new RuntimeException(e);
         }
         SendEmailButton.click();
-        testUtility.waitForElementPresent(IsActive);
-        IsActive.click();
-        IsActive.isSelected();
+        driver.switchTo().alert().accept();
     }
     public boolean VerifySendSuccessfulMessage(){
         testUtility.waitForElementPresent(SuccessfulMessage);

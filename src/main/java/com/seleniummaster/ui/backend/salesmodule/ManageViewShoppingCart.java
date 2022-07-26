@@ -23,7 +23,7 @@ public class ManageViewShoppingCart {
     @FindBy(css="#customer_info_tabs_cart > span")
     WebElement ShoppingCartLink;
 
-    @FindBy(id="customer_cart_grid1")
+    @FindBy(name="product_id")
     WebElement ShoppingCartTable;
 
     public ManageViewShoppingCart(WebDriver driver) {
@@ -37,16 +37,16 @@ public class ManageViewShoppingCart {
         testUtility.waitForElementPresent(Customers);
         Customers.click();
         CustomersManageCustomers.click();
-        testUtility.waitForElementPresent(EditButton);
-        EditButton.click();
-        testUtility.waitForElementPresent(ShoppingCartLink);
-        ShoppingCartLink.click();
-
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+        testUtility.waitForElementPresent(EditButton);
+        EditButton.click();
+        testUtility.waitForElementPresent(ShoppingCartLink);
+        ShoppingCartLink.click();
+
     }
 
         public boolean VerifyShoppingCartTable(){

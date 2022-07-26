@@ -35,17 +35,19 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
         viewAndAddCreditMemos=new ViewAndAddCreditMemos(driver);
         manageViewShoppingCart= new ManageViewShoppingCart(driver);
     }
+    //ViewCouponsInTheReports
     @When("Sales Manager enters the dates in the Reports")
-    public void SalesManagerViewsAndAddCreditMemos(){
+    public void salesManagerViewsAndAddCreditMemos(){
         viewCouponsInTheReports.CouponsInTheReports();
     }
 
     @Then("Sales Manager can view coupons between dates in Reports")
-    public void TheCreditMemosShouldBeAdded() {
+    public void theCreditMemosShouldBeAdded() {
         viewCouponsInTheReports.VerifyViewCoupons();
     }
 
-//
+
+////ViewAndAddCreditMemos
 
     @When("Sales Manager views and add credit memos")
     public void SalesManagerViewsAndAddCreditMemos() {
@@ -55,8 +57,8 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
     public void TheCreditMemosShouldBeAdded() {
         viewAndAddCreditMemos.VerifySendSuccessfulMessage();
     }
-
-    //
+//
+//    //ManageViewShoppingCart
 
     @When("Sales Manager views shopping cart")
     public void SalesManagerViewsShoppingCart() {
@@ -68,10 +70,10 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
         manageViewShoppingCart.VerifyShoppingCartTable();
 
     }
-    @After("@ViewCouponsInTheReports")
-    public void teardown(){
-        closeBrowser();
-    }
+//    @After("@ViewCouponsCreditMemosAndShoppingCart")
+//    public void teardown(){
+//        closeBrowser();
+//    }
 
 
 }

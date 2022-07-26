@@ -13,7 +13,7 @@ public class ViewCouponsInTheReports {
     @FindBy(xpath = "//span[text()=\"Reports\"]")
     WebElement Reports;
 
-    @FindBy(css=".over:nth-child(1) > a > span")
+    @FindBy(xpath="//ul[@id='nav']/li[7]/ul/li/a/span")
     WebElement ReportsSales;
 
     @FindBy(xpath="//span[contains(.,'Coupons')]")
@@ -42,7 +42,9 @@ public class ViewCouponsInTheReports {
 
         testUtility.waitForElementPresent(Reports);
         Reports.click();
+        testUtility.waitForElementPresent(ReportsSales);
         ReportsSales.click();
+        testUtility.waitForElementPresent(SalesCoupons);
         SalesCoupons.click();
         testUtility.waitForElementPresent(FromArea);
         FromArea.click();
