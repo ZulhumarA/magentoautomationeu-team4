@@ -98,6 +98,10 @@ public class TestUtility {
         String generateLong= RandomStringUtils.randomNumeric((int) length);
         return generateLong;
     }
+    public String generateGroupName() {
+        String groupName = faker.name().name();
+        return groupName;
+    }
       //Zulhumar's finished.
 
 
@@ -105,8 +109,6 @@ public class TestUtility {
         String email = faker.internet().emailAddress();
         return email;
     }
-
-
 
     public void waitForAlertPresent(){
         WebDriverWait wait=new WebDriverWait(driver,timeout);

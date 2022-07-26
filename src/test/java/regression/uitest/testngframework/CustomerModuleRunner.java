@@ -22,7 +22,7 @@ public class CustomerModuleRunner extends TestBase {
     DeleteCustomerGroupsPage deleteCustomerGroupsPage;
     FilterCustomersByGroupPage filterCustomersByGroupPage;
     FilterCustomerCountryStateAndWebsite filterCustomerCountryStateAndWebsite;
-
+AddNewCustomerGroups addNewCustomerGroups;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -41,12 +41,14 @@ public class CustomerModuleRunner extends TestBase {
         deleteCustomerGroupsPage = new DeleteCustomerGroupsPage(driver);
         filterCustomersByGroupPage = new FilterCustomersByGroupPage(driver);
         filterCustomerCountryStateAndWebsite = new FilterCustomerCountryStateAndWebsite(driver);
+        addNewCustomerGroups=new AddNewCustomerGroups(driver);
     }
 
     @BeforeMethod
     public void publicLogin(){
         adminLoginPage.adminLogin("customerManager");
     }
+
 
     @Test(description = "Mahmut")
     public void resetCustomerPassword() throws InterruptedException{
@@ -61,6 +63,13 @@ public class CustomerModuleRunner extends TestBase {
                 ApplicationConfig.readFromConfigProperties("config.properties","customerName"),
                 testUtility.generateLastName(),testUtility.fakeEmail(),testUtility.generatePassword());
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
+    }
+
+
+    @Test(description = "Zulhumar")
+    public void addNewCustomerGroup()throws InterruptedException{
+addNewCustomerGroups.addNewCustomerGroupMethod();
+Assert.assertTrue(addNewCustomerGroups.verifyCustomerGroupSuccessfullyAdded());
     }
 
     @Test(description = "Faruk")
