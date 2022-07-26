@@ -2,10 +2,7 @@
 Feature: Store manager can manage stores
 
 
-Background:
-  Given user Already on the login page
-  When user enter valid userName  and valid Password and click on login Button
-  Then user should able to login successfully
+
 
 #store manager should be able to create a store view-Zulhumar
   @CreateStoreView
@@ -26,9 +23,18 @@ Background:
     When store manager edit a store view
     Then successfully edited message should be displayed
 
- # Kadirya
+
+
+ # ***************** Kadirya ************************
   @CanAddProduct
   Scenario: store manager can add product
     Given store manager on the dashboard page
     When store manager should be able to add product
     Then a new product should be added
+
+
+    @StoreManagerCanUpdateProduct
+  Scenario: store manager can update product
+    Given store manager on the dashboard page
+    When store manager should be able to update product
+    Then a new product should be updated
