@@ -18,75 +18,72 @@ public class StoreModuleSteps extends TestBase {
     CreateStoreViewPage createStoreViewPage;
     EditStoreViewPage editStoreViewPage;
     CanAddProducts canAddProducts;
-    String configFile="config.properties";
+    String configFile = "config.properties";
     AdminLoginPage adminLoginPage;
+
     @Before("@ManageStoreTest")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
-                (configFile,"backEndURL"));
-        adminLoginPage=new AdminLoginPage(driver);
+                (configFile, "backEndURL"));
+        adminLoginPage = new AdminLoginPage(driver);
+        createStoreViewPage = new CreateStoreViewPage(driver);
+        editStoreViewPage = new EditStoreViewPage(driver);
         adminLoginPage.adminLogin("storeManager");
 
     }
 
-//Store Manager can create a store view Zulhumar
+    //Store Manager can create a store view Zulhumar
     @Given("store manager on the dashboard page")
     public void storeManagerOnTheDashboardPage() {
-       adminLoginPage=new AdminLoginPage(driver);
         Assert.assertTrue(adminLoginPage.verifyAdminLoginSuccessfully());
 
     }
 
     @When("store manager create a new store view")
     public void storeManagerCreateANewStoreView() throws InterruptedException {
-       createStoreViewPage= new CreateStoreViewPage(driver);
         createStoreViewPage.openManageStoresPage();
-      createStoreViewPage.fillOutStoreViewInformation();
+        createStoreViewPage.fillOutStoreViewInformation();
 
     }
-
 
     @Then("successfully created message should be displayed")
     public void successfullyCreatedMessageShouldBeDisplayed() {
-        editStoreViewPage=new EditStoreViewPage(driver);
-        createStoreViewPage.verifyStoreViewSuccessfullyCreated();
+        Assert.assertTrue(createStoreViewPage.verifyStoreViewSuccessfullyCreated());
+
 
     }
+
     //Store Manager can edit a store view zulhumar
     @When("store manager edit a store view")
     public void storeManagerEditAStoreView() {
-       EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
         editStoreViewPage.openManageStoresPage();
         editStoreViewPage.editStoreViewMethod();
     }
+
     @Then("successfully edited message should be displayed")
     public void successfullyEditedMessageShouldBeDisplayed() {
-      EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
         Assert.assertTrue(editStoreViewPage.verifyStoreViewSuccessfullyUpdated());
     }
 
 
-//Kadirya
-@When("store manager should be able to add product")
-   public void store_manager_should_be_able_to_add_product() {
-    CanAddProducts canAddProducts=new CanAddProducts(driver);
-    canAddProducts.setCatalogButton();
-    canAddProducts.setManegeProductsButton();
-    canAddProducts.addProduct();
-}
+    //Kadirya
+    @When("store manager should be able to add product")
+    public void store_manager_should_be_able_to_add_product() {
+        CanAddProducts canAddProducts = new CanAddProducts(driver);
+        canAddProducts.setCatalogButton();
+        canAddProducts.setManegeProductsButton();
+        canAddProducts.addProduct();
+    }
+
     @Then("a new product should be added")
     public void a_new_product_should_be_added() {
-        CanAddProducts canAddProducts=new CanAddProducts(driver);
+        CanAddProducts canAddProducts = new CanAddProducts(driver);
         Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
     }
 
 
-
-
-
     @After("@ManageStoreTest")
-    public void tearDown()
-    {
+    public void tearDown() {
         closeBrowser();
     }
 
