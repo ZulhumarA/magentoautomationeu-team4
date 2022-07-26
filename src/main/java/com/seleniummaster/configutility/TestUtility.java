@@ -136,6 +136,11 @@ public class TestUtility {
         }
     }
 
+    public String fakeCartPriceRulesName(){
+     String fakeRuleNames=faker.business().creditCardType().toUpperCase();
+     return  fakeRuleNames;
+    }
+
 }
 
 

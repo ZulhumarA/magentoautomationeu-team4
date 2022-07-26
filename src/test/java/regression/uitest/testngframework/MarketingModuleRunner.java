@@ -21,6 +21,7 @@ public class MarketingModuleRunner extends TestBase {
     ViewNewsletterSubscribersPage viewNewsletterSubscribersPage;
     AddNewCartPriceRule addNewCartPriceRule;
     UpdateCartPriceRule updateCartPriceRule;
+    AddNewCartPriceRuleAbide addNewCartPriceRuleAbide;
 
 
 
@@ -98,6 +99,13 @@ public class MarketingModuleRunner extends TestBase {
 //        adminLoginPage = new AdminLoginPage(driver);
 //        adminLoginPage.adminLogout();
 //    }
+
+    @Test(description = "add new cart price rule--Abide")
+    public void AddNewCartPriceRuleAbide(){
+        addNewCartPriceRuleAbide=new AddNewCartPriceRuleAbide(driver);
+        addNewCartPriceRuleAbide.addNewCartPriceRuleMethod();
+        Assert.assertTrue(addNewCartPriceRuleAbide.verifyCartPriceRulesAddedSuccessfully());
+    }
     @AfterClass
     public void tearDown() {
         closeBrowser();
