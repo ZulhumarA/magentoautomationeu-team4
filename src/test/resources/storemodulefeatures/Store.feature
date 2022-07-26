@@ -1,6 +1,12 @@
 @ManageStoreTest
 Feature: Store manager can manage stores
 
+
+Background:
+  Given user Already on the login page
+  When user enter valid userName  and valid Password and click on login Button
+  Then user should able to login successfully
+
 #store manager should be able to create a store view-Zulhumar
   @CreateStoreView
   Scenario Outline: store manager can create a store view
