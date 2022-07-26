@@ -10,7 +10,6 @@ public class ViewCouponsInTheReports {
     TestUtility testUtility;
     WebDriver driver;
 
-
     @FindBy(xpath = "//span[text()=\"Reports\"]")
     WebElement Reports;
 

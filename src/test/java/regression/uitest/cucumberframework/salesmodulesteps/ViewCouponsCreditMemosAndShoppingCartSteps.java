@@ -3,6 +3,8 @@ package regression.uitest.cucumberframework.salesmodulesteps;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
+import com.seleniummaster.ui.backend.salesmodule.ManageViewShoppingCart;
+import com.seleniummaster.ui.backend.salesmodule.ViewAndAddCreditMemos;
 import com.seleniummaster.ui.backend.salesmodule.ViewCouponsInTheReports;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -10,9 +12,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class ViewCouponsInTheReportsSteps extends TestBase {
+public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
+
     AdminLoginPage adminLoginPage;
     ViewCouponsInTheReports viewCouponsInTheReports;
+    ViewAndAddCreditMemos viewAndAddCreditMemos;
+    ManageViewShoppingCart manageViewShoppingCart;
     String configFile="config.properties";
 
     @Before()
@@ -27,22 +32,46 @@ public class ViewCouponsInTheReportsSteps extends TestBase {
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.verifyAdminLoginSuccessfully();
         viewCouponsInTheReports=new ViewCouponsInTheReports(driver);
-
+        viewAndAddCreditMemos=new ViewAndAddCreditMemos(driver);
+        manageViewShoppingCart= new ManageViewShoppingCart(driver);
     }
     @When("Sales Manager enters the dates in the Reports")
-    public void SalesManagerViewsAndAddCreditMemos() {
+    public void SalesManagerViewsAndAddCreditMemos(){
         viewCouponsInTheReports.CouponsInTheReports();
-
     }
+
     @Then("Sales Manager can view coupons between dates in Reports")
     public void TheCreditMemosShouldBeAdded() {
         viewCouponsInTheReports.VerifyViewCoupons();
-
     }
 
+//
+
+    @When("Sales Manager views and add credit memos")
+    public void SalesManagerViewsAndAddCreditMemos() {
+        viewAndAddCreditMemos.CreditMemos();
+    }
+    @Then("The credit memos should be added")
+    public void TheCreditMemosShouldBeAdded() {
+        viewAndAddCreditMemos.VerifySendSuccessfulMessage();
+    }
+
+    //
+
+    @When("Sales Manager views shopping cart")
+    public void SalesManagerViewsShoppingCart() {
+        manageViewShoppingCart.ViewShoppingCart();
+
+    }
+    @Then("Shopping cart should be viewed")
+    public void ShoppingCartShouldBeViewed() {
+        manageViewShoppingCart.VerifyShoppingCartTable();
+
+    }
     @After("@ViewCouponsInTheReports")
     public void teardown(){
         closeBrowser();
     }
+
 
 }
