@@ -20,6 +20,7 @@ public class ReportingModuleRunner extends TestBase {
     ProductsMostViewedReportPage productsMostViewedReportPage;
     ProductsLowStockReportPage productsLowStockReportPage;
     SeeProductsCartsReportPage seeProductsCartsReportPage;
+    SeeAbandonedCartsReport seeAbandonedCartsReport;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -109,6 +110,17 @@ public class ReportingModuleRunner extends TestBase {
         seeProductsCartsReportPage.clickProductInCartsButton();
         seeProductsCartsReportPage.clickExportButton();
         Assert.assertTrue(seeProductsCartsReportPage.VerifyMassageDisplay());
+    }
+    @Test(description = "SeeAbandonedCartsReport-Faruk")
+    public void SeeAbandonedCartsReport(){
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeAbandonedCartsReport=new SeeAbandonedCartsReport(driver);
+        seeAbandonedCartsReport.setReportButton();
+        seeAbandonedCartsReport.setShoppingCartsButton();
+        seeAbandonedCartsReport.setAbandonedCartsButton();
+        seeAbandonedCartsReport.setExportButton();
+        Assert.assertTrue(seeAbandonedCartsReport.VerifyReportMassageDisplay());
     }
 
     @AfterMethod
