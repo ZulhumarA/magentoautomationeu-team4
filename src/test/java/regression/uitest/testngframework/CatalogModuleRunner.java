@@ -20,6 +20,7 @@ public class CatalogModuleRunner extends TestBase {
     AddProduct addProduct;
     DeleteProduct deleteProduct;
     EditProduct editProduct;
+    FilterProductsInTheCategoryProductsTab filterProductsInTheCategoryProductsTab;
 
 
     @BeforeClass
@@ -38,6 +39,7 @@ public class CatalogModuleRunner extends TestBase {
         addProduct = new AddProduct(driver);
         deleteProduct=new DeleteProduct(driver);
         editProduct=new EditProduct(driver);
+        filterProductsInTheCategoryProductsTab=new FilterProductsInTheCategoryProductsTab(driver);
     }
 
     @Test(description = "Zulhumar")
@@ -113,6 +115,13 @@ public class CatalogModuleRunner extends TestBase {
         viewCategoriesPage.ViewCategories();
         viewCategoriesPage.ClickOnDefaultCategory();
         Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
+    }
+
+    @Test(description = "Habibullah")
+    public void filterProductsInTheCategoryProductsTab(){
+        filterProductsInTheCategoryProductsTab.navigateToCategoryProductsTab();
+        filterProductsInTheCategoryProductsTab.filterProductsInTheCategoryProductsTab();
+        filterProductsInTheCategoryProductsTab.verifyFilterProductsInTheCategoryProductsTab();
     }
 
     @AfterClass
