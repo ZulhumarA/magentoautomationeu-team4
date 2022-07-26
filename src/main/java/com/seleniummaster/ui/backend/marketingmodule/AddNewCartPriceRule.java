@@ -63,7 +63,7 @@ public class AddNewCartPriceRule {
         status.click();
         utility.selectValueFromDropDown(status, utility.generateRandomNumbers(0,1));
         utility.selectValueFromDropDown(Websites, utility.generateRandomNumbers(1,14));
-        utility.selectValueFromDropDown(CustomerGroups, utility.generateRandomNumbers(1,3));
+        utility.selectValueFromDropDown(CustomerGroups, utility.generateRandomNumbers(1,15));
         utility.selectValueFromDropDown(Coupon,0);
         utility.waitForElementPresent(SaveButton);
         SaveButton.click();

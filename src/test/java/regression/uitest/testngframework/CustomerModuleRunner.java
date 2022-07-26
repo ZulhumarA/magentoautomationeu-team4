@@ -22,7 +22,9 @@ public class CustomerModuleRunner extends TestBase {
     DeleteCustomerGroupsPage deleteCustomerGroupsPage;
     FilterCustomersByGroupPage filterCustomersByGroupPage;
     FilterCustomerCountryStateAndWebsite filterCustomerCountryStateAndWebsite;
+    AddAndUpdateExistingCustomerGroupsPage addAndUpdateExistingCustomerGroups;
 
+AddNewCustomerGroups addNewCustomerGroups;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -41,6 +43,8 @@ public class CustomerModuleRunner extends TestBase {
         deleteCustomerGroupsPage = new DeleteCustomerGroupsPage(driver);
         filterCustomersByGroupPage = new FilterCustomersByGroupPage(driver);
         filterCustomerCountryStateAndWebsite = new FilterCustomerCountryStateAndWebsite(driver);
+        addNewCustomerGroups=new AddNewCustomerGroups(driver);
+        addAndUpdateExistingCustomerGroups = new AddAndUpdateExistingCustomerGroupsPage(driver);
     }
 
     @BeforeMethod
@@ -54,12 +58,20 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
 
+
     @Test(description = "Zulhumar")
     public void addNewCustomers() {
         addNewCustomerPage.addNewCustomerMethod(
                 ApplicationConfig.readFromConfigProperties("config.properties","customerName"),
                 testUtility.generateLastName(),testUtility.fakeEmail(),testUtility.generatePassword());
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
+    }
+
+
+    @Test(description = "Zulhumar")
+    public void addNewCustomerGroup()throws InterruptedException{
+addNewCustomerGroups.addNewCustomerGroupMethod();
+Assert.assertTrue(addNewCustomerGroups.verifyCustomerGroupSuccessfullyAdded());
     }
 
     @Test(description = "Faruk")
@@ -106,8 +118,8 @@ public class CustomerModuleRunner extends TestBase {
     }
 
     @Test(description = "Ramile")
-    public void exportCustomers() {
-        exportCustomers.ClickExport();
+    public void ExportCustomers() {
+        exportCustomers.ClickExport(); exportCustomers.verifyExportCustomer();
     }
 
     @Test(description = "Arzugul")
@@ -136,11 +148,20 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(true);
     }
 
+    @Test(description = "Habibullah")
+    public void addAndUpdateExistingCustomerGroups(){
+        addAndUpdateExistingCustomerGroups.navigateToCustomerGroups();
+        addAndUpdateExistingCustomerGroups.addNewCustomerGroup();
+        addAndUpdateExistingCustomerGroups.verifyNewCustomerGroupAddedSuccessful();
+        addAndUpdateExistingCustomerGroups.navigateToCustomerGroups();
+        addAndUpdateExistingCustomerGroups.updateExistingCustomerGroup();
+        addAndUpdateExistingCustomerGroups.verifyNewCustomerGroupAddedSuccessful();
+    }
     @AfterMethod
     public void logOut() {
         adminLoginPage.adminLogout();
     }
-    
+
     @AfterClass
     public void tearDown() {
         closeBrowser();
