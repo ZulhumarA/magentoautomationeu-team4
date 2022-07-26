@@ -11,7 +11,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-public class ReportingProductsSteps extends TestBase {
+public class ReportingModuleSteps extends TestBase {
 
     AdminLoginPage adminLoginPage;
     ProductsOrderedReportPage productsOrderedReportPage;
