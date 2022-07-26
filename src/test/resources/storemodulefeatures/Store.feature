@@ -20,9 +20,4 @@ Feature: Store manager can manage stores
     When store manager edit a store view
     Then successfully edited message should be displayed
 
-  # store manager should be able to update product--Kadirya
-  @UpdateProduct
-  Scenario: store manager can update a product
-    Given store manager on the dashboard page
-    When store manager uptaded product information
-    Then successfully edited message should be displayed
+
