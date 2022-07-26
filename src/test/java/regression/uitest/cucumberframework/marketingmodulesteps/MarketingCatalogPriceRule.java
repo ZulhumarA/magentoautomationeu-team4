@@ -24,7 +24,6 @@ public class MarketingCatalogPriceRule extends TestBase {
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("marketingManager");
 
-
     }
 
 
@@ -33,7 +32,6 @@ public class MarketingCatalogPriceRule extends TestBase {
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.verifyAdminLoginSuccessfully();
         addNewCatalogPriceRule =new AddNewCatalogPriceRule(driver);
-
 
     }
 
@@ -47,6 +45,5 @@ public class MarketingCatalogPriceRule extends TestBase {
     public void theNewCatalogPriceRuleShouldBeAdded() {
         addNewCatalogPriceRule.verifyAddNewCatalogPriceRule();
     }
-
 
 }

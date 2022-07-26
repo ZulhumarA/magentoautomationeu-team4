@@ -100,7 +100,6 @@ public class MarketingModuleRunner extends TestBase {
         addNewCatalogPriceRule=new AddNewCatalogPriceRule(driver);
         addNewCatalogPriceRule.addCatalogPriceRule("Team4","08/9/2022");
         Assert.assertTrue(addNewCatalogPriceRule.verifyAddNewCatalogPriceRule());
-
     }
 
     @Test(description = "delete newsletter template page--Abide")

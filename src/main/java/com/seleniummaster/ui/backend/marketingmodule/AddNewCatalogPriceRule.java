@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class AddNewCatalogPriceRule extends TestBase {
 
@@ -25,19 +26,19 @@ public class AddNewCatalogPriceRule extends TestBase {
     @FindBy(xpath="//*[@id=\"rule_name\"]")
     WebElement RuleNameLink;
 
-    @FindBy(xpath="select[id=\"rule_is_active\"")
+    @FindBy(id = "rule_is_active")
     WebElement StatusDropDown;
 
-    @FindBy(css="select[id=\"rule_website_ids\"]")
+    @FindBy(id = "rule_website_ids")
     WebElement WebSiteLink;
 
-    @FindBy(css = "select[id=\"rule_customer_group_ids\"]")
+    @FindBy(id = "rule_customer_group_ids")
     WebElement customerGroupLink;
 
     @FindBy(css="input[id=\"rule_from_date\"]")
     WebElement FromDateLInk;
 
-    @FindBy(xpath = "//span[text()=\"Save\"]")
+    @FindBy(css = " button:nth-child(3)")
     WebElement SaveButton;
 
     @FindBy(css = "input[id=\"rule_discount_amount\"]")
@@ -66,9 +67,11 @@ public class AddNewCatalogPriceRule extends TestBase {
         testUtility.waitForElementPresent(StatusDropDown);
         testUtility.selectValueFromDropDown(StatusDropDown,0);
         testUtility.waitForElementPresent(WebSiteLink);
-        testUtility.selectValueFromDropDown(WebSiteLink,80);
+        Select webSites=new Select(WebSiteLink);
+        testUtility.waitForElementPresent(WebSiteLink);
+        webSites.selectByValue("1");
         testUtility.waitForElementPresent(customerGroupLink);
-        testUtility.selectValueFromDropDown(customerGroupLink,110);
+        testUtility.selectValueFromDropDown(customerGroupLink,1);
         testUtility.waitForElementPresent(FromDateLInk);
         FromDateLInk.sendKeys(fromDate);
         testUtility.waitForElementPresent(SaveButton);

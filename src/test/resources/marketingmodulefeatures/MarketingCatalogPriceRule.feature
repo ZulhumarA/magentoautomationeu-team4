@@ -6,3 +6,4 @@
       Given Marketing manager on the dashboard page
       When  Marketing Manger add a new catalog price rule
       Then  The new catalog price rule should be added
+
