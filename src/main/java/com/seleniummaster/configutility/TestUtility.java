@@ -93,6 +93,11 @@ public class TestUtility {
         return generatedString.toLowerCase();
     }
 
+    public String generatePassword(){
+        long length=8;
+        String generateLong= RandomStringUtils.randomNumeric((int) length);
+        return generateLong;
+    }
       //Zulhumar's finished.
 
 
@@ -100,6 +105,8 @@ public class TestUtility {
         String email = faker.internet().emailAddress();
         return email;
     }
+
+
 
     public void waitForAlertPresent(){
         WebDriverWait wait=new WebDriverWait(driver,timeout);
