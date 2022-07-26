@@ -11,7 +11,7 @@ public class ViewMyWishListPage {
     TestUtility testUtility;
 
     //Elements
-    @FindBy(css = "ul>li:nth-child(9)>a")
+    @FindBy(css = "ul.level0>li:nth-child(9)>a")
     WebElement myWishListLink;
 
     @FindBy(css = "div>button:nth-child(2)[title=\"Add All to Cart\"]")

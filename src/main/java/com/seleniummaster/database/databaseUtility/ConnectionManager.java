@@ -1,4 +1,4 @@
-package com.seleniummaster.database;
+package com.seleniummaster.database.databaseUtility;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
