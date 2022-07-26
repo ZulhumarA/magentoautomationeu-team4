@@ -22,6 +22,7 @@ public class CustomerModuleRunner extends TestBase {
     DeleteCustomerGroupsPage deleteCustomerGroupsPage;
     FilterCustomersByGroupPage filterCustomersByGroupPage;
     FilterCustomerCountryStateAndWebsite filterCustomerCountryStateAndWebsite;
+    AddAndUpdateExistingCustomerGroupsPage addAndUpdateExistingCustomerGroups;
 
 
     @BeforeClass
@@ -41,6 +42,7 @@ public class CustomerModuleRunner extends TestBase {
         deleteCustomerGroupsPage = new DeleteCustomerGroupsPage(driver);
         filterCustomersByGroupPage = new FilterCustomersByGroupPage(driver);
         filterCustomerCountryStateAndWebsite = new FilterCustomerCountryStateAndWebsite(driver);
+        addAndUpdateExistingCustomerGroups = new AddAndUpdateExistingCustomerGroupsPage(driver);
     }
 
     @BeforeMethod
@@ -137,6 +139,15 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(true);
     }
 
+    @Test(description = "Habibullah")
+    public void addAndUpdateExistingCustomerGroups(){
+        addAndUpdateExistingCustomerGroups.navigateToCustomerGroups();
+        addAndUpdateExistingCustomerGroups.addNewCustomerGroup();
+        addAndUpdateExistingCustomerGroups.verifyNewCustomerGroupAddedSuccessful();
+        addAndUpdateExistingCustomerGroups.navigateToCustomerGroups();
+        addAndUpdateExistingCustomerGroups.updateExistingCustomerGroup();
+        addAndUpdateExistingCustomerGroups.verifyNewCustomerGroupAddedSuccessful();
+    }
     @AfterMethod
     public void logOut() {
         adminLoginPage.adminLogout();
