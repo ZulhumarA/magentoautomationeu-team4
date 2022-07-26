@@ -29,5 +29,11 @@ Feature: Reporting manager can view related reports
   @ViewCustomersByOrdersTotalReport
   Scenario: reporting manager can view Customers By Orders Total Report
     Given reporting manager on the dashboard page
-    When reporting manager opens the Customers By Ordes Total Report
+    When reporting manager opens the Customers By Orders Total Report
     Then Customers By Orders Total Report should be displayed
+
+  @ViewCustomersByNumberOfOrdersReport
+  Scenario: reporting manager can view Customers By Number Of Orders Report
+    Given reporting manager on the dashboard page
+    When reporting manager opens the Customers By Number Of Orders Report
+    Then Customers By Number Of Orders Report should be displayed
