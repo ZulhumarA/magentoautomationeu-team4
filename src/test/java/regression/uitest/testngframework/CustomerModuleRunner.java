@@ -56,6 +56,7 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
 
+
     @Test(description = "Zulhumar")
     public void addNewCustomers() {
         addNewCustomerPage.addNewCustomerMethod(
@@ -108,8 +109,8 @@ public class CustomerModuleRunner extends TestBase {
     }
 
     @Test(description = "Ramile")
-    public void exportCustomers() {
-        exportCustomers.ClickExport();
+    public void ExportCustomers() {
+        exportCustomers.ClickExport(); exportCustomers.verifyExportCustomer();
     }
 
     @Test(description = "Arzugul")
@@ -151,7 +152,7 @@ public class CustomerModuleRunner extends TestBase {
     public void logOut() {
         adminLoginPage.adminLogout();
     }
-    
+
     @AfterClass
     public void tearDown() {
         closeBrowser();
