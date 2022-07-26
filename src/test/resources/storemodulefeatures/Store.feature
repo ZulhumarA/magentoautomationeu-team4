@@ -23,7 +23,9 @@ Feature: Store manager can manage stores
     When store manager edit a store view
     Then successfully edited message should be displayed
 
- # Kadirya
+
+
+ # ***************** Kadirya ************************
   @CanAddProduct
   Scenario: store manager can add product
     Given store manager on the dashboard page
@@ -31,7 +33,6 @@ Feature: Store manager can manage stores
     Then a new product should be added
 
 
-    # StoreManagerCanUpdateProduct--Kadirya
     @StoreManagerCanUpdateProduct
   Scenario: store manager can update product
     Given store manager on the dashboard page

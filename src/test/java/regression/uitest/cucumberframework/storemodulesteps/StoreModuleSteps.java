@@ -18,9 +18,9 @@ import org.testng.Assert;
 public class StoreModuleSteps extends TestBase {
     CreateStoreViewPage createStoreViewPage;
     EditStoreViewPage editStoreViewPage;
-    StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
+    //StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
     String configFile="config.properties";
-    CanAddProducts canAddProducts;
+    //CanAddProducts canAddProducts;
     AdminLoginPage adminLoginPage;
 
     @Before("@ManageStoreTest")
@@ -87,7 +87,11 @@ public class StoreModuleSteps extends TestBase {
     }
 
 
-//CanAddProducts--Kadirya
+//*************************Kadirya*****************************
+     CanAddProducts canAddProducts;
+    StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
+
+
 
 @When("store manager should be able to add product")
    public void store_manager_should_be_able_to_add_product() {
@@ -103,7 +107,6 @@ public class StoreModuleSteps extends TestBase {
     }
 
 
-   //StoreManagerCanUpdateProduct--Kadirya
 
     @When("store manager should be able to update product")
     public void store_manager_should_be_able_to_update_product() {
