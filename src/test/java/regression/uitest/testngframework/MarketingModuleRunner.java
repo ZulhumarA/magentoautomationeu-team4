@@ -21,6 +21,7 @@ public class MarketingModuleRunner extends TestBase {
     ViewNewsletterSubscribersPage viewNewsletterSubscribersPage;
     AddNewCartPriceRule addNewCartPriceRule;
     UpdateCartPriceRule updateCartPriceRule;
+    AddNewCatalogPriceRule addNewCatalogPriceRule;
 
 
 
@@ -91,6 +92,13 @@ public class MarketingModuleRunner extends TestBase {
         viewNewsletterSubscribersPage = new ViewNewsletterSubscribersPage(driver);
         viewNewsletterSubscribersPage.viewNewsletterSubscribers();
         Assert.assertTrue(viewNewsletterSubscribersPage.verifyNewsletterSubscribersViewed());
+    }
+    @Test(description = "Arzugul")
+    public void addNewCatalogPriceRuleTest() throws InterruptedException {
+        addNewCatalogPriceRule=new AddNewCatalogPriceRule(driver);
+        addNewCatalogPriceRule.addCatalogPriceRule("Team4","08/9/2022");
+        Assert.assertTrue(addNewCatalogPriceRule.verifyAddNewCatalogPriceRule());
+
     }
 
 //    @AfterMethod
