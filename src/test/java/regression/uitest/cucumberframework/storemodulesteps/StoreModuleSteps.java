@@ -6,6 +6,7 @@ import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
 import com.seleniummaster.ui.backend.storemodule.EditStoreViewPage;
+import com.seleniummaster.ui.backend.storemodule.StoreManagerCanUpdateProduct;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -16,6 +17,7 @@ import org.testng.Assert;
 public class StoreModuleSteps extends TestBase {
     CreateStoreViewPage createStoreViewPage;
     EditStoreViewPage editStoreViewPage;
+    StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
     String configFile="config.properties";
     AdminLoginPage adminLoginPage;
     @Before("@ManageStoreTest")
@@ -62,6 +64,25 @@ public class StoreModuleSteps extends TestBase {
       EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
         Assert.assertTrue(editStoreViewPage.verifyStoreViewSuccessfullyUpdated());
     }
+
+    //Store Manager Can Update Produtc --Kadirya
+    @When("store manager uptaded product information")
+    public void StoreManagerCanUpdatePtoduct() {
+        storeManagerCanUpdateProduct.setCatalogButton();
+        storeManagerCanUpdateProduct.setManegeProductsButton();
+        storeManagerCanUpdateProduct.UpdateProduct();
+    }
+
+    @Then("successfully edited message should be displayed")
+    public void successfullySaveMessageDisplayed(){
+        StoreManagerCanUpdateProduct storeManagerCanUpdateProduct=new StoreManagerCanUpdateProduct(driver);
+        Assert.assertTrue(storeManagerCanUpdateProduct.VerifySavedMassageSuccessfully());
+    }
+
+
+
+
+
 
     @After("@ManageStoreTest")
     public void tearDown()

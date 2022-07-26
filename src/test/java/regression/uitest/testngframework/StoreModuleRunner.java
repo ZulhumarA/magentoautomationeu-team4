@@ -17,6 +17,7 @@ public class StoreModuleRunner extends TestBase {
     AddProductCategories addProductCategories;
 
     CanUpdateProductPage canUpdateProductPage;
+    StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -42,6 +43,14 @@ public class StoreModuleRunner extends TestBase {
         editStoreViewPage.openManageStoresPage();
         editStoreViewPage.editStoreViewMethod();
         Assert.assertTrue(editStoreViewPage.verifyStoreViewSuccessfullyUpdated());
+    }
+    @Test(description = "Kadirya")
+        public void StoreManagerCanUpdateProduct(){
+        StoreManagerCanUpdateProduct storeManagerCanUpdateProduct=new StoreManagerCanUpdateProduct(driver);
+        storeManagerCanUpdateProduct.setCatalogButton();
+        storeManagerCanUpdateProduct.setManegeProductsButton();
+        storeManagerCanUpdateProduct.UpdateProduct();
+        Assert.assertTrue(storeManagerCanUpdateProduct.VerifySavedMassageSuccessfully());
     }
 
     @Test
