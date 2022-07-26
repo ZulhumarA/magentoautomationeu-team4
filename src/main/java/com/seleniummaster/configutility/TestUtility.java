@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 public class TestUtility {
 
@@ -119,6 +120,16 @@ public class TestUtility {
         return ((int)(Math.random() * max) + min);
     }
 
+    public String generateRandomSentence() {
+        return faker.lorem().sentence();
+    }
+
+
+    public int generateRandomNumber() {
+        Random random = new Random();
+        return random.nextInt(100);
+
+    }
 
 
     public void sleep(int second){
@@ -127,6 +138,11 @@ public class TestUtility {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String fakeCartPriceRulesName(){
+     String fakeRuleNames=faker.business().creditCardType().toUpperCase();
+     return  fakeRuleNames;
     }
 
 }
