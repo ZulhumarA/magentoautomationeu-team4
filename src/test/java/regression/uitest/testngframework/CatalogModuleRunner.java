@@ -20,7 +20,7 @@ public class CatalogModuleRunner extends TestBase {
     AddProduct addProduct;
     DeleteProduct deleteProduct;
     EditProduct editProduct;
-    FilterProductsInTheCategoryProductsTab filterProductsInTheCategoryProductsTab;
+    //FilterProductsInTheCategoryProductsTab filterProductsInTheCategoryProductsTab;
 
 
 
@@ -40,7 +40,7 @@ public class CatalogModuleRunner extends TestBase {
         addProduct = new AddProduct(driver);
         deleteProduct=new DeleteProduct(driver);
         editProduct=new EditProduct(driver);
-        filterProductsInTheCategoryProductsTab=new FilterProductsInTheCategoryProductsTab(driver);
+       // filterProductsInTheCategoryProductsTab=new FilterProductsInTheCategoryProductsTab(driver);
     }
 
     @Test(description = "Zulhumar")
@@ -118,12 +118,12 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
     }
 
-    @Test(description = "Habibullah")
-    public void filterProductsInTheCategoryProductsTab()  throws InterruptedException{
-        filterProductsInTheCategoryProductsTab.navigateToCategoryProductsTab();
-        filterProductsInTheCategoryProductsTab.filterProductsInTheCategoryProductsTab();
-        filterProductsInTheCategoryProductsTab.verifyFilterProductsInTheCategoryProductsTab();
-    }
+   //Test(description = "Habibullah")
+//    public void filterProductsInTheCategoryProductsTab()  throws InterruptedException{
+//        filterProductsInTheCategoryProductsTab.navigateToCategoryProductsTab();
+//        filterProductsInTheCategoryProductsTab.filterProductsInTheCategoryProductsTab();
+//        filterProductsInTheCategoryProductsTab.verifyFilterProductsInTheCategoryProductsTab();
+   // }
 
     @AfterClass
     public void tearDown () {

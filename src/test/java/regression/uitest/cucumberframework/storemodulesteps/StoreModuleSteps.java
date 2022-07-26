@@ -2,12 +2,8 @@ package regression.uitest.cucumberframework.storemodulesteps;
 
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
-import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
-import com.seleniummaster.ui.backend.storemodule.CanAddProducts;
-import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
-import com.seleniummaster.ui.backend.storemodule.EditStoreViewPage;
-import com.seleniummaster.ui.backend.storemodule.StoreManagerCanUpdateProduct;
+import com.seleniummaster.ui.backend.storemodule.*;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -88,22 +84,22 @@ public class StoreModuleSteps extends TestBase {
 
 
 //*************************Kadirya*****************************
-     CanAddProducts canAddProducts;
+     StoreManagerCanAddProducts storeManagerCanAddProducts;
     StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
-
+    StoreManagerCanDeleteProduct storeManagerCanDeleteProduct;
 
 
 @When("store manager should be able to add product")
    public void store_manager_should_be_able_to_add_product() {
-    CanAddProducts canAddProducts=new CanAddProducts(driver);
-    canAddProducts.setCatalogButton();
-    canAddProducts.setManegeProductsButton();
-    canAddProducts.addProduct();
+     storeManagerCanAddProducts=new StoreManagerCanAddProducts(driver);
+    storeManagerCanAddProducts.setCatalogButton();
+    storeManagerCanAddProducts.setManegeProductsButton();
+    storeManagerCanAddProducts.addProduct();
 }
     @Then("a new product should be added")
     public void a_new_product_should_be_added() {
-        CanAddProducts canAddProducts=new CanAddProducts(driver);
-        Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
+        storeManagerCanAddProducts=new StoreManagerCanAddProducts(driver);
+        Assert.assertTrue(storeManagerCanAddProducts.VerifySavedMassageSuccessfully());
     }
 
 
@@ -120,6 +116,22 @@ public class StoreModuleSteps extends TestBase {
     public void a_new_product_should_be_updated() {
         storeManagerCanUpdateProduct=new StoreManagerCanUpdateProduct(driver);
         Assert.assertTrue(storeManagerCanUpdateProduct.VerifySavedMassageSuccessfully());
+
+    }
+
+
+    @When("store manager should be able to delete product")
+    public void store_manager_should_be_able_to_delete_product() {
+        storeManagerCanDeleteProduct = new StoreManagerCanDeleteProduct(driver);
+        storeManagerCanDeleteProduct.setCatalogButton();
+        storeManagerCanDeleteProduct.setManegeProductsButton();
+        storeManagerCanDeleteProduct.DeleteProduct();
+    }
+
+    @Then("a old product should be deleted")
+    public void a_old_product_should_be_deleted() {
+        storeManagerCanDeleteProduct=new StoreManagerCanDeleteProduct(driver);
+        Assert.assertTrue(storeManagerCanDeleteProduct.VerifySavedMassageSuccessfully());
 
     }
 
