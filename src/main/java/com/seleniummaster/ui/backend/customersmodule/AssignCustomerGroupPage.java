@@ -71,7 +71,7 @@ public class AssignCustomerGroupPage {
         testUtility.waitForElementPresent(addNewCustomerButton);
         addNewCustomerButton.click();
         testUtility.selectValueFromDropDown(associateWebsiteField,"1");
-        testUtility.selectValueFromDropDown(groupField,"14");
+        testUtility.selectValueFromDropDown(groupField,"1");
         firstNameField.sendKeys("Team4Test "+testUtility.generateFirstName());
         lastNameField.sendKeys("Team4Test "+testUtility.generateLastName());
         emailField.sendKeys("Team4Test"+testUtility.fakeEmail());
@@ -96,7 +96,7 @@ public class AssignCustomerGroupPage {
         }
         selectionCheckBox.click();
         testUtility.selectValueFromDropDown(actionsDropDownList,"assign_group");
-        testUtility.selectValueFromDropDown(assignGroupField,"14");
+        testUtility.selectValueFromDropDown(assignGroupField,"110");
         submitButton.click();
     }
 

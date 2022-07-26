@@ -23,7 +23,7 @@ public class MarketingNewsletterSteps extends TestBase {
     ViewNewsletterSubscribersPage viewNewsletterSubscribersPage;
     String configFile="config.properties";
 
-    @Before("@AddNewsletterTemplate or @UpdateNewsletterTemplate or @DeleteNewsletterTemplate or @ViewNewsletterSubscribers")
+    @Before("@NewsletterTest")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
@@ -86,7 +86,7 @@ public class MarketingNewsletterSteps extends TestBase {
         Assert.assertTrue(viewNewsletterSubscribersPage.verifyNewsletterSubscribersViewed());
     }
 
-    @After("@AddNewsletterTemplate or @UpdateNewsletterTemplate or @DeleteNewsletterTemplate or @ViewNewsletterSubscribers")
+    @After("@NewsletterTest")
     public void teardown(){
         closeBrowser();
     }

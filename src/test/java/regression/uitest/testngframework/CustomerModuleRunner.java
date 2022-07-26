@@ -7,9 +7,7 @@ import com.seleniummaster.configutility.TestUtility;
 import com.seleniummaster.ui.backend.customersmodule.*;
 import org.testng.Assert;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 public class CustomerModuleRunner extends TestBase {
     TestUtility testUtility;
@@ -32,26 +30,26 @@ public class CustomerModuleRunner extends TestBase {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
         context.setAttribute("driver", driver);
         adminLoginPage = new AdminLoginPage(driver);
-        adminLoginPage.adminLogin("customerManager");
+       // adminLoginPage.adminLogin("customerManager");
         resetCustomerPassword = new ResetCustomerPassword(driver);
         addNewCustomerPage = new AddNewCustomerPage(driver);
         updateAnExistingCustomerPage = new UpdateAnExistingCustomerPage(driver);
         assignCustomerGroupPage = new AssignCustomerGroupPage(driver);
-        exportCustomers=new ExportCustomers(driver);
-        filterCustomersByEmailPage=new FilterCustomersByEmailPage(driver);
-        addNewAddressPage=new AddNewAddressPage(driver);
-        deleteCustomerGroupsPage=new DeleteCustomerGroupsPage(driver);
-        filterCustomersByGroupPage=new FilterCustomersByGroupPage(driver);
-        filterCustomerCountryStateAndWebsite=new FilterCustomerCountryStateAndWebsite(driver);
+        exportCustomers = new ExportCustomers(driver);
+        filterCustomersByEmailPage = new FilterCustomersByEmailPage(driver);
+        addNewAddressPage = new AddNewAddressPage(driver);
+        deleteCustomerGroupsPage = new DeleteCustomerGroupsPage(driver);
+        filterCustomersByGroupPage = new FilterCustomersByGroupPage(driver);
+        filterCustomerCountryStateAndWebsite = new FilterCustomerCountryStateAndWebsite(driver);
     }
 
-    @Test
-    public void customerManagerLogin() {
+    @BeforeMethod
+    public void publicLogin(){
         adminLoginPage.adminLogin("customerManager");
     }
 
-    @Test
-    public void ResetCustomerPassword() {
+    @Test(description = "Mahmut")
+    public void resetCustomerPassword() throws InterruptedException{
         resetCustomerPassword.EditCustomerInformation(1234567);
         Assert.assertTrue(resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
@@ -59,42 +57,37 @@ public class CustomerModuleRunner extends TestBase {
 
     @Test(description = "Zulhumar")
     public void addNewCustomers() {
-        addNewCustomerPage.clickAddNewCustomer();
-        addNewCustomerPage.enterPrefixField(ApplicationConfig.readFromConfigProperties("config.properties", "prefixfield"));
-        addNewCustomerPage.enterFirstName(ApplicationConfig.readFromConfigProperties("config.properties", "userName"));
-        addNewCustomerPage.enterLastName(ApplicationConfig.readFromConfigProperties("config.properties", "lastName"));
-        addNewCustomerPage.enterEmail(ApplicationConfig.readFromConfigProperties("config.properties", "email"));
-        addNewCustomerPage.enterTaxNumber(ApplicationConfig.readFromConfigProperties("config.properties", "taxNumber"));
-        addNewCustomerPage.enterPassword(ApplicationConfig.readFromConfigProperties("config.properties", "password2"));
-        addNewCustomerPage.clickSaveButton();
+        addNewCustomerPage.addNewCustomerMethod(
+                ApplicationConfig.readFromConfigProperties("config.properties","customerName"),
+                testUtility.generateLastName(),testUtility.fakeEmail(),testUtility.generatePassword());
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
     }
-    @Test(description = "addNewCustomerAddress-Faruk")
-    public void AddNewAddressPage(){
+
+    @Test(description = "Faruk")
+    public void AddNewAddressPage() {
         addNewAddressPage.setClickEdit();
         addNewAddressPage.setClickAddressLinks();
         addNewAddressPage.setAddNewAddressButton();
-        addNewAddressPage.setEnterStreetAddress(ApplicationConfig.readFromConfigProperties("config.properties","StreetAddress"));
-        addNewAddressPage.setEnterStreetAddress1(ApplicationConfig.readFromConfigProperties("config.properties","StreetAddress1"));
+        addNewAddressPage.setEnterStreetAddress(ApplicationConfig.readFromConfigProperties("config.properties", "StreetAddress"));
+        addNewAddressPage.setEnterStreetAddress1(ApplicationConfig.readFromConfigProperties("config.properties", "StreetAddress1"));
         addNewAddressPage.setEnterCountry();
-        addNewAddressPage.setEnterState(ApplicationConfig.readFromConfigProperties("config.properties","State"));
-        addNewAddressPage.setEnterCity(ApplicationConfig.readFromConfigProperties("config.properties","City"));
-        addNewAddressPage.setEnterPostCode(ApplicationConfig.readFromConfigProperties("config.properties","Postcode"));
-        addNewAddressPage.setEnterTelephone(ApplicationConfig.readFromConfigProperties("config.properties","Phone"));
+        addNewAddressPage.setEnterState(ApplicationConfig.readFromConfigProperties("config.properties", "State"));
+        addNewAddressPage.setEnterCity(ApplicationConfig.readFromConfigProperties("config.properties", "City"));
+        addNewAddressPage.setEnterPostCode(ApplicationConfig.readFromConfigProperties("config.properties", "Postcode"));
+        addNewAddressPage.setEnterTelephone(ApplicationConfig.readFromConfigProperties("config.properties", "Phone"));
         addNewAddressPage.setAddSaveCustomerButton();
         Assert.assertTrue(addNewAddressPage.addNewAddress());
     }
 
-    @Test(description = "addNewCustomers")
-    public void UpdateAnExistingCustomerPage() {
+    @Test(description = "Shohret")
+    public void updateAnExistingCustomer() {
         updateAnExistingCustomerPage.EditAccountInformation("123");
         Assert.assertTrue(updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
     }
 
-
-    @Test(description = "customer manager can delete customer-Zulpikar",dependsOnMethods = { "addNewCustomers", "UpdateAnExistingCustomerPage" },priority = 1)
-    public void DeleteCustomerPage() throws InterruptedException {
-        DeleteCustomerPage deleteCustomerPage=new DeleteCustomerPage(driver);
+    @Test(description = "Zulpikar", dependsOnMethods = {"addNewCustomers", "UpdateAnExistingCustomerPage"}, priority = 1)
+    public void deleteCustomer() throws InterruptedException {
+        DeleteCustomerPage deleteCustomerPage = new DeleteCustomerPage(driver);
         deleteCustomerPage.clickSearchNameField();
         deleteCustomerPage.enterSearchName(ApplicationConfig.readFromConfigProperties("config.properties", "userName"));
         deleteCustomerPage.clickSearchButton();
@@ -115,39 +108,39 @@ public class CustomerModuleRunner extends TestBase {
 
     @Test(description = "Ramile")
     public void ExportCustomers() {
-        exportCustomers.ClikExport(); exportCustomers.verifyExportCustomer();
+        exportCustomers.ClickExport(); exportCustomers.verifyExportCustomer();
     }
 
-
-    @Test(description = "Arzugul_customer manager can filter customer by email")
-    public void FilterCustomersByEmailPage(){
+    @Test(description = "Arzugul")
+    public void filterCustomersByEmailPage() {
         filterCustomersByEmailPage.filterEmail();
         filterCustomersByEmailPage.verifyCustomersByEmail();
-
     }
 
     @Test(description = "Abide")
-    public void deleteCustomerGroups(){
+    public void deleteCustomerGroups() {
         deleteCustomerGroupsPage.deleteCustomerGroup();
         Assert.assertTrue(deleteCustomerGroupsPage.verifyCustomerGroupDeletedSuccessfully());
     }
 
-    @Test(description = "filter customer by group--Abide")
-     public void filterCustomerByGroup(){
-      filterCustomersByGroupPage.filterCustomersByGroup();
-      filterCustomersByGroupPage.verifyFilteredSuccessfully();
-}
+    @Test(description = "Abide")
+    public void filterCustomerByGroup() {
+        filterCustomersByGroupPage.filterCustomersByGroup();
+        filterCustomersByGroupPage.verifyFilteredSuccessfully();
+    }
 
-     @Test(description = "Kadirya")
-     public void FilterCustomerCountryStateAndWebsite(){
+    @Test(description = "Kadirya")
+    public void filterCustomerCountryStateAndWebsite() {
         filterCustomerCountryStateAndWebsite.filterCustomerByCountry();
-         filterCustomerCountryStateAndWebsite.filterCustomerByWebsite();
-         filterCustomerCountryStateAndWebsite.filteCustomerByState();
+        filterCustomerCountryStateAndWebsite.filterCustomerByWebsite();
+        filterCustomerCountryStateAndWebsite.filteCustomerByState();
+        Assert.assertTrue(true);
+    }
 
-         Assert.assertTrue(true);
-     }
-
-
+    @AfterMethod
+    public void logOut() {
+        adminLoginPage.adminLogout();
+    }
 
     @AfterClass
     public void tearDown() {

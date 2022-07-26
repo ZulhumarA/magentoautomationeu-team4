@@ -1,10 +1,8 @@
 package regression.uitest.testngframework;
 
+import com.github.javafaker.App;
 import com.seleniummaster.configutility.*;
-import com.seleniummaster.ui.backend.storemodule.AddProductCategories;
-import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
-import com.seleniummaster.ui.backend.storemodule.DeleteWebsiteInfo;
-import com.seleniummaster.ui.backend.storemodule.EditStoreViewPage;
+import com.seleniummaster.ui.backend.storemodule.*;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -17,16 +15,19 @@ public class StoreModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     DeleteWebsiteInfo deleteWebsite;
     AddProductCategories addProductCategories;
+    CanAddProducts canAddProducts;
+    CanUpdateProductPage canUpdateProductPage;
+    CancelOrdersPage cancelOrdersPage;
 
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
-
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
         context.setAttribute("driver", driver);
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("storeManager");
         addProductCategories = new AddProductCategories(driver);
+        cancelOrdersPage=new CancelOrdersPage(driver);
     }
 
     @Test(description = "Create store view-Zulhumar")
@@ -37,7 +38,7 @@ public class StoreModuleRunner extends TestBase {
         Assert.assertTrue(createStoreViewPage.verifyStoreViewSuccessfullyCreated());
     }
 
-    @Test(description = "Edit Store view-Zulhumar", priority = 1, dependsOnMethods = "CreateStoreView")
+    @Test(description = "Edit Store view-Zulhumar", priority = 1)
     public void EditStoreView() {
         EditStoreViewPage editStoreViewPage = new EditStoreViewPage(driver);
         editStoreViewPage.openManageStoresPage();
@@ -50,6 +51,16 @@ public class StoreModuleRunner extends TestBase {
         deleteWebsite = new DeleteWebsiteInfo(driver);
         deleteWebsite.DeleteWebsiteInformation();
         Assert.assertTrue(deleteWebsite.VerifyDeletedMassageSuccessfully());
+    }
+
+    @Test
+    public void CanAddProducts(){
+        CanAddProducts canAddProducts=new CanAddProducts(driver);
+        canAddProducts.setCatalogButton();
+        canAddProducts.setManegeProductsButton();
+        canAddProducts.addProduct();
+        Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
+
     }
 
     @Test(description = "Add Product Categories-Faruk", priority = 2)
@@ -66,6 +77,35 @@ public class StoreModuleRunner extends TestBase {
         addProductCategories.setIncludeInNavigationMenu();
         addProductCategories.setSaveCategoryButton();
         Assert.assertTrue(addProductCategories.VerifySavedMassageSuccessfully());
+    }
+    @Test(description = "Can Update Product Categories-Faruk",priority = 3)
+      public void CanUpdateProductPage(){
+        canUpdateProductPage=new CanUpdateProductPage(driver);
+        canUpdateProductPage.setCatalogButton();
+        canUpdateProductPage.setManegeCategoriesButton();
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        canUpdateProductPage.setClickFileName();
+        canUpdateProductPage.setEnterDescription(ApplicationConfig.readFromConfigProperties("config.properties","Description"));
+        canUpdateProductPage.setEnterPageTitle(ApplicationConfig.readFromConfigProperties("config.properties","PageTitle"));
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        canUpdateProductPage.setEnterMetaKeywords(ApplicationConfig.readFromConfigProperties("config.properties","MetaKeywords"));
+        canUpdateProductPage.setEnterMetaDescription(ApplicationConfig.readFromConfigProperties("config.properties","MetaDescription"));
+        canUpdateProductPage.setSaveCategoryButton();
+        Assert.assertTrue(canUpdateProductPage.VerifySavedMassageSuccessfully());
+    }
+
+    @Test(description = "cancel orders --Abide")
+    public void cancelOrders(){
+    cancelOrdersPage.cancelOrders();
+    Assert.assertTrue(cancelOrdersPage.verifyCancelOrdersSuccessfully());
     }
 
     @AfterClass

@@ -31,9 +31,8 @@ public class SeeCustomerByOrdersTotalReport extends TestBase {
     @FindBy(css="button[title=\"Refresh\"]")
     WebElement Refresh;
     @FindBy(xpath="//*[contains(text(),\"Jan 8, 2020\")]")
-    WebElement ResultPeriod;
-    @FindBy(css=".link-logout")
-    WebElement logOutLink;
+    WebElement ResultPeriod1;
+
     public void OpenCustomerByOrdersTotalReportPage() throws InterruptedException {
         testUtility.waitForElementPresent(ReportsLink);
         ReportsLink.click();
@@ -56,7 +55,7 @@ public class SeeCustomerByOrdersTotalReport extends TestBase {
         Refresh.click();
     }
     public boolean verifyReportsDisplayed(){
-        testUtility.waitForElementPresent(ResultPeriod);
-        return ResultPeriod.isDisplayed();
+        testUtility.waitForElementPresent(ResultPeriod1);
+        return ResultPeriod1.isDisplayed();
     }
 }
