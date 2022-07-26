@@ -47,8 +47,9 @@ public class CustomerModuleRunner extends TestBase {
     public void publicLogin(){
         adminLoginPage.adminLogin("customerManager");
     }
-    @Test
-    public void ResetCustomerPassword() throws InterruptedException{
+
+    @Test(description = "Mahmut")
+    public void resetCustomerPassword() throws InterruptedException{
         resetCustomerPassword.EditCustomerInformation(1234567);
         Assert.assertTrue(resetCustomerPassword.VerifyEditPasswordSuccessfully());
     }
@@ -61,7 +62,7 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(addNewCustomerPage.verifyAddCustomer());
     }
 
-    @Test(description = "addNewCustomerAddress-Faruk")
+    @Test(description = "Faruk")
     public void AddNewAddressPage() {
         addNewAddressPage.setClickEdit();
         addNewAddressPage.setClickAddressLinks();
@@ -77,14 +78,14 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(addNewAddressPage.addNewAddress());
     }
 
-    @Test(description = "addNewCustomers")
-    public void UpdateAnExistingCustomerPage() {
+    @Test(description = "Shohret")
+    public void updateAnExistingCustomer() {
         updateAnExistingCustomerPage.EditAccountInformation("123");
         Assert.assertTrue(updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
     }
 
-    @Test(description = "customer manager can delete customer-Zulpikar", dependsOnMethods = {"addNewCustomers", "UpdateAnExistingCustomerPage"}, priority = 1)
-    public void DeleteCustomerPage() throws InterruptedException {
+    @Test(description = "Zulpikar", dependsOnMethods = {"addNewCustomers", "UpdateAnExistingCustomerPage"}, priority = 1)
+    public void deleteCustomer() throws InterruptedException {
         DeleteCustomerPage deleteCustomerPage = new DeleteCustomerPage(driver);
         deleteCustomerPage.clickSearchNameField();
         deleteCustomerPage.enterSearchName(ApplicationConfig.readFromConfigProperties("config.properties", "userName"));
@@ -105,13 +106,12 @@ public class CustomerModuleRunner extends TestBase {
     }
 
     @Test(description = "Ramile")
-    public void ExportCustomers() {
+    public void exportCustomers() {
         exportCustomers.ClickExport();
     }
 
-
-    @Test(description = "Arzugul_customer manager can filter customer by email")
-    public void FilterCustomersByEmailPage() {
+    @Test(description = "Arzugul")
+    public void filterCustomersByEmailPage() {
         filterCustomersByEmailPage.filterEmail();
         filterCustomersByEmailPage.verifyCustomersByEmail();
     }
@@ -122,14 +122,14 @@ public class CustomerModuleRunner extends TestBase {
         Assert.assertTrue(deleteCustomerGroupsPage.verifyCustomerGroupDeletedSuccessfully());
     }
 
-    @Test(description = "filter customer by group--Abide")
+    @Test(description = "Abide")
     public void filterCustomerByGroup() {
         filterCustomersByGroupPage.filterCustomersByGroup();
         filterCustomersByGroupPage.verifyFilteredSuccessfully();
     }
 
     @Test(description = "Kadirya")
-    public void FilterCustomerCountryStateAndWebsite() {
+    public void filterCustomerCountryStateAndWebsite() {
         filterCustomerCountryStateAndWebsite.filterCustomerByCountry();
         filterCustomerCountryStateAndWebsite.filterCustomerByWebsite();
         filterCustomerCountryStateAndWebsite.filteCustomerByState();
