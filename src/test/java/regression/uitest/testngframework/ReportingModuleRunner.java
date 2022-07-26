@@ -20,7 +20,7 @@ public class ReportingModuleRunner extends TestBase {
     ProductsMostViewedReportPage productsMostViewedReportPage;
     ProductsLowStockReportPage productsLowStockReportPage;
     SeeProductsCartsReportPage seeProductsCartsReportPage;
-
+    SeeProductsBestsellersReport seeProductsBestsellersReport;
     @BeforeClass
     public void setUp(ITestContext context) {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
@@ -111,6 +111,22 @@ public class ReportingModuleRunner extends TestBase {
         Assert.assertTrue(seeProductsCartsReportPage.VerifyMassageDisplay());
     }
 
+    @Test(description = "SeeProductsBestsellersReport-Faruk")
+    public void SeeProductsBestsellersReport(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeProductsBestsellersReport=new SeeProductsBestsellersReport(driver);
+        seeProductsBestsellersReport.ReportButton();
+        seeProductsBestsellersReport.ProductButton();
+        seeProductsBestsellersReport.BestsellersButton();
+        seeProductsBestsellersReport.EnterPeriod();
+        seeProductsBestsellersReport.EnterFrom(ApplicationConfig.readFromConfigProperties("config.properties","startDate"));
+        seeProductsBestsellersReport.EnterTo(ApplicationConfig.readFromConfigProperties("config.properties","endDate"));
+        seeProductsBestsellersReport.EnterEmptyRows();
+        seeProductsBestsellersReport.ClickShowReportButton();
+        seeProductsBestsellersReport.ClickExportButton();
+        Assert.assertTrue(seeProductsBestsellersReport.VerifyShowHeadingsList());
+    }
     @AfterMethod
     public void logOut() {
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver);
