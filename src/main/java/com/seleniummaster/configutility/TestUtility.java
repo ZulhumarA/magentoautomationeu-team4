@@ -1,6 +1,7 @@
 package com.seleniummaster.configutility;
 
 import com.github.javafaker.Faker;
+import com.github.javafaker.PhoneNumber;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -127,6 +128,10 @@ public class TestUtility {
 
     }
 
+    public String generateRandomNumbers(){
+        String randomNumber= String.valueOf(faker.number().numberBetween(20,500));
+        return randomNumber;
+    }
 
     public void sleep(int second){
         try {
@@ -139,6 +144,16 @@ public class TestUtility {
     public String fakeCartPriceRulesName(){
      String fakeRuleNames=faker.business().creditCardType().toUpperCase();
      return  fakeRuleNames;
+    }
+
+    public String generateStreetName(){
+        String StreetName=faker.address().streetName();
+        return StreetName;
+    }
+
+    public String generateTelephoneNumber(){
+       String phoneNUmber= String.valueOf(faker.number().numberBetween(400000000,500000000));
+       return phoneNUmber;
     }
 
 }
