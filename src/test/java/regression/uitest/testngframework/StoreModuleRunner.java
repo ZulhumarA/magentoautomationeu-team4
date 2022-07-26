@@ -15,8 +15,10 @@ public class StoreModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     DeleteWebsiteInfo deleteWebsite;
     AddProductCategories addProductCategories;
-
+    CanAddProducts canAddProducts;
     CanUpdateProductPage canUpdateProductPage;
+    CancelOrdersPage cancelOrdersPage;
+
     StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -27,6 +29,7 @@ public class StoreModuleRunner extends TestBase {
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("storeManager");
         addProductCategories = new AddProductCategories(driver);
+        cancelOrdersPage=new CancelOrdersPage(driver);
     }
 
     @Test(description = "Create store view-Zulhumar")
@@ -44,20 +47,22 @@ public class StoreModuleRunner extends TestBase {
         editStoreViewPage.editStoreViewMethod();
         Assert.assertTrue(editStoreViewPage.verifyStoreViewSuccessfullyUpdated());
     }
-    @Test(description = "Kadirya")
-        public void StoreManagerCanUpdateProduct(){
-        StoreManagerCanUpdateProduct storeManagerCanUpdateProduct=new StoreManagerCanUpdateProduct(driver);
-        storeManagerCanUpdateProduct.setCatalogButton();
-        storeManagerCanUpdateProduct.setManegeProductsButton();
-        storeManagerCanUpdateProduct.UpdateProduct();
-        Assert.assertTrue(storeManagerCanUpdateProduct.VerifySavedMassageSuccessfully());
-    }
 
     @Test
     public void DeleteWebsiteInfo() {
         deleteWebsite = new DeleteWebsiteInfo(driver);
         deleteWebsite.DeleteWebsiteInformation();
         Assert.assertTrue(deleteWebsite.VerifyDeletedMassageSuccessfully());
+    }
+
+    @Test
+    public void CanAddProducts(){
+        CanAddProducts canAddProducts=new CanAddProducts(driver);
+        canAddProducts.setCatalogButton();
+        canAddProducts.setManegeProductsButton();
+        canAddProducts.addProduct();
+        Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
+
     }
 
     @Test(description = "Add Product Categories-Faruk", priority = 2)
@@ -97,6 +102,12 @@ public class StoreModuleRunner extends TestBase {
         canUpdateProductPage.setEnterMetaDescription(ApplicationConfig.readFromConfigProperties("config.properties","MetaDescription"));
         canUpdateProductPage.setSaveCategoryButton();
         Assert.assertTrue(canUpdateProductPage.VerifySavedMassageSuccessfully());
+    }
+
+    @Test(description = "cancel orders --Abide")
+    public void cancelOrders(){
+    cancelOrdersPage.cancelOrders();
+    Assert.assertTrue(cancelOrdersPage.verifyCancelOrdersSuccessfully());
     }
 
     @AfterClass

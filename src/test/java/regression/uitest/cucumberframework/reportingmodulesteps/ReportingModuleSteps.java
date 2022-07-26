@@ -11,39 +11,41 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
 
-public class ReportingProductsSteps extends TestBase {
+public class ReportingModuleSteps extends TestBase {
 
     AdminLoginPage adminLoginPage;
     ProductsOrderedReportPage productsOrderedReportPage;
     ProductsMostViewedReportPage productsMostViewedReportPage;
     ProductsLowStockReportPage productsLowStockReportPage;
-    String configFile="config.properties";
-SeeCustomersNewAccountReport seeCustomersNewAccountReport;
-SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
+    SeeCustomersNewAccountReport seeCustomersNewAccountReport;
+    SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
+    SeeCustomerByNumberOfOrders seeCustomerByNumberOfOrders;
+    String configFile = "config.properties";
 
     @Before("@ReportingModuleTests")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
-                (configFile,"backEndURL"));
-        adminLoginPage=new AdminLoginPage(driver);
+                (configFile, "backEndURL"));
+        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
     }
 
     @Given("reporting manager on the dashboard page")
     public void reportingManagerOnTheDashboardPage() {
-        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage = new AdminLoginPage(driver);
         Assert.assertTrue(adminLoginPage.verifyAdminLoginSuccessfully());
-        productsOrderedReportPage=new ProductsOrderedReportPage(driver);
-        productsMostViewedReportPage=new ProductsMostViewedReportPage(driver);
-        productsLowStockReportPage=new ProductsLowStockReportPage(driver);
-        seeCustomersNewAccountReport=new SeeCustomersNewAccountReport(driver);
-        seeCustomerByOrdersTotalReport=new SeeCustomerByOrdersTotalReport(driver);
+        productsOrderedReportPage = new ProductsOrderedReportPage(driver);
+        productsMostViewedReportPage = new ProductsMostViewedReportPage(driver);
+        productsLowStockReportPage = new ProductsLowStockReportPage(driver);
+        seeCustomersNewAccountReport = new SeeCustomersNewAccountReport(driver);
+        seeCustomerByOrdersTotalReport = new SeeCustomerByOrdersTotalReport(driver);
+        seeCustomerByNumberOfOrders = new SeeCustomerByNumberOfOrders(driver);
     }
 
     // products ordered report test case (Gvlmihre)
     @When("reporting manager opens the products ordered report")
     public void reportingManagerOpensTheProductsOrderedReport() {
-        productsOrderedReportPage.viewProductsOrderedReport("01/01/2020","01/01/2022");
+        productsOrderedReportPage.viewProductsOrderedReport("01/01/2020", "01/01/2022");
     }
 
     @Then("products ordered report should be displayed")
@@ -54,7 +56,7 @@ SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
     //products most viewed report test case (Gvlmihre)
     @When("reporting manager opens the products most viewed report")
     public void reportingManagerOpensTheProductsMostViewedReport() {
-        productsMostViewedReportPage.viewProductsMostViewedReport("1/1/2020","1/1/2022");
+        productsMostViewedReportPage.viewProductsMostViewedReport("1/1/2020", "1/1/2022");
     }
 
     @Then("products most viewed report should be displayed")
@@ -74,14 +76,14 @@ SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
     }
 
 
-    //opens the Customers New Account Report-Zulhumar
+    //open the Customers New Account Report-Zulhumar
     @When("reporting manager opens the Customers New Account Report")
     public void reportingManagerOpensTheCustomersNewAccountReport() throws InterruptedException {
-       seeCustomersNewAccountReport.OpenCustomersNewAccountReportPage();
-       seeCustomersNewAccountReport.ShowNewAccountReportMethod(ApplicationConfig.readFromConfigProperties(
-                       "config.properties","startDate"),
-               ApplicationConfig.readFromConfigProperties(
-                       "config.properties","endDate"));
+        seeCustomersNewAccountReport.OpenCustomersNewAccountReportPage();
+        seeCustomersNewAccountReport.ShowNewAccountReportMethod(ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "startDate"),
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "endDate"));
 
     }
 
@@ -90,15 +92,15 @@ SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
         Assert.assertTrue(seeCustomersNewAccountReport.verifyReportsDisplayed());
     }
 
-//opens the Customers By Ordered Total Report-Zulhumar
-    @When("reporting manager opens the Customers By Ordes Total Report")
+    //open the Customers By Orders Total Report-Zulhumar
+    @When("reporting manager opens the Customers By Orders Total Report")
     public void reportingManagerOpensTheCustomersByOrdersTotalReport() throws InterruptedException {
-
         seeCustomerByOrdersTotalReport.OpenCustomerByOrdersTotalReportPage();
-        seeCustomerByOrdersTotalReport.ShowCustomersByOrdersTotalReportMethod(ApplicationConfig.readFromConfigProperties(
-                        "config.properties","startDate1"),
+        seeCustomerByOrdersTotalReport.ShowCustomersByOrdersTotalReportMethod(
                 ApplicationConfig.readFromConfigProperties(
-                        "config.properties","endDate1"));
+                        "config.properties", "startDate1"),
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "endDate1"));
     }
 
     @Then("Customers By Orders Total Report should be displayed")
@@ -106,10 +108,26 @@ SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
         Assert.assertTrue(seeCustomerByOrdersTotalReport.verifyReportsDisplayed());
     }
 
+    //open the Customers By Number Of Orders Report-Zulhumar
+    @When("reporting manager opens the Customers By Number Of Orders Report")
+    public void reportingManagerOpensTheCustomersByNumberOfOrdersReport() throws InterruptedException {
 
+        seeCustomerByNumberOfOrders.OpenCustomerByNumberOfOrdersPage();
+        seeCustomerByNumberOfOrders.ShowCustomersByNumberOfOrdersReportMethod(
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "startDate2"),
+                ApplicationConfig.readFromConfigProperties(
+                        "config.properties", "endDate2"));
+    }
 
-   @After("@ReportingModuleTests")
-   public void tearDown(){
+    @Then("Customers By Number Of Orders Report should be displayed")
+    public void customersByNumberOfOrdersReportShouldBeDisplayed() {
+        Assert.assertTrue(seeCustomerByNumberOfOrders.verifyReportsDisplayed());
+
+    }
+
+    @After("@ReportingModuleTests")
+    public void tearDown() {
         closeBrowser();
-   }
+    }
 }

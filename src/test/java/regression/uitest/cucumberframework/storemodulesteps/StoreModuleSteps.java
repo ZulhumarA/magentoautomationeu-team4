@@ -4,6 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
+import com.seleniummaster.ui.backend.storemodule.CanAddProducts;
 import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
 import com.seleniummaster.ui.backend.storemodule.EditStoreViewPage;
 import com.seleniummaster.ui.backend.storemodule.StoreManagerCanUpdateProduct;
@@ -19,11 +20,22 @@ public class StoreModuleSteps extends TestBase {
     EditStoreViewPage editStoreViewPage;
     StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
     String configFile="config.properties";
+    CanAddProducts canAddProducts;
     AdminLoginPage adminLoginPage;
     @Before("@ManageStoreTest")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
+    }
+
+    @When("user enter valid userName  and valid Password and click on login Button")
+    public void userEnterValidUserNameAndValidPasswordAndClickOnLoginButton() {
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("storeManager");}
+
+
+    @Then("user should able to login successfully")
+    public void userShouldAbleToLoginSuccessfully() {
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("storeManager");
 
@@ -63,6 +75,21 @@ public class StoreModuleSteps extends TestBase {
     public void successfullyEditedMessageShouldBeDisplayed() {
       EditStoreViewPage editStoreViewPage=new EditStoreViewPage(driver);
         Assert.assertTrue(editStoreViewPage.verifyStoreViewSuccessfullyUpdated());
+    }
+
+
+//Kadirya
+@When("store manager should be able to add product")
+   public void store_manager_should_be_able_to_add_product() {
+    CanAddProducts canAddProducts=new CanAddProducts(driver);
+    canAddProducts.setCatalogButton();
+    canAddProducts.setManegeProductsButton();
+    canAddProducts.addProduct();
+}
+    @Then("a new product should be added")
+    public void a_new_product_should_be_added() {
+        CanAddProducts canAddProducts=new CanAddProducts(driver);
+        Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
     }
 
     @After("@ManageStoreTest")

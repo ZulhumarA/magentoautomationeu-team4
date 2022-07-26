@@ -1,4 +1,4 @@
 package com.seleniummaster.database;
 
-public class DataBase {
+public class TestDataHolder {
 }
