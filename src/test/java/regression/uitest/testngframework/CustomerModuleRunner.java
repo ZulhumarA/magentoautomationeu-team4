@@ -96,7 +96,7 @@ Assert.assertTrue(addNewCustomerGroups.verifyCustomerGroupSuccessfullyAdded());
         Assert.assertTrue(updateAnExistingCustomerPage.VerifyEditPasswordSuccessfully());
     }
 
-    @Test(description = "Zulpikar", dependsOnMethods = {"addNewCustomers", "UpdateAnExistingCustomerPage"}, priority = 1)
+    @Test(description = "Zulpikar", dependsOnMethods = {"addNewCustomers", "updateAnExistingCustomer"}, priority = 1)
     public void deleteCustomer() throws InterruptedException {
         DeleteCustomerPage deleteCustomerPage = new DeleteCustomerPage(driver);
         deleteCustomerPage.clickSearchNameField();
