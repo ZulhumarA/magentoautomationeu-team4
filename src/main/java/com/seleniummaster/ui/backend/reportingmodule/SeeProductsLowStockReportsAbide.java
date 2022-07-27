@@ -21,13 +21,13 @@ public class SeeProductsLowStockReportsAbide {
 @FindBy(css = "ul#nav>li:nth-child(3)>a")
 WebElement reportsLink;
 
-@FindBy(css = "#nav > li.active.parent.level0 > ul > li:nth-child(3)")
+@FindBy(css = "#nav > li:nth-child(3) > ul > li:nth-child(3)")
 WebElement productsLink;
 
-@FindBy(css = "#nav > li.active.parent.level0 > ul > li:nth-child(3) > ul > li:nth-child(4) > a")
+@FindBy(css = "#nav > li:nth-child(3) > ul > li:nth-child(3) > ul > li:nth-child(4)")
 WebElement lowStockLink;
 
-@FindAll(@FindBy(css = "table#gridLowstock_table>tbody>tr:nth-child(1)") )
+@FindBys(@FindBy(css = "table#gridLowstock_table>tbody>tr") )
 List<WebElement> firstLineLowStockReportInTable;
 
     public SeeProductsLowStockReportsAbide(WebDriver driver) {
@@ -39,16 +39,15 @@ List<WebElement> firstLineLowStockReportInTable;
 
     //Methods
     public void canSeeProductLowStockReports(){
-        testUtility.waitForElementPresent(reportsLink);
-        reportsLink.click();
-       actions.moveToElement(reportsLink).click().perform();
+        actions.moveToElement(reportsLink).doubleClick().perform();
+        actions.doubleClick(productsLink).perform();
         testUtility.waitForElementPresent(lowStockLink);
         lowStockLink.click();
     }
 
     public boolean verifyReportingViewedSuccessfully(){
-        firstLineLowStockReportInTable=new ArrayList<>();
         int rowNumber= firstLineLowStockReportInTable.size();
+        System.out.println(rowNumber);
         if (rowNumber>=1)
             return true;
         else
