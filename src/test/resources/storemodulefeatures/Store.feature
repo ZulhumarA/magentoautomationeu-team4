@@ -39,7 +39,7 @@ Feature: Store manager can manage stores
     When store manager should be able to update product
     Then a new product should be updated
 
-  @StoreManagerCanUpdateProduct
+  @StoreManagerCanDeleteProduct
   Scenario: store manager can delete product
     Given store manager on the dashboard page
     When store manager should be able to delete product
