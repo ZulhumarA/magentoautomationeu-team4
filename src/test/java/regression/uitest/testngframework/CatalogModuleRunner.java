@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CatalogModuleRunner extends TestBase {
@@ -20,8 +21,6 @@ public class CatalogModuleRunner extends TestBase {
     DeleteProduct deleteProduct;
     EditProduct editProduct;
 
-
-
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -34,10 +33,11 @@ public class CatalogModuleRunner extends TestBase {
         deleteSubCategories = new DeleteSubCategories(driver);
         addSubCategories = new AddSubCategories(driver);
         editSubCategories = new EditSubCategories(driver);
-        addSubcategoriesPageAbide= new AddSubcategoriesPageAbide(driver);
+        addSubcategoriesPageAbide=new AddSubcategoriesPageAbide(driver);
         addProduct = new AddProduct(driver);
         deleteProduct=new DeleteProduct(driver);
         editProduct=new EditProduct(driver);
+
     }
 
     @Test(description = "Zulhumar")
