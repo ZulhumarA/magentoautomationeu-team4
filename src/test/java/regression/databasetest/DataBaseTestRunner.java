@@ -1,11 +1,8 @@
 package regression.databasetest;
 
-import com.seleniummaster.database.DatabaseMethods;
-import org.testng.annotations.AfterClass;
+import com.seleniummaster.database.databaseUtility.DatabaseMethods;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
-import java.sql.Connection;
 
 public class DataBaseTestRunner {
 
@@ -15,6 +12,8 @@ public class DataBaseTestRunner {
     public void setUp(){
         databaseMethods.databaseConnectionSetUp();
     }
+
+
 
 
     @Test

@@ -20,7 +20,7 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
     ManageViewShoppingCart manageViewShoppingCart;
     String configFile="config.properties";
 
-    @Before()
+    @Before("@ViewCouponsCreditMemosAndShoppingCart")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
