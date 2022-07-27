@@ -1,6 +1,5 @@
 package regression.uitest.testngframework;
 
-import com.github.javafaker.App;
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.storemodule.*;
 import org.testng.Assert;
@@ -15,10 +14,11 @@ public class StoreModuleRunner extends TestBase {
     AdminLoginPage adminLoginPage;
     DeleteWebsiteInfo deleteWebsite;
     AddProductCategories addProductCategories;
-    CanAddProducts canAddProducts;
+    StoreManagerCanAddProducts storeManagerCanAddProducts;
     CanUpdateProductPage canUpdateProductPage;
     CancelOrdersPage cancelOrdersPage;
     StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
+    StoreManagerCanDeleteProduct storeManagerCanDeleteProduct;
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -54,15 +54,6 @@ public class StoreModuleRunner extends TestBase {
         Assert.assertTrue(deleteWebsite.VerifyDeletedMassageSuccessfully());
     }
 
-    @Test
-    public void CanAddProducts(){
-        CanAddProducts canAddProducts=new CanAddProducts(driver);
-        canAddProducts.setCatalogButton();
-        canAddProducts.setManegeProductsButton();
-        canAddProducts.addProduct();
-        Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
-
-    }
 
     @Test(description = "Add Product Categories-Faruk", priority = 2)
     public void AddProductCategories() {
@@ -110,6 +101,18 @@ public class StoreModuleRunner extends TestBase {
     }
 
 
+
+    @Test(description = "Kadirya")
+    public void StoreManagerCanAddProducts (){
+        storeManagerCanAddProducts=new StoreManagerCanAddProducts(driver);
+        storeManagerCanAddProducts.setCatalogButton();
+        storeManagerCanAddProducts.setManegeProductsButton();
+        storeManagerCanAddProducts.addProduct();
+        Assert.assertTrue(storeManagerCanAddProducts.VerifySavedMassageSuccessfully());
+
+    }
+
+
     @Test(description = "Kadirya")
     public void StoreManagerCanUpdateProduct(){
         storeManagerCanUpdateProduct=new StoreManagerCanUpdateProduct(driver);
@@ -120,6 +123,16 @@ public class StoreModuleRunner extends TestBase {
 
     }
 
+    @Test(description = "Kadirya")
+    public void StoreManagerCanDeleteProduct(){
+        storeManagerCanDeleteProduct =new StoreManagerCanDeleteProduct(driver);
+        storeManagerCanDeleteProduct.setCatalogButton();
+        storeManagerCanDeleteProduct.setManegeProductsButton();
+        storeManagerCanDeleteProduct.DeleteProduct();
+        Assert.assertTrue(storeManagerCanDeleteProduct.VerifySavedMassageSuccessfully());
+
+
+    }
 
     @AfterClass
     public void tearDown() {
