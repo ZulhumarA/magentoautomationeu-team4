@@ -2,6 +2,7 @@ package regression.uitest.cucumberframework.storemodulesteps;
 
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
+import com.seleniummaster.configutility.PublicLoginPage;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.storemodule.*;
 import io.cucumber.java.After;

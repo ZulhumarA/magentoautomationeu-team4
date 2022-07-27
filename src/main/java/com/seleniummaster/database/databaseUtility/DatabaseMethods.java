@@ -8,21 +8,22 @@ import java.sql.Connection;
 
 public class DatabaseMethods {
 
-    Connection connection=null;
 
+    static Connection databaseConnection;
     final static String configFile="config.properties";
 
-    public void databaseConnectionSetUp(){
+    public static Connection databaseConnectionSetUp(){
         String dbUrl= ApplicationConfig.readFromConfigProperties(configFile,"dbUrl");
         String dbPort= ApplicationConfig.readFromConfigProperties(configFile,"dbPort");
         String defaultDatabase= ApplicationConfig.readFromConfigProperties(configFile,"defaultDatabase");
         String dbUserName= ApplicationConfig.readFromConfigProperties(configFile,"dbUserName");
         String dbPassword= ApplicationConfig.readFromConfigProperties(configFile,"dbPassword");
-        connection= ConnectionManager.connectToDatabaseServer(dbUrl,dbPort,defaultDatabase,dbUserName,dbPassword, ConnectionType.MYSQL);
+        databaseConnection= ConnectionManager.connectToDatabaseServer(dbUrl,dbPort,defaultDatabase,dbUserName,dbPassword, ConnectionType.MYSQL);
+        return databaseConnection;
     }
 
-    public void closeDatabaseConnection(){
-        ConnectionManager.closeDatabaseConnection(connection);
+    public static void closeDatabaseConnection(){
+        ConnectionManager.closeDatabaseConnection(databaseConnection);
     }
 
 

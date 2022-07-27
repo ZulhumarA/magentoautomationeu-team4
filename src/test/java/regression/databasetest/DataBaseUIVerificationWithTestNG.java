@@ -4,33 +4,33 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
+import com.seleniummaster.database.databaseUtility.DataAccess;
 import com.seleniummaster.database.databaseUtility.DatabaseMethods;
 import com.seleniummaster.database.databaseUtility.TestDataHolder;
-import com.seleniummaster.database.datapaseTestPages.VerifyNewStoreViewPage;
+import com.seleniummaster.database.databaseTestPages.VerifyNewStoreViewPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class DataBaseUIVerification extends TestBase {
+import java.sql.Connection;
 
+public class DataBaseUIVerificationWithTestNG extends TestBase {
 
     String configFile="config.properties";
     String backEndURL= ApplicationConfig.readFromConfigProperties(configFile,"backEndURL");
     AdminLoginPage adminLoginPage;
     TestUtility testUtility;
     VerifyNewStoreViewPage verifyNewStoreViewPage;
-    DatabaseMethods databaseMethods=new DatabaseMethods();
     TestDataHolder testDataHolder=new TestDataHolder();
+    DataAccess dataAccess=new DataAccess();
 
     @BeforeClass
     public void setUp(){
         browserSetUp(backEndURL);
-        databaseMethods.databaseConnectionSetUp();
         adminLoginPage=new AdminLoginPage(driver);
         testUtility=new TestUtility(driver);
         verifyNewStoreViewPage=new VerifyNewStoreViewPage(driver);
-
     }
 
     @Test(description = "Gvlmihre")
@@ -41,21 +41,18 @@ public class DataBaseUIVerification extends TestBase {
         String storeCode="team4test"+testUtility.generateRandomStoreCode();
         testDataHolder.setStoreName(storeName);
         verifyNewStoreViewPage.createNewStoreView(storeName,storeCode);
-        Assert.assertTrue(verifyNewStoreViewPage.verifyNewStoreViewSuccessfullyCreated());
+        Assert.assertTrue(verifyNewStoreViewPage.verifyNewStoreViewSuccessfullyCreated(testDataHolder.getStoreName()));
         //verify Created Store View is in the database
-
-
+        Connection connection=DatabaseMethods.databaseConnectionSetUp();
+        boolean isCustomerExist=dataAccess.getStoreName(testDataHolder.getStoreName(),connection);
+        Assert.assertTrue(isCustomerExist);
     }
-
-
-
-
 
     @AfterClass
     public void tearDown(){
         driver.close();
         driver.quit();
-        databaseMethods.closeDatabaseConnection();
+        DatabaseMethods.closeDatabaseConnection();
     }
 
 }
