@@ -5,6 +5,7 @@ import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.configutility.TestUtility;
 import com.seleniummaster.ui.backend.salesmodule.ManageOrdersPageAbide;
+import com.seleniummaster.ui.backend.salesmodule.UpdateExistingShoppingCart;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -16,7 +17,7 @@ public class SaleModuleRunner extends TestBase {
     TestUtility testUtility;
     AdminLoginPage adminLoginPage;
     ManageOrdersPageAbide manageOrdersPageAbide;
-
+    UpdateExistingShoppingCart updateExistingShoppingCart;
     @BeforeClass
     public void setUp(ITestContext context) {
         testUtility = new TestUtility(driver);
@@ -26,6 +27,7 @@ public class SaleModuleRunner extends TestBase {
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("salesManager");
         manageOrdersPageAbide=new ManageOrdersPageAbide(driver);
+        updateExistingShoppingCart=new UpdateExistingShoppingCart(driver);
     }
 
 
@@ -38,6 +40,14 @@ public class SaleModuleRunner extends TestBase {
         manageOrdersPageAbide.cancelOrders();
         Assert.assertTrue(manageOrdersPageAbide.verifyOrderCanceledSuccessfully());
     }
+
+    @Test(description = "updating existing shopping cart--Abide ")
+    public void UpdateExistingShoppingCart(){
+        updateExistingShoppingCart.updateExistingShoppingCart();
+        Assert.assertTrue(updateExistingShoppingCart.verifyShoppingCartUpdatedSuccessfully());
+    }
+
+
 
     @AfterClass(enabled = false)
     public void tearDown() {

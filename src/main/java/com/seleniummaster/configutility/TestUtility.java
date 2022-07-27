@@ -185,6 +185,11 @@ public class TestUtility {
        return phoneNUmber;
     }
 
+    public String productName(){
+        String productName=faker.commerce().productName();
+        return productName;
+    }
+
 }
 
 
