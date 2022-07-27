@@ -39,6 +39,9 @@ public class VerifyNewStoreViewPage {
     @FindBy(id = "store_is_active")
     WebElement storeStatusDropDown;
 
+    @FindBy(xpath = "//span[text()='Save Store View']")
+    WebElement saveStoreViewButton;
+
     @FindBy(xpath = "//span[text()='The store view has been saved']")
     WebElement storeViewSuccessfullyCreatedMessage;
 
@@ -57,6 +60,8 @@ public class VerifyNewStoreViewPage {
         storeCodeField.sendKeys(storeCode);
         testUtility.waitForElementPresent(storeStatusDropDown);
         testUtility.selectValueFromDropDown(storeStatusDropDown,"1");
+        testUtility.waitForElementPresent(saveStoreViewButton);
+        saveStoreViewButton.click();
     }
 
     public boolean verifyNewStoreViewSuccessfullyCreated(){
