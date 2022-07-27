@@ -42,8 +42,26 @@ public class VerifyNewStoreViewPage {
     @FindBy(xpath = "//span[text()='The store view has been saved']")
     WebElement storeViewSuccessfullyCreatedMessage;
 
-    public void createNewStoreView(){
-        
+    public void createNewStoreView(String storeName, String storeCode){
+        testUtility.waitForElementPresent(systemButton);
+        systemButton.click();
+        testUtility.waitForElementPresent(manageStoresButton);
+        manageStoresButton.click();
+        testUtility.waitForElementPresent(createStoreViewButton);
+        createStoreViewButton.click();
+        testUtility.waitForElementPresent(storeDropDown);
+        testUtility.selectValueFromDropDown(storeDropDown,"99");
+        testUtility.waitForElementPresent(storeNameField);
+        storeNameField.sendKeys(storeName);
+        testUtility.waitForElementPresent(storeCodeField);
+        storeCodeField.sendKeys(storeCode);
+        testUtility.waitForElementPresent(storeStatusDropDown);
+        testUtility.selectValueFromDropDown(storeStatusDropDown,"1");
+    }
+
+    public boolean verifyNewStoreViewSuccessfullyCreated(){
+        testUtility.waitForElementPresent(storeViewSuccessfullyCreatedMessage);
+        return storeViewSuccessfullyCreatedMessage.isDisplayed();
     }
 
 }

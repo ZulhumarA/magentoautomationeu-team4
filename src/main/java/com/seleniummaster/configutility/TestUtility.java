@@ -35,7 +35,6 @@ public class TestUtility {
         return firstName;
     }
 
-
     public String generateTitle(){
         String title=faker.name().title();
         return title;
@@ -55,18 +54,22 @@ public class TestUtility {
         String zip = faker.address().zipCode();
         return zip;
     }
+
     public String fakeCategoryName() {
         String categoryName = faker.name().name();
         return categoryName;
     }
+
     public String fakePageTitle() {
         String title = faker.name().title();
         return title;
     }
-        public String metaKeywords() {
+
+    public String metaKeywords() {
             String metaKeyword = faker.commerce().productName();
             return metaKeyword;
         }
+
     public String metaDescriptions() {
         String metaDescription = faker.commerce().productName();
         return metaDescription;
@@ -85,16 +88,30 @@ public class TestUtility {
         System.out.println(generatedString.toLowerCase());
         return generatedString.toLowerCase();
     }
+
     public String generatePassword(){
         long length=8;
         String generateLong= RandomStringUtils.randomNumeric((int) length);
         return generateLong;
     }
 
-
     public String fakeEmail() {
         String email = faker.internet().emailAddress();
         return email;
+    }
+
+    public String fakeName(){
+        String name=faker.name().name();
+        return name;
+    }
+
+    public String  generateRandomStoreCode() {
+        int length = 6;
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+        System.out.println(generatedString.toLowerCase());
+        return generatedString.toLowerCase();
     }
 
     public void waitForAlertPresent(){
