@@ -20,6 +20,8 @@ public class ReportingModuleRunner extends TestBase {
     ProductsMostViewedReportPage productsMostViewedReportPage;
     ProductsLowStockReportPage productsLowStockReportPage;
     SeeProductsCartsReportPage seeProductsCartsReportPage;
+    SeeProductsBestsellersReport seeProductsBestsellersReport;
+    SeeAbandonedCartsReport seeAbandonedCartsReport;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -110,7 +112,34 @@ public class ReportingModuleRunner extends TestBase {
         seeProductsCartsReportPage.clickExportButton();
         Assert.assertTrue(seeProductsCartsReportPage.VerifyMassageDisplay());
     }
+    @Test(description = "SeeAbandonedCartsReport-Faruk")
+    public void SeeAbandonedCartsReport(){
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeAbandonedCartsReport=new SeeAbandonedCartsReport(driver);
+        seeAbandonedCartsReport.setReportButton();
+        seeAbandonedCartsReport.setShoppingCartsButton();
+        seeAbandonedCartsReport.setAbandonedCartsButton();
+        seeAbandonedCartsReport.setExportButton();
+        Assert.assertTrue(seeAbandonedCartsReport.VerifyReportMassageDisplay());
+    }
 
+    @Test(description = "SeeProductsBestsellersReport-Faruk")
+    public void SeeProductsBestsellersReport(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeProductsBestsellersReport=new SeeProductsBestsellersReport(driver);
+        seeProductsBestsellersReport.ReportButton();
+        seeProductsBestsellersReport.ProductButton();
+        seeProductsBestsellersReport.BestsellersButton();
+        seeProductsBestsellersReport.EnterPeriod();
+        seeProductsBestsellersReport.EnterFrom(ApplicationConfig.readFromConfigProperties("config.properties","startDate"));
+        seeProductsBestsellersReport.EnterTo(ApplicationConfig.readFromConfigProperties("config.properties","endDate"));
+        seeProductsBestsellersReport.EnterEmptyRows();
+        seeProductsBestsellersReport.ClickShowReportButton();
+        seeProductsBestsellersReport.ClickExportButton();
+        Assert.assertTrue(seeProductsBestsellersReport.VerifyShowHeadingsList());
+    }
     @AfterMethod
     public void logOut() {
         AdminLoginPage adminLoginPage = new AdminLoginPage(driver);

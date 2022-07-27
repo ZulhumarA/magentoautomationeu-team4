@@ -21,8 +21,10 @@ public class MarketingModuleRunner extends TestBase {
     ViewNewsletterSubscribersPage viewNewsletterSubscribersPage;
     AddNewCartPriceRule addNewCartPriceRule;
     UpdateCartPriceRule updateCartPriceRule;
-    AddNewCartPriceRuleAbide addNewCartPriceRuleAbide;
+    AddNewCatalogPriceRule addNewCatalogPriceRule;
 
+    AddNewCartPriceRuleAbide addNewCartPriceRuleAbide;
+    DeleteNewsletterTemplatesPageAbide deleteNewsletterTemplatesPageAbide;
 
 
     @BeforeClass
@@ -93,6 +95,20 @@ public class MarketingModuleRunner extends TestBase {
         viewNewsletterSubscribersPage.viewNewsletterSubscribers();
         Assert.assertTrue(viewNewsletterSubscribersPage.verifyNewsletterSubscribersViewed());
     }
+    @Test(description = "Arzugul")
+    public void addNewCatalogPriceRuleTest() throws InterruptedException {
+        addNewCatalogPriceRule=new AddNewCatalogPriceRule(driver);
+        addNewCatalogPriceRule.addCatalogPriceRule("Team4","08/9/2022");
+        Assert.assertTrue(addNewCatalogPriceRule.verifyAddNewCatalogPriceRule());
+    }
+
+    @Test(description = "delete newsletter template page--Abide")
+    public void deleteNewsletterTemplatesAbide(){
+        deleteNewsletterTemplatesPageAbide=new DeleteNewsletterTemplatesPageAbide(driver);
+        deleteNewsletterTemplatesPageAbide.deleteNewsletterTemplates();
+        Assert.assertTrue(deleteNewsletterTemplatesPageAbide.deleteNewsLetterTemplateSuccessfully());
+    }
+
 
 //    @AfterMethod
 //    public void logout(){

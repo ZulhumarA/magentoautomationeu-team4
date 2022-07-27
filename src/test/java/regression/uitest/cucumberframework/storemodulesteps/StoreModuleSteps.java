@@ -7,6 +7,7 @@ import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.storemodule.CanAddProducts;
 import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
 import com.seleniummaster.ui.backend.storemodule.EditStoreViewPage;
+import com.seleniummaster.ui.backend.storemodule.StoreManagerCanUpdateProduct;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -17,14 +18,23 @@ import org.testng.Assert;
 public class StoreModuleSteps extends TestBase {
     CreateStoreViewPage createStoreViewPage;
     EditStoreViewPage editStoreViewPage;
-    CanAddProducts canAddProducts;
-    String configFile = "config.properties";
+    //StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
+    String configFile="config.properties";
+    //CanAddProducts canAddProducts;
     AdminLoginPage adminLoginPage;
 
-    @Given("user Already on the login page")
-    public void userAlreadyOnTheLoginPage() {
+    @Before("@ManageStoreTest")
+    public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
                 (configFile,"backEndURL"));
+        adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("storeManager");
+    }
+
+    @After("@ManageStoreTest")
+    public void tearDown()
+    {
+        closeBrowser();
     }
 
     @When("user enter valid userName  and valid Password and click on login Button")
@@ -36,10 +46,9 @@ public class StoreModuleSteps extends TestBase {
     @Then("user should able to login successfully")
     public void userShouldAbleToLoginSuccessfully() {
         adminLoginPage=new AdminLoginPage(driver);
-        Assert.assertTrue(adminLoginPage.verifyAdminLoginSuccessfully());
+        adminLoginPage.adminLogin("storeManager");
+
     }
-
-
 
 //Store Manager can create a store view Zulhumar
     @Given("store manager on the dashboard page")
@@ -78,7 +87,12 @@ public class StoreModuleSteps extends TestBase {
     }
 
 
-//Kadirya
+//*************************Kadirya*****************************
+     CanAddProducts canAddProducts;
+    StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
+
+
+
 @When("store manager should be able to add product")
    public void store_manager_should_be_able_to_add_product() {
     CanAddProducts canAddProducts=new CanAddProducts(driver);
@@ -92,10 +106,22 @@ public class StoreModuleSteps extends TestBase {
         Assert.assertTrue(canAddProducts.VerifySavedMassageSuccessfully());
     }
 
-    @After("@ManageStoreTest")
-    public void tearDown()
-    {
-        closeBrowser();
+
+
+    @When("store manager should be able to update product")
+    public void store_manager_should_be_able_to_update_product() {
+        storeManagerCanUpdateProduct = new StoreManagerCanUpdateProduct(driver);
+        storeManagerCanUpdateProduct.setCatalogButton();
+        storeManagerCanUpdateProduct.setManegeProductsButton();
+        storeManagerCanUpdateProduct.UpdateProduct();
     }
+
+    @Then("a new product should be updated")
+    public void a_new_product_should_be_updated() {
+        storeManagerCanUpdateProduct=new StoreManagerCanUpdateProduct(driver);
+        Assert.assertTrue(storeManagerCanUpdateProduct.VerifySavedMassageSuccessfully());
+
+    }
+
 
 }

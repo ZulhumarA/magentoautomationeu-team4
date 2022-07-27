@@ -70,7 +70,7 @@ public class PublicLoginPage {
         LoginButton.click();
         testUtility.waitForElementPresent(InterEmailField);
         InterEmailField.click();
-        InterEmailField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties", "emailAddress2"));
+        InterEmailField.sendKeys(ApplicationConfig.readFromConfigProperties("config.properties", "emailAddress"));
         testUtility.waitForElementPresent(InterPasswordField);
         InterPasswordField.click();
         InterPasswordField.sendKeys( ApplicationConfig.readFromConfigProperties("config.properties", "password"));
