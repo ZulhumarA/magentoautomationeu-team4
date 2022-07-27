@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
                  },
         features = {"src/test/resources"},
        // glue = "uitest",
-        tags ="@ReportingModuleTests")
+        tags ="@StoreManagerCanCancelOrders")
 
 public class CucumberTestRunner {
 }

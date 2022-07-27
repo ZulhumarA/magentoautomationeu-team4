@@ -136,5 +136,16 @@ public class StoreModuleSteps extends TestBase {
 
     }
 
+    //*************************** Abide ****************************
+    @When("store manager cancel orders")
+    public void storeManagerCancelOrders() {
+    CancelOrdersPage cancelOrdersPage=new CancelOrdersPage(driver);
+    cancelOrdersPage.cancelOrders();
+    }
 
+    @Then("an order should be canceled")
+    public void anOrderShouldBeCanceled() {
+        CancelOrdersPage cancelOrdersPage=new CancelOrdersPage(driver);
+        Assert.assertTrue(cancelOrdersPage.verifyCancelOrdersSuccessfully());
+    }
 }
