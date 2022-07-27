@@ -21,6 +21,7 @@ public class ReportingModuleRunner extends TestBase {
     ProductsLowStockReportPage productsLowStockReportPage;
     SeeProductsCartsReportPage seeProductsCartsReportPage;
     SeeProductsLowStockReportsAbide seeProductsLowStockReportsAbide;
+    SeeSalesTotalRefundedReport seeSalesTotalRefundedReport;
 
 SeeProductReviews seeProductReviews;
     @BeforeClass
@@ -115,6 +116,19 @@ seeProductReviews.seeProductReviewsMethod();
         seeProductsCartsReportPage.clickExportButton();
         Assert.assertTrue(seeProductsCartsReportPage.VerifyMassageDisplay());
     }
+
+    @Test(description = "Kadirya")
+    public void SeeSalesTotalRefundedReport(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeSalesTotalRefundedReport=new SeeSalesTotalRefundedReport(driver);
+        seeSalesTotalRefundedReport.OpenRefundedReportPage();
+        seeSalesTotalRefundedReport.SeeRefundedReport("04/23/2022","07/25/2022");
+        Assert.assertTrue(seeSalesTotalRefundedReport.verifyReportsDisplayed());
+    }
+
+
+
 
     @Test(description = "see products low stock level --Abide")
     public void setSeeProductsLosStockLevel(){
