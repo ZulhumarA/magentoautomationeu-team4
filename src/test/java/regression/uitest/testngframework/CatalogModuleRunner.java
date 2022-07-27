@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class CatalogModuleRunner extends TestBase {
@@ -16,7 +15,7 @@ public class CatalogModuleRunner extends TestBase {
     DeleteSubCategories deleteSubCategories;
     AddSubCategories addSubCategories;
     EditSubCategories editSubCategories;
-    AddSubcategoriesPage addSubcategoriesPage;
+    AddSubcategoriesPageAbide addSubcategoriesPageAbide;
     AddProduct addProduct;
     DeleteProduct deleteProduct;
     EditProduct editProduct;
@@ -35,7 +34,7 @@ public class CatalogModuleRunner extends TestBase {
         deleteSubCategories = new DeleteSubCategories(driver);
         addSubCategories = new AddSubCategories(driver);
         editSubCategories = new EditSubCategories(driver);
-        addSubcategoriesPage = new AddSubcategoriesPage(driver);
+        addSubcategoriesPageAbide= new AddSubcategoriesPageAbide(driver);
         addProduct = new AddProduct(driver);
         deleteProduct=new DeleteProduct(driver);
         editProduct=new EditProduct(driver);
@@ -116,6 +115,11 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
     }
 
+    @Test(description = "add sub categories page-Abide")
+    public  void addSubcategoriesMethod(){
+        addSubcategoriesPageAbide.addSubcategories();
+        Assert.assertTrue(addSubcategoriesPageAbide.verifySubcategoriesAddedSuccessfully());
+    }
 
     @AfterClass
     public void tearDown () {
