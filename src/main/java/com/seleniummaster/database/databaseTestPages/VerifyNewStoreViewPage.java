@@ -1,4 +1,4 @@
-package com.seleniummaster.database.datapaseTestPages;
+package com.seleniummaster.database.databaseTestPages;
 
 import com.seleniummaster.configutility.TestUtility;
 import org.openqa.selenium.WebDriver;
@@ -67,6 +67,11 @@ public class VerifyNewStoreViewPage {
     public boolean verifyNewStoreViewSuccessfullyCreated(){
         testUtility.waitForElementPresent(storeViewSuccessfullyCreatedMessage);
         return storeViewSuccessfullyCreatedMessage.isDisplayed();
+    }
+
+    public boolean verifyNewStoreViewSuccessfullyCreated(String storeName){
+        testUtility.sleep(3);
+        return driver.getPageSource().contains(storeName);
     }
 
 }
