@@ -20,6 +20,7 @@ public class ReportingModuleRunner extends TestBase {
     ProductsMostViewedReportPage productsMostViewedReportPage;
     ProductsLowStockReportPage productsLowStockReportPage;
     SeeProductsCartsReportPage seeProductsCartsReportPage;
+    SeeProductsLowStockReportsAbide seeProductsLowStockReportsAbide;
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -109,6 +110,15 @@ public class ReportingModuleRunner extends TestBase {
         seeProductsCartsReportPage.clickProductInCartsButton();
         seeProductsCartsReportPage.clickExportButton();
         Assert.assertTrue(seeProductsCartsReportPage.VerifyMassageDisplay());
+    }
+
+    @Test(description = "see products low stock level --Abide")
+    public void setSeeProductsLosStockLevel(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeProductsLowStockReportsAbide=new SeeProductsLowStockReportsAbide(driver);
+        seeProductsLowStockReportsAbide.canSeeProductLowStockReports();
+        Assert.assertTrue(seeProductsLowStockReportsAbide.verifyReportingViewedSuccessfully());
     }
 
     @AfterMethod
