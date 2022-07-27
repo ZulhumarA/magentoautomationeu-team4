@@ -118,7 +118,7 @@ public class PublicModuleRunner extends TestBase {
 
     @Test(description = "kadirya")
     public void UpdateAddress() {
-        publicLoginPage.updateAddressLogin();
+        publicLoginPage.Login();
         updateAddressBookPage.UpdateAddress();
         Assert.assertTrue(updateAddressBookPage.verifyUpdatedAddress());
         publicLoginPage.LogOutAndBackToLogInPage();
