@@ -20,6 +20,7 @@ public class ReportingModuleSteps extends TestBase {
     SeeCustomersNewAccountReport seeCustomersNewAccountReport;
     SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
     SeeCustomerByNumberOfOrders seeCustomerByNumberOfOrders;
+    SeeProductReviews seeProductReviews;
     String configFile = "config.properties";
 
     @Before("@ReportingModuleTests")
@@ -40,6 +41,7 @@ public class ReportingModuleSteps extends TestBase {
         seeCustomersNewAccountReport = new SeeCustomersNewAccountReport(driver);
         seeCustomerByOrdersTotalReport = new SeeCustomerByOrdersTotalReport(driver);
         seeCustomerByNumberOfOrders = new SeeCustomerByNumberOfOrders(driver);
+        seeProductReviews=new SeeProductReviews(driver);
     }
 
     // products ordered report test case (Gvlmihre)
@@ -125,9 +127,22 @@ public class ReportingModuleSteps extends TestBase {
         Assert.assertTrue(seeCustomerByNumberOfOrders.verifyReportsDisplayed());
 
     }
+    //Zulhumar
+    @When("reporting manager opens the Products Reviews page")
+    public void reportingManagerOpensTheProductsReviewersPage() {
+        seeProductReviews.seeProductReviewsMethod();
+    }
+
+    @Then("product reviews should be displayed")
+    public void productReviewsShouldBeDisplayed() {
+        Assert.assertTrue(seeProductReviews.verifyReviewsDisplayed());
+    }
+
 
     @After("@ReportingModuleTests")
     public void tearDown() {
         closeBrowser();
     }
+
+
 }

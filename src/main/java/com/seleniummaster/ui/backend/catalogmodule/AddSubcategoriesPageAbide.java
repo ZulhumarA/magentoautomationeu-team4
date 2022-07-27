@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class AddSubcategoriesPage {
+public class AddSubcategoriesPageAbide {
     WebDriver driver;
     TestUtility testUtility;
 
@@ -42,7 +42,7 @@ public class AddSubcategoriesPage {
     WebElement successfullyMassage;
 
     //Constructor creation
-    public AddSubcategoriesPage(WebDriver driver) {
+    public AddSubcategoriesPageAbide(WebDriver driver) {
         this.driver = driver;
         testUtility=new TestUtility(driver);
         PageFactory.initElements(driver,this);
