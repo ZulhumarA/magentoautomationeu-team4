@@ -20,7 +20,7 @@ public class ReportingModuleRunner extends TestBase {
     ProductsMostViewedReportPage productsMostViewedReportPage;
     ProductsLowStockReportPage productsLowStockReportPage;
     SeeProductsCartsReportPage seeProductsCartsReportPage;
-
+SeeProductReviews seeProductReviews;
     @BeforeClass
     public void setUp(ITestContext context) {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
@@ -66,10 +66,15 @@ public class ReportingModuleRunner extends TestBase {
                 ApplicationConfig.readFromConfigProperties(
                         "config.properties", "endDate2"));
         Assert.assertTrue(seeCustomerByNumberOfOrders.verifyReportsDisplayed());
-
-
     }
-
+    @Test(description = "Zulhumar")
+    public void SeeProductReviewsReport() throws InterruptedException {
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+seeProductReviews=new SeeProductReviews(driver);
+seeProductReviews.seeProductReviewsMethod();
+        Assert.assertTrue(seeProductReviews.verifyReviewsDisplayed());
+    }
     @Test(description = "Gvlmihre")
     public void viewProductsOrderedReportMethod() {
         adminLoginPage = new AdminLoginPage(driver);
@@ -96,9 +101,7 @@ public class ReportingModuleRunner extends TestBase {
         productsLowStockReportPage.viewProductsLowStockReport();
         Assert.assertTrue(productsLowStockReportPage.verifyProductsLowStockReportDisplayed());
 
-
     }
-
     @Test(description = "SeeProductsCartsReport-Faruk")
     public void SeeProductsCartsReportPage(){
         adminLoginPage = new AdminLoginPage(driver);
