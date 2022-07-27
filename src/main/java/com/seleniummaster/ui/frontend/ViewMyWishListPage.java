@@ -11,7 +11,7 @@ public class ViewMyWishListPage {
     TestUtility testUtility;
 
     //Elements
-    @FindBy(css = "ul>li:nth-child(9)>a")
+    @FindBy(css = "div.block-content>ul>li:nth-child(9)")
     WebElement myWishListLink;
 
     @FindBy(css = "div>button:nth-child(2)[title=\"Add All to Cart\"]")
@@ -31,6 +31,7 @@ public class ViewMyWishListPage {
     //Action Methods
     public void clickMyWishList(){
         testUtility.waitForElementPresent(myWishListLink);
+        //testUtility.sleep(3);
         myWishListLink.click();
     }
 
