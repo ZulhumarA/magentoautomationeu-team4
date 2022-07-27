@@ -1,9 +1,6 @@
 package regression.uitest.cucumberframework.storemodulesteps;
 
-import com.seleniummaster.configutility.AdminLoginPage;
-import com.seleniummaster.configutility.ApplicationConfig;
-import com.seleniummaster.configutility.PublicLoginPage;
-import com.seleniummaster.configutility.TestBase;
+import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.storemodule.CanAddProducts;
 import com.seleniummaster.ui.backend.storemodule.CreateStoreViewPage;
 import com.seleniummaster.ui.backend.storemodule.EditStoreViewPage;
@@ -47,13 +44,12 @@ public class StoreModuleSteps extends TestBase {
     public void userShouldAbleToLoginSuccessfully() {
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("storeManager");
-
     }
 
 //Store Manager can create a store view Zulhumar
     @Given("store manager on the dashboard page")
     public void storeManagerOnTheDashboardPage() {
-       adminLoginPage=new AdminLoginPage(driver);
+        adminLoginPage=new AdminLoginPage(driver);
         Assert.assertTrue(adminLoginPage.verifyAdminLoginSuccessfully());
 
     }

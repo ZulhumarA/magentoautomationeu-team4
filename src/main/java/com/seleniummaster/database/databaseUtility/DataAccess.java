@@ -10,6 +10,7 @@ import java.sql.Statement;
 
 public class DataAccess {
     //write a method to get an information from database
+
     //get the new created store name to verify from database(Gvlmihre)
     public boolean getStoreName(String storeViewName, Connection connection) {
         boolean isStoreViewExist = false;
@@ -20,7 +21,7 @@ public class DataAccess {
         //execute the query to see the result and save it to the cachedRowSet
         try {
             statement = connection.createStatement();
-            String storeViewSqlScript = String.format("Select storeName,storeCode from cc_CubeCart_customer where email='%s'", storeViewName);
+            String storeViewSqlScript = String.format("select code,name from i5751295_mg2.mg_core_store where name='%s'", storeViewName);
             resultSet = statement.executeQuery(storeViewSqlScript);
             cachedRowSet = RowSetProvider.newFactory().createCachedRowSet();
         } catch (SQLException e) {
@@ -43,11 +44,12 @@ public class DataAccess {
                 int count = 0;
                 while (true) {
                     try {
-                        if (!cachedRowSet.next()) break;
+                        if (!cachedRowSet.next()){
+                            break;}
 
                     //get the results from cachedRowSet and print them to console
-                    String storeName = cachedRowSet.getString("storeName");
-                    String storeCode = cachedRowSet.getString("storeCode");
+                    String storeName = cachedRowSet.getString("name");
+                    String storeCode = cachedRowSet.getString("code");
                     System.out.println(String.format("storeName=%s,storeCode=%s", storeName, storeCode));
                     count = cachedRowSet.getRow();
                     } catch (SQLException e) {
