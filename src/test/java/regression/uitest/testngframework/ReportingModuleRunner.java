@@ -23,6 +23,7 @@ public class ReportingModuleRunner extends TestBase {
     SeeProductsLowStockReportsAbide seeProductsLowStockReportsAbide;
     SeeSaleTotalShippedReport seeSaleTotalShippedReport;
     SeeSalesCouponsUsageReports seeSalesCouponsUsageReports;
+    SeeSalesTotalRefundedReport seeSalesTotalRefundedReport;
 
 SeeProductReviews seeProductReviews;
     @BeforeClass
@@ -147,6 +148,18 @@ seeProductReviews.seeProductReviewsMethod();
         Assert.assertTrue(seeSalesCouponsUsageReports.verifyCouponsReportsDisplayed());
 
     }
+
+    @Test(description = "Kadirya")
+    public void SeeSalesTotalRefundedReport(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeSalesTotalRefundedReport=new SeeSalesTotalRefundedReport(driver);
+        seeSalesTotalRefundedReport.OpenRefundedReportPage();
+        seeSalesTotalRefundedReport.SeeRefundedReport("04/23/2022","07/25/2022");
+        Assert.assertTrue(seeSalesTotalRefundedReport.verifyReportsDisplayed());
+    }
+
+
 
 
 
