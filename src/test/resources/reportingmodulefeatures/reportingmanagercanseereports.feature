@@ -43,7 +43,9 @@ Feature: Reporting manager can view related reports
       When reporting manager opens the Products Reviews page
       Then product reviews should be displayed
 
-      #Kadirya
+       # ***************** Kadirya ************************
+
+
   @SeeSalesTotalShippedReport
   Scenario: Reporting Manage Should be able to see sales Total Shipping Report
     Given reporting manager on the dashboard page
@@ -51,9 +53,16 @@ Feature: Reporting manager can view related reports
     Then  Total Shipping should be displayed
 
 
-    # Kadirya
+
      @SeeSalesTotalRefundedReport
      Scenario: Reporting Manage Should be able to see sales Total Refunded Report
        Given reporting manager on the dashboard page
        When reporting manager opens the Sales Total Refunded Report
        Then  Total Refunded should be displayed
+
+
+  @SeeSalesCouponsUsageReport
+  Scenario: Reporting Manage Should be able to see sales Coupons Usage Report
+    Given reporting manager on the dashboard page
+    When reporting manager opens the Sales Coupons Report
+    Then  Coupons Usage should be displayed

@@ -138,17 +138,6 @@ seeProductReviews.seeProductReviewsMethod();
 
     }
 
-    @Test
-    public void SeeSalesCouponsUsageReports(){
-        adminLoginPage = new AdminLoginPage(driver);
-        adminLoginPage.adminLogin("reportingManager");
-        seeSalesCouponsUsageReports=new SeeSalesCouponsUsageReports(driver);
-        seeSalesCouponsUsageReports.OpenCouponsUsagePage();
-        seeSalesCouponsUsageReports.SeeCouponsUsageReport("06/22/2019","06/22/2021");
-        Assert.assertTrue(seeSalesCouponsUsageReports.verifyCouponsReportsDisplayed());
-
-    }
-
     @Test(description = "Kadirya")
     public void SeeSalesTotalRefundedReport(){
         adminLoginPage = new AdminLoginPage(driver);
@@ -159,6 +148,16 @@ seeProductReviews.seeProductReviewsMethod();
         Assert.assertTrue(seeSalesTotalRefundedReport.verifyReportsDisplayed());
     }
 
+    @Test
+    public void SeeSalesCouponsUsageReports(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeSalesCouponsUsageReports=new SeeSalesCouponsUsageReports(driver);
+        seeSalesCouponsUsageReports.OpenCouponsUsagePage();
+        seeSalesCouponsUsageReports.SeeCouponsUsageReport("06/22/2019","06/22/2021");
+        Assert.assertTrue(seeSalesCouponsUsageReports.verifyCouponsReportsDisplayed());
+
+    }
 
 
 
