@@ -21,6 +21,7 @@ public class ReportingModuleRunner extends TestBase {
     ProductsLowStockReportPage productsLowStockReportPage;
     SeeProductsCartsReportPage seeProductsCartsReportPage;
     SeeProductsLowStockReportsAbide seeProductsLowStockReportsAbide;
+    SeeSaleTotalShippedReport seeSaleTotalShippedReport;
 
 SeeProductReviews seeProductReviews;
     @BeforeClass
@@ -124,6 +125,19 @@ seeProductReviews.seeProductReviewsMethod();
         seeProductsLowStockReportsAbide.canSeeProductLowStockReports();
         Assert.assertTrue(seeProductsLowStockReportsAbide.verifyReportingViewedSuccessfully());
     }
+
+    @Test (description = "Kadirya")
+    public void SeeSaleTotalShippedReport(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
+        seeSaleTotalShippedReport.SeeShippedReport("06/11/2020", "05/8/2022");
+        Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
+
+
+    }
+
+
 
     @AfterMethod
     public void logOut() {

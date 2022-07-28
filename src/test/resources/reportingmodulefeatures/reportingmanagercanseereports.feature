@@ -42,3 +42,9 @@ Feature: Reporting manager can view related reports
       Given reporting manager on the dashboard page
       When reporting manager opens the Products Reviews page
       Then product reviews should be displayed
+
+      #Kadirya
+  Scenario: Reporting Manage Should be able to see sales Total Shipping Report
+    Given reporting manager on the dashboard page
+    When reporting manager opens the Sales Total Shipping Report
+    Then  Total Shipping should be displayed

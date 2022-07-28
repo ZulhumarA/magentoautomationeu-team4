@@ -21,6 +21,7 @@ public class ReportingModuleSteps extends TestBase {
     SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
     SeeCustomerByNumberOfOrders seeCustomerByNumberOfOrders;
     SeeProductReviews seeProductReviews;
+    SeeSaleTotalShippedReport seeSaleTotalShippedReport;
     String configFile = "config.properties";
 
     @Before("@ReportingModuleTests")
@@ -42,6 +43,7 @@ public class ReportingModuleSteps extends TestBase {
         seeCustomerByOrdersTotalReport = new SeeCustomerByOrdersTotalReport(driver);
         seeCustomerByNumberOfOrders = new SeeCustomerByNumberOfOrders(driver);
         seeProductReviews=new SeeProductReviews(driver);
+        seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
     }
 
     // products ordered report test case (Gvlmihre)
@@ -138,6 +140,17 @@ public class ReportingModuleSteps extends TestBase {
         Assert.assertTrue(seeProductReviews.verifyReviewsDisplayed());
     }
 
+    //SeeSaleTotalShippedReport---Kadirya
+    @When("reporting manager opens the Sales Total Shipping Report")
+    public void reporting_manager_opens_the_sales_total_shipping_report() {
+            seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
+            seeSaleTotalShippedReport.SeeShippedReport("06/11/2020", "05/8/2022");
+    }
+
+    @Then("Total Shipping should be displayed")
+    public void total_shipping_should_be_displayed() {
+        Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
+    }
 
     @After("@ReportingModuleTests")
     public void tearDown() {

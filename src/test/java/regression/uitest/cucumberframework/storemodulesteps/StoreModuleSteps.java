@@ -15,9 +15,7 @@ import org.testng.Assert;
 public class StoreModuleSteps extends TestBase {
     CreateStoreViewPage createStoreViewPage;
     EditStoreViewPage editStoreViewPage;
-    //StoreManagerCanUpdateProduct storeManagerCanUpdateProduct;
     String configFile="config.properties";
-    //CanAddProducts canAddProducts;
     AdminLoginPage adminLoginPage;
 
     @Before("@ManageStoreTest")
@@ -97,6 +95,7 @@ public class StoreModuleSteps extends TestBase {
     storeManagerCanAddProducts.setManegeProductsButton();
     storeManagerCanAddProducts.addProduct();
 }
+
     @Then("a new product should be added")
     public void a_new_product_should_be_added() {
         storeManagerCanAddProducts=new StoreManagerCanAddProducts(driver);
