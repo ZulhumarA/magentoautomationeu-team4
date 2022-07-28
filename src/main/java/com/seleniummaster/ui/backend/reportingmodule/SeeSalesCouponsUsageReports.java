@@ -52,7 +52,7 @@ public class SeeSalesCouponsUsageReports extends TestBase {
 
 
 
-    public void OpenCoupenUsagePage() {
+    public void OpenCouponsUsagePage() {
         testUtility.waitForElementPresent(reportsButton);
         reportsButton.click();
         testUtility.waitForElementPresent(salesButton);
@@ -85,7 +85,7 @@ public class SeeSalesCouponsUsageReports extends TestBase {
     }
 
 
-    public boolean verifyReportsDisplayed(){
+    public boolean verifyCouponsReportsDisplayed(){
         testUtility.waitForElementPresent(ResultPeriod);
         return ResultPeriod.isDisplayed();
     }

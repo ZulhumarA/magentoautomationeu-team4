@@ -142,9 +142,9 @@ seeProductReviews.seeProductReviewsMethod();
         adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("reportingManager");
         seeSalesCouponsUsageReports=new SeeSalesCouponsUsageReports(driver);
-        seeSalesCouponsUsageReports.OpenCoupenUsagePage();
+        seeSalesCouponsUsageReports.OpenCouponsUsagePage();
         seeSalesCouponsUsageReports.SeeCouponsUsageReport("06/22/2019","06/22/2021");
-        Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
+        Assert.assertTrue(seeSalesCouponsUsageReports.verifyCouponsReportsDisplayed());
 
     }
 
