@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.sql.Connection;
 
-public class DataBaseUIVerificationWithTestNG extends TestBase {
+public class DataBaseUIVerification_TestNG extends TestBase {
 
     String configFile="config.properties";
     String backEndURL= ApplicationConfig.readFromConfigProperties(configFile,"backEndURL");

@@ -18,7 +18,7 @@ import org.testng.Assert;
 
 import java.sql.Connection;
 
-public class DataBaseUIVerificationStepFile extends TestBase {
+public class DataBaseUIVerificationStepFile_Cucumber extends TestBase {
 
     VerifyNewStoreViewPage verifyNewStoreViewPage;
     TestUtility testUtility;
