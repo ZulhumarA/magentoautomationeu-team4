@@ -24,17 +24,9 @@ public class EditRootCategories extends TestBase {
     @FindBy(xpath="//select[@name=\"general[is_active]\"]")
     WebElement isActive;
 
-    @FindBy(xpath="//*[@id=\"group_4description\"]")
-    WebElement description;
 
     @FindBy(xpath="//input[@id='group_4meta_title']")
     WebElement pageTitle;
-
-    @FindBy(id="group_4meta_keywords")
-    WebElement metaKeywords;
-
-    @FindBy(id="group_4meta_description")
-    WebElement metaDescription;
 
     @FindBy(xpath="//*[@title=\"Save Category\"]")
     WebElement saveButton;

@@ -16,12 +16,10 @@ public class CatalogModuleRunner extends TestBase {
     DeleteSubCategories deleteSubCategories;
     AddSubCategories addSubCategories;
     EditSubCategories editSubCategories;
-    AddSubcategoriesPage addSubcategoriesPage;
+    AddSubcategoriesPageAbide addSubcategoriesPageAbide;
     AddProduct addProduct;
     DeleteProduct deleteProduct;
     EditProduct editProduct;
-
-
 
     @BeforeClass
     public void setUp(ITestContext context) {
@@ -35,10 +33,11 @@ public class CatalogModuleRunner extends TestBase {
         deleteSubCategories = new DeleteSubCategories(driver);
         addSubCategories = new AddSubCategories(driver);
         editSubCategories = new EditSubCategories(driver);
-        addSubcategoriesPage = new AddSubcategoriesPage(driver);
+        addSubcategoriesPageAbide=new AddSubcategoriesPageAbide(driver);
         addProduct = new AddProduct(driver);
         deleteProduct=new DeleteProduct(driver);
         editProduct=new EditProduct(driver);
+
     }
 
     @Test(description = "Zulhumar")
@@ -116,6 +115,11 @@ public class CatalogModuleRunner extends TestBase {
         Assert.assertTrue(viewCategoriesPage.DefaultCategoryVerifyMessage());
     }
 
+    @Test(description = "add sub categories page-Abide")
+    public  void addSubcategoriesMethod(){
+        addSubcategoriesPageAbide.addSubcategories();
+        Assert.assertTrue(addSubcategoriesPageAbide.verifySubcategoriesAddedSuccessfully());
+    }
 
     @AfterClass
     public void tearDown () {

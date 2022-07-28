@@ -20,7 +20,11 @@ public class ReportingModuleRunner extends TestBase {
     ProductsMostViewedReportPage productsMostViewedReportPage;
     ProductsLowStockReportPage productsLowStockReportPage;
     SeeProductsCartsReportPage seeProductsCartsReportPage;
+    SeeProductsLowStockReportsAbide seeProductsLowStockReportsAbide;
+    SeeSaleTotalShippedReport seeSaleTotalShippedReport;
+    SeeSalesTotalRefundedReport seeSalesTotalRefundedReport;
 
+SeeProductReviews seeProductReviews;
     @BeforeClass
     public void setUp(ITestContext context) {
         browserSetUp(ApplicationConfig.readFromConfigProperties("config.properties", "backEndURL"));
@@ -66,10 +70,15 @@ public class ReportingModuleRunner extends TestBase {
                 ApplicationConfig.readFromConfigProperties(
                         "config.properties", "endDate2"));
         Assert.assertTrue(seeCustomerByNumberOfOrders.verifyReportsDisplayed());
-
-
     }
-
+    @Test(description = "Zulhumar")
+    public void SeeProductReviewsReport() throws InterruptedException {
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+seeProductReviews=new SeeProductReviews(driver);
+seeProductReviews.seeProductReviewsMethod();
+        Assert.assertTrue(seeProductReviews.verifyReviewsDisplayed());
+    }
     @Test(description = "Gvlmihre")
     public void viewProductsOrderedReportMethod() {
         adminLoginPage = new AdminLoginPage(driver);
@@ -96,9 +105,7 @@ public class ReportingModuleRunner extends TestBase {
         productsLowStockReportPage.viewProductsLowStockReport();
         Assert.assertTrue(productsLowStockReportPage.verifyProductsLowStockReportDisplayed());
 
-
     }
-
     @Test(description = "SeeProductsCartsReport-Faruk")
     public void SeeProductsCartsReportPage(){
         adminLoginPage = new AdminLoginPage(driver);
@@ -110,6 +117,43 @@ public class ReportingModuleRunner extends TestBase {
         seeProductsCartsReportPage.clickExportButton();
         Assert.assertTrue(seeProductsCartsReportPage.VerifyMassageDisplay());
     }
+
+
+    @Test(description = "see products low stock level --Abide")
+    public void setSeeProductsLosStockLevel(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeProductsLowStockReportsAbide=new SeeProductsLowStockReportsAbide(driver);
+        seeProductsLowStockReportsAbide.canSeeProductLowStockReports();
+        Assert.assertTrue(seeProductsLowStockReportsAbide.verifyReportingViewedSuccessfully());
+    }
+    
+
+    @Test (description = "Kadirya")
+    public void SeeSaleTotalShippedReport(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
+        seeSaleTotalShippedReport.SeeShippedReport("06/11/2020", "05/8/2022");
+        Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
+
+
+    }
+
+    @Test(description = "Kadirya")
+    public void SeeSalesTotalRefundedReport(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeSalesTotalRefundedReport=new SeeSalesTotalRefundedReport(driver);
+        seeSalesTotalRefundedReport.OpenRefundedReportPage();
+        seeSalesTotalRefundedReport.SeeRefundedReport("04/23/2022","07/25/2022");
+        Assert.assertTrue(seeSalesTotalRefundedReport.verifyReportsDisplayed());
+    }
+
+
+
+
+
 
     @AfterMethod
     public void logOut() {

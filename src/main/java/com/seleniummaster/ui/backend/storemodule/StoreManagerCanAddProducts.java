@@ -12,7 +12,7 @@ import java.util.Random;
 
 import static com.seleniummaster.configutility.ApplicationConfig.readFromConfigProperties;
 
-public class CanAddProducts extends TestBase {
+public class StoreManagerCanAddProducts extends TestBase {
     String name;
     String description;
     String shortDescription;
@@ -55,7 +55,7 @@ public class CanAddProducts extends TestBase {
     @FindBy(xpath = "//span[text()='The product has been saved.']")
     WebElement addProductSuccessMessage;
 
-    public CanAddProducts(WebDriver driver) {
+    public StoreManagerCanAddProducts(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
         testUtility = new TestUtility(driver);
@@ -123,11 +123,5 @@ public class CanAddProducts extends TestBase {
             return false;
     }
 
-    //if (driver.getPageSource().contains(addProductSuccessMessage.getText())){
-    //  System.out.println("Store Manager can Add Product Test is Passed!!!");
-    //  return true;
-    //  }else {
-    // System.out.println("Store Manager can Add Product Test is Failed!!!");
-    // return false;
 }
 

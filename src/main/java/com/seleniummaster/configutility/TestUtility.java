@@ -1,6 +1,7 @@
 package com.seleniummaster.configutility;
 
 import com.github.javafaker.Faker;
+import com.github.javafaker.PhoneNumber;
 import org.apache.commons.lang3.RandomStringUtils;
 import com.google.gson.Gson;
 import org.openqa.selenium.WebDriver;
@@ -41,7 +42,6 @@ public class TestUtility {
         return firstName;
     }
 
-
     public String generateTitle(){
         String title=faker.name().title();
         return title;
@@ -62,18 +62,22 @@ public class TestUtility {
         return zip;
     }
     //Zulhumar's Fakes
+
     public String fakeCategoryName() {
         String categoryName = faker.name().name();
         return categoryName;
     }
+
     public String fakePageTitle() {
         String title = faker.name().title();
         return title;
     }
-        public String metaKeywords() {
+
+    public String metaKeywords() {
             String metaKeyword = faker.commerce().productName();
             return metaKeyword;
         }
+
     public String metaDescriptions() {
         String metaDescription = faker.commerce().productName();
         return metaDescription;
@@ -104,10 +108,23 @@ public class TestUtility {
     }
       //Zulhumar's finished.
 
-
     public String fakeEmail() {
         String email = faker.internet().emailAddress();
         return email;
+    }
+
+    public String fakeName(){
+        String name=faker.name().name();
+        return name;
+    }
+
+    public String  generateRandomStoreCode() {
+        int length = 6;
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+        System.out.println(generatedString.toLowerCase());
+        return generatedString.toLowerCase();
     }
 
     public void waitForAlertPresent(){
@@ -140,6 +157,10 @@ public class TestUtility {
 
     }
 
+    public String generateRandomNumbers(){
+        String randomNumber= String.valueOf(faker.number().numberBetween(20,500));
+        return randomNumber;
+    }
 
     public void sleep(int second){
         try {
@@ -152,6 +173,21 @@ public class TestUtility {
     public String fakeCartPriceRulesName(){
      String fakeRuleNames=faker.business().creditCardType().toUpperCase();
      return  fakeRuleNames;
+    }
+
+    public String generateStreetName(){
+        String StreetName=faker.address().streetName();
+        return StreetName;
+    }
+
+    public String generateTelephoneNumber(){
+       String phoneNUmber= String.valueOf(faker.number().numberBetween(400000000,500000000));
+       return phoneNUmber;
+    }
+
+    public String productName(){
+        String productName=faker.commerce().productName();
+        return productName;
     }
 
 }

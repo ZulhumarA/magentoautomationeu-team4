@@ -19,3 +19,10 @@ Feature: Sales Manager should be able to view coupons in the Reports, view and a
     Given Sales Manager on the dashboard page
     When Sales Manager views and add credit memos
     Then The credit memos should be added
+
+#//Mahmut ibrahim
+  @SalesManagerShouldBeAbleToViewCreditMemosByFilters
+  Scenario: sales manager can view the credit memos by filters
+    Given Sales Manager on the dashboard page
+    When Sale manager filter credit memos
+    Then the result of the filter should be displayed

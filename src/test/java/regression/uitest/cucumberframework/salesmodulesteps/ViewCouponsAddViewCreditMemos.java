@@ -12,11 +12,9 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import io.cucumber.java.After;
 import org.testng.Assert;
-
-public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
-
+public class ViewCouponsAddViewCreditMemos extends TestBase {
     AdminLoginPage adminLoginPage;
     ViewCouponsInTheReports viewCouponsInTheReports;
     ViewAndAddCreditMemos viewAndAddCreditMemos;
@@ -24,25 +22,24 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
     CreatNewOrderPage creatNewOrderPage;
     String configFile="config.properties";
 
-    @Before()
+    @Before("@SalesManagerShouldBeAbleToViewCreditMemosByFilters")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
-                (configFile,"backEndURL"));
-        adminLoginPage=new AdminLoginPage(driver);
+                (configFile, "backEndURL"));
+        adminLoginPage = new AdminLoginPage(driver);
         adminLoginPage.adminLogin("salesManager");
     }
+
     @Given("Sales Manager on the dashboard page")
-    public void SalesManagerOnTheDashboardPage() {
-        adminLoginPage=new AdminLoginPage(driver);
+    public void SalesManagerOnDashBoardPage() {
         adminLoginPage.verifyAdminLoginSuccessfully();
-        viewCouponsInTheReports=new ViewCouponsInTheReports(driver);
-        viewAndAddCreditMemos=new ViewAndAddCreditMemos(driver);
-        manageViewShoppingCart= new ManageViewShoppingCart(driver);
-        creatNewOrderPage=new CreatNewOrderPage(driver);
+        viewAndAddCreditMemos = new ViewAndAddCreditMemos(driver);
+        manageViewShoppingCart = new ManageViewShoppingCart(driver);
+        viewCouponsInTheReports = new ViewCouponsInTheReports(driver);
     }
-    //ViewCouponsInTheReports
+
     @When("Sales Manager enters the dates in the Reports")
-    public void salesManagerViewsAndAddCreditMemos(){
+    public void salesManagerViewsAndAddCreditMemos() {
         viewCouponsInTheReports.CouponsInTheReports();
     }
 
@@ -58,6 +55,7 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
     public void SalesManagerViewsAndAddCreditMemos() {
         viewAndAddCreditMemos.CreditMemos();
     }
+
     @Then("The credit memos should be added")
     public void TheCreditMemosShouldBeAdded() {
         viewAndAddCreditMemos.VerifySendSuccessfulMessage();
@@ -70,6 +68,7 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
         manageViewShoppingCart.ViewShoppingCart();
 
     }
+
     @Then("Shopping cart should be viewed")
     public void ShoppingCartShouldBeViewed() {
         manageViewShoppingCart.VerifyShoppingCartTable();
@@ -90,7 +89,20 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
     public void newOrderIsCreated() {
         Assert.assertTrue(creatNewOrderPage.VerifyMessage());
     }
-//    @After("@ViewCouponsCreditMemosAndShoppingCart")
+
+//Mahmut ibrahim
+    @When("Sale manager filter credit memos")
+    public void saleManagerFilterCreditMemos() {
+        viewAndAddCreditMemos.OpenCreditMemosPage();
+        viewAndAddCreditMemos.FilterCreditMemos();
+    }
+
+    @Then("the result of the filter should be displayed")
+    public void verifyFilter() {
+        viewAndAddCreditMemos.VerifyFilterCreditMemos();
+    }
+
+    //    @After("@ViewCouponsCreditMemosAndShoppingCart")
 //    public void teardown(){
 //        closeBrowser();
 //    }

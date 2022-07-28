@@ -20,6 +20,9 @@ public class ReportingModuleSteps extends TestBase {
     SeeCustomersNewAccountReport seeCustomersNewAccountReport;
     SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
     SeeCustomerByNumberOfOrders seeCustomerByNumberOfOrders;
+    SeeProductReviews seeProductReviews;
+    SeeSaleTotalShippedReport seeSaleTotalShippedReport;
+    SeeSalesTotalRefundedReport seeSalesTotalRefundedReport;
     String configFile = "config.properties";
 
     @Before("@ReportingModuleTests")
@@ -40,6 +43,9 @@ public class ReportingModuleSteps extends TestBase {
         seeCustomersNewAccountReport = new SeeCustomersNewAccountReport(driver);
         seeCustomerByOrdersTotalReport = new SeeCustomerByOrdersTotalReport(driver);
         seeCustomerByNumberOfOrders = new SeeCustomerByNumberOfOrders(driver);
+        seeProductReviews=new SeeProductReviews(driver);
+        seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
+        seeSalesTotalRefundedReport=new SeeSalesTotalRefundedReport(driver);
     }
 
     // products ordered report test case (Gvlmihre)
@@ -125,9 +131,46 @@ public class ReportingModuleSteps extends TestBase {
         Assert.assertTrue(seeCustomerByNumberOfOrders.verifyReportsDisplayed());
 
     }
+    //Zulhumar
+    @When("reporting manager opens the Products Reviews page")
+    public void reportingManagerOpensTheProductsReviewersPage() {
+        seeProductReviews.seeProductReviewsMethod();
+    }
+
+    @Then("product reviews should be displayed")
+    public void productReviewsShouldBeDisplayed() {
+        Assert.assertTrue(seeProductReviews.verifyReviewsDisplayed());
+    }
+
+    //SeeSaleTotalShippedReport---Kadirya
+    @When("reporting manager opens the Sales Total Shipping Report")
+    public void reporting_manager_opens_the_sales_total_shipping_report() {
+            seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
+            seeSaleTotalShippedReport.SeeShippedReport("06/11/2020", "05/8/2022");
+    }
+
+    @Then("Total Shipping should be displayed")
+    public void total_shipping_should_be_displayed() {
+        Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
+    }
+
+    //SeeSaleRefundedRerort
+    @When("reporting manager opens the Sales Total Refunded Report")
+    public void reporting_manager_opens_the_sales_total_refunded_report() {
+        seeSalesTotalRefundedReport.OpenRefundedReportPage();
+        seeSalesTotalRefundedReport.SeeRefundedReport("04/23/2022","07/25/2022");
+    }
+
+
+    @Then("Total Refunded should be displayed")
+    public void total_refunded_should_be_displayed() {
+        Assert.assertTrue(seeSalesTotalRefundedReport.verifyReportsDisplayed());
+    }
 
     @After("@ReportingModuleTests")
     public void tearDown() {
         closeBrowser();
     }
+
+
 }
