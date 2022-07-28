@@ -3,14 +3,17 @@ package regression.uitest.cucumberframework.salesmodulesteps;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
+import com.seleniummaster.ui.backend.salesmodule.CreatNewOrderPage;
 import com.seleniummaster.ui.backend.salesmodule.ManageViewShoppingCart;
 import com.seleniummaster.ui.backend.salesmodule.ViewAndAddCreditMemos;
 import com.seleniummaster.ui.backend.salesmodule.ViewCouponsInTheReports;
-import io.cucumber.java.After;
+
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+
+import org.testng.Assert;
 
 public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
 
@@ -18,6 +21,7 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
     ViewCouponsInTheReports viewCouponsInTheReports;
     ViewAndAddCreditMemos viewAndAddCreditMemos;
     ManageViewShoppingCart manageViewShoppingCart;
+    CreatNewOrderPage creatNewOrderPage;
     String configFile="config.properties";
 
     @Before()
@@ -34,6 +38,7 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
         viewCouponsInTheReports=new ViewCouponsInTheReports(driver);
         viewAndAddCreditMemos=new ViewAndAddCreditMemos(driver);
         manageViewShoppingCart= new ManageViewShoppingCart(driver);
+        creatNewOrderPage=new CreatNewOrderPage(driver);
     }
     //ViewCouponsInTheReports
     @When("Sales Manager enters the dates in the Reports")
@@ -69,6 +74,21 @@ public class ViewCouponsCreditMemosAndShoppingCartSteps extends TestBase {
     public void ShoppingCartShouldBeViewed() {
         manageViewShoppingCart.VerifyShoppingCartTable();
 
+    }
+
+    @When("Sales Manager create a new order")
+    public void salesManagerCreateANewOrder() {
+        creatNewOrderPage.OpenOrdersPage(ApplicationConfig.readFromConfigProperties("config.properties",
+                "IDNum"));
+        creatNewOrderPage.ChooseSelection(ApplicationConfig.readFromConfigProperties("config.properties",
+                "Quantity"));
+        creatNewOrderPage.AddSelectedProduct(ApplicationConfig.readFromConfigProperties("config.properties",
+                "ChangePrice"));
+    }
+
+    @Then("New Order is created")
+    public void newOrderIsCreated() {
+        Assert.assertTrue(creatNewOrderPage.VerifyMessage());
     }
 //    @After("@ViewCouponsCreditMemosAndShoppingCart")
 //    public void teardown(){
