@@ -4,6 +4,8 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.marketingmodule.AddNewCatalogPriceRule;
+import com.seleniummaster.ui.backend.marketingmodule.UpdateExistingCatalogPriceRule;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 public class MarketingCatalogPriceRule extends TestBase {
     AdminLoginPage adminLoginPage;
     AddNewCatalogPriceRule addNewCatalogPriceRule;
+    UpdateExistingCatalogPriceRule updateExistingCatalogPriceRule;
     String configFile="config.properties";
     WebDriver driver;
     @Before("@CatalogPriceTest")
@@ -33,6 +36,7 @@ public class MarketingCatalogPriceRule extends TestBase {
         adminLoginPage.verifyAdminLoginSuccessfully();
         addNewCatalogPriceRule =new AddNewCatalogPriceRule(driver);
 
+
     }
 
     @When("Marketing Manger add a new catalog price rule")
@@ -46,4 +50,17 @@ public class MarketingCatalogPriceRule extends TestBase {
         addNewCatalogPriceRule.verifyAddNewCatalogPriceRule();
     }
 
+    @When("Marketing Manger update the existing catalog price rule")
+    public void marketingMangerUpdateTheExistingCatalogPriceRule() {
+        updateExistingCatalogPriceRule.updateCatalogPriceRule("Team4");
+    }
+
+    @Then("The new catalog price rule should be updated")
+    public void theNewCatalogPriceRuleShouldBeUpdated() {
+        updateExistingCatalogPriceRule.verifyUpdateExistingCatalogPriceRule();
+    }
+    @After("@CatalogPriceRuleTest")
+    public void teardown() {
+        closeBrowser();
+    }
 }

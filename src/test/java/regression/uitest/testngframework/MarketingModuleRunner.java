@@ -4,6 +4,7 @@ import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
 import com.seleniummaster.ui.backend.marketingmodule.*;
+import io.cucumber.java.sl.In;
 import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
@@ -22,7 +23,7 @@ public class MarketingModuleRunner extends TestBase {
     AddNewCartPriceRule addNewCartPriceRule;
     UpdateCartPriceRule updateCartPriceRule;
     AddNewCatalogPriceRule addNewCatalogPriceRule;
-
+    UpdateExistingCatalogPriceRule updateExistingCatalogPriceRule;
     AddNewCartPriceRuleAbide addNewCartPriceRuleAbide;
     DeleteNewsletterTemplatesPageAbide deleteNewsletterTemplatesPageAbide;
 
@@ -95,11 +96,17 @@ public class MarketingModuleRunner extends TestBase {
         viewNewsletterSubscribersPage.viewNewsletterSubscribers();
         Assert.assertTrue(viewNewsletterSubscribersPage.verifyNewsletterSubscribersViewed());
     }
-    @Test(description = "Arzugul")
+    @Test(description = "Add new catalog price rule--Arzugul")
     public void addNewCatalogPriceRuleTest() throws InterruptedException {
         addNewCatalogPriceRule=new AddNewCatalogPriceRule(driver);
         addNewCatalogPriceRule.addCatalogPriceRule("Team4","08/9/2022");
         Assert.assertTrue(addNewCatalogPriceRule.verifyAddNewCatalogPriceRule());
+    }
+    @Test(description = "Update existing catalog price rule--Arzugul")
+    public void updateExistingCatalogPriceRule() {
+        updateExistingCatalogPriceRule=new UpdateExistingCatalogPriceRule(driver);
+        updateExistingCatalogPriceRule.updateCatalogPriceRule("Team4");
+        Assert.assertTrue(updateExistingCatalogPriceRule.verifyUpdateExistingCatalogPriceRule());
     }
 
     @Test(description = "delete newsletter template page--Abide")
