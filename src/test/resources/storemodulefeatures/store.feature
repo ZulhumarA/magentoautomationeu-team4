@@ -44,3 +44,11 @@ Feature: Store manager can manage stores
     Given store manager on the dashboard page
     When store manager should be able to delete product
     Then a old product should be deleted
+
+
+#******Abide************
+  @StoreManagerCanCancelOrders
+  Scenario: store manager can cancel orders
+    Given store manager on the dashboard page
+    When  store manager cancel orders
+    Then  an order should be canceled

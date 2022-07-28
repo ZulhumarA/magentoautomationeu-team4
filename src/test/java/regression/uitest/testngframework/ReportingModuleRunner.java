@@ -21,6 +21,7 @@ public class ReportingModuleRunner extends TestBase {
     ProductsLowStockReportPage productsLowStockReportPage;
     SeeProductsCartsReportPage seeProductsCartsReportPage;
     SeeProductsLowStockReportsAbide seeProductsLowStockReportsAbide;
+    SeeSaleTotalShippedReport seeSaleTotalShippedReport;
     SeeSalesTotalRefundedReport seeSalesTotalRefundedReport;
 
 SeeProductReviews seeProductReviews;
@@ -117,6 +118,28 @@ seeProductReviews.seeProductReviewsMethod();
         Assert.assertTrue(seeProductsCartsReportPage.VerifyMassageDisplay());
     }
 
+
+    @Test(description = "see products low stock level --Abide")
+    public void setSeeProductsLosStockLevel(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeProductsLowStockReportsAbide=new SeeProductsLowStockReportsAbide(driver);
+        seeProductsLowStockReportsAbide.canSeeProductLowStockReports();
+        Assert.assertTrue(seeProductsLowStockReportsAbide.verifyReportingViewedSuccessfully());
+    }
+    
+
+    @Test (description = "Kadirya")
+    public void SeeSaleTotalShippedReport(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
+        seeSaleTotalShippedReport.SeeShippedReport("06/11/2020", "05/8/2022");
+        Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
+
+
+    }
+
     @Test(description = "Kadirya")
     public void SeeSalesTotalRefundedReport(){
         adminLoginPage = new AdminLoginPage(driver);
@@ -130,14 +153,7 @@ seeProductReviews.seeProductReviewsMethod();
 
 
 
-    @Test(description = "see products low stock level --Abide")
-    public void setSeeProductsLosStockLevel(){
-        adminLoginPage = new AdminLoginPage(driver);
-        adminLoginPage.adminLogin("reportingManager");
-        seeProductsLowStockReportsAbide=new SeeProductsLowStockReportsAbide(driver);
-        seeProductsLowStockReportsAbide.canSeeProductLowStockReports();
-        Assert.assertTrue(seeProductsLowStockReportsAbide.verifyReportingViewedSuccessfully());
-    }
+
 
     @AfterMethod
     public void logOut() {

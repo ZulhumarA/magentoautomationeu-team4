@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
 
 import java.sql.Connection;
 
-public class DataBaseUIVerificationWithTestNG extends TestBase {
+public class DataBaseUIVerification_TestNG extends TestBase {
 
     String configFile="config.properties";
     String backEndURL= ApplicationConfig.readFromConfigProperties(configFile,"backEndURL");
@@ -24,6 +24,7 @@ public class DataBaseUIVerificationWithTestNG extends TestBase {
     VerifyNewStoreViewPage verifyNewStoreViewPage;
     TestDataHolder testDataHolder=new TestDataHolder();
     DataAccess dataAccess=new DataAccess();
+    Connection databaseConnection=DatabaseMethods.databaseConnectionSetUp();
 
     @BeforeClass
     public void setUp(){
@@ -43,8 +44,7 @@ public class DataBaseUIVerificationWithTestNG extends TestBase {
         verifyNewStoreViewPage.createNewStoreView(storeName,storeCode);
         Assert.assertTrue(verifyNewStoreViewPage.verifyNewStoreViewSuccessfullyCreated(testDataHolder.getStoreName()));
         //verify Created Store View is in the database
-        Connection connection=DatabaseMethods.databaseConnectionSetUp();
-        boolean isCustomerExist=dataAccess.getStoreName(testDataHolder.getStoreName(),connection);
+        boolean isCustomerExist=dataAccess.getStoreName(testDataHolder.getStoreName(),databaseConnection);
         Assert.assertTrue(isCustomerExist);
     }
 
