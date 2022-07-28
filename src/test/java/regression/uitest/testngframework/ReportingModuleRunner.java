@@ -22,6 +22,7 @@ public class ReportingModuleRunner extends TestBase {
     SeeProductsCartsReportPage seeProductsCartsReportPage;
     SeeProductsLowStockReportsAbide seeProductsLowStockReportsAbide;
     SeeSaleTotalShippedReport seeSaleTotalShippedReport;
+    SeeSalesCouponsUsageReports seeSalesCouponsUsageReports;
 
 SeeProductReviews seeProductReviews;
     @BeforeClass
@@ -134,8 +135,19 @@ seeProductReviews.seeProductReviewsMethod();
         seeSaleTotalShippedReport.SeeShippedReport("06/11/2020", "05/8/2022");
         Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
 
+    }
+
+    @Test
+    public void SeeSalesCouponsUsageReports(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeSalesCouponsUsageReports=new SeeSalesCouponsUsageReports(driver);
+        seeSalesCouponsUsageReports.OpenCoupenUsagePage();
+        seeSalesCouponsUsageReports.SeeCouponsUsageReport("06/22/2019","06/22/2021");
+        Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
 
     }
+
 
 
 
