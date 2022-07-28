@@ -1,3 +1,4 @@
+
 @ViewCouponsCreditMemosAndShoppingCart
 Feature: Sales Manager should be able to view coupons in the Reports, view and add credit memos,  manage view shopping cart for customers
 
