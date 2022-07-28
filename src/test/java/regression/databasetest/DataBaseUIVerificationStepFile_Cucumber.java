@@ -27,25 +27,25 @@ public class DataBaseUIVerificationStepFile_Cucumber extends TestBase {
     DataAccess dataAccess=new DataAccess();
     String configFile="config.properties";
     String backEndURL=ApplicationConfig.readFromConfigProperties(configFile,"backEndURL");
+    Connection databaseConnection= DatabaseMethods.databaseConnectionSetUp();
 
     @Before("@VerifyNewlyAddedStoreView")
     public void setUp() {
         browserSetUp(backEndURL);
         adminLoginPage=new AdminLoginPage(driver);
         adminLoginPage.adminLogin("storeManager");
+        verifyNewStoreViewPage=new VerifyNewStoreViewPage(driver);
+        testUtility=new TestUtility(driver);
     }
 
     @Given("store manager on the Dashboard page")
     public void storeManagerOnTheDashboardPage() {
-        adminLoginPage=new AdminLoginPage(driver);
         Assert.assertTrue(adminLoginPage.verifyAdminLoginSuccessfully());
     }
 
 
     @When("store manager creates a new store view")
     public void storeManagerCreatesANewStoreView() {
-        verifyNewStoreViewPage=new VerifyNewStoreViewPage(driver);
-        testUtility=new TestUtility(driver);
         String storeName="team4test"+testUtility.fakeName();
         String storeCode="team4test"+testUtility.generateRandomStoreCode();
         testDataHolder.setStoreName(storeName);
@@ -54,12 +54,12 @@ public class DataBaseUIVerificationStepFile_Cucumber extends TestBase {
 
     @Then("a new store view should be created")
     public void aNewStoreViewShouldBeCreated() {
-        Assert.assertTrue(verifyNewStoreViewPage.verifyNewStoreViewSuccessfullyCreated(testDataHolder.getStoreName()));
+        Assert.assertTrue(verifyNewStoreViewPage.
+                verifyNewStoreViewSuccessfullyCreated(testDataHolder.getStoreName()));
     }
 
     @And("store manager is able to verify the store view in the database")
     public void storeManagerIsAbleToVerifyTheStoreViewInTheDatabase() {
-        Connection databaseConnection= DatabaseMethods.databaseConnectionSetUp();
         boolean isCustomerExist=dataAccess.getStoreName(testDataHolder.getStoreName(),databaseConnection);
         Assert.assertTrue(isCustomerExist);
     }
