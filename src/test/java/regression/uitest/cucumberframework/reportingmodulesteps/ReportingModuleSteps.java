@@ -21,8 +21,9 @@ public class ReportingModuleSteps extends TestBase {
     SeeCustomerByOrdersTotalReport seeCustomerByOrdersTotalReport;
     SeeCustomerByNumberOfOrders seeCustomerByNumberOfOrders;
     SeeProductReviews seeProductReviews;
-    SeeSaleTotalShippedReport seeSaleTotalShippedReport;
-    SeeSalesTotalRefundedReport seeSalesTotalRefundedReport;
+//    SeeSaleTotalShippedReport seeSaleTotalShippedReport;
+//    SeeSalesTotalRefundedReport seeSalesTotalRefundedReport;
+//    SeeSalesCouponsUsageReports seeSalesCouponsUsageReports;
     String configFile = "config.properties";
 
     @Before("@ReportingModuleTests")
@@ -46,6 +47,7 @@ public class ReportingModuleSteps extends TestBase {
         seeProductReviews=new SeeProductReviews(driver);
         seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
         seeSalesTotalRefundedReport=new SeeSalesTotalRefundedReport(driver);
+        seeSalesCouponsUsageReports=new SeeSalesCouponsUsageReports(driver);
     }
 
     // products ordered report test case (Gvlmihre)
@@ -142,7 +144,16 @@ public class ReportingModuleSteps extends TestBase {
         Assert.assertTrue(seeProductReviews.verifyReviewsDisplayed());
     }
 
-    //SeeSaleTotalShippedReport---Kadirya
+
+
+    //*************************Kadirya*****************************
+       SeeSaleTotalShippedReport seeSaleTotalShippedReport;
+       SeeSalesTotalRefundedReport seeSalesTotalRefundedReport;
+       SeeSalesCouponsUsageReports seeSalesCouponsUsageReports;
+
+
+
+    //total shipping-kadirya
     @When("reporting manager opens the Sales Total Shipping Report")
     public void reporting_manager_opens_the_sales_total_shipping_report() {
             seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
@@ -154,18 +165,37 @@ public class ReportingModuleSteps extends TestBase {
         Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
     }
 
-    //SeeSaleRefundedRerort
+
+    //total refunded-kadirya
     @When("reporting manager opens the Sales Total Refunded Report")
     public void reporting_manager_opens_the_sales_total_refunded_report() {
+        seeSalesTotalRefundedReport=new SeeSalesTotalRefundedReport(driver);
         seeSalesTotalRefundedReport.OpenRefundedReportPage();
         seeSalesTotalRefundedReport.SeeRefundedReport("04/23/2022","07/25/2022");
     }
 
-
     @Then("Total Refunded should be displayed")
     public void total_refunded_should_be_displayed() {
+        seeSalesTotalRefundedReport=new SeeSalesTotalRefundedReport(driver);
         Assert.assertTrue(seeSalesTotalRefundedReport.verifyReportsDisplayed());
     }
+
+
+    //coupons usage-kadirya
+    @When("reporting manager opens the Sales Coupons Report")
+    public void reporting_manager_opens_the_sales_coupons_report() {
+            seeSalesCouponsUsageReports=new SeeSalesCouponsUsageReports(driver);
+            seeSalesCouponsUsageReports.OpenCouponsUsagePage();
+            seeSalesCouponsUsageReports.SeeCouponsUsageReport("06/22/2019","06/22/2021");
+    }
+
+    @Then("Coupons Usage should be displayed")
+    public void coupons_usage_should_be_displayed() {
+        seeSalesCouponsUsageReports=new SeeSalesCouponsUsageReports(driver);
+        Assert.assertTrue(seeSalesCouponsUsageReports.verifyCouponsReportsDisplayed());
+    }
+
+
 
     @After("@ReportingModuleTests")
     public void tearDown() {
