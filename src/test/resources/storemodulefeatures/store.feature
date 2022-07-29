@@ -26,6 +26,7 @@ Feature: Store manager can manage stores
 
 
  # ***************** Kadirya ************************
+
   @StoreManagerCanAddProduct
   Scenario: store manager can add product
     Given store manager on the dashboard page
@@ -38,6 +39,7 @@ Feature: Store manager can manage stores
     Given store manager on the dashboard page
     When store manager should be able to update product
     Then a new product should be updated
+
 
   @StoreManagerCanDeleteProduct
   Scenario: store manager can delete product

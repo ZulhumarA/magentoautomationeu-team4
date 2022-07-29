@@ -7,12 +7,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class SeeSaleTotalShippedReport extends TestBase {
+public class SeeSalesCouponsUsageReports extends TestBase {
     WebDriver driver;
     TestUtility testUtility;
 
-
-    public SeeSaleTotalShippedReport(WebDriver driver){
+    public SeeSalesCouponsUsageReports(WebDriver driver){
         this.driver=driver;
         PageFactory.initElements(driver,this);
         testUtility=new TestUtility(driver);
@@ -24,8 +23,8 @@ public class SeeSaleTotalShippedReport extends TestBase {
     @FindBy(xpath = "//span[text()='Sales']")
     WebElement salesButton;
 
-    @FindBy(xpath = "//span[text()='Shipping']")
-    WebElement shippingButton;
+    @FindBy(xpath = "//span[text()='Coupons']")
+    WebElement couponsButton;
 
     @FindBy(id = "sales_report_period_type")
     WebElement periodDropdown;
@@ -42,6 +41,9 @@ public class SeeSaleTotalShippedReport extends TestBase {
     @FindBy(id = "sales_report_show_empty_rows")
     WebElement emptyRowsDropdown;
 
+    @FindBy(id = "sales_report_price_rule_type")
+    WebElement ShoppingCartPriceRuleDropdown;
+
     @FindBy(xpath = "//span[text()='Show Report']")
     WebElement showReportButton;
 
@@ -50,16 +52,19 @@ public class SeeSaleTotalShippedReport extends TestBase {
 
 
 
-    public void SeeShippedReport(String startDate,String endDate){
+    public void OpenCouponsUsagePage() {
         testUtility.waitForElementPresent(reportsButton);
         reportsButton.click();
         testUtility.waitForElementPresent(salesButton);
         salesButton.click();
-        testUtility.waitForElementPresent(shippingButton);
-        shippingButton.click();
+        testUtility.waitForElementPresent(couponsButton);
+        couponsButton.click();
         testUtility.sleep(1);
+    }
+
+    public void SeeCouponsUsageReport(String startDate,String endDate){
         testUtility.waitForElementPresent(periodDropdown);
-        testUtility.selectValueFromDropDown(periodDropdown,"month");
+        testUtility.selectValueFromDropDown(periodDropdown,"year");
 
         testUtility.waitForElementPresent(fromDateField);
         fromDateField.click();
@@ -67,16 +72,20 @@ public class SeeSaleTotalShippedReport extends TestBase {
         testUtility.waitForElementPresent(toDateField);
         toDateField.click();
         toDateField.sendKeys(endDate);
+        testUtility.sleep(2);
         testUtility.waitForElementPresent(orderStatusDropdown);
         testUtility.selectValueFromDropDown(orderStatusDropdown,"1");
         testUtility.waitForElementPresent(emptyRowsDropdown);
-        testUtility.selectValueFromDropDown(emptyRowsDropdown,"1");
+        testUtility.selectValueFromDropDown(orderStatusDropdown,"1");
+        testUtility.sleep(2);
+        testUtility.waitForElementPresent(ShoppingCartPriceRuleDropdown);
+        testUtility.selectValueFromDropDown(ShoppingCartPriceRuleDropdown,"1");
         testUtility.waitForElementPresent(showReportButton);
         showReportButton.click();
     }
 
 
-    public boolean verifyReportsDisplayed(){
+    public boolean verifyCouponsReportsDisplayed(){
         testUtility.waitForElementPresent(ResultPeriod);
         return ResultPeriod.isDisplayed();
     }
@@ -85,3 +94,5 @@ public class SeeSaleTotalShippedReport extends TestBase {
 
 
 }
+
+

@@ -22,6 +22,7 @@ public class ReportingModuleRunner extends TestBase {
     SeeProductsCartsReportPage seeProductsCartsReportPage;
     SeeProductsLowStockReportsAbide seeProductsLowStockReportsAbide;
     SeeSaleTotalShippedReport seeSaleTotalShippedReport;
+    SeeSalesCouponsUsageReports seeSalesCouponsUsageReports;
     SeeSalesTotalRefundedReport seeSalesTotalRefundedReport;
 
 SeeProductReviews seeProductReviews;
@@ -119,7 +120,6 @@ seeProductReviews.seeProductReviewsMethod();
         Assert.assertTrue(seeProductsCartsReportPage.VerifyMassageDisplay());
     }
 
-
     @Test(description = "see products low stock level --Abide")
     public void setSeeProductsLosStockLevel(){
         adminLoginPage = new AdminLoginPage(driver);
@@ -128,7 +128,6 @@ seeProductReviews.seeProductReviewsMethod();
         seeProductsLowStockReportsAbide.canSeeProductLowStockReports();
         Assert.assertTrue(seeProductsLowStockReportsAbide.verifyReportingViewedSuccessfully());
     }
-    
 
     @Test (description = "Kadirya")
     public void SeeSaleTotalShippedReport(){
@@ -137,7 +136,6 @@ seeProductReviews.seeProductReviewsMethod();
         seeSaleTotalShippedReport=new SeeSaleTotalShippedReport(driver);
         seeSaleTotalShippedReport.SeeShippedReport("06/11/2020", "05/8/2022");
         Assert.assertTrue(seeSaleTotalShippedReport.verifyReportsDisplayed());
-
 
     }
 
@@ -151,6 +149,16 @@ seeProductReviews.seeProductReviewsMethod();
         Assert.assertTrue(seeSalesTotalRefundedReport.verifyReportsDisplayed());
     }
 
+    @Test
+    public void SeeSalesCouponsUsageReports(){
+        adminLoginPage = new AdminLoginPage(driver);
+        adminLoginPage.adminLogin("reportingManager");
+        seeSalesCouponsUsageReports=new SeeSalesCouponsUsageReports(driver);
+        seeSalesCouponsUsageReports.OpenCouponsUsagePage();
+        seeSalesCouponsUsageReports.SeeCouponsUsageReport("06/22/2019","06/22/2021");
+        Assert.assertTrue(seeSalesCouponsUsageReports.verifyCouponsReportsDisplayed());
+
+    }
 
 
 
