@@ -3,21 +3,24 @@ package regression.uitest.cucumberframework.salesmodulesteps;
 import com.seleniummaster.configutility.AdminLoginPage;
 import com.seleniummaster.configutility.ApplicationConfig;
 import com.seleniummaster.configutility.TestBase;
+import com.seleniummaster.ui.backend.salesmodule.CreatNewOrderPage;
 import com.seleniummaster.ui.backend.salesmodule.ManageViewShoppingCart;
 import com.seleniummaster.ui.backend.salesmodule.ViewAndAddCreditMemos;
 import com.seleniummaster.ui.backend.salesmodule.ViewCouponsInTheReports;
+
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.After;
-
+import org.testng.Assert;
 public class ViewCouponsAddViewCreditMemos extends TestBase {
     AdminLoginPage adminLoginPage;
     ViewCouponsInTheReports viewCouponsInTheReports;
     ViewAndAddCreditMemos viewAndAddCreditMemos;
     ManageViewShoppingCart manageViewShoppingCart;
-    String configFile = "config.properties";
+    CreatNewOrderPage creatNewOrderPage;
+    String configFile="config.properties";
 
     @Before("@SalesManagerShouldBeAbleToViewCreditMemosByFilters")
     public void setUp() {
@@ -72,6 +75,21 @@ public class ViewCouponsAddViewCreditMemos extends TestBase {
 
     }
 
+    @When("Sales Manager create a new order")
+    public void salesManagerCreateANewOrder() {
+        creatNewOrderPage.OpenOrdersPage(ApplicationConfig.readFromConfigProperties("config.properties",
+                "IDNum"));
+        creatNewOrderPage.ChooseSelection(ApplicationConfig.readFromConfigProperties("config.properties",
+                "Quantity"));
+        creatNewOrderPage.AddSelectedProduct(ApplicationConfig.readFromConfigProperties("config.properties",
+                "ChangePrice"));
+    }
+
+    @Then("New Order is created")
+    public void newOrderIsCreated() {
+        Assert.assertTrue(creatNewOrderPage.VerifyMessage());
+    }
+
 //Mahmut ibrahim
     @When("Sale manager filter credit memos")
     public void saleManagerFilterCreditMemos() {
@@ -88,4 +106,6 @@ public class ViewCouponsAddViewCreditMemos extends TestBase {
 //    public void teardown(){
 //        closeBrowser();
 //    }
+
+
 }
