@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.Select;
 public class AddRootCategoriesZulhumar extends TestBase {
     TestUtility testUtility;
     WebDriver driver;
-    Actions action;
     @FindBy(xpath = "//a[@class='active']//span")
     WebElement catalogButton;
 
@@ -52,13 +51,13 @@ public class AddRootCategoriesZulhumar extends TestBase {
     public void openAddNewRootCategoryPage() throws InterruptedException {
         testUtility.waitForElementPresent(catalogButton);
         catalogButton.click();
-        Thread.sleep(3000);
-        // testUtility.waitForElementPresent(manageCategories);
+         testUtility.waitForElementPresent(manageCategories);
         manageCategories.click();
     }
 
     public void fillCategoryInformationAndSave() throws InterruptedException {
         Thread.sleep(3000);
+
         rootName.sendKeys("Zulhumar" + testUtility.fakeCategoryName() + "Team4");
         Thread.sleep(3000);
         testUtility.waitForElementPresent(isActive);
@@ -66,7 +65,6 @@ public class AddRootCategoriesZulhumar extends TestBase {
         select.selectByValue("1");
         pageTitle.sendKeys("Zulhumar" + testUtility.fakePageTitle());
         Thread.sleep(3000);
-
         metaKeywords.sendKeys(testUtility.metaKeywords());
         Thread.sleep(3000);
         metaDescription.sendKeys(testUtility.metaDescriptions());
