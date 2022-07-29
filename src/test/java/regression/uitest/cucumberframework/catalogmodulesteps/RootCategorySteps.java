@@ -2,6 +2,7 @@ package regression.uitest.cucumberframework.catalogmodulesteps;
 
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.catalogmodule.AddRootCategoriesZulhumar;
+import com.seleniummaster.ui.backend.catalogmodule.EditRootCategories;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -13,6 +14,7 @@ import org.testng.Assert;
 public class RootCategorySteps extends TestBase {
     AdminLoginPage adminLoginPage;
     AddRootCategoriesZulhumar addRootCategoriesZulhumar;
+    EditRootCategories editRootCategories;
     String configFile="config.properties";
 
 
@@ -31,6 +33,7 @@ public class RootCategorySteps extends TestBase {
         Assert.assertTrue(adminLoginPage.verifyAdminLoginSuccessfully());
             addRootCategoriesZulhumar =new AddRootCategoriesZulhumar(driver);
 addRootCategoriesZulhumar=new AddRootCategoriesZulhumar(driver);
+editRootCategories=new EditRootCategories(driver);
     }
 
     @When("catalog manager add a new root catagory")
@@ -44,6 +47,19 @@ addRootCategoriesZulhumar.fillCategoryInformationAndSave();
     public void theRootCategoryShouldBeDisplayed() throws InterruptedException {
 Assert.assertTrue(addRootCategoriesZulhumar.verifyAddRootCategories());
     }
+
+
+    @When("catalog manager update a new root catagory")
+    public void catalogManagerUpdateANewRootCatagory() throws InterruptedException {
+        editRootCategories.openCategoriesPage();
+        editRootCategories.editRootCatalogInformation();
+    }
+
+    @Then("the new updated root category should be displayed")
+    public void theNewUpdatedRootCategoryShouldBeDisplayed() {
+        Assert.assertTrue(editRootCategories.verifyEditRootCategories());
+    }
+
 
     @After("@RootCategoryTests")
     public void tearDown() {
