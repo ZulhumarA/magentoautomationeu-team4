@@ -2,6 +2,7 @@ package regression.uitest.cucumberframework.catalogmodulesteps;
 
 import com.seleniummaster.configutility.*;
 import com.seleniummaster.ui.backend.catalogmodule.AddRootCategoriesZulhumar;
+import com.seleniummaster.ui.backend.catalogmodule.DeleteRootCategories;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
@@ -14,8 +15,7 @@ public class RootCategorySteps extends TestBase {
     AdminLoginPage adminLoginPage;
     AddRootCategoriesZulhumar addRootCategoriesZulhumar;
     String configFile="config.properties";
-
-
+DeleteRootCategories deleteRootCategories;
     @Before("@RootCategoryTests")
     public void setUp() {
         browserSetUp(ApplicationConfig.readFromConfigProperties
@@ -31,6 +31,7 @@ public class RootCategorySteps extends TestBase {
         Assert.assertTrue(adminLoginPage.verifyAdminLoginSuccessfully());
             addRootCategoriesZulhumar =new AddRootCategoriesZulhumar(driver);
 addRootCategoriesZulhumar=new AddRootCategoriesZulhumar(driver);
+deleteRootCategories=new DeleteRootCategories(driver);
     }
 
     @When("catalog manager add a new root catagory")
@@ -45,10 +46,22 @@ addRootCategoriesZulhumar.fillCategoryInformationAndSave();
 Assert.assertTrue(addRootCategoriesZulhumar.verifyAddRootCategories());
     }
 
+
+    @When("catalog manager delete a root catagory")
+    public void catalogManagerDeleteARootCatagory() {
+        deleteRootCategories.openCategoriesPage();
+        deleteRootCategories.deleteRootCategory();
+    }
+
+    @Then("successful deleted message should be displayed")
+    public void successfulDeletedMessageShouldBeDisplayed() {
+        Assert.assertTrue(deleteRootCategories.verifyDeleteRootCategory());
+    }
+
+
     @After("@RootCategoryTests")
     public void tearDown() {
         closeBrowser();
     }
-
 }
 
